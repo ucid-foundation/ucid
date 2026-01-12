@@ -98,7 +98,7 @@ docs = [
 security = [
     "pip-audit>=2.6.0,<3.0.0",
     "bandit>=1.7.0,<2.0.0",
-    "cyclonedx-bom>=4.0.0,<5.0.0",
+    "cyclonedx-bom>=4.0.0,<8.0.0",
 ]
 all = [
     "UCID[contexts,ml,temporal,dask,ray,raster,api,db,viz]",
