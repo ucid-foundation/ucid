@@ -1,0 +1,24 @@
+include LICENSE
+include README.md
+include AUTHORS
+include CONTRIBUTING.md
+include CHANGELOG.md
+include GOVERNANCE.md
+include SECURITY.md
+include CODE_OF_CONDUCT.md
+include CITATION.cff
+include pyproject.toml
+include Makefile
+
+recursive-include src/ucid *.py
+recursive-include src/ucid/data *.json *.csv *.parquet
+recursive-include docs *
+recursive-include tests *
+recursive-include scripts *.py
+recursive-include examples *.py
+recursive-include notebooks *.ipynb *.md
+
+exclude .gitignore
+exclude .dockerignore
+exclude .pre-commit-config.yaml
+global-exclude *.py[cod] __pycache__ *.so *.dylib

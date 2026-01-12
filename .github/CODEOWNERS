@@ -1,0 +1,16 @@
+# CODEOWNERS file for UCID
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+*       @ucid-foundation/maintainers
+
+# Core module requires senior review
+/src/ucid/core/     @ucid-foundation/core-team
+
+# Security-sensitive files
+/SECURITY.md        @ucid-foundation/security
+/.github/workflows/ @ucid-foundation/devops
+
+# Documentation
+/docs/              @ucid-foundation/docs-team
+/README.md          @ucid-foundation/maintainers

@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - UCID_ENV=production
+      - UCID_LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Optional: PostgreSQL with PostGIS for persistent storage
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: ucid
+      POSTGRES_USER: ucid
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ucid_secret}
+    volumes:
+      - ucid_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    profiles:
+      - with-db
+
+  # Optional: Redis for caching
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    profiles:
+      - with-cache
+
+volumes:
+  ucid_data:

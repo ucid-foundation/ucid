@@ -1,0 +1,23 @@
+# Authors
+
+This file lists all contributors to the UCID project.
+
+## Core Team
+
+UCID Foundation <contact@ucid.org>
+  - Project governance and maintenance
+  - https://www.ucid.org
+
+Olaf Yunus Laitinen Imanov <olaf@ucid.org>
+  - Lead Developer
+  - Original author of the UCID specification
+
+## Contributors
+
+For a full list of contributors, see:
+https://github.com/ucid-foundation/ucid/graphs/contributors
+
+## How to Add Yourself
+
+If you have contributed to this project, please add yourself to the
+CONTRIBUTORS.md file following the all-contributors specification.

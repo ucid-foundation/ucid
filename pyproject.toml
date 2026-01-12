@@ -1,0 +1,195 @@
+[project]
+name = "UCID"
+version = "1.0.0"
+description = "Urban Context Identifier - Temporal urban analysis and standardized identifiers"
+readme = "README.md"
+license = {text = "EUPL-1.2"}
+authors = [
+    {name = "UCID Foundation", email = "contact@ucid.org"}
+]
+maintainers = [
+    {name = "UCID Foundation", email = "contact@ucid.org"}
+]
+requires-python = ">=3.11,<3.14"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Typing :: Typed",
+]
+keywords = [
+    "urban-planning",
+    "gis",
+    "spatial-analysis",
+    "h3",
+    "15-minute-city",
+    "walkability",
+    "transit",
+]
+dependencies = [
+    "numpy>=1.24.0,<2.0.0",
+    "pandas>=2.0.0,<3.0.0",
+    "geopandas>=0.14.0,<1.0.0",
+    "shapely>=2.0.0,<3.0.0",
+    "pyproj>=3.5.0,<4.0.0",
+    "h3>=3.7.0,<4.0.0",
+    "pydantic>=2.5.0,<3.0.0",
+    "python-dateutil>=2.8.0,<3.0.0",
+    "click>=8.0.0,<9.0.0",
+    "httpx>=0.25.0,<1.0.0",
+]
+
+[project.optional-dependencies]
+contexts = [
+    "osmnx>=1.8.0,<2.0.0",
+    "networkx>=3.1.0,<4.0.0",
+]
+ml = [
+    "scikit-learn>=1.3.0,<2.0.0",
+    "xgboost>=2.0.0,<3.0.0",
+]
+temporal = [
+    "statsmodels>=0.14.0,<1.0.0",
+]
+dask = [
+    "dask[complete]>=2023.10.0,<2025.0.0",
+]
+ray = [
+    "ray[default]>=2.8.0,<3.0.0",
+]
+raster = [
+    "rasterio>=1.3.0,<2.0.0",
+]
+api = [
+    "fastapi>=0.104.0,<1.0.0",
+    "uvicorn[standard]>=0.24.0,<1.0.0",
+]
+db = [
+    "psycopg2-binary>=2.9.0,<3.0.0",
+    "sqlalchemy>=2.0.0,<3.0.0",
+    "geoalchemy2>=0.14.0,<1.0.0",
+]
+viz = [
+    "matplotlib>=3.7.0,<4.0.0",
+    "plotly>=5.17.0,<6.0.0",
+    "folium>=0.15.0,<1.0.0",
+]
+dev = [
+    "pytest>=7.4.0,<8.0.0",
+    "pytest-cov>=4.1.0,<5.0.0",
+    "pytest-benchmark>=4.0.0,<5.0.0",
+    "hypothesis>=6.92.0,<7.0.0",
+    "mypy>=1.7.0,<2.0.0",
+    "ruff>=0.1.9,<1.0.0",
+    "pre-commit>=3.5.0,<4.0.0",
+]
+docs = [
+    "sphinx>=7.2.0,<8.0.0",
+    "sphinx-rtd-theme>=2.0.0,<3.0.0",
+    "myst-parser>=2.0.0,<3.0.0",
+    "nbsphinx>=0.9.0,<1.0.0",
+]
+security = [
+    "pip-audit>=2.6.0,<3.0.0",
+    "bandit>=1.7.0,<2.0.0",
+    "cyclonedx-bom>=4.0.0,<5.0.0",
+]
+all = [
+    "UCID[contexts,ml,temporal,dask,ray,raster,api,db,viz]",
+]
+
+[project.scripts]
+ucid = "ucid.cli:cli"
+
+[project.entry-points."ucid.contexts"]
+fifteen_minute = "ucid.contexts.fifteen_minute:FifteenMinuteContext"
+transit = "ucid.contexts.transit:TransitContext"
+climate = "ucid.contexts.climate:ClimateContext"
+vitality = "ucid.contexts.vitality:VitalityContext"
+equity = "ucid.contexts.equity:EquityContext"
+walkability = "ucid.contexts.walkability:WalkabilityContext"
+
+[project.urls]
+Homepage = "https://www.ucid.org"
+Documentation = "https://docs.ucid.org"
+Repository = "https://github.com/ucid-foundation/ucid"
+Changelog = "https://github.com/ucid-foundation/ucid/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/ucid-foundation/ucid/issues"
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ucid = ["py.typed"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "B", "C4", "SIM"]
+ignore = ["D100", "D104"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+packages = ["ucid"]
+
+[[tool.mypy.overrides]]
+module = [
+    "h3.*",
+    "geopandas.*",
+    "shapely.*",
+    "osmnx.*",
+    "networkx.*",
+    "folium.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers"
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+    "e2e: marks tests as end-to-end tests",
+]
+
+[tool.coverage.run]
+source = ["src/ucid"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
