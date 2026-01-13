@@ -72,7 +72,7 @@
 <!-- 8. Academic & Research -->
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18231105.svg)](https://doi.org/10.5281/zenodo.18231105)
 [![arXiv](https://img.shields.io/badge/arXiv-2026.00000-b31b1b.svg)](https://arxiv.org/abs/2026.00000)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--4011--132X-a6ce39.svg)](https://orcid.org/0009-0006-4011-132X)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5184--0810-a6ce39.svg)](https://orcid.org/0009-0006-5184-0810)
 [![Google Scholar](https://img.shields.io/badge/Google%20Scholar-citations-blue.svg)](https://scholar.google.com/)
 [![ResearchGate](https://img.shields.io/badge/ResearchGate-UCID-00ccbb.svg)](https://www.researchgate.net/)
 
