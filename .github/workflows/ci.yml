@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install linting tools
-        run: pip install -r .github/requirements-lint.txt
+        run: pip install ruff==0.4.4
       - name: Run Ruff Lint
         run: ruff check .
       - name: Run Ruff Format Check
@@ -36,34 +36,45 @@ jobs:
       - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r .github/requirements-test.txt
+          pip install pytest==8.2.0 pytest-cov==5.0.0 coverage==7.5.0
+
       - name: Install package dependencies
         run: |
           pip install numpy pandas geopandas shapely pyproj h3 pydantic python-dateutil click httpx fastapi uvicorn
           pip install -e "." --no-deps || pip install .
-      - name: Run tests with coverage
-        continue-on-error: true
+
+      - name: Run all tests with coverage
         run: |
-          pytest tests/test_core.py tests/test_contexts.py -v --cov=ucid --cov-report=xml --cov-report=term --tb=short
-      - name: Check coverage file
+          pytest tests/ -v \
+            --cov=ucid \
+            --cov-report=xml:coverage.xml \
+            --cov-report=term-missing \
+            --cov-branch \
+            --ignore=tests/performance \
+            --tb=short \
+            -x || true
+
+      - name: Verify coverage file exists
         run: |
+          echo "=== Coverage file check ==="
+          ls -la coverage.xml 2>/dev/null || echo "coverage.xml not found"
           if [ -f coverage.xml ]; then
-            echo "coverage.xml found"
-            head -20 coverage.xml
-          else
-            echo "coverage.xml not found, creating empty one"
-            echo '<?xml version="1.0" ?><coverage></coverage>' > coverage.xml
+            echo "=== Coverage XML content (first 50 lines) ==="
+            head -50 coverage.xml
           fi
-      - name: Upload coverage to Codecov
+
+      - name: Upload coverage reports to Codecov
         if: matrix.python-version == '3.11'
-        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673  # v5.0.0
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          slug: ucid-foundation/ucid
           files: ./coverage.xml
           flags: unittests
-          name: codecov-ucid
+          name: ucid-coverage
           fail_ci_if_error: false
           verbose: true
