@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
       - name: Install dependencies
         run: |
-          pip install sphinx myst-parser sphinx-rtd-theme
+          pip install -r .github/requirements-docs.txt
           pip install -e "."
       - name: Build docs
         run: |
