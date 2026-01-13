@@ -1,3 +1,7 @@
+# Copyright 2026 UCID Foundation
+# Licensed under EUPL-1.2
+# https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+
 # UCID Production Dockerfile
 # Multi-stage build for optimized image size
 
@@ -17,16 +21,20 @@ COPY pyproject.toml .
 COPY src/ ./src/
 
 # Install package
-RUN pip install --no-cache-dir --user ".[api,contexts,viz]"
+RUN pip install --no-cache-dir --user "."
 
 # Stage 2: Runtime
 FROM python:3.11-slim
+
+LABEL org.opencontainers.image.source="https://github.com/ucid-foundation/ucid"
+LABEL org.opencontainers.image.description="UCID - Urban Context Identifier"
+LABEL org.opencontainers.image.licenses="EUPL-1.2"
 
 WORKDIR /app
 
 # Install runtime dependencies only
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgdal32 \
+    curl \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -m -u 1000 ucid
 
@@ -50,4 +58,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 EXPOSE 8000
 
-CMD ["uvicorn", "ucid.api.app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "ucid.api.app"]
