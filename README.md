@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.svg" alt="UCID Logo" width="120" height="40">
+</p>
+
 # UCID: Urban Context Identifier
 
 [![License](https://img.shields.io/badge/License-EUPL--1.2-blue.svg)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12)
