@@ -51,7 +51,6 @@
 <!-- 6. Code Quality, Coverage & Security -->
 [![Codecov](https://codecov.io/gh/ucid-foundation/ucid/branch/main/graph/badge.svg)](https://codecov.io/gh/ucid-foundation/ucid)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ucid-foundation/ucid/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ucid-foundation/ucid)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9999/badge)](https://www.bestpractices.dev/projects/9999)
 [![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](https://pre-commit.com/)
