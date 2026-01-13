@@ -26,7 +26,6 @@ Example:
     >>> result = context.compute(lat=41.015, lon=28.979, timestamp="2026W01T12")
 """
 
-
 from importlib.metadata import entry_points
 
 from ucid.contexts.base import BaseContext

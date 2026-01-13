@@ -93,9 +93,7 @@ def set_locale(locale: str) -> None:
     """
     global _current_locale
     if locale not in _translations:
-        raise ValueError(
-            f"Unsupported locale: {locale}. Supported: {list(_translations.keys())}"
-        )
+        raise ValueError(f"Unsupported locale: {locale}. Supported: {list(_translations.keys())}")
     _current_locale = locale
 
 

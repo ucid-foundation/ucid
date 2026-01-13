@@ -29,9 +29,7 @@ class TestFifteenMinuteContext:
         with patch.object(
             ctx,
             "compute",
-            return_value=ContextResult(
-                raw_score=85, grade="A", confidence=0.9, metadata={}
-            ),
+            return_value=ContextResult(raw_score=85, grade="A", confidence=0.9, metadata={}),
         ):
             result = ctx.compute(41.0, 29.0, timestamp="2026W01T12")
             assert result.grade == "A"

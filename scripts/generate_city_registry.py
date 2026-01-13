@@ -90,26 +90,18 @@ def get_city_registry() -> list[CityEntry]:
     """
     return [
         # Europe
-        CityEntry(
-            "IST", "Istanbul", "TR", 41.0082, 28.9784, "Europe/Istanbul", 15_840_000
-        ),
+        CityEntry("IST", "Istanbul", "TR", 41.0082, 28.9784, "Europe/Istanbul", 15_840_000),
         CityEntry("LON", "London", "GB", 51.5074, -0.1278, "Europe/London", 8_982_000),
         CityEntry("PAR", "Paris", "FR", 48.8566, 2.3522, "Europe/Paris", 2_161_000),
         CityEntry("BER", "Berlin", "DE", 52.5200, 13.4050, "Europe/Berlin", 3_645_000),
         CityEntry("ROM", "Rome", "IT", 41.9028, 12.4964, "Europe/Rome", 2_873_000),
         CityEntry("MAD", "Madrid", "ES", 40.4168, -3.7038, "Europe/Madrid", 3_223_000),
-        CityEntry(
-            "AMS", "Amsterdam", "NL", 52.3676, 4.9041, "Europe/Amsterdam", 872_000
-        ),
+        CityEntry("AMS", "Amsterdam", "NL", 52.3676, 4.9041, "Europe/Amsterdam", 872_000),
         CityEntry("VIE", "Vienna", "AT", 48.2082, 16.3738, "Europe/Vienna", 1_911_000),
         CityEntry("PRG", "Prague", "CZ", 50.0755, 14.4378, "Europe/Prague", 1_309_000),
-        CityEntry(
-            "BCN", "Barcelona", "ES", 41.3851, 2.1734, "Europe/Madrid", 1_620_000
-        ),
+        CityEntry("BCN", "Barcelona", "ES", 41.3851, 2.1734, "Europe/Madrid", 1_620_000),
         # North America
-        CityEntry(
-            "NYC", "New York", "US", 40.7128, -74.0060, "America/New_York", 8_336_000
-        ),
+        CityEntry("NYC", "New York", "US", 40.7128, -74.0060, "America/New_York", 8_336_000),
         CityEntry(
             "LAX",
             "Los Angeles",
@@ -119,9 +111,7 @@ def get_city_registry() -> list[CityEntry]:
             "America/Los_Angeles",
             3_979_000,
         ),
-        CityEntry(
-            "CHI", "Chicago", "US", 41.8781, -87.6298, "America/Chicago", 2_693_000
-        ),
+        CityEntry("CHI", "Chicago", "US", 41.8781, -87.6298, "America/Chicago", 2_693_000),
         CityEntry(
             "SFO",
             "San Francisco",
@@ -131,12 +121,8 @@ def get_city_registry() -> list[CityEntry]:
             "America/Los_Angeles",
             874_000,
         ),
-        CityEntry(
-            "TOR", "Toronto", "CA", 43.6532, -79.3832, "America/Toronto", 2_731_000
-        ),
-        CityEntry(
-            "VAN", "Vancouver", "CA", 49.2827, -123.1207, "America/Vancouver", 631_000
-        ),
+        CityEntry("TOR", "Toronto", "CA", 43.6532, -79.3832, "America/Toronto", 2_731_000),
+        CityEntry("VAN", "Vancouver", "CA", 49.2827, -123.1207, "America/Vancouver", 631_000),
         CityEntry(
             "MEX",
             "Mexico City",
@@ -148,29 +134,17 @@ def get_city_registry() -> list[CityEntry]:
         ),
         # Asia
         CityEntry("TYO", "Tokyo", "JP", 35.6762, 139.6503, "Asia/Tokyo", 13_960_000),
-        CityEntry(
-            "HKG", "Hong Kong", "HK", 22.3193, 114.1694, "Asia/Hong_Kong", 7_500_000
-        ),
-        CityEntry(
-            "SGP", "Singapore", "SG", 1.3521, 103.8198, "Asia/Singapore", 5_637_000
-        ),
+        CityEntry("HKG", "Hong Kong", "HK", 22.3193, 114.1694, "Asia/Hong_Kong", 7_500_000),
+        CityEntry("SGP", "Singapore", "SG", 1.3521, 103.8198, "Asia/Singapore", 5_637_000),
         CityEntry("DXB", "Dubai", "AE", 25.2048, 55.2708, "Asia/Dubai", 3_331_000),
-        CityEntry(
-            "BJS", "Beijing", "CN", 39.9042, 116.4074, "Asia/Shanghai", 21_540_000
-        ),
-        CityEntry(
-            "SHA", "Shanghai", "CN", 31.2304, 121.4737, "Asia/Shanghai", 24_870_000
-        ),
+        CityEntry("BJS", "Beijing", "CN", 39.9042, 116.4074, "Asia/Shanghai", 21_540_000),
+        CityEntry("SHA", "Shanghai", "CN", 31.2304, 121.4737, "Asia/Shanghai", 24_870_000),
         CityEntry("SEL", "Seoul", "KR", 37.5665, 126.9780, "Asia/Seoul", 9_776_000),
         CityEntry("BKK", "Bangkok", "TH", 13.7563, 100.5018, "Asia/Bangkok", 8_281_000),
         CityEntry("BOM", "Mumbai", "IN", 19.0760, 72.8777, "Asia/Kolkata", 12_440_000),
-        CityEntry(
-            "DEL", "New Delhi", "IN", 28.6139, 77.2090, "Asia/Kolkata", 16_780_000
-        ),
+        CityEntry("DEL", "New Delhi", "IN", 28.6139, 77.2090, "Asia/Kolkata", 16_780_000),
         # Oceania
-        CityEntry(
-            "SYD", "Sydney", "AU", -33.8688, 151.2093, "Australia/Sydney", 5_312_000
-        ),
+        CityEntry("SYD", "Sydney", "AU", -33.8688, 151.2093, "Australia/Sydney", 5_312_000),
         CityEntry(
             "MEL",
             "Melbourne",
@@ -180,9 +154,7 @@ def get_city_registry() -> list[CityEntry]:
             "Australia/Melbourne",
             5_078_000,
         ),
-        CityEntry(
-            "AKL", "Auckland", "NZ", -36.8509, 174.7645, "Pacific/Auckland", 1_657_000
-        ),
+        CityEntry("AKL", "Auckland", "NZ", -36.8509, 174.7645, "Pacific/Auckland", 1_657_000),
         # South America
         CityEntry(
             "GRU",
@@ -211,9 +183,7 @@ def get_city_registry() -> list[CityEntry]:
             "America/Argentina/Buenos_Aires",
             2_891_000,
         ),
-        CityEntry(
-            "SCL", "Santiago", "CL", -33.4489, -70.6693, "America/Santiago", 6_767_000
-        ),
+        CityEntry("SCL", "Santiago", "CL", -33.4489, -70.6693, "America/Santiago", 6_767_000),
         # Africa & Middle East
         CityEntry("CAI", "Cairo", "EG", 30.0444, 31.2357, "Africa/Cairo", 9_540_000),
         CityEntry(

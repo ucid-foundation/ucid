@@ -51,9 +51,7 @@ class PostGISConnector:
             ImportError: If sqlalchemy or psycopg2 is not installed.
         """
         if sqlalchemy is None:
-            raise ImportError(
-                "sqlalchemy not installed - run: pip install sqlalchemy psycopg2-binary"
-            )
+            raise ImportError("sqlalchemy not installed - run: pip install sqlalchemy psycopg2-binary")
         self.engine = sqlalchemy.create_engine(connection_string)
 
     def write_ucids(

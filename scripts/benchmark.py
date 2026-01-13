@@ -111,9 +111,7 @@ def benchmark_parse_ucid() -> None:
 
 def benchmark_validate_ucid() -> None:
     """Benchmark UCID validation operation."""
-    is_valid_ucid(
-        "UCID-V1:IST:+41.008:+28.978:9:8a1fb46622dffff:2026W02T14:15MIN:B:0.95:"
-    )
+    is_valid_ucid("UCID-V1:IST:+41.008:+28.978:9:8a1fb46622dffff:2026W02T14:15MIN:B:0.95:")
 
 
 def run_benchmark(

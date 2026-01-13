@@ -32,9 +32,7 @@ class GeoJSONGeometry(BaseModel):
     """
 
     type: str = Field(..., description="Geometry type")
-    coordinates: list[float] | list[list[float]] | list[list[list[float]]] = Field(
-        ..., description="Coordinates"
-    )
+    coordinates: list[float] | list[list[float]] | list[list[list[float]]] = Field(..., description="Coordinates")
 
 
 class GeoJSONFeature(BaseModel):
@@ -56,9 +54,7 @@ class GeoJSONFeature(BaseModel):
 
     type: str = Field(default="Feature", description="GeoJSON type")
     geometry: dict[str, Any] = Field(..., description="Feature geometry")
-    properties: dict[str, Any] = Field(
-        default_factory=dict, description="Feature properties"
-    )
+    properties: dict[str, Any] = Field(default_factory=dict, description="Feature properties")
 
 
 class GeoJSONFeatureCollection(BaseModel):
@@ -76,6 +72,4 @@ class GeoJSONFeatureCollection(BaseModel):
     """
 
     type: str = Field(default="FeatureCollection", description="GeoJSON type")
-    features: list[GeoJSONFeature] = Field(
-        default_factory=list, description="List of features"
-    )
+    features: list[GeoJSONFeature] = Field(default_factory=list, description="List of features")

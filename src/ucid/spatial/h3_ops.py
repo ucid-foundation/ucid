@@ -60,11 +60,7 @@ def cell_to_boundary(h3_index: str) -> Polygon:
     Returns:
         Shapely Polygon representing the cell boundary.
     """
-    coords = (
-        h3.cell_to_boundary(h3_index)
-        if hasattr(h3, "cell_to_boundary")
-        else h3.h3_to_geo_boundary(h3_index)
-    )
+    coords = h3.cell_to_boundary(h3_index) if hasattr(h3, "cell_to_boundary") else h3.h3_to_geo_boundary(h3_index)
 
     # H3 returns (lat, lon), Shapely expects (lon, lat)
     swapped = [(c[1], c[0]) for c in coords]

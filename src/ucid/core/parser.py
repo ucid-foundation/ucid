@@ -63,8 +63,7 @@ def parse_ucid(ucid_string: str, strict: bool = True) -> UCID:
     # Validate prefix
     if not parts or not parts[0].startswith("UCID-V"):
         raise UCIDParseError(
-            f"Invalid prefix: {parts[0] if parts else 'empty'}. "
-            "Must start with 'UCID-V'",
+            f"Invalid prefix: {parts[0] if parts else 'empty'}. Must start with 'UCID-V'",
             code="INVALID_PREFIX",
         )
 

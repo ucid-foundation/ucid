@@ -89,9 +89,7 @@ class FeaturePipeline(BaseEstimator, TransformerMixin):
         # Auto-detect columns if not provided
         if not self.numerical_cols and not self.categorical_cols:
             self.numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
-            self.categorical_cols = df.select_dtypes(
-                include=["object", "category"]
-            ).columns.tolist()
+            self.categorical_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()
 
         transformers: list[tuple[str, Any, list[str]]] = []
         if self.numerical_cols:

@@ -122,9 +122,7 @@ def download_file(
                         filled = int(bar_length * downloaded / total_size)
                         bar = "=" * filled + "-" * (bar_length - filled)
                         size_mb = downloaded / (1024 * 1024)
-                        sys.stdout.write(
-                            f"\r  Progress: [{bar}] {percent:5.1f}% ({size_mb:.1f} MB)"
-                        )
+                        sys.stdout.write(f"\r  Progress: [{bar}] {percent:5.1f}% ({size_mb:.1f} MB)")
                         sys.stdout.flush()
 
             if show_progress:
@@ -185,9 +183,7 @@ def list_available_sources() -> None:
 
     for source in list_sources():
         source_type = "Benchmark" if source.is_benchmark else "Standard"
-        print(
-            f"{source.key:<15} {source.name:<25} {source.region:<15} {source_type:<15}"
-        )
+        print(f"{source.key:<15} {source.name:<25} {source.region:<15} {source_type:<15}")
 
     print("-" * 70)
     print()

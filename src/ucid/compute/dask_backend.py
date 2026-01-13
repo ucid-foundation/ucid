@@ -55,9 +55,7 @@ class DaskExecutor:
             ImportError: If dask[distributed] is not installed.
         """
         if dask is None or dask_distributed is None:
-            raise ImportError(
-                "dask[distributed] not installed - run: pip install dask[distributed]"
-            )
+            raise ImportError("dask[distributed] not installed - run: pip install dask[distributed]")
         self.client = dask_distributed.Client(scheduler_address)
 
     def map(

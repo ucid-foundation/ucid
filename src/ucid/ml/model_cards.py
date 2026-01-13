@@ -119,7 +119,5 @@ def generate_card(model_id: str, metrics: dict[str, float]) -> ModelCard:
             "Trained on limited data.",
             "May not generalize to all cities.",
         ],
-        ethical_considerations=(
-            "Verify fairness across demographic groups before deploying."
-        ),
+        ethical_considerations=("Verify fairness across demographic groups before deploying."),
     )

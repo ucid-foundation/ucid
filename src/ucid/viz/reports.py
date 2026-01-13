@@ -143,6 +143,4 @@ def generate_pdf_report(
         PDF generation requires weasyprint or similar library.
         Use generate_html_report() as an alternative.
     """
-    raise NotImplementedError(
-        "PDF generation requires weasyprint. Install with: pip install weasyprint"
-    )
+    raise NotImplementedError("PDF generation requires weasyprint. Install with: pip install weasyprint")

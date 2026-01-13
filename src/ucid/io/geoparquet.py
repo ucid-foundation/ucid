@@ -49,8 +49,7 @@ def export_geoparquet(ucids: list[UCID], output_path: str) -> None:
     """
     if not _HAS_GEOPANDAS:
         raise UCIDError(
-            "GeoPandas is required for GeoParquet export. "
-            "Install with: pip install UCID[contexts]",
+            "GeoPandas is required for GeoParquet export. Install with: pip install UCID[contexts]",
             code="MISSING_DEPENDENCY",
         )
 
@@ -90,8 +89,7 @@ def read_geoparquet(input_path: str) -> Any:
     """
     if not _HAS_GEOPANDAS:
         raise UCIDError(
-            "GeoPandas is required for GeoParquet import. "
-            "Install with: pip install UCID[contexts]",
+            "GeoPandas is required for GeoParquet import. Install with: pip install UCID[contexts]",
             code="MISSING_DEPENDENCY",
         )
 
