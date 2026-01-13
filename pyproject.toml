@@ -110,13 +110,13 @@ viz = [
     "folium>=0.15.0,<1.0.0",
 ]
 dev = [
-    "pytest>=7.4.0,<9.0.0",
-    "pytest-cov>=4.1.0,<6.0.0",
-    "pytest-benchmark>=4.0.0,<5.0.0",
+    "pytest>=7.4.0,<10.0.0",
+    "pytest-cov>=4.1.0,<8.0.0",
+    "pytest-benchmark>=4.0.0,<6.0.0",
     "hypothesis>=6.92.0,<7.0.0",
     "mypy>=1.7.0,<2.0.0",
     "ruff>=0.1.9,<1.0.0",
-    "pre-commit>=3.5.0,<4.0.0",
+    "pre-commit>=3.5.0,<5.0.0",
 ]
 docs = [
     "sphinx>=7.2.0,<9.0.0",
