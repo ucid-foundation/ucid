@@ -6,7 +6,7 @@
 # Multi-stage build for optimized image size
 
 # Stage 1: Builder
-FROM python:3.11-slim AS builder
+FROM python:3.14-slim AS builder
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ COPY src/ ./src/
 RUN pip install --no-cache-dir --user "."
 
 # Stage 2: Runtime
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 LABEL org.opencontainers.image.source="https://github.com/ucid-foundation/ucid"
 LABEL org.opencontainers.image.description="UCID - Urban Context Identifier"
