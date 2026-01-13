@@ -17,7 +17,7 @@
 This module provides Prometheus-compatible metrics for monitoring.
 """
 
-from typing import Any
+from typing import Any, Optional
 
 
 class MetricsCollector:
@@ -30,10 +30,10 @@ class MetricsCollector:
         """Initialize the metrics collector."""
         self._counters: dict[str, int] = {}
         self._gauges: dict[str, float] = {}
-        self._histograms: dict[str, list] = {}
+        self._histograms: dict[str, list[float]] = {}
 
     def increment(
-        self, name: str, value: int = 1, labels: dict[str, str] = None
+        self, name: str, value: int = 1, labels: Optional[dict[str, str]] = None
     ) -> None:
         """Increment a counter.
 
@@ -45,7 +45,9 @@ class MetricsCollector:
         key = self._make_key(name, labels)
         self._counters[key] = self._counters.get(key, 0) + value
 
-    def set_gauge(self, name: str, value: float, labels: dict[str, str] = None) -> None:
+    def set_gauge(
+        self, name: str, value: float, labels: Optional[dict[str, str]] = None
+    ) -> None:
         """Set a gauge value.
 
         Args:
@@ -56,7 +58,9 @@ class MetricsCollector:
         key = self._make_key(name, labels)
         self._gauges[key] = value
 
-    def observe(self, name: str, value: float, labels: dict[str, str] = None) -> None:
+    def observe(
+        self, name: str, value: float, labels: Optional[dict[str, str]] = None
+    ) -> None:
         """Record a histogram observation.
 
         Args:
@@ -69,7 +73,7 @@ class MetricsCollector:
             self._histograms[key] = []
         self._histograms[key].append(value)
 
-    def _make_key(self, name: str, labels: dict[str, str] = None) -> str:
+    def _make_key(self, name: str, labels: Optional[dict[str, str]] = None) -> str:
         """Create a unique key from name and labels."""
         if labels:
             label_str = ",".join(f"{k}={v}" for k, v in sorted(labels.items()))

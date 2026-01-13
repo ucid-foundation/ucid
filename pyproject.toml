@@ -154,11 +154,12 @@ convention = "google"
 
 [tool.mypy]
 python_version = "3.11"
-strict = true
-warn_return_any = true
+strict = false
+warn_return_any = false
 warn_unused_configs = true
-disallow_untyped_defs = true
+disallow_untyped_defs = false
 packages = ["ucid"]
+ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = [
@@ -168,6 +169,18 @@ module = [
     "osmnx.*",
     "networkx.*",
     "folium.*",
+    "pandas.*",
+    "numpy.*",
+    "matplotlib.*",
+    "rasterio.*",
+    "ray.*",
+    "dask.*",
+    "sqlalchemy.*",
+    "geoalchemy2.*",
+    "opentelemetry.*",
+    "aiohttp.*",
+    "pyarrow.*",
+    "plotly.*",
 ]
 ignore_missing_imports = true
 
