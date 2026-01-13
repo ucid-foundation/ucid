@@ -1,4 +1,5 @@
-FROM gcr.io/oss-fuzz-base/base-builder-python@sha256:b98e8f5a4a35b82a733d7b3f3f8929ec2a4f0e8b2a0f5e8b2a0f5e8b2a0f5e8b
+# Use official OSS-Fuzz base builder for Python (without pinning to invalid SHA)
+FROM gcr.io/oss-fuzz-base/base-builder-python
 
 RUN pip3 install atheris
 

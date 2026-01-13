@@ -5,10 +5,11 @@
 """Fuzz target for UCID parser."""
 
 import sys
+
 import atheris
 
 with atheris.instrument_imports():
-    from ucid import parse_ucid, UCIDParseError
+    from ucid import UCIDParseError, parse_ucid
 
 
 def test_one_input(data: bytes) -> None:
