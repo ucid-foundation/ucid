@@ -1,99 +1,38 @@
 # UCID: Urban Context Identifier
 
-<!-- 1. PyPI & Package Distribution -->
-[![PyPI Version](https://img.shields.io/pypi/v/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI Status](https://img.shields.io/pypi/status/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/ucid?logo=python&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI Format](https://img.shields.io/pypi/format/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI Wheel](https://img.shields.io/pypi/wheel/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI Implementation](https://img.shields.io/pypi/implementation/ucid?logo=python&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI Downloads Weekly](https://img.shields.io/pypi/dw/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI Downloads Daily](https://img.shields.io/pypi/dd/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-
-<!-- 2. GitHub Actions Workflows -->
 [![CI](https://github.com/ucid-foundation/ucid/actions/workflows/ci.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/ci.yml)
+[![Codecov](https://codecov.io/gh/ucid-foundation/ucid/branch/main/graph/badge.svg)](https://codecov.io/gh/ucid-foundation/ucid)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ucid-foundation/ucid/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ucid-foundation/ucid)
+[![PyPI Version](https://img.shields.io/pypi/v/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/ucid?logo=python&logoColor=white)](https://pypi.org/project/ucid/)
+[![License](https://img.shields.io/github/license/ucid-foundation/ucid)](https://github.com/ucid-foundation/ucid/blob/main/LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18231105.svg)](https://doi.org/10.5281/zenodo.18231105)
 [![CodeQL](https://github.com/ucid-foundation/ucid/actions/workflows/codeql.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/codeql.yml)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
 [![Docs](https://github.com/ucid-foundation/ucid/actions/workflows/docs.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/docs.yml)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
+[![arXiv](https://img.shields.io/badge/arXiv-2026.00000-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2026.00000)
 [![Scorecard](https://github.com/ucid-foundation/ucid/actions/workflows/scorecard.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/scorecard.yml)
 [![ClusterFuzzLite](https://github.com/ucid-foundation/ucid/actions/workflows/cflite.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/cflite.yml)
-[![Nightly](https://github.com/ucid-foundation/ucid/actions/workflows/nightly.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/nightly.yml)
-[![SBOM](https://github.com/ucid-foundation/ucid/actions/workflows/sbom.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/sbom.yml)
-[![Release](https://github.com/ucid-foundation/ucid/actions/workflows/release.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/release.yml)
-
-<!-- 3. Technology Stack -->
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
+[![GitHub Release](https://img.shields.io/github/v/release/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/stargazers)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776ab?logo=python&logoColor=white)](https://www.python.org/)
 [![Pydantic](https://img.shields.io/badge/Pydantic-2.0+-e92063?logo=pydantic&logoColor=white)](https://pydantic.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![NumPy](https://img.shields.io/badge/NumPy-1.24+-013243?logo=numpy&logoColor=white)](https://numpy.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-2.0+-150458?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
-[![GeoPandas](https://img.shields.io/badge/GeoPandas-0.14+-139c5a)](https://geopandas.org/)
 [![H3](https://img.shields.io/badge/H3-4.0+-1e90ff)](https://h3geo.org/)
-[![Shapely](https://img.shields.io/badge/Shapely-2.0+-4caf50)](https://shapely.readthedocs.io/)
-
-<!-- 4. Repository Engagement -->
-[![GitHub Stars](https://img.shields.io/github/stars/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/network)
-[![GitHub Watchers](https://img.shields.io/github/watchers/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/watchers)
-[![GitHub Issues](https://img.shields.io/github/issues/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/issues)
-[![GitHub Issues Closed](https://img.shields.io/github/issues-closed/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/pulls)
-[![GitHub Pull Requests Closed](https://img.shields.io/github/issues-pr-closed/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/pulls?q=is%3Apr+is%3Aclosed)
-[![GitHub Contributors](https://img.shields.io/github/contributors/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/graphs/contributors)
-[![GitHub Discussions](https://img.shields.io/github/discussions/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/discussions)
-
-<!-- 5. Repository & Code Size -->
-<<<<<<< HEAD
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
-[![GitHub Code Size](https://img.shields.io/github/languages/code-size/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
-[![GitHub Language Count](https://img.shields.io/github/languages/count/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
-[![GitHub Top Language](https://img.shields.io/github/languages/top/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
-=======
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid)
-[![GitHub Code Size](https://img.shields.io/github/languages/code-size/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid)
-[![GitHub Language Count](https://img.shields.io/github/languages/count/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid)
-[![GitHub Top Language](https://img.shields.io/github/languages/top/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid)
->>>>>>> bf4e045 (docs: add official logos to badges (PyPI, Python, GitHub, arXiv, ORCID, etc.))
-
-<!-- 6. Code Quality, Coverage & Security -->
-[![Codecov](https://codecov.io/gh/ucid-foundation/ucid/branch/main/graph/badge.svg?token=)](https://codecov.io/gh/ucid-foundation/ucid)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ucid-foundation/ucid/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ucid-foundation/ucid)
-[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
-[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000)](https://github.com/astral-sh/ruff)
-[![Security: bandit](https://img.shields.io/badge/security-bandit-yellow)](https://github.com/PyCQA/bandit)
-[![Type checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue)](https://mypy-lang.org/)
-
-<!-- 7. GitHub Root Metadata -->
-[![GitHub Release](https://img.shields.io/github/v/release/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/releases)
-[![GitHub Tag](https://img.shields.io/github/v/tag/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/tags)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/commits)
-[![GitHub Commits Since](https://img.shields.io/github/commits-since/ucid-foundation/ucid/latest?logo=github)](https://github.com/ucid-foundation/ucid/commits)
-[![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/graphs/commit-activity)
-[![License](https://img.shields.io/github/license/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/blob/main/LICENSE)
-[![GitHub Created](https://img.shields.io/github/created-at/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid)
-
-<!-- 8. Academic & Research -->
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18231105.svg)](https://doi.org/10.5281/zenodo.18231105)
-<<<<<<< HEAD
-[![arXiv](https://img.shields.io/badge/arXiv-2026.00000-b31b1b.svg)](https://arxiv.org/abs/2026.00000)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5184--0810-a6ce39.svg)](https://orcid.org/0009-0006-5184-0810)
-[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-citations-blue.svg)](https://scholar.google.com/)
-[![ResearchGate](https://img.shields.io/badge/ResearchGate-UCID-00ccbb.svg)](https://www.researchgate.net/)
-=======
-[![arXiv](https://img.shields.io/badge/arXiv-2026.00000-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2026.00000)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5184--0810-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0006-5184-0810)
-[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-citations-blue?logo=googlescholar&logoColor=white)](https://scholar.google.com/)
-[![ResearchGate](https://img.shields.io/badge/ResearchGate-UCID-00ccbb?logo=researchgate&logoColor=white)](https://www.researchgate.net/)
->>>>>>> bf4e045 (docs: add official logos to badges (PyPI, Python, GitHub, arXiv, ORCID, etc.))
-
-<!-- 9. Standards & Compliance -->
 [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue?logo=semver&logoColor=white)](https://semver.org/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
-[![REUSE](https://img.shields.io/badge/REUSE-compliant-green)](https://reuse.software/)
 [![SBOM](https://img.shields.io/badge/SBOM-CycloneDX-brightgreen)](https://cyclonedx.org/)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa)](CODE_OF_CONDUCT.md)
+[![GitHub Contributors](https://img.shields.io/github/contributors/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/graphs/contributors)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/commits)
+[![GitHub Forks](https://img.shields.io/github/forks/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/network)
+[![GitHub Issues](https://img.shields.io/github/issues/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid/issues)
+[![GitHub Repo Size](https://img.shields.io/github/repo-size/ucid-foundation/ucid?logo=github)](https://github.com/ucid-foundation/ucid)
 
 ---
 
