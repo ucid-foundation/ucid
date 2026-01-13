@@ -44,8 +44,8 @@ jobs:
           pip install -e "." --no-deps || true
       - name: Run tests with coverage
         run: |
-          pytest tests/ -v --cov=src/ucid --cov-report=xml --cov-report=term --tb=short -x --ignore=tests/performance || true
-          ls -la coverage.xml || echo "No coverage.xml found"
+          pytest tests/ -v --cov=ucid --cov-report=xml --cov-report=term --tb=short --ignore=tests/performance || true
+          ls -la coverage.xml 2>/dev/null || echo "No coverage.xml found"
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.11'
         uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673  # v5.0.0
