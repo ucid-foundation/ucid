@@ -23,7 +23,7 @@ jobs:
           cd docs
           sphinx-build -b html . _build/html || echo "Docs build completed with warnings"
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: docs
           path: docs/_build/html

@@ -24,7 +24,7 @@ jobs:
         run: |
           cyclonedx-py environment --output sbom.json --format json || echo "SBOM generation skipped"
       - name: Upload SBOM artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: sbom
           path: sbom.json

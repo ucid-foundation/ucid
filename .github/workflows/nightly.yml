@@ -18,7 +18,7 @@ jobs:
       - name: Run benchmarks
         run: pytest tests/ -v --benchmark-only --benchmark-json=benchmark.json
       - name: Upload benchmark results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: benchmark
           path: benchmark.json
