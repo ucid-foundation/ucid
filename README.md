@@ -628,25 +628,25 @@ The following figures from the peer-reviewed research illustrate key results:
 
 Calibration error by bin before and after isotonic regression demonstrates improved reliability of confidence estimates.
 
-<img src="article/figures/figure08_calibration_curves.pdf" alt="Calibration Curves" width="600">
+<img src="article/figures/figure08_calibration_curves.png" alt="Calibration Curves" width="600">
 
 #### Reliability Diagram
 
 Reliability curve showing the relationship between predicted confidence and observed accuracy before and after calibration.
 
-<img src="article/figures/figure09_reliability_diagram.pdf" alt="Reliability Diagram" width="600">
+<img src="article/figures/figure09_reliability_diagram.png" alt="Reliability Diagram" width="600">
 
 #### Transfer Learning Performance
 
 Mean Absolute Error versus target-city labeled sample size, demonstrating data-efficient transfer learning.
 
-<img src="article/figures/figure10_transfer_learning_performance.pdf" alt="Transfer Learning Performance" width="600">
+<img src="article/figures/figure10_transfer_learning_performance.png" alt="Transfer Learning Performance" width="600">
 
 #### Temporal Analysis
 
 Illustrative temporal trend and anomaly detection output showing UCID's capability for longitudinal monitoring.
 
-<img src="article/figures/figure11_temporal_analysis_example.pdf" alt="Temporal Analysis Example" width="600">
+<img src="article/figures/figure11_temporal_analysis_example.png" alt="Temporal Analysis Example" width="600">
 
 ### Technical Contributions
 
