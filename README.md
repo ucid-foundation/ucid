@@ -44,8 +44,6 @@
 [![H3](https://img.shields.io/badge/H3-4.0+-1e90ff)](https://h3geo.org/)
 [![Shapely](https://img.shields.io/badge/Shapely-2.0+-4caf50)](https://shapely.readthedocs.io/)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5184--0810-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0006-5184-0810)
-[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-citations-blue?logo=googlescholar&logoColor=white)](https://scholar.google.com/)
-[![ResearchGate](https://img.shields.io/badge/ResearchGate-UCID-00ccbb?logo=researchgate&logoColor=white)](https://www.researchgate.net/)
 [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue?logo=semver&logoColor=white)](https://semver.org/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 [![SBOM](https://img.shields.io/badge/SBOM-CycloneDX-brightgreen)](https://cyclonedx.org/)
