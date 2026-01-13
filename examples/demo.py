@@ -27,17 +27,14 @@ Example:
 from __future__ import annotations
 
 import argparse
-import json
 import sys
-from typing import Dict, List, Tuple
 
 from ucid.core.parser import create_ucid, parse_ucid
 from ucid.spatial.h3_ops import to_geojson
 from ucid.viz.themes import get_theme
 
-
 # City coordinates
-CITY_COORDS: Dict[str, Tuple[float, float, str]] = {
+CITY_COORDS: dict[str, tuple[float, float, str]] = {
     "IST": (41.0082, 28.9784, "Istanbul"),
     "NYC": (40.7128, -74.0060, "New York"),
     "LON": (51.5074, -0.1278, "London"),
@@ -70,10 +67,10 @@ def demo_ucid_creation(city: str, lat: float, lon: float) -> str:
         grade="A",
     )
 
-    print(f"\nInput:")
+    print("\nInput:")
     print(f"  City: {city}")
     print(f"  Coordinates: ({lat}, {lon})")
-    print(f"\nGenerated UCID:")
+    print("\nGenerated UCID:")
     print(f"  {ucid}")
 
     return str(ucid)
@@ -91,7 +88,7 @@ def demo_ucid_parsing(ucid_string: str) -> None:
 
     parsed = parse_ucid(ucid_string)
 
-    print(f"\nParsed Components:")
+    print("\nParsed Components:")
     print(f"  City:       {parsed.city}")
     print(f"  H3 Cell:    {parsed.h3}")
     print(f"  Timestamp:  {parsed.timestamp}")
@@ -114,7 +111,7 @@ def demo_spatial_ops(ucid_string: str) -> None:
     geojson = to_geojson(parsed.h3)
 
     print(f"\nH3 Cell: {parsed.h3}")
-    print(f"\nGeoJSON Geometry:")
+    print("\nGeoJSON Geometry:")
     print(f"  Type: {geojson['type']}")
     print(f"  Vertices: {len(geojson['coordinates'][0])}")
 
@@ -127,7 +124,7 @@ def demo_visualization() -> None:
 
     theme = get_theme()
 
-    print(f"\nTheme Configuration:")
+    print("\nTheme Configuration:")
     print(f"  Primary Color:   {theme.get('primary_color', 'N/A')}")
     print(f"  Secondary Color: {theme.get('secondary_color', 'N/A')}")
 
@@ -174,7 +171,8 @@ def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(description="UCID comprehensive demo")
     parser.add_argument(
-        "--city", "-c",
+        "--city",
+        "-c",
         type=str,
         default="IST",
         choices=list(CITY_COORDS.keys()),

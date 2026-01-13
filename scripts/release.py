@@ -43,8 +43,6 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
-
 
 # Configuration
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -115,7 +113,7 @@ def validate_semver(version: str) -> bool:
     return SEMVER_PATTERN.match(version) is not None
 
 
-def get_current_version() -> Optional[str]:
+def get_current_version() -> str | None:
     """Get the current version from pyproject.toml.
 
     Returns:
@@ -204,7 +202,7 @@ def build_package() -> StepResult:
     return StepResult("build", success, message)
 
 
-def run_release(config: ReleaseConfig) -> List[StepResult]:
+def run_release(config: ReleaseConfig) -> list[StepResult]:
     """Execute the release workflow.
 
     Args:
@@ -213,7 +211,7 @@ def run_release(config: ReleaseConfig) -> List[StepResult]:
     Returns:
         List of step results.
     """
-    results: List[StepResult] = []
+    results: list[StepResult] = []
 
     print()
     print("=" * 60)
@@ -264,7 +262,7 @@ def run_release(config: ReleaseConfig) -> List[StepResult]:
     return results
 
 
-def print_results(results: List[StepResult]) -> None:
+def print_results(results: list[StepResult]) -> None:
     """Print release results summary."""
     print()
     print("-" * 60)
@@ -293,12 +291,14 @@ def parse_args() -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
-        "--version", "-V",
+        "--version",
+        "-V",
         type=str,
         help="Version to release (default: from pyproject.toml)",
     )
     parser.add_argument(
-        "--dry-run", "-n",
+        "--dry-run",
+        "-n",
         action="store_true",
         help="Simulate release without making changes",
     )

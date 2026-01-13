@@ -25,7 +25,10 @@ import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin  # type: ignore[import-untyped]
 from sklearn.compose import ColumnTransformer  # type: ignore[import-untyped]
-from sklearn.preprocessing import OneHotEncoder, StandardScaler  # type: ignore[import-untyped]
+from sklearn.preprocessing import (  # type: ignore[import-untyped]
+    OneHotEncoder,
+    StandardScaler,
+)
 
 
 class FeaturePipeline(BaseEstimator, TransformerMixin):
@@ -85,9 +88,7 @@ class FeaturePipeline(BaseEstimator, TransformerMixin):
 
         # Auto-detect columns if not provided
         if not self.numerical_cols and not self.categorical_cols:
-            self.numerical_cols = df.select_dtypes(
-                include=[np.number]
-            ).columns.tolist()
+            self.numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
             self.categorical_cols = df.select_dtypes(
                 include=["object", "category"]
             ).columns.tolist()
@@ -97,11 +98,13 @@ class FeaturePipeline(BaseEstimator, TransformerMixin):
             transformers.append(("num", StandardScaler(), self.numerical_cols))
 
         if self.categorical_cols:
-            transformers.append((
-                "cat",
-                OneHotEncoder(handle_unknown="ignore"),
-                self.categorical_cols,
-            ))
+            transformers.append(
+                (
+                    "cat",
+                    OneHotEncoder(handle_unknown="ignore"),
+                    self.categorical_cols,
+                )
+            )
 
         self.pipeline = ColumnTransformer(transformers=transformers)
         self.pipeline.fit(df)

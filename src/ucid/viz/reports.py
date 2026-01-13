@@ -19,7 +19,7 @@ from UCID analysis data.
 """
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -45,32 +45,32 @@ def generate_report_content(
         ...     f.write(report)
     """
     theme = get_theme()
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    timestamp = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
 
     css = f"""
     <style>
         body {{
-            font-family: {theme['font_family']};
-            color: {theme['text_color']};
+            font-family: {theme["font_family"]};
+            color: {theme["text_color"]};
             margin: 2rem;
             max-width: 800px;
         }}
         h1 {{
-            color: {theme['primary_color']};
-            border-bottom: 2px solid {theme['secondary_color']};
+            color: {theme["primary_color"]};
+            border-bottom: 2px solid {theme["secondary_color"]};
         }}
         .metric-card {{
             background: #f5f5f5;
-            border-left: 5px solid {theme['primary_color']};
+            border-left: 5px solid {theme["primary_color"]};
             padding: 1rem;
             margin: 1rem 0;
         }}
         .timestamp {{
-            color: {theme['palette'][3]};
+            color: {theme["palette"][3]};
             font-size: 0.8rem;
         }}
         pre {{
-            background: {theme['palette'][3]};
+            background: {theme["palette"][3]};
             color: white;
             padding: 1rem;
             border-radius: 4px;

@@ -40,9 +40,7 @@ def format_stack_trace(exc: Exception) -> str:
         ...     trace = format_stack_trace(e)
         ...     print(trace)
     """
-    return "".join(
-        traceback.format_exception(type(exc), exc, exc.__traceback__)
-    )
+    return "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))
 
 
 def safe_str(obj: object) -> str:

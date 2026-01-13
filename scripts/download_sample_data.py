@@ -33,11 +33,9 @@ import sys
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
 from urllib.error import HTTPError, URLError
 
-from ucid.data.sources import list_sources, get_source
-
+from ucid.data.sources import get_source, list_sources
 
 # Configuration
 DEFAULT_OUTPUT_DIR = "data/external"
@@ -59,7 +57,7 @@ class DownloadResult:
 
     source_key: str
     success: bool
-    path: Optional[Path]
+    path: Path | None
     message: str
     bytes_downloaded: int = 0
 
@@ -83,7 +81,7 @@ def calculate_sha256(filepath: Path) -> str:
 def download_file(
     url: str,
     dest: Path,
-    expected_checksum: Optional[str] = None,
+    expected_checksum: str | None = None,
     show_progress: bool = True,
 ) -> DownloadResult:
     """Download a file with progress indication.
@@ -140,7 +138,7 @@ def download_file(
                     source_key=dest.stem,
                     success=False,
                     path=None,
-                    message=f"Checksum mismatch",
+                    message="Checksum mismatch",
                     bytes_downloaded=downloaded,
                 )
 
@@ -187,7 +185,9 @@ def list_available_sources() -> None:
 
     for source in list_sources():
         source_type = "Benchmark" if source.is_benchmark else "Standard"
-        print(f"{source.key:<15} {source.name:<25} {source.region:<15} {source_type:<15}")
+        print(
+            f"{source.key:<15} {source.name:<25} {source.region:<15} {source_type:<15}"
+        )
 
     print("-" * 70)
     print()
@@ -198,7 +198,7 @@ def list_available_sources() -> None:
     print()
 
 
-def download_sources(sources: List, output_dir: Path) -> List[DownloadResult]:
+def download_sources(sources: list, output_dir: Path) -> list[DownloadResult]:
     """Download multiple data sources.
 
     Args:
@@ -208,7 +208,7 @@ def download_sources(sources: List, output_dir: Path) -> List[DownloadResult]:
     Returns:
         List of download results.
     """
-    results: List[DownloadResult] = []
+    results: list[DownloadResult] = []
 
     print()
     print(f"Downloading {len(sources)} dataset(s) to '{output_dir}'")
@@ -219,12 +219,14 @@ def download_sources(sources: List, output_dir: Path) -> List[DownloadResult]:
 
         if "manual" in source.key:
             print(f"  SKIP: Requires manual download from {source.url}")
-            results.append(DownloadResult(
-                source_key=source.key,
-                success=True,
-                path=None,
-                message="Manual download required",
-            ))
+            results.append(
+                DownloadResult(
+                    source_key=source.key,
+                    success=True,
+                    path=None,
+                    message="Manual download required",
+                )
+            )
             continue
 
         extension = ".zip" if source.url.endswith(".zip") else ".dat"
@@ -232,13 +234,15 @@ def download_sources(sources: List, output_dir: Path) -> List[DownloadResult]:
         dest = output_dir / filename
 
         if dest.exists():
-            print(f"  SKIP: File already exists")
-            results.append(DownloadResult(
-                source_key=source.key,
-                success=True,
-                path=dest,
-                message="Already downloaded",
-            ))
+            print("  SKIP: File already exists")
+            results.append(
+                DownloadResult(
+                    source_key=source.key,
+                    success=True,
+                    path=dest,
+                    message="Already downloaded",
+                )
+            )
             continue
 
         result = download_file(source.url, dest)
@@ -274,7 +278,8 @@ def parse_args() -> argparse.Namespace:
         help="Download specific source by key",
     )
     parser.add_argument(
-        "--output", "-o",
+        "--output",
+        "-o",
         type=str,
         default=DEFAULT_OUTPUT_DIR,
         metavar="DIR",

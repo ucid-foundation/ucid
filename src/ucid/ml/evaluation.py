@@ -51,12 +51,8 @@ def calculate_metrics(y_true: list[float], y_pred: list[float]) -> dict[str, flo
     if not y_true:
         raise ZeroDivisionError("Cannot calculate metrics for empty lists")
 
-    mse = sum(
-        (t - p) ** 2 for t, p in zip(y_true, y_pred, strict=True)
-    ) / len(y_true)
-    mae = sum(
-        abs(t - p) for t, p in zip(y_true, y_pred, strict=True)
-    ) / len(y_true)
+    mse = sum((t - p) ** 2 for t, p in zip(y_true, y_pred, strict=True)) / len(y_true)
+    mae = sum(abs(t - p) for t, p in zip(y_true, y_pred, strict=True)) / len(y_true)
     rmse = math.sqrt(mse)
 
     return {

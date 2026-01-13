@@ -18,7 +18,7 @@ This module provides ML models for predicting urban context scores.
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, List, Optional
+from typing import Any
 
 
 class BasePredictor(ABC):
@@ -67,7 +67,7 @@ class UCIDPredictor(BasePredictor):
         >>> predictions = predictor.predict(X_test)
     """
 
-    def __init__(self, context: str, model: Optional[Any] = None) -> None:
+    def __init__(self, context: str, model: Any | None = None) -> None:
         """Initialize the predictor.
 
         Args:
@@ -87,7 +87,7 @@ class UCIDPredictor(BasePredictor):
         if self.model is not None:
             self.model.fit(X, y)
 
-    def predict(self, X: Any) -> List[float]:
+    def predict(self, X: Any) -> list[float]:
         """Generate predictions.
 
         Args:
@@ -100,7 +100,7 @@ class UCIDPredictor(BasePredictor):
             return list(self.model.predict(X))
         return [0.0] * len(X)
 
-    def predict_with_uncertainty(self, X: Any) -> tuple[List[float], List[float]]:
+    def predict_with_uncertainty(self, X: Any) -> tuple[list[float], list[float]]:
         """Generate predictions with uncertainty estimates.
 
         Args:

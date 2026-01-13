@@ -67,6 +67,6 @@ class EquityContext(BaseContext):
             metadata={
                 "mode": "stub",
                 "population_grid": "WorldPop 100m",
-                "reference_year": "2026"
+                "reference_year": "2026",
             },
         )

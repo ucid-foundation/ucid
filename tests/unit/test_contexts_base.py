@@ -1,5 +1,7 @@
 """Unit tests for contexts."""
+
 from ucid.contexts.utils import merge_configs
+
 
 def test_merge_configs():
     d1 = {"a": 1, "b": {"c": 2}}

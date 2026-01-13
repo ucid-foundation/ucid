@@ -45,11 +45,7 @@ def merge_configs(
     """
     result = default.copy()
     for key, value in override.items():
-        if (
-            isinstance(value, dict)
-            and key in result
-            and isinstance(result[key], dict)
-        ):
+        if isinstance(value, dict) and key in result and isinstance(result[key], dict):
             result[key] = merge_configs(result[key], value)
         else:
             result[key] = value

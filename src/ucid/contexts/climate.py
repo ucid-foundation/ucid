@@ -68,6 +68,6 @@ class ClimateContext(BaseContext):
             metadata={
                 "mode": "stub",
                 "sentinel_layers": ["NDVI", "LST"],
-                "resolution": "10m"
+                "resolution": "10m",
             },
         )

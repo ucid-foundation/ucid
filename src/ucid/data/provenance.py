@@ -20,7 +20,7 @@ is essential for reproducibility and attribution.
 """
 
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 
@@ -94,7 +94,7 @@ def create_provenance(
         license=license_id,
         attribution=f"© {source}",
         version="latest",
-        acquired=datetime.now(timezone.utc).isoformat(),
+        acquired=datetime.now(UTC).isoformat(),
         quality=1.0,
         metadata={},
     )

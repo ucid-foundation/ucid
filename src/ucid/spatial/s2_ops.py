@@ -47,9 +47,7 @@ def latlon_to_cell_id(lat: float, lon: float, level: int = 12) -> int:
         >>> print(f"S2 Cell ID: {cell_id}")
     """
     if s2sphere is None:
-        raise ImportError(
-            "s2sphere not installed - run: pip install s2sphere"
-        )
+        raise ImportError("s2sphere not installed - run: pip install s2sphere")
     point = s2sphere.LatLng.from_degrees(lat, lon)
     cell = s2sphere.CellId.from_lat_lng(point).parent(level)
     return cell.id()
@@ -72,9 +70,7 @@ def cell_id_to_latlon(cell_id: int) -> tuple[float, float]:
         >>> print(f"Center: {lat}, {lon}")
     """
     if s2sphere is None:
-        raise ImportError(
-            "s2sphere not installed - run: pip install s2sphere"
-        )
+        raise ImportError("s2sphere not installed - run: pip install s2sphere")
     cell = s2sphere.CellId(cell_id)
     latlng = cell.to_lat_lng()
     return latlng.lat().degrees, latlng.lng().degrees

@@ -1,5 +1,9 @@
 """Unit tests for temporal."""
+
+import pytest
+
 from ucid.temporal import trends
+
 
 def test_linear_trend():
     slope, intercept, _ = trends.detect_linear_trend([1, 2, 3], [1, 2, 3])

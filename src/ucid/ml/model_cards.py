@@ -72,18 +72,22 @@ class ModelCard:
         for metric_name, metric_value in self.metrics.items():
             lines.append(f"- **{metric_name}**: {metric_value:.4f}")
 
-        lines.extend([
-            "",
-            "## Limitations",
-        ])
+        lines.extend(
+            [
+                "",
+                "## Limitations",
+            ]
+        )
         for limitation in self.limitations:
             lines.append(f"- {limitation}")
 
-        lines.extend([
-            "",
-            "## Ethical Considerations",
-            self.ethical_considerations,
-        ])
+        lines.extend(
+            [
+                "",
+                "## Ethical Considerations",
+                self.ethical_considerations,
+            ]
+        )
 
         return "\n".join(lines)
 

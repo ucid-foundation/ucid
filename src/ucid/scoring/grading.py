@@ -18,11 +18,8 @@ This module provides functions for converting raw scores to letter grades
 using configurable thresholds.
 """
 
-from typing import Dict, Optional
-
-
 # Default grade thresholds per UCID specification
-DEFAULT_THRESHOLDS: Dict[str, float] = {
+DEFAULT_THRESHOLDS: dict[str, float] = {
     "A+": 90.0,
     "A": 80.0,
     "B": 70.0,
@@ -34,7 +31,7 @@ DEFAULT_THRESHOLDS: Dict[str, float] = {
 
 def score_to_grade(
     score: float,
-    thresholds: Optional[Dict[str, float]] = None,
+    thresholds: dict[str, float] | None = None,
 ) -> str:
     """Convert a raw score to a letter grade.
 

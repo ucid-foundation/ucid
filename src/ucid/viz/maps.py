@@ -107,11 +107,13 @@ def create_score_chart(
         "type": "bar",
         "data": {
             "labels": labels,
-            "datasets": [{
-                "label": "Score",
-                "data": scores,
-                "backgroundColor": "#1a9850",
-            }],
+            "datasets": [
+                {
+                    "label": "Score",
+                    "data": scores,
+                    "backgroundColor": "#1a9850",
+                }
+            ],
         },
         "options": {
             "scales": {

@@ -26,16 +26,19 @@ jobs:
           name: distributions
           path: dist/
 
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/UCID
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: distributions
-          path: dist/
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+  # Note: PyPI publishing requires trusted publisher configuration on PyPI.org
+  # See: https://docs.pypi.org/trusted-publishers/
+  # Uncomment when trusted publisher is configured:
+  # publish:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: pypi
+  #     url: https://pypi.org/p/UCID
+  #   steps:
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: distributions
+  #         path: dist/
+  #     - name: Publish to PyPI
+  #       uses: pypa/gh-action-pypi-publish@release/v1

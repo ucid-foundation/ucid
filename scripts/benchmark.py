@@ -36,12 +36,11 @@ import gc
 import statistics
 import sys
 import timeit
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable, List
 
 from ucid.core.parser import create_ucid, parse_ucid
 from ucid.core.validator import is_valid_ucid
-
 
 # Default configuration
 DEFAULT_ITERATIONS = 10_000
@@ -112,7 +111,9 @@ def benchmark_parse_ucid() -> None:
 
 def benchmark_validate_ucid() -> None:
     """Benchmark UCID validation operation."""
-    is_valid_ucid("UCID-V1:IST:+41.008:+28.978:9:8a1fb46622dffff:2026W02T14:15MIN:B:0.95:")
+    is_valid_ucid(
+        "UCID-V1:IST:+41.008:+28.978:9:8a1fb46622dffff:2026W02T14:15MIN:B:0.95:"
+    )
 
 
 def run_benchmark(
@@ -144,7 +145,7 @@ def run_benchmark(
 
     try:
         # Collect individual timings
-        times: List[float] = []
+        times: list[float] = []
         for _ in range(iterations):
             start = timeit.default_timer()
             func()
@@ -186,7 +187,7 @@ def print_header() -> None:
     print()
 
 
-def print_results(results: List[BenchmarkResult]) -> None:
+def print_results(results: list[BenchmarkResult]) -> None:
     """Print benchmark results table."""
     print("-" * 70)
     print(f"{'Benchmark':20s} | {'Throughput':>14s} | {'Mean Latency':>14s} | Status")
@@ -198,7 +199,7 @@ def print_results(results: List[BenchmarkResult]) -> None:
     print("-" * 70)
 
 
-def print_summary(results: List[BenchmarkResult]) -> None:
+def print_summary(results: list[BenchmarkResult]) -> None:
     """Print summary of benchmark results."""
     passed = sum(1 for r in results if r.passed)
     total = len(results)
@@ -221,19 +222,22 @@ def parse_args() -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
-        "--iterations", "-n",
+        "--iterations",
+        "-n",
         type=int,
         default=DEFAULT_ITERATIONS,
         help=f"Number of benchmark iterations (default: {DEFAULT_ITERATIONS})",
     )
     parser.add_argument(
-        "--warmup", "-w",
+        "--warmup",
+        "-w",
         type=int,
         default=DEFAULT_WARMUP,
         help=f"Number of warmup iterations (default: {DEFAULT_WARMUP})",
     )
     parser.add_argument(
-        "--verbose", "-v",
+        "--verbose",
+        "-v",
         action="store_true",
         help="Print detailed timing information",
     )
@@ -249,7 +253,7 @@ def main() -> int:
     args = parse_args()
 
     print_header()
-    print(f"Configuration:")
+    print("Configuration:")
     print(f"  Iterations: {args.iterations:,}")
     print(f"  Warmup: {args.warmup:,}")
     print()
@@ -258,11 +262,15 @@ def main() -> int:
     benchmarks = [
         ("create_ucid", benchmark_create_ucid, PERFORMANCE_TARGETS["create_ucid"]),
         ("parse_ucid", benchmark_parse_ucid, PERFORMANCE_TARGETS["parse_ucid"]),
-        ("validate_ucid", benchmark_validate_ucid, PERFORMANCE_TARGETS["validate_ucid"]),
+        (
+            "validate_ucid",
+            benchmark_validate_ucid,
+            PERFORMANCE_TARGETS["validate_ucid"],
+        ),
     ]
 
     # Run benchmarks
-    results: List[BenchmarkResult] = []
+    results: list[BenchmarkResult] = []
     for name, func, target in benchmarks:
         print(f"Running: {name}...", end=" ", flush=True)
         result = run_benchmark(name, func, args.iterations, args.warmup, target)

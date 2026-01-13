@@ -24,8 +24,6 @@ Example:
 """
 
 import json
-from pathlib import Path
-from typing import Dict, List
 
 import numpy as np
 
@@ -36,7 +34,7 @@ def generate_ucid_grid(
     center_lat: float,
     center_lon: float,
     n_points: int = 25,
-) -> List[Dict]:
+) -> list[dict]:
     """Generate a grid of UCIDs around a center point.
 
     Args:
@@ -68,18 +66,20 @@ def generate_ucid_grid(
             )
             parsed = parse_ucid(str(ucid))
 
-            results.append({
-                "ucid": str(ucid),
-                "lat": lat,
-                "lon": lon,
-                "score": parsed.score,
-                "grade": parsed.grade,
-            })
+            results.append(
+                {
+                    "ucid": str(ucid),
+                    "lat": lat,
+                    "lon": lon,
+                    "score": parsed.score,
+                    "grade": parsed.grade,
+                }
+            )
 
     return results
 
 
-def export_to_geojson(data: List[Dict], output_path: str) -> Dict:
+def export_to_geojson(data: list[dict], output_path: str) -> dict:
     """Export UCID data to GeoJSON format.
 
     Args:

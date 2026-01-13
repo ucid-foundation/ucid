@@ -18,8 +18,9 @@ This module provides tracing utilities using OpenTelemetry.
 Falls back to no-op implementations if OpenTelemetry is not installed.
 """
 
+from collections.abc import Iterator
 from contextlib import contextmanager
-from typing import Any, Iterator
+from typing import Any
 
 try:
     from opentelemetry import trace  # type: ignore[import-untyped]

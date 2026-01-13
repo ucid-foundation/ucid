@@ -1,6 +1,9 @@
 """Unit tests for Utils."""
-from ucid.utils.config import Config
+
 import os
+
+from ucid.utils.config import Config
+
 
 def test_config():
     os.environ["TEST_KEY"] = "val"

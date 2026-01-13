@@ -24,16 +24,13 @@ Example:
     TRANSIT: 78
 """
 
-from typing import Dict
-
 from ucid import create_ucid, parse_ucid
-
 
 # Available context types
 CONTEXTS = ["15MIN", "TRANSIT", "CLIMATE", "WALK", "VITALITY", "EQUITY"]
 
 
-def analyze_location(lat: float, lon: float, city: str = "IST") -> Dict[str, Dict]:
+def analyze_location(lat: float, lon: float, city: str = "IST") -> dict[str, dict]:
     """Analyze a location using all available contexts.
 
     Args:

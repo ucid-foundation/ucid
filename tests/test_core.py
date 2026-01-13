@@ -18,7 +18,7 @@ import pytest
 
 from ucid import __version__
 from ucid.core.errors import UCIDParseError
-from ucid.core.models import City, UCID
+from ucid.core.models import City
 from ucid.core.parser import create_ucid, parse_ucid
 from ucid.core.registry import CityRegistry
 

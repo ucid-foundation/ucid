@@ -48,13 +48,15 @@ def generate_grid_h3(
     """
     geojson = {
         "type": "Polygon",
-        "coordinates": [[
-            (min_lon, min_lat),
-            (max_lon, min_lat),
-            (max_lon, max_lat),
-            (min_lon, max_lat),
-            (min_lon, min_lat),
-        ]],
+        "coordinates": [
+            [
+                (min_lon, min_lat),
+                (max_lon, min_lat),
+                (max_lon, max_lat),
+                (min_lon, max_lat),
+                (min_lon, min_lat),
+            ]
+        ],
     }
 
     try:

@@ -40,7 +40,7 @@ from ucid.core.errors import (
     UCIDRegistryError,
     UCIDValidationError,
 )
-from ucid.core.models import City, UCID
+from ucid.core.models import UCID, City
 from ucid.core.parser import canonicalize, create_ucid, parse_ucid
 from ucid.core.registry import CityRegistry
 from ucid.core.validator import validate_ucid

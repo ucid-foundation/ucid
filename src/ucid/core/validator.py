@@ -130,9 +130,7 @@ def validate_ucid(ucid: UCID, strict: bool = True) -> list[str]:
         errors.append(msg)
 
     # 3. Validate Geo-H3 Consistency (strict mode only)
-    if strict and not validate_h3_match(
-        ucid.lat, ucid.lon, ucid.h3_index, ucid.h3_res
-    ):
+    if strict and not validate_h3_match(ucid.lat, ucid.lon, ucid.h3_index, ucid.h3_res):
         raise UCIDValidationError(
             f"Coordinates ({ucid.lat}, {ucid.lon}) do not match "
             f"H3 index {ucid.h3_index} at resolution {ucid.h3_res}",

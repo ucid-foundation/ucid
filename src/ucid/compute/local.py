@@ -48,9 +48,7 @@ class LocalExecutor(BaseExecutor):
                 Defaults to 4.
         """
         self.max_workers = max_workers
-        self._pool = concurrent.futures.ThreadPoolExecutor(
-            max_workers=max_workers
-        )
+        self._pool = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
 
     def map(
         self,

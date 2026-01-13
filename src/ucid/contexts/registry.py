@@ -26,15 +26,11 @@ Example:
     >>> result = context.compute(lat=41.015, lon=28.979, timestamp="2026W01T12")
 """
 
-import sys
+
+from importlib.metadata import entry_points
 
 from ucid.contexts.base import BaseContext
 from ucid.core.errors import UCIDContextError
-
-if sys.version_info >= (3, 10):
-    from importlib.metadata import entry_points
-else:
-    from importlib_metadata import entry_points  # type: ignore[import-untyped]
 
 
 class ContextRegistry:

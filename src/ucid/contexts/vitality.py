@@ -68,6 +68,6 @@ class VitalityContext(BaseContext):
             metadata={
                 "mode": "stub",
                 "mobile_data_provider": "anonymized_aggregator",
-                "granularity": "hourly"
+                "granularity": "hourly",
             },
         )

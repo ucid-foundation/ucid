@@ -33,9 +33,9 @@ __author__ = "UCID Foundation"
 __email__ = "contact@ucid.org"
 __url__ = "https://www.ucid.org"
 
-from ucid.core.parser import create_ucid, parse_ucid, canonicalize
-from ucid.core.models import UCID, City
 from ucid.core.errors import UCIDError, UCIDParseError, UCIDValidationError
+from ucid.core.models import UCID, City
+from ucid.core.parser import canonicalize, create_ucid, parse_ucid
 
 __all__ = [
     "__version__",

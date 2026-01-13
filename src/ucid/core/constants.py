@@ -19,7 +19,7 @@ used throughout the UCID library. All constants should be defined here to
 maintain a single source of truth.
 """
 
-from typing import Mapping
+from collections.abc import Mapping
 
 # UCID Format Version
 UCID_VERSION_PREFIX: str = "UCID-V1"
@@ -66,14 +66,16 @@ GRADE_THRESHOLDS: Mapping[str, float] = {
 """Minimum score thresholds for each grade."""
 
 # Built-in Contexts
-BUILTIN_CONTEXTS: frozenset[str] = frozenset({
-    "15MIN",
-    "TRANSIT",
-    "CLIMATE",
-    "VITALITY",
-    "EQUITY",
-    "WALK",
-})
+BUILTIN_CONTEXTS: frozenset[str] = frozenset(
+    {
+        "15MIN",
+        "TRANSIT",
+        "CLIMATE",
+        "VITALITY",
+        "EQUITY",
+        "WALK",
+    }
+)
 """Set of built-in context identifiers."""
 
 # Reserved City Codes (for testing/development)

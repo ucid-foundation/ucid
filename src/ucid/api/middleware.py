@@ -20,7 +20,7 @@ logging, timing, and request tracing.
 
 import logging
 import time
-from typing import Awaitable, Callable
+from collections.abc import Awaitable, Callable
 
 from fastapi import Request, Response
 

@@ -23,8 +23,6 @@ Example:
     Mean score: 72.5
 """
 
-from typing import List, Dict
-
 import numpy as np
 import pandas as pd
 
@@ -42,11 +40,13 @@ def generate_sample_locations(n: int = 100, seed: int = 42) -> pd.DataFrame:
         DataFrame with location_id, lat, lon columns.
     """
     np.random.seed(seed)
-    return pd.DataFrame({
-        "location_id": range(n),
-        "lat": np.random.uniform(40.8, 41.2, n),
-        "lon": np.random.uniform(28.6, 29.4, n),
-    })
+    return pd.DataFrame(
+        {
+            "location_id": range(n),
+            "lat": np.random.uniform(40.8, 41.2, n),
+            "lon": np.random.uniform(28.6, 29.4, n),
+        }
+    )
 
 
 def process_batch(df: pd.DataFrame, context: str = "15MIN") -> pd.DataFrame:
@@ -59,7 +59,7 @@ def process_batch(df: pd.DataFrame, context: str = "15MIN") -> pd.DataFrame:
     Returns:
         DataFrame with UCID results.
     """
-    results: List[Dict] = []
+    results: list[dict] = []
     for _, row in df.iterrows():
         ucid = create_ucid(
             city="IST",
@@ -69,12 +69,14 @@ def process_batch(df: pd.DataFrame, context: str = "15MIN") -> pd.DataFrame:
             context=context,
         )
         parsed = parse_ucid(str(ucid))
-        results.append({
-            "location_id": row["location_id"],
-            "ucid": str(ucid),
-            "score": parsed.score,
-            "grade": parsed.grade,
-        })
+        results.append(
+            {
+                "location_id": row["location_id"],
+                "ucid": str(ucid),
+                "score": parsed.score,
+                "grade": parsed.grade,
+            }
+        )
     return pd.DataFrame(results)
 
 

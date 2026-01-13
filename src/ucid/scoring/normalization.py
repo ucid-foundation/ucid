@@ -18,8 +18,6 @@ This module provides functions for normalizing raw scores to the
 standard 0-100 scale used across all UCID contexts.
 """
 
-from typing import List, Optional
-
 
 def normalize_score(
     value: float,
@@ -50,7 +48,7 @@ def normalize_score(
     return normalized
 
 
-def min_max_normalize(values: List[float]) -> List[float]:
+def min_max_normalize(values: list[float]) -> list[float]:
     """Min-max normalize a list of values to 0-100.
 
     Args:
@@ -69,10 +67,10 @@ def min_max_normalize(values: List[float]) -> List[float]:
 
 
 def z_score_normalize(
-    values: List[float],
-    mean: Optional[float] = None,
-    std: Optional[float] = None,
-) -> List[float]:
+    values: list[float],
+    mean: float | None = None,
+    std: float | None = None,
+) -> list[float]:
     """Z-score normalize values and convert to 0-100 scale.
 
     Args:
@@ -91,7 +89,7 @@ def z_score_normalize(
 
     if std is None:
         variance = sum((x - mean) ** 2 for x in values) / len(values)
-        std = variance ** 0.5
+        std = variance**0.5
 
     if std == 0:
         return [50.0] * len(values)

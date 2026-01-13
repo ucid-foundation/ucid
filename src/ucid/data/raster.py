@@ -48,9 +48,7 @@ def load_raster(path: str) -> Any:
         ...     data = src.read(1)
     """
     if rasterio is None:
-        raise ImportError(
-            "rasterio not installed - run: pip install rasterio"
-        )
+        raise ImportError("rasterio not installed - run: pip install rasterio")
     return rasterio.open(path)
 
 

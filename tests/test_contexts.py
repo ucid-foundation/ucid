@@ -14,17 +14,13 @@
 
 """Tests for UCID contexts module."""
 
-import pytest
-
 from ucid.contexts import (
-    BaseContext,
+    ClimateContext,
     ContextResult,
-    ContextRegistry,
+    EquityContext,
     FifteenMinuteContext,
     TransitContext,
-    ClimateContext,
     VitalityContext,
-    EquityContext,
     WalkabilityContext,
 )
 
