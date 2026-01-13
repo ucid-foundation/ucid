@@ -44,7 +44,7 @@ class TestContextRegistry:
         registry = ContextRegistry()
         if hasattr(registry, "list") or hasattr(registry, "list_all"):
             contexts = getattr(registry, "list", getattr(registry, "list_all", lambda: []))()
-            assert isinstance(contexts, (list, tuple, set))
+            assert isinstance(contexts, list | tuple | set)
 
     def test_registry_has_builtin_contexts(self) -> None:
         """Test registry has builtin contexts."""
