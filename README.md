@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="assets/logo.svg" alt="UCID Logo" width="120" height="40">
-</p>
+<img src="assets/logo.svg" alt="UCID Logo" width="240" height="80">
 
 # UCID: Urban Context Identifier
 
