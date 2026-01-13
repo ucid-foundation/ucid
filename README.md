@@ -1,5 +1,3 @@
-<img src="assets/logo.svg" alt="UCID Logo" width="240" height="80">
-
 # UCID: Urban Context Identifier
 
 [![License](https://img.shields.io/badge/License-EUPL--1.2-blue.svg)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12)
@@ -34,6 +32,7 @@
 
 ---
 
+<img src="assets/logo.svg" alt="UCID Logo" width="240" height="80">
 
 **UCID (Urban Context Identifier)** is a standardized, temporal identifier system and production-grade Python library for comprehensive urban context analysis. UCID provides a universal key for joining disparate urban datasets across global cities, enabling researchers, urban planners, and data scientists to perform reproducible, spatially-explicit, and temporally-aware urban analysis at scale.
 
