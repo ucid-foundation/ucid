@@ -45,7 +45,6 @@
 <!-- 5. Repository & Code Size -->
 [![GitHub Repo Size](https://img.shields.io/github/repo-size/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
 [![GitHub Code Size](https://img.shields.io/github/languages/code-size/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
-[![Lines of Code](https://img.shields.io/tokei/lines/github/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
 [![GitHub Language Count](https://img.shields.io/github/languages/count/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
 
