@@ -1,4 +1,0 @@
-# Pinned requirements with hashes for OpenSSF Scorecard compliance
-# Generated for CI linting
-ruff==0.4.4 \
-    --hash=sha256:2795f1e8b8500d31e6ac9a91d8b4e1600d7c0879df8f8e9dad58f8d80f0f194e

@@ -1,7 +1,0 @@
-# Pinned requirements with hashes for OpenSSF Scorecard compliance
-pytest==8.2.0 \
-    --hash=sha256:1733f0620f6cda4095bbf0d9ff8022486e91892f12c0a71ec7c4d8c08c9e1b2f
-pytest-cov==5.0.0 \
-    --hash=sha256:4f0764a1219df53214206bf1feea4633c3b558a2925c8b59f144f682861ce652
-coverage==7.5.0 \
-    --hash=sha256:5f439c4a726e14cb8b5c5c8ffc4d1e1e17a0ea9f926a0d6f8a6cd7f8b4f22b5c
