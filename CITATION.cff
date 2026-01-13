@@ -5,20 +5,45 @@ authors:
     email: "contact@ucid.org"
 title: "UCID: Urban Context Identifier"
 version: 1.0.0
+doi: 10.5281/zenodo.18231105
 date-released: 2026-01-12
 url: "https://github.com/ucid-foundation/ucid"
 repository-code: "https://github.com/ucid-foundation/ucid"
 license: EUPL-1.2
+type: software
 keywords:
   - urban-planning
+  - urban-context
+  - city-analysis
   - gis
+  - geospatial
   - spatial-analysis
   - h3
+  - hexagonal-grid
   - 15-minute-city
   - walkability
   - transit
+  - gtfs
+  - openstreetmap
+  - climate
+  - equity
+  - accessibility
+  - smart-city
+  - sustainable-cities
+  - python
 abstract: >-
   UCID (Urban Context Identifier) is a standardized, temporal identifier
   system and Python library for comprehensive urban context analysis.
   It provides a universal key for joining disparate urban datasets
-  across global cities.
+  across global cities, supporting 6 context types: 15-Minute City,
+  Transit Quality, Climate/Heat Island, Walkability, Urban Vitality,
+  and Equity/Accessibility.
+preferred-citation:
+  type: software
+  authors:
+    - name: "UCID Foundation"
+  title: "UCID: Urban Context Identifier"
+  version: 1.0.0
+  doi: 10.5281/zenodo.18231105
+  year: 2026
+  url: "https://doi.org/10.5281/zenodo.18231105"

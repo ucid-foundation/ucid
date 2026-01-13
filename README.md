@@ -8,7 +8,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/ucid-foundation/ucid/ci.yml?branch=main&label=CI)](https://github.com/ucid-foundation/ucid/actions)
 [![codecov](https://img.shields.io/codecov/c/github/ucid-foundation/ucid.svg)](https://codecov.io/gh/ucid-foundation/ucid)
 [![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue.svg)](https://github.com/ucid-foundation/ucid/tree/main/docs)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.0000000.svg)](https://doi.org/10.5281/zenodo.0000000)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18231105.svg)](https://doi.org/10.5281/zenodo.18231105)
 [![arXiv](https://img.shields.io/badge/arXiv-2026.00000-b31b1b.svg)](https://arxiv.org/abs/2026.00000)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Code Style](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)

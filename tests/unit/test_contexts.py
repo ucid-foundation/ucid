@@ -1,3 +1,17 @@
+# Copyright 2026 UCID Foundation
+#
+# Licensed under the EUPL, Version 1.2 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Unit tests for UCID context modules."""
 
 from unittest.mock import patch
@@ -14,18 +28,22 @@ from ucid.contexts.walkability import WalkabilityContext
 
 
 @pytest.fixture
-def mock_osm_data():
+def mock_osm_data() -> dict:
+    """Return mock OSM data for testing."""
     return {"nodes": {1: {"lat": 41.0, "lon": 29.0}}, "ways": {1: {"nodes": [1]}}}
 
 
 class TestFifteenMinuteContext:
-    def test_initialization(self):
+    """Tests for the FifteenMinuteContext."""
+
+    def test_initialization(self) -> None:
+        """Test context initializes with correct ID."""
         ctx = FifteenMinuteContext()
         assert ctx.context_id == "15MIN"
 
-    def test_compute_mock(self):
+    def test_compute_mock(self) -> None:
+        """Test compute with mocked return value."""
         ctx = FifteenMinuteContext()
-        # Mocking internal compute logic if it relies on external APIs
         with patch.object(
             ctx,
             "compute",
@@ -37,59 +55,76 @@ class TestFifteenMinuteContext:
 
 
 class TestTransitContext:
-    def test_initialization(self):
+    """Tests for the TransitContext."""
+
+    def test_initialization(self) -> None:
+        """Test context initializes with correct ID."""
         ctx = TransitContext()
         assert ctx.context_id == "TRANSIT"
 
-    def test_compute_stub(self):
-        # Assuming the current implementation is a stub or has a fallback
+    def test_compute_stub(self) -> None:
+        """Test compute returns valid result structure."""
         ctx = TransitContext()
         result = ctx.compute(41.0, 29.0, timestamp="2026W01T12")
         assert isinstance(result, ContextResult)
-        # Verify it returns a valid grade structure
         assert result.grade in ["A", "B", "C", "D", "E", "F"]
 
 
 class TestClimateContext:
-    def test_initialization(self):
+    """Tests for the ClimateContext."""
+
+    def test_initialization(self) -> None:
+        """Test context initializes with correct ID."""
         ctx = ClimateContext()
         assert ctx.context_id == "CLIMATE"
 
-    def test_heat_island_logic(self):
+    def test_heat_island_logic(self) -> None:
+        """Test compute with custom config."""
         ctx = ClimateContext(config={"baseline_temp": 25})
-        # Test with mock config
         result = ctx.compute(41.0, 29.0, timestamp="2026W01T12")
         assert isinstance(result, ContextResult)
 
 
 class TestVitalityContext:
-    def test_initialization(self):
+    """Tests for the VitalityContext."""
+
+    def test_initialization(self) -> None:
+        """Test context initializes with correct ID."""
         ctx = VitalityContext()
         assert ctx.context_id == "VITALITY"
 
-    def test_poi_diversity(self):
+    def test_poi_diversity(self) -> None:
+        """Test compute returns valid score range."""
         ctx = VitalityContext()
         result = ctx.compute(41.0, 29.0, timestamp="2026W01T12")
         assert 0 <= result.raw_score <= 100
 
 
 class TestEquityContext:
-    def test_initialization(self):
+    """Tests for the EquityContext."""
+
+    def test_initialization(self) -> None:
+        """Test context initializes with correct ID."""
         ctx = EquityContext()
         assert ctx.context_id == "EQUITY"
 
-    def test_gini_mock(self):
+    def test_gini_mock(self) -> None:
+        """Test compute returns valid result."""
         ctx = EquityContext()
         result = ctx.compute(41.0, 29.0, timestamp="2026W01T12")
         assert isinstance(result, ContextResult)
 
 
 class TestWalkabilityContext:
-    def test_initialization(self):
+    """Tests for the WalkabilityContext."""
+
+    def test_initialization(self) -> None:
+        """Test context initializes with correct ID."""
         ctx = WalkabilityContext()
         assert ctx.context_id == "WALK"
 
-    def test_intersection_density(self):
+    def test_intersection_density(self) -> None:
+        """Test compute returns valid result."""
         ctx = WalkabilityContext()
         result = ctx.compute(41.0, 29.0, timestamp="2026W01T12")
         assert isinstance(result, ContextResult)

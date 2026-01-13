@@ -41,11 +41,14 @@ jobs:
         run: |
           pip install pytest pytest-cov
           pip install -e "." || pip install .
-      - name: Run tests
-        run: pytest tests/ -v --tb=short || echo "Tests completed with some failures"
-      - name: Upload coverage
+      - name: Run tests with coverage
+        run: pytest tests/ -v --cov=ucid --cov-report=xml --tb=short || true
+      - name: Upload coverage to Codecov
         if: matrix.python-version == '3.11'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: ucid-foundation/ucid
+          files: ./coverage.xml
           fail_ci_if_error: false
-        continue-on-error: true
+          verbose: true
