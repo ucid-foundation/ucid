@@ -17,8 +17,8 @@
 import pytest
 from pydantic import ValidationError
 
-from ucid.core.models import City, UCID
 from ucid.core.constants import VALID_GRADES
+from ucid.core.models import UCID, City
 
 
 class TestCityModel:

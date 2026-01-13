@@ -14,14 +14,13 @@
 
 """Comprehensive unit tests for temporal module."""
 
-import pytest
 from datetime import datetime
 
 from ucid.temporal import (
+    TemporalBin,
     get_iso_week,
     get_temporal_key,
     parse_temporal_key,
-    TemporalBin,
 )
 
 

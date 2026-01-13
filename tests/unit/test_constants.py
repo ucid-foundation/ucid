@@ -14,19 +14,17 @@
 
 """Comprehensive unit tests for UCID constants."""
 
-import pytest
-
 from ucid.core.constants import (
-    UCID_VERSION_PREFIX,
-    UCID_CURRENT_VERSION,
-    DEFAULT_H3_RESOLUTION,
-    VALID_GRADES,
-    GRADE_THRESHOLDS,
-    MIN_LAT,
-    MAX_LAT,
-    MIN_LON,
-    MAX_LON,
     BUILTIN_CONTEXTS,
+    DEFAULT_H3_RESOLUTION,
+    GRADE_THRESHOLDS,
+    MAX_LAT,
+    MAX_LON,
+    MIN_LAT,
+    MIN_LON,
+    UCID_CURRENT_VERSION,
+    UCID_VERSION_PREFIX,
+    VALID_GRADES,
 )
 
 

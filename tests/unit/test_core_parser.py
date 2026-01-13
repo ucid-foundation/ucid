@@ -18,7 +18,6 @@ import pytest
 
 from ucid.core.errors import UCIDParseError
 from ucid.core.parser import canonicalize, create_ucid, parse_ucid
-from ucid.core.models import UCID
 
 
 class TestParseUCID:

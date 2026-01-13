@@ -15,6 +15,7 @@
 """Comprehensive unit tests for utilities."""
 
 import os
+
 import pytest
 
 from ucid.utils.config import Config

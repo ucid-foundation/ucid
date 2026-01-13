@@ -17,13 +17,13 @@
 import pytest
 
 from ucid.core.errors import (
-    UCIDError,
-    UCIDParseError,
-    UCIDValidationError,
+    UCIDConfigError,
     UCIDContextError,
     UCIDDataError,
-    UCIDConfigError,
+    UCIDError,
+    UCIDParseError,
     UCIDRegistryError,
+    UCIDValidationError,
 )
 
 
