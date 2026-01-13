@@ -12,22 +12,19 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  fuzzing:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+
       - name: Build Fuzzers
+        id: build
         uses: google/clusterfuzzlite/actions/build_fuzzers@v1
         with:
           language: python
           github-token: ${{ secrets.GITHUB_TOKEN }}
           sanitizer: address
 
-  fuzz:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
       - name: Run Fuzzers
         uses: google/clusterfuzzlite/actions/run_fuzzers@v1
         with:
@@ -35,3 +32,4 @@ jobs:
           fuzz-seconds: 300
           mode: 'code-change'
           sanitizer: address
+          output-sarif: true
