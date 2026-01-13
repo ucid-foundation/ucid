@@ -98,7 +98,7 @@ class TestContextConstants:
 
     def test_builtin_contexts(self) -> None:
         """Test builtin contexts."""
-        assert isinstance(BUILTIN_CONTEXTS, (list, tuple, set, dict))
+        assert isinstance(BUILTIN_CONTEXTS, list | tuple | set | dict)
         # Should have at least one builtin context
         assert len(BUILTIN_CONTEXTS) > 0
 
