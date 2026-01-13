@@ -21,8 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY pyproject.toml .
 COPY src/ ./src/
 
-# Install package with pinned pip
-RUN pip install --no-cache-dir --user "."
+# Install package with pinned pip (dependencies pinned via pyproject.toml)
+RUN pip install --no-cache-dir --no-deps --user "."
 
 # Stage 2: Runtime
 # Pinned to specific SHA256 digest for OpenSSF Scorecard compliance
