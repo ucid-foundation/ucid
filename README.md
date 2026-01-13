@@ -1,29 +1,77 @@
 # UCID: Urban Context Identifier
 
-[![License](https://img.shields.io/badge/License-EUPL--1.2-blue?style=flat-square&logo=european-union)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12)
-[![Python](https://img.shields.io/pypi/pyversions/ucid?style=flat-square&logo=python&logoColor=white)](https://pypi.org/project/ucid/)
-[![PyPI](https://img.shields.io/pypi/v/ucid?style=flat-square&logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![Downloads](https://img.shields.io/pypi/dm/ucid?style=flat-square&logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
-[![CI](https://img.shields.io/github/actions/workflow/status/ucid-foundation/ucid/ci.yml?branch=main&style=flat-square&logo=github-actions&logoColor=white&label=CI)](https://github.com/ucid-foundation/ucid/actions/workflows/ci.yml)
-[![Codecov](https://img.shields.io/codecov/c/github/ucid-foundation/ucid?style=flat-square&logo=codecov&logoColor=white)](https://codecov.io/gh/ucid-foundation/ucid)
-[![CodeQL](https://img.shields.io/github/actions/workflow/status/ucid-foundation/ucid/codeql.yml?branch=main&style=flat-square&logo=github&logoColor=white&label=CodeQL)](https://github.com/ucid-foundation/ucid/actions/workflows/codeql.yml)
-[![Documentation](https://img.shields.io/badge/docs-Sphinx-blue?style=flat-square&logo=sphinx&logoColor=white)](https://github.com/ucid-foundation/ucid/tree/main/docs)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18231105-blue?style=flat-square&logo=zenodo)](https://doi.org/10.5281/zenodo.18231105)
-[![arXiv](https://img.shields.io/badge/arXiv-2026.00000-B31B1B?style=flat-square&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2026.00000)
-[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/ucid-foundation/ucid?style=flat-square&label=OpenSSF)](https://securityscorecards.dev/viewer/?uri=github.com/ucid-foundation/ucid)
+<!-- Build & CI -->
+[![CI](https://github.com/ucid-foundation/ucid/actions/workflows/ci.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/ucid-foundation/ucid/actions/workflows/codeql.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/codeql.yml)
+[![Docs](https://github.com/ucid-foundation/ucid/actions/workflows/docs.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/docs.yml)
+[![Scorecard](https://github.com/ucid-foundation/ucid/actions/workflows/scorecard.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/scorecard.yml)
+[![Fuzzing](https://github.com/ucid-foundation/ucid/actions/workflows/cflite.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/cflite.yml)
+
+<!-- Package -->
+[![PyPI](https://img.shields.io/pypi/v/ucid.svg)](https://pypi.org/project/ucid/)
+[![Python](https://img.shields.io/pypi/pyversions/ucid.svg)](https://pypi.org/project/ucid/)
+[![Downloads](https://img.shields.io/pypi/dm/ucid.svg)](https://pypi.org/project/ucid/)
+[![PyPI Status](https://img.shields.io/pypi/status/ucid.svg)](https://pypi.org/project/ucid/)
+[![Wheel](https://img.shields.io/pypi/wheel/ucid.svg)](https://pypi.org/project/ucid/)
+[![Implementation](https://img.shields.io/pypi/implementation/ucid.svg)](https://pypi.org/project/ucid/)
+
+<!-- Code Quality -->
+[![Codecov](https://codecov.io/gh/ucid-foundation/ucid/branch/main/graph/badge.svg)](https://codecov.io/gh/ucid-foundation/ucid)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](https://pre-commit.com/)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Imports: isort](https://img.shields.io/badge/imports-isort-1674b1.svg)](https://pycqa.github.io/isort/)
+[![Type checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy-lang.org/)
+
+<!-- Security -->
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ucid-foundation/ucid/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ucid-foundation/ucid)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9999/badge)](https://www.bestpractices.dev/projects/9999)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json&style=flat-square)](https://github.com/astral-sh/ruff)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=flat-square&logo=pre-commit&logoColor=white)](https://pre-commit.com/)
-[![Security](https://img.shields.io/badge/security-bandit-yellow?style=flat-square&logo=python&logoColor=white)](https://github.com/PyCQA/bandit)
-[![SLSA](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
-[![SBOM](https://img.shields.io/badge/SBOM-CycloneDX-brightgreen?style=flat-square&logo=owasp&logoColor=white)](https://cyclonedx.org/)
-[![Container](https://img.shields.io/badge/container-GHCR-blue?style=flat-square&logo=docker&logoColor=white)](https://github.com/ucid-foundation/ucid/pkgs/container/ucid)
-[![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue?style=flat-square&logo=semver&logoColor=white)](https://semver.org/)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow?style=flat-square&logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
-[![Contributors](https://img.shields.io/github/contributors/ucid-foundation/ucid?style=flat-square&logo=github)](https://github.com/ucid-foundation/ucid/graphs/contributors)
-[![Stars](https://img.shields.io/github/stars/ucid-foundation/ucid?style=flat-square&logo=github)](https://github.com/ucid-foundation/ucid/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/ucid-foundation/ucid?style=flat-square&logo=github)](https://github.com/ucid-foundation/ucid/commits)
-[![Release](https://img.shields.io/github/v/release/ucid-foundation/ucid?style=flat-square&logo=github)](https://github.com/ucid-foundation/ucid/releases)
+[![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
+[![Dependency Review](https://img.shields.io/badge/dependency-review-green.svg)](https://github.com/ucid-foundation/ucid/security)
+[![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/ucid-foundation/ucid.svg)](https://snyk.io/test/github/ucid-foundation/ucid)
+
+<!-- License & Legal -->
+[![License](https://img.shields.io/badge/License-EUPL--1.2-blue.svg)](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12)
+[![REUSE](https://img.shields.io/badge/REUSE-compliant-green.svg)](https://reuse.software/)
+[![SBOM](https://img.shields.io/badge/SBOM-CycloneDX-brightgreen.svg)](https://cyclonedx.org/)
+
+<!-- Documentation & Research -->
+[![Documentation](https://img.shields.io/badge/docs-Sphinx-blue.svg)](https://github.com/ucid-foundation/ucid/tree/main/docs)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18231105.svg)](https://doi.org/10.5281/zenodo.18231105)
+[![arXiv](https://img.shields.io/badge/arXiv-2026.00000-b31b1b.svg)](https://arxiv.org/abs/2026.00000)
+
+<!-- Standards -->
+[![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue.svg)](https://semver.org/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Keep a Changelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog-orange.svg)](https://keepachangelog.com/)
+[![EditorConfig](https://img.shields.io/badge/EditorConfig-supported-green.svg)](https://editorconfig.org/)
+
+<!-- Container & Deployment -->
+[![Container](https://img.shields.io/badge/container-GHCR-blue.svg)](https://github.com/ucid-foundation/ucid/pkgs/container/ucid)
+[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://github.com/ucid-foundation/ucid)
+[![Kubernetes](https://img.shields.io/badge/kubernetes-ready-326ce5.svg)](https://kubernetes.io/)
+
+<!-- Repository Stats -->
+[![GitHub release](https://img.shields.io/github/v/release/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/releases)
+[![GitHub tag](https://img.shields.io/github/v/tag/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/tags)
+[![GitHub commits](https://img.shields.io/github/commits-since/ucid-foundation/ucid/latest.svg)](https://github.com/ucid-foundation/ucid/commits)
+[![GitHub last commit](https://img.shields.io/github/last-commit/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/commits)
+[![GitHub contributors](https://img.shields.io/github/contributors/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/graphs/contributors)
+[![GitHub stars](https://img.shields.io/github/stars/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/network)
+[![GitHub watchers](https://img.shields.io/github/watchers/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/watchers)
+[![GitHub issues](https://img.shields.io/github/issues/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/pulls)
+[![GitHub repo size](https://img.shields.io/github/repo-size/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
+[![GitHub code size](https://img.shields.io/github/languages/code-size/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid)
+
+<!-- Community -->
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![All Contributors](https://img.shields.io/badge/all_contributors-welcome-orange.svg)](CONTRIBUTING.md)
+[![Discussions](https://img.shields.io/github/discussions/ucid-foundation/ucid.svg)](https://github.com/ucid-foundation/ucid/discussions)
+[![Good First Issues](https://img.shields.io/github/issues/ucid-foundation/ucid/good%20first%20issue.svg)](https://github.com/ucid-foundation/ucid/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[![Help Wanted](https://img.shields.io/github/issues/ucid-foundation/ucid/help%20wanted.svg)](https://github.com/ucid-foundation/ucid/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
 ---
 
