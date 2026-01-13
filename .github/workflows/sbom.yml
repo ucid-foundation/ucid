@@ -20,8 +20,8 @@ jobs:
           python-version: "3.11"
       - name: Install dependencies
         run: |
-          pip install cyclonedx-bom
-          pip install -e ".[dev]" || pip install .
+          pip install cyclonedx-bom==4.4.3
+          pip install -e "." || pip install .
       - name: Generate SBOM
         run: |
           cyclonedx-py environment --output sbom.json --format json || echo "SBOM generation skipped"

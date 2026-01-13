@@ -6,7 +6,8 @@
 # Multi-stage build for optimized image size
 
 # Stage 1: Builder
-FROM python:3.11-slim AS builder
+# Pinned to specific SHA256 digest for OpenSSF Scorecard compliance
+FROM python:3.11-slim@sha256:d963377c651e0ba71336362d37cb32531e9a569407c7bea07e2a05a88dde145d AS builder
 
 WORKDIR /app
 
@@ -20,11 +21,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY pyproject.toml .
 COPY src/ ./src/
 
-# Install package
+# Install package with pinned pip
 RUN pip install --no-cache-dir --user "."
 
 # Stage 2: Runtime
-FROM python:3.11-slim
+# Pinned to specific SHA256 digest for OpenSSF Scorecard compliance
+FROM python:3.11-slim@sha256:d963377c651e0ba71336362d37cb32531e9a569407c7bea07e2a05a88dde145d
 
 LABEL org.opencontainers.image.source="https://github.com/ucid-foundation/ucid"
 LABEL org.opencontainers.image.description="UCID - Urban Context Identifier"

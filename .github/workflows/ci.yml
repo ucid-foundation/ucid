@@ -44,7 +44,7 @@ jobs:
 
       - name: Install package dependencies
         run: |
-          pip install numpy pandas geopandas shapely pyproj h3 pydantic python-dateutil click httpx fastapi uvicorn
+          pip install numpy==2.0.0 pandas==2.2.2 geopandas==1.0.1 shapely==2.0.4 pyproj==3.6.1 h3==3.7.7 pydantic==2.7.1 python-dateutil==2.9.0 click==8.1.7 httpx==0.27.0 fastapi==0.111.0 uvicorn==0.30.1
           pip install -e "." --no-deps || pip install .
 
       - name: Run all tests with coverage
@@ -69,7 +69,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.python-version == '3.11'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673  # v5.0.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: ucid-foundation/ucid

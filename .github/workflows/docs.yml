@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
       - name: Install dependencies
         run: |
-          pip install -r .github/requirements-docs.txt
+          pip install sphinx==7.3.7 myst-parser==3.0.1 sphinx-rtd-theme==2.0.0
           pip install -e "."
       - name: Build docs
         run: |

@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install atheris hypothesis
+          pip install atheris==2.3.0 hypothesis==6.100.2
           pip install -e "."
 
       - name: Run Hypothesis property-based tests

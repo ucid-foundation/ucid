@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install dependencies
-        run: pip install -e ".[dev,contexts]" || pip install pytest pytest-benchmark
+        run: pip install pytest==8.2.0 pytest-benchmark==4.0.0
       - name: Run benchmarks
         run: pytest tests/ -v --benchmark-only --benchmark-json=benchmark.json || echo "Benchmarks skipped"
       - name: Upload benchmark results
@@ -35,7 +35,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install audit tools
-        run: pip install pip-audit bandit
+        run: pip install pip-audit==2.7.3 bandit==1.7.9
       - name: Run pip-audit
         run: pip-audit --strict || echo "Some vulnerabilities found"
       - name: Run bandit
