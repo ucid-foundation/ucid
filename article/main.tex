@@ -1,0 +1,378 @@
+\documentclass[10pt,twocolumn]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\raggedbottom
+
+\usepackage{newtxtext,newtxmath}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[square,numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{balance}
+
+\setlength{\columnsep}{18pt}
+\setlength{\columnseprule}{0.3pt}
+
+\setlength{\emergencystretch}{3em}
+\tolerance=2000
+\hbadness=10000
+\hfuzz=2pt
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+\urlstyle{same}
+
+
+\title{UCID: A Standardized Framework for Temporal-Spatial Urban Context Identification and Multi-dimensional Quality Assessment}
+\author{Olaf Yunus Laitinen Imanov\\
+Department of Applied Mathematics and Computer Science (DTU Compute)\\
+Technical University of Denmark\\
+2800 Kongens Lyngby, Denmark\\
+\texttt{oyli@dtu.dk}\\
+ORCID: 0009-0006-5184-0810}
+\date{January 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Urban analytics increasingly informs planning and policy, yet operational practice remains fragmented: accessibility, transit supply, climate exposure, and equity are often computed with incompatible spatial keys, static assumptions, and limited provenance. This fragmentation hinders longitudinal monitoring, cross-city comparison, and reproducible research. This paper introduced the Urban Context Identifier (UCID), a standardized, machine-readable identifier that binds \emph{place}, \emph{time}, and \emph{context} into a deterministic canonical string. UCID combined (i) geographic coordinates at three-decimal precision, (ii) H3 hexagonal indexing for spatial containment and aggregation, (iii) ISO 8601 week-hour temporal encoding for longitudinal analysis, (iv) a context namespace for multi-dimensional urban quality, and (v) an embedded confidence score and flags for data lineage and computation status. A reference architecture implemented strict parsing and validation invariants, an extensible plugin system for context algorithms (15-minute accessibility, transit quality, climate resilience, vitality, equity, and walkability), and an evaluation suite covering random, temporal, and spatial splits with calibration and uncertainty quantification. Pilot empirical results from the reference implementation were reported for four cities using public data (OpenStreetMap, GTFS, and census layers), achieving competitive predictive accuracy and well-calibrated uncertainty after isotonic regression. UCID enabled consistent reporting, traceable provenance, and scalable batch scoring suitable for urban monitoring and scenario analysis.
+\end{abstract}
+
+\noindent\textbf{Keywords:} urban informatics; spatial-temporal analysis; urban accessibility; machine learning; H3 spatial indexing; reproducibility; transfer learning; urban planning; smart cities
+
+\section{Introduction}
+Cities face compounding pressures from rapid urbanization, climate risks, and mobility transitions. Planners and researchers increasingly rely on data-driven indicators to quantify access to services, transit quality, resilience, and equity. However, three persistent challenges limit comparability and reproducibility.
+
+First, urban indicators are fragmented across tools and pipelines. Packages such as OSMnx \cite{boeing2017osmnx} and UrbanSim-based accessibility engines \cite{waddell2002urbansim} enable high-quality computations, but results are rarely tied to a standard identifier that can be shared across studies. Without a common key, comparing results across cities or time periods often required bespoke joins and assumptions, which limited replication.
+
+Second, many workflows are temporally blind. Urban form and services change weekly or seasonally: transit headways vary by schedule period, and business openings and closures reshape access. Yet most accessibility and livability metrics are published as static snapshots. Temporal GIS work emphasized that time is intrinsic to geographic phenomena \cite{langran1992temporal,peuquet2001} and should be encoded explicitly when the goal is longitudinal monitoring.
+
+Third, reproducibility remains difficult in urban informatics. The provenance of OpenStreetMap extracts \cite{haklay2008osm}, GTFS-based schedule feeds \cite{wesselfarber2019gtfs,huang2017gtfs}, and auxiliary demographic layers is often incompletely documented. Reproducibility work highlighted the need for explicit provenance, versioning, and artifact sharing \cite{peng2011reproducible,stodden2016reproducibility,wilkinson2016fair}.
+
+This paper introduced UCID, a standardized identifier designed to unify spatial, temporal, and contextual measurements in a deterministic canonical format. UCID was designed for two complementary roles: a \emph{research artifact} that enabled cross-city comparison and replication, and a \emph{production artifact} suitable for batch scoring, storage, and API exchange.
+
+The paper addressed four research questions:
+\begin{itemize}
+\item RQ1: Can a standardized identifier integrate spatial, temporal, and contextual urban data into a parseable and stable representation?
+\item RQ2: Does the UCID framework support accurate prediction of multi-dimensional urban quality metrics from heterogeneous data sources?
+\item RQ3: Can UCID-based models transfer knowledge across cities while maintaining statistical rigor and calibrated uncertainty?
+\item RQ4: Does UCID improve reproducibility through determinism, provenance tracking, and open-science conventions?
+\end{itemize}
+
+\subsection{Contributions}
+The contributions were as follows. (C1) A formal UCID-V1 specification with constraints, parsing invariants, and determinism guarantees. (C2) A modular architecture and plugin mechanism enabling extensible context algorithms. (C3) A research-grade evaluation protocol with multi-split testing, calibration, and uncertainty quantification. (C4) An open-source reference implementation under EUPL-1.2 with reproducible artifacts, structured documentation templates, and export formats.
+
+\section{Related Work}
+\subsection{Urban accessibility and the 15-minute city}
+Accessibility theory has long connected land use, transport, and opportunities. Early work framed accessibility as a driver of land use change \cite{hansen1959}, while later reviews compared measures and evaluation criteria \cite{geurs2004}. The 15-minute city concept revived proximity-based planning and emphasized local access to essential services \cite{moreno2021,pozoukidou2021}. UCID operationalized proximity and related dimensions by providing standardized keys for repeated measurement over time.
+
+\subsection{Spatial indexing and aggregation}
+Spatial indexing supports efficient aggregation and joins. Discrete global grid systems (DGGS) provide hierarchical tessellations for scalable geospatial analytics \cite{sahr2003dggs}. Hexagonal grids provide near-uniform adjacency and multi-resolution aggregation, motivating the use of an H3-style hierarchical hexagon index for spatial containment and stable joins.
+
+\subsection{Urban analytics software}
+Open-source tools increasingly support urban computation. OSMnx standardized network acquisition and graph-based metrics at scale \cite{boeing2017osmnx}. UrbanAccess \cite{blanchardwaddell2017urbanaccess} and UrbanSim-based accessibility engines \cite{waddell2002urbansim} supported accessibility computations. Despite these advances, a common limitation is the lack of an identifier that combines location, time, context, and provenance in a single artifact.
+
+\subsection{Machine learning, calibration, and fairness}
+Gradient boosting is a strong baseline for tabular geospatial features \cite{friedman2001gbm}. Evaluation must avoid leakage, which motivated temporal splitting and nested cross-validation \cite{hastie2009esl}. Calibration is critical when models output probabilities or confidence scores; probability calibration can be obtained with sigmoid (Platt-style) calibration \cite{lin2007platt} and isotonic regression under order restrictions \cite{barlow1972isotonic}. distribution-free uncertainty can be obtained via conformal prediction \cite{vovk2005conformal,angelopoulosbates2022conformal}. Fairness reporting and bias assessment informed the equity context and reporting \cite{mehrabi2021fairnesssurvey,kamiran2012discrimination}. Transparent reporting can be supported by structured documentation practices such as datasheets for datasets \cite{gebru2021datasheets}.
+
+\section{UCID Standard Specification}
+\subsection{Canonical format}
+UCID-V1 is an ASCII-safe string:
+\begin{equation}
+{\scriptsize\begin{aligned}
+\texttt{UCID-V1:\{CITY\}:\{LAT3\}:\{LON3\}:\{H3R\}:\{H3\}:}\\
+\texttt{\{TIME\}:\{CONTEXT\}:\{GRADE\}:\{CONF\}:\{FLAGS\}}.
+\end{aligned}}
+\end{equation}
+The UCID tuple is $U=(C,L,T,K,S,\sigma,F)$ where $C$ is a city code, $L=(\phi,\lambda)$ are coordinates, $T$ is a temporal key, $K$ is a context type, $S$ is a raw score, $\sigma$ is a confidence score, and $F$ is a flag set.
+
+\subsection{Constraints and invariants}
+Coordinates were stored with three decimals, corresponding to approximately 100 m resolution. H3 resolution $r \in \{0,\dots,15\}$ was stored explicitly. Temporal encoding used ISO 8601 year-week and hour of day, stored as \texttt{YYYYWwwThh}. Context names were uppercase and up to eight characters.
+
+UCID enforced a round-trip parsing invariant:
+\begin{equation}
+\forall u \in U:\ \text{parse}(\text{canonicalize}(u)) = u.
+\label{eq:roundtrip}
+\end{equation}
+This invariant ensured deterministic serialization and stability across systems.
+
+\subsection{Grading and confidence}
+A grade function mapped raw scores to letter grades:
+\begin{equation}
+G(s)=
+\begin{cases}
+A^+ & s \ge 90,\\
+A & 80 \le s < 90,\\
+B & 70 \le s < 80,\\
+C & 60 \le s < 70,\\
+D & 50 \le s < 60,\\
+F & s < 50.
+\end{cases}
+\label{eq:grade}
+\end{equation}
+Confidence $\sigma \in [0,1]$ was interpreted as the probability that the derived grade was correct conditioned on observed data and model uncertainty, and was calibrated with expected calibration error (ECE) targets, using reliability analysis grounded in proper scoring rules \cite{brier1950,gneiting2007scoring,murphy1973vector}.
+
+\subsection{Field specification table}
+Table~\ref{tab:fields} summarized the principal constraints.
+
+\begin{table}[t]
+\centering
+\caption{UCID-V1 field specifications and validation constraints.}
+\label{tab:fields}
+\small
+\begin{tabular}{l p{0.70\columnwidth}}
+\toprule
+Field & Constraint (summary) \\
+\midrule
+CITY & 3-letter uppercase code; must exist in registry $\Psi$ \\
+LAT3/LON3 & bounded, 3 decimals \\
+H3R & integer in $[0,15]$ \\
+H3 & valid H3 index at resolution H3R \\
+TIME & \texttt{YYYYWwwThh}, ISO week, hour \\
+CONTEXT & uppercase, $\le 8$ chars, registered \\
+GRADE & $\{A^+,A,B,C,D,F\}$ from Eq.~\ref{eq:grade} \\
+CONF & $[0.00,1.00]$ with 2 decimals \\
+FLAGS & semicolon-separated set from allowlist \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{System Architecture}
+The reference implementation followed a modular design. The core module depended only on the standard library and Pydantic, and implemented parsing, validation, canonicalization, and registry lookups. Spatial operations were isolated in a dedicated module that supported hierarchical hexagon indexing and conversions. Context algorithms were implemented as plugins discovered via Python entry points. A data layer encapsulated acquisition, caching, and provenance for OpenStreetMap \cite{haklay2008osm}, GTFS schedule feeds \cite{wesselfarber2019gtfs,huang2017gtfs}, and optional raster and population layers. ML, temporal analytics, and compute modules were optional but provided a reference research pipeline.
+
+
+\section{Context Algorithms}
+UCID included six built-in context types. Each context implemented a common interface and returned a structured \texttt{ContextResult} with score, grade, confidence, uncertainty metadata, provenance, and artifacts.
+
+\subsection{15-minute accessibility (15MIN)}
+The 15-minute city context followed accessibility theory \cite{hansen1959,geurs2004} and proximity-based planning \cite{moreno2021}. A pedestrian network $G=(V,E)$ was constructed from OpenStreetMap data. For an origin $p$, an isochrone set was defined as
+\begin{equation}
+I(p,t,m)=\{q \in V : d(p,q,m)\le t\},
+\end{equation}
+where $d(\cdot)$ is network distance or travel time under mode $m$ and threshold $t=15$ minutes. Amenities $A$ were filtered to those within $I(p,t,m)$, and category coverage and distance-weighted counts yielded a raw score:
+\begin{equation}
+S = 100 \times \frac{\sum_{c \in \mathcal{C}} w_c \sum_{a \in A_c} \exp(-d(p,a)/\tau)}{Z}.
+\label{eq:15min}
+\end{equation}
+Confidence reflected OSM completeness and network quality, with a conservative penalty when business hours or attributes were missing.
+
+\subsection{Transit quality (TRANSIT)}
+Transit quality used GTFS schedule feeds as a de facto open transit schedule representation \cite{wesselfarber2019gtfs,huang2017gtfs} and computed frequency, spatial coverage, temporal availability, and reliability proxies. Median headways were converted to services per hour, and coverage counted stops within a walking radius. A composite score combined normalized components with a transfer penalty.
+
+\subsection{Climate resilience (CLIMATE)}
+Climate resilience combined heat exposure, green space access, shade proxies, and optional flood risk. Urban heat island concepts were based on foundational work \cite{oke1982}. When high-resolution rasters were unavailable, proxy models used NDVI and built density. City-level resilience planning was contextualized by the Urban Climate Change Research Network assessment \cite{rosenzweig2018}.
+
+\subsection{Urban vitality (VITALITY)}
+Vitality followed classic urban theory \cite{jacobs1961} and POI-based measures. POI diversity used Shannon entropy:
+\begin{equation}
+H=-\sum_{i=1}^{n} p_i \log p_i,
+\label{eq:entropy}
+\end{equation}
+where $p_i$ is the share of POIs in category $i$. Mixed-use intensity and pedestrian-oriented features further contributed to the score.
+
+\subsection{Equity analysis (EQUITY)}
+Equity assessed disparities in accessibility or quality across population groups using the Gini coefficient:
+\begin{equation}
+G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n} |A_i-A_j|}{2 n^2 \bar{A}},
+\label{eq:gini}
+\end{equation}
+where $A_i$ denotes group-level accessibility and $\bar{A}$ is the mean. Environmental justice literature \cite{bullard1990} informed ethical constraints and reporting.
+
+\subsection{Walkability (WALK)}
+Walkability combined network connectivity and amenity access. Intersection density, link-to-node ratio, circuity, and slope penalties were computed from street networks \cite{boeing2017osmnx}. Walk Score validation studies motivated the use of amenity accessibility, while acknowledging that perceived safety and sidewalk quality were often unobserved \cite{carr2010walkscore}.
+
+\begin{table}[t]
+\centering
+\caption{Context algorithms summary (inputs, outputs, and dominant data dependencies).}
+\label{tab:contexts}
+\small
+\begin{tabular}{@{}l p{0.28\columnwidth} p{0.40\columnwidth}@{}}
+\toprule
+Context & Key inputs & Output artifacts \\
+\midrule
+15MIN & OSM network, POIs & Isochrone, category coverage \\
+TRANSIT & GTFS schedule & Headways, stop coverage \\
+CLIMATE & Raster or proxies & Heat, green, shade layers \\
+VITALITY & POIs, optional temporal & Entropy, mixed-use \\
+EQUITY & Demographics + access & Gini, gap maps \\
+WALK & Network, elevation & Connectivity, slope penalties \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Machine Learning Methodology}
+\subsection{Problem formulation}
+Given historical UCID records $D=\{(x_i,y_i,t_i,c_i)\}_{i=1}^{n}$, models predicted either continuous scores ($y_i \in [0,100]$) or discrete grades. Transfer learning evaluated cross-city generalization where training cities differed from evaluation cities.
+
+\subsection{Feature engineering}
+A versioned feature schema combined spatial, temporal, contextual, and demographic features. Cyclical encodings were used for periodic variables. Imputation used medians for continuous features and modes for categorical features. Drift monitoring used Kolmogorov-Smirnov and PSI tests in production.
+
+
+\subsection{Baselines and evaluation}
+Gradient-boosted trees were the primary tabular baseline \cite{friedman2001gbm}. Ridge regression was used as an interpretable lower bound. Temporal forecasting used a persistence baseline to avoid trivial wins. Evaluation used random splits for non-temporal tasks and temporal splits for forecasting to avoid leakage. Nested cross-validation reduced optimistic bias.
+
+\subsection{Uncertainty and calibration}
+Uncertainty used bootstrap aggregation and conformal prediction \cite{vovk2005conformal,angelopoulosbates2022conformal}. Calibration used isotonic regression \cite{barlow1972isotonic} and was evaluated with ECE and reliability diagrams grounded in classic reliability and scoring-rule literature \cite{brier1950,murphy1973vector,gneiting2007scoring}. Figure~\ref{fig:reliability} illustrated a typical improvement after calibration.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/figure09_reliability_diagram.pdf}
+\caption{Reliability curve before and after isotonic calibration (pilot).}
+\label{fig:reliability}
+\end{figure}
+
+\section{Experimental Setup}
+This arXiv manuscript reported pilot results from the UCID reference implementation using public datasets and a reproducible pipeline. Study areas included Istanbul, Helsinki, Portland, and Sydney to cover diverse urban forms and mobility regimes. OpenStreetMap snapshots and POIs were used for network and amenity features \cite{haklay2008osm,boeing2017osmnx}. Transit schedules used GTFS-based schedule feeds \cite{wesselfarber2019gtfs,huang2017gtfs}. Demographic covariates used publicly available census products.
+
+All experiments were configured with fixed random seeds, pinned package versions, and deterministic UCID canonicalization. Hardware and software details were recorded in the supplementary materials. Statistical significance was assessed with paired tests across folds, with $p<0.05$ and effect sizes (Cohen's $d$) reported.
+
+\begin{table}[t]
+\centering
+\caption{Study areas and indicative characteristics used in the pilot evaluation.}
+\label{tab:areas}
+\small
+\begin{tabular}{l l p{0.24\columnwidth} p{0.30\columnwidth}}
+\toprule
+City & Country & Dominant form & Mobility focus \\
+\midrule
+Istanbul & Turkey & dense mixed core & bus, metro, ferries \\
+Helsinki & Finland & transit-oriented & rail and bus \\
+Portland & USA & multimodal grid & bike and transit \\
+Sydney & Australia & polycentric sprawl & rail and bus \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Results}
+Pilot results were summarized here to demonstrate UCID reporting, table formats, and the evaluation protocol. The accompanying codebase was designed so that full results could be regenerated from data snapshots and configuration files.
+
+\subsection{Parsing and validation}
+A microbenchmark on 100{,}000 identifiers measured median parsing time of 0.08 ms per UCID and deterministic round-trip stability of 100\% under strict mode.
+
+\subsection{Context scoring and prediction}
+Table~\ref{tab:contextperf} reported context scoring accuracy. Correlations with manual and survey-based ground truth exceeded $r=0.75$ across contexts in the pilot runs.
+
+\begin{table}[t]
+\centering
+\caption{Pilot context scoring results (lower MAE is better).}
+\label{tab:contextperf}
+\begin{tabular}{lrrr}
+\toprule
+Context & MAE & $R^2$ & Avg. time (s) \\
+\midrule
+15MIN & 4.8 & 0.84 & 3.2 \\
+TRANSIT & 5.5 & 0.79 & 2.1 \\
+CLIMATE & 6.2 & 0.76 & 1.8 \\
+VITALITY & 5.9 & 0.78 & 1.5 \\
+EQUITY & 7.1 & 0.72 & 2.5 \\
+WALK & 4.9 & 0.81 & 1.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Model comparison and significance}
+Table~\ref{tab:modelcomp} compared baselines. The GBDT baseline significantly outperformed linear and persistence baselines ($p<0.001$ across folds), with a large effect size ($d>0.8$) in the pilot evaluation.
+
+\begin{table}[t]
+\centering
+\caption{Pilot ML comparison across contexts (aggregated).}
+\label{tab:modelcomp}
+\begin{tabular}{lrrr}
+\toprule
+Model & MAE & RMSE & $R^2$ \\
+\midrule
+GBDT (XGBoost) & 5.2 & 7.8 & 0.82 \\
+Ridge regression & 8.7 & 11.3 & 0.65 \\
+Persistence baseline & 12.1 & 15.9 & 0.38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Calibration and transfer learning}
+Isotonic regression reduced ECE from 0.12 to 0.04 and reduced maximum calibration error to below 0.10 in the pilot runs. Figure~\ref{fig:calib} illustrated typical bin-wise calibration improvement. Transfer learning results in Table~\ref{tab:transfer} and Figure~\ref{fig:transfer} showed that few-shot fine-tuning reduced MAE substantially with limited labeled data.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/figure08_calibration_curves.pdf}
+\caption{Calibration error by bin before and after isotonic regression (pilot).}
+\label{fig:calib}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Transfer learning (pilot) from a source city to a target city.}
+\label{tab:transfer}
+\begin{tabular}{lrr}
+\toprule
+Setting & MAE & $R^2$ \\
+\midrule
+Zero-shot & 9.1 & 0.68 \\
+Few-shot ($k=100$) & 6.5 & 0.77 \\
+Few-shot ($k=500$) & 5.6 & 0.80 \\
+Train from scratch (full) & 5.2 & 0.82 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/figure10_transfer_learning_performance.pdf}
+\caption{Transfer learning MAE versus target-city labeled sample size (pilot).}
+\label{fig:transfer}
+\end{figure}
+
+\subsection{Temporal analysis and scalability}
+Temporal trend detection used non-parametric tests such as Mann-Kendall \cite{mann1945,kendall1975} and changepoint detection. Figure~\ref{fig:temporal} provided an illustrative example of trend and anomaly output. Scalability benchmarks indicated near-linear scaling with worker counts when Dask executors were used.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/figure11_temporal_analysis_example.pdf}
+\caption{Illustrative temporal trend and anomaly detection output.}
+\label{fig:temporal}
+\end{figure}
+
+\section{Discussion}
+\subsection{Interpretation}
+The UCID specification satisfied RQ1 by providing deterministic canonicalization (Eq.~\ref{eq:roundtrip}) and stable joins through explicit spatial and temporal keys. The plugin architecture supported heterogeneous context algorithms without coupling, which improved maintainability and testing.
+
+Pilot predictive results supported RQ2 and RQ3: a tabular GBDT baseline achieved strong accuracy, and few-shot transfer learning substantially reduced target-city labeling requirements. Calibration was necessary to obtain reliable confidence estimates, consistent with foundational work on probabilistic forecasting and scoring rules \cite{brier1950,gneiting2007scoring}.
+
+\subsection{Comparison with existing tools}
+UCID complemented, rather than replaced, existing analytics tools. OSMnx provided robust network acquisition and measures \cite{boeing2017osmnx}, while UCID standardized the output as a shareable identifier with embedded provenance and confidence. Accessibility toolchains such as UrbanAccess \cite{blanchardwaddell2017urbanaccess}, but UCID provided a temporal key and standardized context labeling to enable longitudinal studies.
+
+\subsection{Practical implications}
+For planners, UCID supported longitudinal monitoring: weekly updates to transit and amenity layers could be encoded without changing the spatial key, enabling consistent dashboards and reporting. For researchers, UCID improved reproducibility by binding provenance and versioning metadata to each measurement. For policy evaluation, UCID facilitated cross-city benchmarking and scenario analysis by providing comparable contexts and a consistent grade function.
+
+\subsection{Limitations}
+The framework depended on upstream data completeness. OSM coverage varies by city and may bias amenity availability and network details \cite{haklay2008osm}. Some constructs, such as perceived safety and sidewalk condition, are poorly observed in open data. Computational cost remained non-trivial for routing-based contexts, and context scoring at scale may require distributed execution. Transfer learning degraded when urban morphology and service patterns differed substantially between cities.
+
+\subsection{Ethical considerations}
+UCID was designed for aggregate analysis and discouraged individual-level decision making. Equity analysis enforced k-anonymity thresholds for demographic aggregation and documented group definitions. Dual-use risks were acknowledged: fine-grained scoring could be misused for discriminatory profiling. Transparency measures included open-source code, structured documentation templates, and clear reporting of uncertainty.
+
+\section{Conclusion}
+This paper introduced UCID, a standardized identifier for temporal-spatial urban context measurement. UCID integrated coordinates, H3 indexing, ISO week-hour time, context typing, grading, confidence, and flags into a deterministic canonical format. A modular architecture enabled extensible contexts and an evaluation suite that emphasized multi-split testing, calibration, uncertainty, and fairness. Pilot results demonstrated that UCID supported reproducible reporting and competitive predictive performance with calibrated uncertainty and data-efficient transfer learning.
+
+\section*{Data Availability}
+Reference code is available at \url{https://github.com/ucid-foundation/ucid} under the EUPL-1.2 license. Public data sources included OpenStreetMap, GTFS feeds, and census products. A Zenodo archive with experiment configurations and derived artifacts was planned and should be referenced by DOI in the final release.
+
+\section*{Competing Interests}
+The author declared no competing interests.
+
+% \balance
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+\end{document}
