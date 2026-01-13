@@ -694,9 +694,9 @@ Where d(p,a) is network distance from origin p to amenity a, w_c are category we
 If you use UCID in your research, please cite:
 
 ```bibtex
-@article{imanov2026ucid,
+@article{laitinen-imanov2026ucid,
   title = {UCID: A Standardized Framework for Temporal-Spatial Urban Context Identification and Multi-dimensional Quality Assessment},
-  author = {Imanov, Olaf Yunus Laitinen},
+  author = {Laitinen Imanov, Olaf Yunus},
   journal = {arXiv preprint arXiv:2026.00000},
   year = {2026},
   institution = {Technical University of Denmark},
@@ -713,6 +713,7 @@ If you use UCID in your research, please cite:
   doi = {10.5281/zenodo.18231105},
   license = {EUPL-1.2}
 }
+```
 
 ---
 
