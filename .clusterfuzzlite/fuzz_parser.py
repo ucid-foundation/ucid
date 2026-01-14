@@ -10,11 +10,11 @@ with pydantic/pydantic_core when using AddressSanitizer.
 
 import sys
 
+import atheris  # noqa: E402
+
 # Import ucid FIRST, before any atheris instrumentation
 # This avoids SEGV issues with pydantic+atheris+ASAN
 from ucid import UCIDParseError, parse_ucid  # noqa: E402
-
-import atheris  # noqa: E402
 
 
 def test_one_input(data: bytes) -> None:
