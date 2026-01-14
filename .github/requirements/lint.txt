@@ -1,4 +1,0 @@
-# Lint requirements with SHA256 hash pinning for OpenSSF Scorecard compliance
-# Package: ruff 0.4.4 (manylinux_2_17_x86_64)
-ruff==0.4.4 \
-    --hash=sha256:b5eb0a4bfd6400b7d07c09a7725e1a98c3b838be557fee229ac0f84d9aa49c36
