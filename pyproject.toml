@@ -1,6 +1,6 @@
 [project]
 name = "UCID"
-version = "1.0.0"
+version = "1.0.1"
 description = "Urban Context Identifier - A standardized temporal identifier system for comprehensive urban context analysis across global cities"
 readme = "README.md"
 license = {text = "EUPL-1.2"}
@@ -145,16 +145,37 @@ equity = "ucid.contexts.equity:EquityContext"
 walkability = "ucid.contexts.walkability:WalkabilityContext"
 
 [project.urls]
-Homepage = "https://www.ucid.org"
-Documentation = "https://docs.ucid.org"
-Repository = "https://github.com/ucid-foundation/ucid"
-Changelog = "https://github.com/ucid-foundation/ucid/blob/main/CHANGELOG.md"
-"Bug Tracker" = "https://github.com/ucid-foundation/ucid/issues"
+# Self-links (automatically verified)
+"PyPI" = "https://pypi.org/project/UCID/"
+
+# GitHub URLs (verified via Trusted Publishing)
+"Homepage" = "https://github.com/ucid-foundation/ucid"
+"Repository" = "https://github.com/ucid-foundation/ucid"
 "Source Code" = "https://github.com/ucid-foundation/ucid"
-Download = "https://github.com/ucid-foundation/ucid/releases"
+"Download" = "https://github.com/ucid-foundation/ucid/releases"
+
+# Documentation (custom icon)
+"Documentation" = "https://ucid-foundation.github.io/ucid"
+"Docs" = "https://ucid-foundation.github.io/ucid"
+
+# Changelog (custom icon)
+"Changelog" = "https://github.com/ucid-foundation/ucid/blob/main/CHANGELOG.md"
 "Release Notes" = "https://github.com/ucid-foundation/ucid/releases"
-Funding = "https://github.com/sponsors/ucid-foundation"
-"Say Thanks!" = "https://saythanks.io/to/ucid-foundation"
+
+# Bug Tracker (custom icon)
+"Bug Tracker" = "https://github.com/ucid-foundation/ucid/issues"
+"Issues" = "https://github.com/ucid-foundation/ucid/issues"
+
+# Funding (custom icon)
+"Funding" = "https://github.com/sponsors/ucid-foundation"
+"Sponsor" = "https://github.com/sponsors/ucid-foundation"
+
+# CI Services (custom icons)
+"Codecov" = "https://codecov.io/gh/ucid-foundation/ucid"
+"CI" = "https://github.com/ucid-foundation/ucid/actions"
+
+# Python Ecosystem (custom icons)
+"Python" = "https://www.python.org/"
 
 [build-system]
 requires = ["setuptools>=68.0.0", "wheel"]
