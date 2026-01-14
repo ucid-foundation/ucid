@@ -1,0 +1,82 @@
+{
+  "contexts": [
+    {
+      "id": "15MIN",
+      "name": "15-Minute City",
+      "description": "Measures accessibility to essential services within 15 minutes by foot or bike",
+      "category": "accessibility",
+      "metrics": ["grocery_access", "healthcare_access", "education_access", "recreation_access"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "id": "TRANSIT",
+      "name": "Transit Accessibility",
+      "description": "Measures public transportation accessibility and connectivity",
+      "category": "mobility",
+      "metrics": ["stop_density", "route_frequency", "coverage_area", "intermodal_connections"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "id": "CLIMATE",
+      "name": "Climate Resilience",
+      "description": "Assesses urban climate adaptation and resilience metrics",
+      "category": "environment",
+      "metrics": ["green_space_ratio", "heat_island_index", "flood_risk", "air_quality"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "id": "EQUITY",
+      "name": "Social Equity",
+      "description": "Measures equitable access to resources and opportunities",
+      "category": "social",
+      "metrics": ["income_diversity", "housing_affordability", "service_equity", "digital_access"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "id": "VITALITY",
+      "name": "Urban Vitality",
+      "description": "Measures economic activity and urban vibrancy",
+      "category": "economic",
+      "metrics": ["business_density", "foot_traffic", "event_frequency", "nightlife_index"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "id": "SAFETY",
+      "name": "Public Safety",
+      "description": "Assesses safety and security metrics in urban areas",
+      "category": "safety",
+      "metrics": ["crime_rate", "lighting_coverage", "emergency_response", "pedestrian_safety"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "id": "HEALTH",
+      "name": "Public Health",
+      "description": "Measures health infrastructure and outcomes",
+      "category": "health",
+      "metrics": ["hospital_access", "pharmacy_density", "walkability", "air_quality_health"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "id": "SMART",
+      "name": "Smart City Index",
+      "description": "Measures digital infrastructure and smart city capabilities",
+      "category": "technology",
+      "metrics": ["connectivity", "sensor_coverage", "digital_services", "data_openness"],
+      "weight": 1.0,
+      "enabled": true
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2026-01-14",
+    "source": "UCID Foundation",
+    "license": "EUPL-1.2"
+  }
+}

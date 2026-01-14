@@ -1,0 +1,67 @@
+{
+  "transit_types": [
+    {"id": "metro", "name": "Metro/Subway", "icon": "🚇", "weight": 1.0},
+    {"id": "bus", "name": "Bus", "icon": "🚌", "weight": 0.7},
+    {"id": "tram", "name": "Tram/Light Rail", "icon": "🚊", "weight": 0.85},
+    {"id": "ferry", "name": "Ferry", "icon": "⛴️", "weight": 0.6},
+    {"id": "train", "name": "Commuter Rail", "icon": "🚆", "weight": 0.9},
+    {"id": "brt", "name": "Bus Rapid Transit", "icon": "🚍", "weight": 0.8}
+  ],
+  "sample_stops": [
+    {
+      "city": "IST",
+      "stop_id": "ist_kadikoy_metro",
+      "name": "Kadıköy Metro Station",
+      "type": "metro",
+      "coordinates": {"lat": 40.9913, "lon": 29.0236},
+      "routes": ["M4", "Marmaray"],
+      "frequency_peak": 3,
+      "frequency_offpeak": 6
+    },
+    {
+      "city": "IST",
+      "stop_id": "ist_kadikoy_ferry",
+      "name": "Kadıköy Ferry Terminal",
+      "type": "ferry",
+      "coordinates": {"lat": 40.9906, "lon": 29.0235},
+      "routes": ["Kadıköy-Eminönü", "Kadıköy-Karaköy", "Kadıköy-Beşiktaş"],
+      "frequency_peak": 10,
+      "frequency_offpeak": 20
+    },
+    {
+      "city": "NYC",
+      "stop_id": "nyc_times_sq",
+      "name": "Times Square-42nd Street",
+      "type": "metro",
+      "coordinates": {"lat": 40.7580, "lon": -73.9855},
+      "routes": ["1", "2", "3", "7", "N", "Q", "R", "W", "S"],
+      "frequency_peak": 2,
+      "frequency_offpeak": 5
+    },
+    {
+      "city": "LON",
+      "stop_id": "lon_westminster",
+      "name": "Westminster Underground",
+      "type": "metro",
+      "coordinates": {"lat": 51.5013, "lon": -0.1247},
+      "routes": ["Circle", "District", "Jubilee"],
+      "frequency_peak": 3,
+      "frequency_offpeak": 6
+    },
+    {
+      "city": "TKY",
+      "stop_id": "tky_tokyo_station",
+      "name": "Tokyo Station",
+      "type": "train",
+      "coordinates": {"lat": 35.6812, "lon": 139.7671},
+      "routes": ["Marunouchi", "Chiyoda", "Yamanote", "Tokaido Shinkansen"],
+      "frequency_peak": 2,
+      "frequency_offpeak": 4
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2026-01-14",
+    "source": "UCID Foundation"
+  }
+}

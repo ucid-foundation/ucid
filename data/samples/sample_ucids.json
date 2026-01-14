@@ -1,0 +1,122 @@
+[
+  {
+    "ucid": "UCID-V1:IST:41.015:28.979:9:891f2ed6df7ffff:2026W03T14:15MIN:A:0.95:",
+    "city": "IST",
+    "location": {"lat": 41.015, "lon": 28.979},
+    "h3_resolution": 9,
+    "h3_index": "891f2ed6df7ffff",
+    "timestamp": "2026W03T14",
+    "context": "15MIN",
+    "grade": "A",
+    "confidence": 0.95,
+    "description": "Kadıköy district - excellent 15-minute city accessibility"
+  },
+  {
+    "ucid": "UCID-V1:IST:41.032:28.985:9:891f2ed77c7ffff:2026W03T14:TRANSIT:B:0.82:",
+    "city": "IST",
+    "location": {"lat": 41.032, "lon": 28.985},
+    "h3_resolution": 9,
+    "h3_index": "891f2ed77c7ffff",
+    "timestamp": "2026W03T14",
+    "context": "TRANSIT",
+    "grade": "B",
+    "confidence": 0.82,
+    "description": "Kadıköy ferry terminal area - good transit connectivity"
+  },
+  {
+    "ucid": "UCID-V1:NYC:40.758:-73.985:9:89283082817ffff:2026W03T10:15MIN:A:0.91:",
+    "city": "NYC",
+    "location": {"lat": 40.758, "lon": -73.985},
+    "h3_resolution": 9,
+    "h3_index": "89283082817ffff",
+    "timestamp": "2026W03T10",
+    "context": "15MIN",
+    "grade": "A",
+    "confidence": 0.91,
+    "description": "Times Square - top-tier urban accessibility"
+  },
+  {
+    "ucid": "UCID-V1:NYC:40.748:-73.986:9:892830828b7ffff:2026W03T10:VITALITY:A:0.97:",
+    "city": "NYC",
+    "location": {"lat": 40.748, "lon": -73.986},
+    "h3_resolution": 9,
+    "h3_index": "892830828b7ffff",
+    "timestamp": "2026W03T10",
+    "context": "VITALITY",
+    "grade": "A",
+    "confidence": 0.97,
+    "description": "Empire State Building area - highest urban vitality"
+  },
+  {
+    "ucid": "UCID-V1:LON:51.509:-0.118:9:891fb46742fffff:2026W03T12:TRANSIT:A:0.93:",
+    "city": "LON",
+    "location": {"lat": 51.509, "lon": -0.118},
+    "h3_resolution": 9,
+    "h3_index": "891fb46742fffff",
+    "timestamp": "2026W03T12",
+    "context": "TRANSIT",
+    "grade": "A",
+    "confidence": 0.93,
+    "description": "Westminster - excellent tube connectivity"
+  },
+  {
+    "ucid": "UCID-V1:TKY:35.681:139.767:9:8844c0a305fffff:2026W03T18:15MIN:A:0.94:",
+    "city": "TKY",
+    "location": {"lat": 35.681, "lon": 139.767},
+    "h3_resolution": 9,
+    "h3_index": "8844c0a305fffff",
+    "timestamp": "2026W03T18",
+    "context": "15MIN",
+    "grade": "A",
+    "confidence": 0.94,
+    "description": "Tokyo Station - world-class urban accessibility"
+  },
+  {
+    "ucid": "UCID-V1:PAR:48.858:2.294:9:891fb0649b7ffff:2026W03T15:CLIMATE:B:0.78:",
+    "city": "PAR",
+    "location": {"lat": 48.858, "lon": 2.294},
+    "h3_resolution": 9,
+    "h3_index": "891fb0649b7ffff",
+    "timestamp": "2026W03T15",
+    "context": "CLIMATE",
+    "grade": "B",
+    "confidence": 0.78,
+    "description": "Eiffel Tower area - good climate resilience"
+  },
+  {
+    "ucid": "UCID-V1:BER:52.520:13.405:9:891f0460607ffff:2026W03T14:EQUITY:B:0.81:",
+    "city": "BER",
+    "location": {"lat": 52.520, "lon": 13.405},
+    "h3_resolution": 9,
+    "h3_index": "891f0460607ffff",
+    "timestamp": "2026W03T14",
+    "context": "EQUITY",
+    "grade": "B",
+    "confidence": 0.81,
+    "description": "Alexanderplatz - good social equity metrics"
+  },
+  {
+    "ucid": "UCID-V1:SYD:-33.869:151.209:9:86be88d5b7fffff:2026W03T20:15MIN:B:0.79:",
+    "city": "SYD",
+    "location": {"lat": -33.869, "lon": 151.209},
+    "h3_resolution": 9,
+    "h3_index": "86be88d5b7fffff",
+    "timestamp": "2026W03T20",
+    "context": "15MIN",
+    "grade": "B",
+    "confidence": 0.79,
+    "description": "Sydney Opera House - good accessibility"
+  },
+  {
+    "ucid": "UCID-V1:SIN:1.290:103.852:9:88407290957ffff:2026W03T16:SMART:A:0.96:",
+    "city": "SIN",
+    "location": {"lat": 1.290, "lon": 103.852},
+    "h3_resolution": 9,
+    "h3_index": "88407290957ffff",
+    "timestamp": "2026W03T16",
+    "context": "SMART",
+    "grade": "A",
+    "confidence": 0.96,
+    "description": "Marina Bay - top smart city infrastructure"
+  }
+]

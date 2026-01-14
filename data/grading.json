@@ -1,0 +1,44 @@
+{
+  "grades": {
+    "A": {
+      "range": [0.90, 1.00],
+      "label": "Excellent",
+      "color": "#22c55e",
+      "description": "Exceptional performance in all measured dimensions"
+    },
+    "B": {
+      "range": [0.75, 0.90],
+      "label": "Good",
+      "color": "#84cc16",
+      "description": "Above average performance with minor improvements possible"
+    },
+    "C": {
+      "range": [0.50, 0.75],
+      "label": "Average",
+      "color": "#eab308",
+      "description": "Satisfactory performance meeting basic requirements"
+    },
+    "D": {
+      "range": [0.25, 0.50],
+      "label": "Below Average",
+      "color": "#f97316",
+      "description": "Performance below expectations with significant room for improvement"
+    },
+    "F": {
+      "range": [0.00, 0.25],
+      "label": "Poor",
+      "color": "#ef4444",
+      "description": "Failing to meet minimum requirements"
+    }
+  },
+  "confidence_levels": {
+    "high": {"range": [0.85, 1.00], "label": "High Confidence"},
+    "medium": {"range": [0.60, 0.85], "label": "Medium Confidence"},
+    "low": {"range": [0.00, 0.60], "label": "Low Confidence"}
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2026-01-14",
+    "source": "UCID Foundation"
+  }
+}
