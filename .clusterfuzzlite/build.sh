@@ -1,7 +1,9 @@
 #!/bin/bash -eu
 
-# Install package from local source with no external deps
-# This is hash-verified via the pyproject.toml version pinning
+# Install required dependencies first
+pip3 install pytz python-dateutil numpy h3 pydantic
+
+# Install package from local source
 pip3 install --no-deps .
 
 # Build fuzz targets
