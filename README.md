@@ -10,7 +10,7 @@
 [![PyPI Downloads](https://img.shields.io/pypi/dm/ucid?logo=pypi&logoColor=white)](https://pypi.org/project/ucid/)
 [![License](https://img.shields.io/github/license/ucid-foundation/ucid)](https://github.com/ucid-foundation/ucid/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18231105.svg)](https://doi.org/10.5281/zenodo.18231105)
-[![arXiv](https://img.shields.io/badge/arXiv-2026.00000-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2026.00000)
+[![arXiv](https://img.shields.io/badge/arXiv-submit%2F7155127-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/submit/7155127)
 [![CodeQL](https://github.com/ucid-foundation/ucid/actions/workflows/codeql.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/codeql.yml)
 [![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
 [![Docs](https://github.com/ucid-foundation/ucid/actions/workflows/docs.yml/badge.svg)](https://github.com/ucid-foundation/ucid/actions/workflows/docs.yml)
