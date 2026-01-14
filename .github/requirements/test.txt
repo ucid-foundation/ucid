@@ -1,0 +1,9 @@
+# Test requirements with SHA256 hash pinning for OpenSSF Scorecard compliance
+# Pure Python wheels (py3-none-any)
+pytest==8.2.0 \
+    --hash=sha256:1733f0620f6cda4095bbf0d9ff8022486e91892245bb9e7d5542c018f612f233
+pytest-cov==5.0.0 \
+    --hash=sha256:4f0764a1219df53214206bf1feea4633c3b558a2925c8b59f144f682861ce652
+# Platform-specific wheel (cp311-manylinux)
+coverage==7.5.0 \
+    --hash=sha256:fea9d3ca80bcf17edb2c08a4704259dadac196fe5e9274067e7a20511fad1743
