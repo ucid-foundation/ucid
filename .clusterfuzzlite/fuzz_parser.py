@@ -2,14 +2,19 @@
 # Copyright 2026 UCID Foundation
 # Licensed under EUPL-1.2
 
-"""Fuzz target for UCID parser."""
+"""Fuzz target for UCID parser.
+
+Note: We import ucid BEFORE atheris instrumentation to avoid SEGV
+with pydantic/pydantic_core when using AddressSanitizer.
+"""
 
 import sys
 
-import atheris
+# Import ucid FIRST, before any atheris instrumentation
+# This avoids SEGV issues with pydantic+atheris+ASAN
+from ucid import UCIDParseError, parse_ucid  # noqa: E402
 
-with atheris.instrument_imports():
-    from ucid import UCIDParseError, parse_ucid
+import atheris  # noqa: E402
 
 
 def test_one_input(data: bytes) -> None:
