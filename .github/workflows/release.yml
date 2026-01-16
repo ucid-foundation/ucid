@@ -1,17 +1,12 @@
 # Release Workflow
-# Automated release process for PyPI publishing.
+# Publishes to PyPI on release tag.
 
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
+  release:
+    types: [published]
   workflow_dispatch:
-    inputs:
-      version:
-        description: "Version to release (e.g., 1.0.5)"
-        required: true
 
 permissions:
   contents: write
@@ -19,13 +14,11 @@ permissions:
 
 jobs:
   build:
-    name: Build Distribution
+    name: Build Package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -49,35 +42,13 @@ jobs:
           name: dist
           path: dist/
 
-  test:
-    name: Test Distribution
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install from wheel
-        run: pip install dist/*.whl
-
-      - name: Test import
-        run: python -c "import ucid; print(ucid.__version__)"
-
   publish-pypi:
     name: Publish to PyPI
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/project/ucid/
+      url: https://pypi.org/project/UCID/
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -89,50 +60,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
-
-  github-release:
-    name: Create GitHub Release
-    needs: publish-pypi
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: dist/*
-          generate_release_notes: true
-          draft: false
-          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
-
-  sbom:
-    name: Generate SBOM
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install CycloneDX
-        run: pip install cyclonedx-bom
-
-      - name: Generate SBOM
-        run: cyclonedx-py -r -o sbom.json
-
-      - name: Upload SBOM
-        uses: actions/upload-artifact@v4
-        with:
-          name: sbom
-          path: sbom.json

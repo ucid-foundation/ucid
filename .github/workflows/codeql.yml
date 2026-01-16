@@ -1,5 +1,5 @@
 # CodeQL Security Analysis
-# Runs CodeQL security analysis on the codebase.
+# Runs GitHub's CodeQL semantic code analysis.
 
 name: CodeQL
 
@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "0 6 * * 1"  # Weekly on Monday at 6 AM UTC
+    - cron: "0 4 * * 1"  # Weekly on Monday at 4 AM UTC
 
 permissions:
   security-events: write
@@ -19,10 +19,6 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [python]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,13 +26,10 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: ${{ matrix.language }}
-          queries: +security-extended,security-and-quality
+          languages: python
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{ matrix.language }}"

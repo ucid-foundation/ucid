@@ -1,5 +1,5 @@
 # OpenSSF Scorecard
-# Security health metrics for the repository.
+# Security health metrics for open source projects.
 
 name: Scorecard
 
@@ -7,14 +7,12 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "0 6 * * 1"  # Weekly on Monday at 6 AM UTC
-  workflow_dispatch:
+    - cron: "0 5 * * 1"  # Weekly on Monday at 5 AM UTC
 
 permissions:
   security-events: write
-  id-token: write
   contents: read
-  actions: read
+  id-token: write
 
 jobs:
   analysis:
@@ -27,13 +25,13 @@ jobs:
           persist-credentials: false
 
       - name: Run Scorecard
-        uses: ossf/scorecard-action@v2.3.3
+        uses: ossf/scorecard-action@v2.4.0
         with:
           results_file: results.sarif
           results_format: sarif
           publish_results: true
 
-      - name: Upload SARIF
+      - name: Upload to Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif

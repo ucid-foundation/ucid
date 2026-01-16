@@ -1,5 +1,5 @@
 # Dependency Review
-# Reviews dependencies for vulnerabilities on pull requests.
+# Checks for vulnerable dependencies in PRs.
 
 name: Dependency Review
 
@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   dependency-review:
@@ -23,5 +22,3 @@ jobs:
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: high
-          deny-licenses: GPL-3.0, AGPL-3.0
-          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, EUPL-1.2

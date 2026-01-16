@@ -29,28 +29,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -e "."
           pip install cyclonedx-bom
 
-      - name: Install project dependencies
-        run: pip install -e ".[all]"
+      - name: Generate SBOM
+        run: cyclonedx-py environment -o sbom.json --format json
 
-      - name: Generate CycloneDX SBOM
-        run: |
-          cyclonedx-py -r -o sbom.json --format json
-          cyclonedx-py -r -o sbom.xml --format xml
-
-      - name: Upload SBOM artifacts
+      - name: Upload SBOM
         uses: actions/upload-artifact@v4
         with:
           name: sbom
-          path: |
-            sbom.json
-            sbom.xml
-
-      - name: Attach SBOM to Release
-        if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            sbom.json
-            sbom.xml
+          path: sbom.json
