@@ -1,82 +1,97 @@
 {
+  "_comment": "Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.",
+  "_version": "1.0.5",
+  "_description": "Urban context algorithm definitions for UCID library.",
+  "_documentation": "https://ucid.readthedocs.io/contexts",
+  "_last_updated": "2026-01-15",
   "contexts": [
     {
-      "id": "15MIN",
+      "code": "15MIN",
       "name": "15-Minute City",
-      "description": "Measures accessibility to essential services within 15 minutes by foot or bike",
+      "description": "Measures accessibility to essential services within 15 minutes by foot or bike. Based on the urban planning concept proposed by Carlos Moreno.",
       "category": "accessibility",
-      "metrics": ["grocery_access", "healthcare_access", "education_access", "recreation_access"],
+      "status": "production",
+      "metrics": ["grocery_access", "healthcare_access", "education_access", "recreation_access", "services_access"],
       "weight": 1.0,
       "enabled": true
     },
     {
-      "id": "TRANSIT",
+      "code": "TRANSIT",
       "name": "Transit Accessibility",
-      "description": "Measures public transportation accessibility and connectivity",
+      "description": "Measures public transportation accessibility based on stop density, route frequency, and coverage area. Uses GTFS data when available.",
       "category": "mobility",
+      "status": "production",
       "metrics": ["stop_density", "route_frequency", "coverage_area", "intermodal_connections"],
       "weight": 1.0,
       "enabled": true
     },
     {
-      "id": "CLIMATE",
+      "code": "WALK",
+      "name": "Walkability",
+      "description": "Measures pedestrian infrastructure quality including sidewalk coverage, intersection density, and pedestrian amenities.",
+      "category": "mobility",
+      "status": "production",
+      "metrics": ["sidewalk_coverage", "intersection_density", "pedestrian_amenities", "traffic_safety"],
+      "weight": 1.0,
+      "enabled": true
+    },
+    {
+      "code": "NONE",
+      "name": "No Context",
+      "description": "Default context when no specific urban context scoring is applied. UCID contains only location information.",
+      "category": "default",
+      "status": "production",
+      "metrics": [],
+      "weight": 0.0,
+      "enabled": true
+    },
+    {
+      "code": "CLIMATE",
       "name": "Climate Resilience",
-      "description": "Assesses urban climate adaptation and resilience metrics",
+      "description": "Assesses urban climate adaptation and resilience metrics including green space ratio and flood risk.",
       "category": "environment",
+      "status": "planned",
       "metrics": ["green_space_ratio", "heat_island_index", "flood_risk", "air_quality"],
       "weight": 1.0,
-      "enabled": true
+      "enabled": false
     },
     {
-      "id": "EQUITY",
+      "code": "EQUITY",
       "name": "Social Equity",
-      "description": "Measures equitable access to resources and opportunities",
+      "description": "Measures equitable access to resources and opportunities across different demographic groups.",
       "category": "social",
+      "status": "planned",
       "metrics": ["income_diversity", "housing_affordability", "service_equity", "digital_access"],
       "weight": 1.0,
-      "enabled": true
+      "enabled": false
     },
     {
-      "id": "VITALITY",
+      "code": "VITALITY",
       "name": "Urban Vitality",
-      "description": "Measures economic activity and urban vibrancy",
+      "description": "Measures economic activity, business density, and urban vibrancy indicators.",
       "category": "economic",
-      "metrics": ["business_density", "foot_traffic", "event_frequency", "nightlife_index"],
+      "status": "planned",
+      "metrics": ["business_density", "foot_traffic", "event_frequency", "commercial_diversity"],
       "weight": 1.0,
-      "enabled": true
+      "enabled": false
     },
     {
-      "id": "SAFETY",
+      "code": "SAFETY",
       "name": "Public Safety",
-      "description": "Assesses safety and security metrics in urban areas",
+      "description": "Assesses safety and security metrics including crime rates and emergency response times.",
       "category": "safety",
+      "status": "planned",
       "metrics": ["crime_rate", "lighting_coverage", "emergency_response", "pedestrian_safety"],
       "weight": 1.0,
-      "enabled": true
-    },
-    {
-      "id": "HEALTH",
-      "name": "Public Health",
-      "description": "Measures health infrastructure and outcomes",
-      "category": "health",
-      "metrics": ["hospital_access", "pharmacy_density", "walkability", "air_quality_health"],
-      "weight": 1.0,
-      "enabled": true
-    },
-    {
-      "id": "SMART",
-      "name": "Smart City Index",
-      "description": "Measures digital infrastructure and smart city capabilities",
-      "category": "technology",
-      "metrics": ["connectivity", "sensor_coverage", "digital_services", "data_openness"],
-      "weight": 1.0,
-      "enabled": true
+      "enabled": false
     }
   ],
   "metadata": {
-    "version": "1.0.0",
-    "generated": "2026-01-14",
+    "version": "1.0.5",
+    "generated": "2026-01-15",
     "source": "UCID Foundation",
-    "license": "EUPL-1.2"
+    "license": "EUPL-1.2",
+    "production_contexts": ["15MIN", "TRANSIT", "WALK", "NONE"],
+    "planned_contexts": ["CLIMATE", "EQUITY", "VITALITY", "SAFETY"]
   }
 }

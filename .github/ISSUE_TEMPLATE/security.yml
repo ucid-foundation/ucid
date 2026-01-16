@@ -1,0 +1,60 @@
+name: Security Vulnerability
+description: Report a security vulnerability (use this only if you cannot use private reporting)
+title: "[SECURITY]: "
+labels: ["security", "priority:high"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **IMPORTANT**: For sensitive security issues, please email security@ucid.org instead of using this public form.
+
+        Only use this form for low-severity security issues that are safe to disclose publicly.
+
+  - type: checkboxes
+    id: private
+    attributes:
+      label: Confirmation
+      options:
+        - label: I confirm this is a low-severity issue safe for public disclosure
+          required: true
+        - label: I have reviewed the security policy in SECURITY.md
+          required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low - Minor security concern
+        - Informational - Security hardening suggestion
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the security issue
+      placeholder: Describe the vulnerability...
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Potential Impact
+      description: What is the potential impact of this issue?
+      placeholder: Describe the potential impact...
+    validations:
+      required: true
+
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Suggested Mitigation
+      description: How might this be addressed?
+      placeholder: Describe any suggested fixes...
+    validations:
+      required: false

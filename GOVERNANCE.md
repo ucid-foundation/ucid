@@ -1,21 +1,28 @@
 # UCID Governance
 
-This document establishes the governance structure, decision-making processes, and organizational framework for the UCID (Urban Context Identifier) project. Effective governance ensures the project's long-term sustainability, community health, and technical excellence.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Project Governance |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation |
 
 ---
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Organizational Structure](#organizational-structure)
+2. [Governance Model](#governance-model)
 3. [Roles and Responsibilities](#roles-and-responsibilities)
-4. [Decision-Making Process](#decision-making-process)
-5. [Technical Governance](#technical-governance)
-6. [Community Governance](#community-governance)
-7. [Financial Governance](#financial-governance)
-8. [Intellectual Property](#intellectual-property)
-9. [Conflict Resolution](#conflict-resolution)
-10. [Amendment Process](#amendment-process)
+4. [Decision Making](#decision-making)
+5. [Contribution Path](#contribution-path)
+6. [Working Groups](#working-groups)
+7. [Meetings](#meetings)
+8. [Conflict Resolution](#conflict-resolution)
+9. [Changes to Governance](#changes-to-governance)
+10. [Code of Conduct](#code-of-conduct)
 
 ---
 
@@ -23,424 +30,563 @@ This document establishes the governance structure, decision-making processes, a
 
 ### Mission Statement
 
-The UCID project exists to provide a standardized, open source framework for urban context identification and analysis. Our mission is to democratize urban data science by making powerful spatial-temporal analysis tools accessible to researchers, urban planners, and developers worldwide.
+The UCID project exists to provide a standardized, open-source identifier system for urban context analysis, enabling researchers, planners, and developers to understand and improve cities worldwide.
 
-### Guiding Principles
+### Core Values
 
-| Principle | Description |
-|-----------|-------------|
-| **Openness** | All development occurs in public; decisions are documented and transparent |
-| **Meritocracy** | Influence is earned through consistent, high-quality contributions |
-| **Consensus** | We seek broad agreement before making significant decisions |
-| **Sustainability** | We prioritize long-term health over short-term gains |
-| **Inclusivity** | We actively welcome contributors from all backgrounds |
+| Value | Description |
+|-------|-------------|
+| **Openness** | Transparent processes and open source |
+| **Inclusivity** | Welcome all contributors |
+| **Quality** | High standards for code and documentation |
+| **Collaboration** | Work together across boundaries |
+| **Sustainability** | Long-term project health |
 
-### Governance Model
+### Library Statistics
 
-UCID follows a meritocratic governance model where decision-making authority is distributed based on demonstrated expertise and contribution history. The project is overseen by the UCID Foundation, a non-profit organization that provides legal and financial infrastructure.
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| Contributors | 50+ |
+| Test Coverage | 85%+ |
+
+---
+
+## Governance Model
+
+### Structure Overview
 
 ```mermaid
 graph TB
     subgraph "UCID Foundation"
         Board[Foundation Board]
-        ED[Executive Director]
     end
-    
-    subgraph "Technical Governance"
+
+    subgraph "Project Leadership"
         TSC[Technical Steering Committee]
-        WG1[Context Working Group]
-        WG2[Spatial Working Group]
-        WG3[API Working Group]
+        PL[Project Lead]
     end
-    
+
+    subgraph "Working Groups"
+        WG1[Core Library WG]
+        WG2[Contexts WG]
+        WG3[Documentation WG]
+        WG4[Community WG]
+    end
+
     subgraph "Community"
-        Maintainers[Maintainers]
-        Contributors[Contributors]
+        Core[Core Maintainers]
+        Contrib[Contributors]
         Users[Users]
     end
-    
-    Board --> ED
-    ED --> TSC
-    TSC --> WG1
-    TSC --> WG2
-    TSC --> WG3
-    TSC --> Maintainers
-    Maintainers --> Contributors
-    Contributors --> Users
+
+    Board --> TSC
+    TSC --> PL
+    PL --> WG1
+    PL --> WG2
+    PL --> WG3
+    PL --> WG4
+    WG1 --> Core
+    WG2 --> Core
+    WG3 --> Core
+    WG4 --> Core
+    Core --> Contrib
+    Contrib --> Users
 ```
 
----
+### Principles
 
-## Organizational Structure
-
-### UCID Foundation
-
-The UCID Foundation is the legal entity that owns the UCID trademark, manages project funds, and provides organizational infrastructure. The Foundation operates as a non-profit organization registered in the European Union.
-
-#### Foundation Board
-
-The Foundation Board provides strategic oversight and ensures the project aligns with its mission. The Board consists of 5-7 members serving staggered 3-year terms.
-
-| Position | Responsibilities | Term |
-|----------|------------------|------|
-| **Chairperson** | Lead board meetings, external representation | 3 years |
-| **Vice-Chairperson** | Support chairperson, succession planning | 3 years |
-| **Treasurer** | Financial oversight, budget approval | 3 years |
-| **Secretary** | Meeting minutes, documentation | 3 years |
-| **Members (2-3)** | Strategic input, committee participation | 3 years |
-
-#### Election Process
-
-Board members are elected through the following process:
-
-1. **Nomination Period**: 30 days for community nominations
-2. **Candidate Review**: Board reviews candidate eligibility
-3. **Voting Period**: 14-day voting window for eligible voters
-4. **Results**: Announced within 7 days of voting close
-
-Eligible voters include all Contributors with at least 10 merged pull requests in the preceding 12 months.
-
-### Technical Steering Committee
-
-The Technical Steering Committee (TSC) is responsible for the technical direction of the project. TSC membership is based on sustained technical contributions and expertise.
-
-```mermaid
-graph LR
-    subgraph "Technical Steering Committee"
-        Chair[TSC Chair]
-        Member1[Core Member]
-        Member2[Core Member]
-        Member3[Context Lead]
-        Member4[Spatial Lead]
-        Member5[API Lead]
-    end
-    
-    Chair --> RFC[RFC Process]
-    Chair --> Roadmap[Roadmap]
-    Member1 --> Architecture[Architecture]
-    Member2 --> Dependencies[Dependencies]
-    Member3 --> Contexts[Context Modules]
-    Member4 --> Spatial[Spatial Modules]
-    Member5 --> API[API Design]
-```
-
-#### TSC Responsibilities
-
-| Area | Responsibilities |
-|------|------------------|
-| **Architecture** | Overall system design and technical direction |
-| **Standards** | Code style, testing requirements, documentation standards |
-| **Releases** | Release planning, versioning, deprecation policies |
-| **Dependencies** | Dependency management and security updates |
-| **Integrations** | External system integrations and partnerships |
-
-#### TSC Meetings
-
-- **Frequency**: Bi-weekly, 60-minute video calls
-- **Agenda**: Published 48 hours in advance
-- **Minutes**: Published within 72 hours
-- **Quorum**: Majority of TSC members required
-
-### Working Groups
-
-Working groups focus on specific technical areas and report to the TSC.
-
-| Working Group | Scope | Chair |
-|---------------|-------|-------|
-| **Context WG** | Context scoring algorithms, calibration | Elected |
-| **Spatial WG** | H3, S2, spatial operations | Elected |
-| **API WG** | REST API, client libraries | Elected |
-| **Data WG** | Data sources, integration | Elected |
-| **Docs WG** | Documentation, tutorials | Elected |
+| Principle | Description |
+|-----------|-------------|
+| Meritocracy | Influence based on contributions |
+| Transparency | Open discussions and decisions |
+| Consensus | Seek agreement when possible |
+| Documentation | Document all decisions |
 
 ---
 
 ## Roles and Responsibilities
 
-### Role Hierarchy
+### UCID Foundation Board
 
-```mermaid
-graph TD
-    User[User] --> Contributor[Contributor]
-    Contributor --> Committer[Committer]
-    Committer --> Maintainer[Maintainer]
-    Maintainer --> TSC[TSC Member]
-    TSC --> Board[Foundation Board]
-    
-    style User fill:#e1e1e1
-    style Contributor fill:#b3d9ff
-    style Committer fill:#80bfff
-    style Maintainer fill:#4da6ff
-    style TSC fill:#1a8cff
-    style Board fill:#0066cc
-```
+The Foundation Board provides organizational oversight:
 
-### Users
+| Responsibility | Description |
+|----------------|-------------|
+| Strategic Direction | Long-term vision and goals |
+| Legal Oversight | Licensing and legal matters |
+| Financial Oversight | Budget and resources |
+| Community Health | Overall project health |
 
-Anyone who uses UCID software is a user. Users may:
+### Technical Steering Committee (TSC)
 
-- Use UCID in any manner consistent with the license
-- Report bugs and request features
-- Participate in community discussions
-- Provide feedback on releases
+The TSC provides technical leadership:
+
+| Responsibility | Description |
+|----------------|-------------|
+| Technical Direction | Architecture decisions |
+| Release Management | Version releases |
+| Standards | Technical standards |
+| Review | Major changes review |
+
+### Project Lead
+
+The Project Lead coordinates daily operations:
+
+| Responsibility | Description |
+|----------------|-------------|
+| Coordination | Coordinate work across teams |
+| Prioritization | Set priorities for releases |
+| Communication | Represent project externally |
+| Mentorship | Guide new contributors |
+
+### Core Maintainers
+
+Core Maintainers have commit access and review responsibilities:
+
+| Responsibility | Description |
+|----------------|-------------|
+| Code Review | Review and merge PRs |
+| Quality | Maintain code quality |
+| Support | Help contributors |
+| Documentation | Keep docs updated |
 
 ### Contributors
 
-Contributors are users who have contributed to the project. Contributions include:
+Contributors make contributions without commit access:
 
-| Contribution Type | Examples |
-|-------------------|----------|
-| **Code** | Bug fixes, features, tests |
-| **Documentation** | User guides, API docs, tutorials |
-| **Design** | UI/UX, graphics, diagrams |
-| **Support** | Answering questions, triage |
-| **Translation** | Internationalization |
-| **Advocacy** | Talks, blog posts, workshops |
+| Responsibility | Description |
+|----------------|-------------|
+| Contributions | Submit PRs and issues |
+| Reviews | Provide feedback on PRs |
+| Support | Help other users |
+| Testing | Test and report issues |
 
-Contributors may:
+### Users
 
-- Submit pull requests
-- Participate in RFC discussions
-- Vote in community elections
-- Receive attribution in release notes
+Users use the project and provide feedback:
 
-### Committers
-
-Committers have commit access to the repository. Committer status is granted by TSC vote based on:
-
-1. Sustained contribution history (typically 6+ months)
-2. Demonstrated code quality and review skills
-3. Adherence to project standards
-4. Positive community interactions
-
-Committers may:
-
-- Merge pull requests within their area of expertise
-- Create and manage branches
-- Triage and label issues
-- Mentor new contributors
-
-### Maintainers
-
-Maintainers are committers with additional responsibilities for project health. Maintainers:
-
-- Serve as primary owners of specific modules
-- Make binding decisions within their areas
-- Participate in release management
-- Represent the project externally
-
-| Module | Maintainer(s) | Responsibilities |
-|--------|---------------|------------------|
-| **Core** | 2-3 | Parser, models, validation |
-| **Contexts** | 2-3 | Scoring algorithms |
-| **Spatial** | 1-2 | H3, S2, grid operations |
-| **API** | 1-2 | REST API, clients |
-| **Data** | 1-2 | Data source integrations |
-| **ML** | 1-2 | Machine learning module |
-
-### TSC Members
-
-TSC members are maintainers elected to the Technical Steering Committee. Requirements:
-
-- Active maintainer for at least 12 months
-- Demonstrated technical leadership
-- Commitment to project governance
-- Community trust and respect
+| Responsibility | Description |
+|----------------|-------------|
+| Feedback | Report bugs and issues |
+| Suggestions | Suggest improvements |
+| Advocacy | Spread the word |
 
 ---
 
-## Decision-Making Process
+## Decision Making
 
-### Consensus Model
+### Decision Types
 
-UCID uses a consensus-seeking model for decisions. We aim for broad agreement before proceeding with significant changes.
+| Type | Process | Authority |
+|------|---------|-----------|
+| Day-to-day | Maintainer discretion | Core Maintainers |
+| Features | Lazy consensus | Working Group |
+| Architecture | TSC vote | TSC |
+| Governance | Board approval | Foundation Board |
 
-```mermaid
-flowchart TD
-    Proposal[Proposal Submitted] --> Discussion[Community Discussion]
-    Discussion --> Consensus{Consensus?}
-    Consensus -->|Yes| Implement[Implement Decision]
-    Consensus -->|No| Revise[Revise Proposal]
-    Revise --> Discussion
-    Consensus -->|Deadlock| Vote[TSC Vote]
-    Vote --> Implement
-```
+### Lazy Consensus
 
-### Decision Categories
+Most decisions use lazy consensus:
 
-| Category | Process | Authority |
-|----------|---------|-----------|
-| **Routine** | Maintainer discretion | Individual maintainer |
-| **Standard** | PR review and approval | 2 maintainers |
-| **Significant** | RFC process | TSC consensus |
-| **Strategic** | RFC + Board approval | Foundation Board |
-
-### RFC Process
-
-Significant technical decisions require an RFC (Request for Comments):
-
-1. **Draft**: Author creates RFC document in `docs/rfcs/`
-2. **Discussion**: 14-day comment period
-3. **Revision**: Author addresses feedback
-4. **Final Comment**: 7-day final review
-5. **Decision**: TSC consensus or vote
+1. Proposal is made
+2. Waiting period (typically 72 hours)
+3. If no objections, proposal passes
+4. If objections, discuss and resolve
 
 ### Voting
 
-When consensus cannot be reached, the TSC may call a vote:
+When consensus cannot be reached:
 
-| Vote Type | Quorum | Threshold | Duration |
-|-----------|--------|-----------|----------|
-| **Standard** | 50% TSC | Simple majority | 7 days |
-| **Significant** | 66% TSC | 66% approval | 14 days |
-| **Strategic** | 75% TSC | 75% approval | 21 days |
+| Vote Type | Threshold | Voters |
+|-----------|-----------|--------|
+| Simple Majority | >50% | Eligible voters |
+| Supermajority | >66% | Eligible voters |
+| Unanimous | 100% | Eligible voters |
+
+### Decision Documentation
+
+All significant decisions are documented:
+
+```markdown
+## Decision Record: [Title]
+
+**Date:** 2026-01-16
+**Status:** Approved
+**Participants:** [Names]
+
+### Context
+[Background information]
+
+### Decision
+[What was decided]
+
+### Rationale
+[Why this decision]
+
+### Consequences
+[Expected outcomes]
+```
 
 ---
 
-## Technical Governance
+## Contribution Path
 
-### Release Management
+### Path to Maintainer
 
-UCID follows a time-based release schedule:
+```mermaid
+graph LR
+    User[User] --> Contrib[Contributor]
+    Contrib --> Active[Active Contributor]
+    Active --> Core[Core Maintainer]
+    Core --> Lead[Working Group Lead]
+    Lead --> TSC[TSC Member]
+```
 
-| Release Type | Frequency | Process |
-|--------------|-----------|---------|
-| **Major** (X.0.0) | 12-18 months | RFC, migration guide |
-| **Minor** (0.X.0) | 6-8 weeks | Feature freeze, testing |
-| **Patch** (0.0.X) | As needed | Bug fixes only |
+### Requirements
 
-### Security Response
+| Level | Requirements |
+|-------|--------------|
+| Contributor | 1+ merged PR |
+| Active Contributor | 5+ merged PRs, active participation |
+| Core Maintainer | Sustained contributions, nominated by maintainer |
+| Working Group Lead | Core maintainer, domain expertise |
+| TSC Member | Significant project impact, elected by TSC |
 
-Security vulnerabilities are handled through a dedicated process:
+### Nomination Process
 
-1. **Report**: Received via security@ucid.org
-2. **Triage**: Severity assessment within 48 hours
-3. **Fix**: Patch development in private fork
-4. **Release**: Coordinated disclosure and patch release
-5. **Post-mortem**: Root cause analysis and process improvement
+1. **Nomination**: Current maintainer nominates candidate
+2. **Discussion**: TSC discusses nomination
+3. **Vote**: TSC votes on nomination
+4. **Onboarding**: New maintainer is onboarded
+
+### Emeritus Status
+
+Maintainers who step back receive emeritus status:
+
+- Recognized for past contributions
+- May return to active status later
+- Listed in contributor recognition
 
 ---
 
-## Community Governance
+## Working Groups
 
-### Code of Conduct
+### Core Library Working Group
 
-All community members must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). The Code of Conduct Committee handles enforcement.
+| Focus | Description |
+|-------|-------------|
+| Parser | UCID parsing and creation |
+| Validator | Validation logic |
+| Registry | City registry |
+| Performance | Optimization |
 
-### Communication Channels
+### Contexts Working Group
 
-| Channel | Purpose | Moderation |
-|---------|---------|------------|
-| **GitHub Issues** | Bug reports, feature requests | Maintainers |
-| **GitHub Discussions** | General questions, ideas | Maintainers |
-| **Discord** | Real-time chat | Community moderators |
-| **Mailing List** | Announcements, RFCs | TSC |
+| Focus | Description |
+|-------|-------------|
+| 15MIN | 15-Minute City context |
+| TRANSIT | Transit context |
+| WALK | Walkability context |
+| New Contexts | Future contexts |
 
-### Community Meetings
+### Documentation Working Group
+
+| Focus | Description |
+|-------|-------------|
+| User Docs | User documentation |
+| API Docs | API reference |
+| Tutorials | Learning materials |
+| Translations | Localization |
+
+### Community Working Group
+
+| Focus | Description |
+|-------|-------------|
+| Outreach | Community growth |
+| Events | Meetups, conferences |
+| Support | User support |
+| Onboarding | New contributor help |
+
+---
+
+## Meetings
+
+### Regular Meetings
 
 | Meeting | Frequency | Participants |
 |---------|-----------|--------------|
-| **Community Call** | Monthly | Open to all |
-| **TSC Meeting** | Bi-weekly | TSC members |
-| **Working Group** | As needed | WG members |
+| TSC Meeting | Monthly | TSC members |
+| WG Meetings | Bi-weekly | WG members |
+| Community Call | Monthly | Open to all |
 
----
+### Meeting Guidelines
 
-## Financial Governance
+1. **Agenda**: Published 24 hours before
+2. **Notes**: Taken and published
+3. **Decisions**: Documented
+4. **Recording**: Available when possible
 
-### Funding Sources
+### Participation
 
-UCID accepts funding from:
-
-1. Corporate sponsorships
-2. Foundation grants
-3. Individual donations
-4. Conference revenue
-
-### Budget Allocation
-
-| Category | Allocation | Approval |
-|----------|------------|----------|
-| **Infrastructure** | 30% | Executive Director |
-| **Development** | 40% | TSC + Board |
-| **Community** | 20% | Community Manager |
-| **Reserve** | 10% | Board |
-
----
-
-## Intellectual Property
-
-### Licensing
-
-All UCID code is licensed under the European Union Public License 1.2 (EUPL-1.2). Contributors grant the UCID Foundation a perpetual, irrevocable license to their contributions.
-
-### Trademark
-
-The UCID name and logo are trademarks of the UCID Foundation. Usage guidelines:
-
-| Use | Permitted |
-|-----|-----------|
-| Factual reference | Yes |
-| Academic citation | Yes |
-| Commercial product name | Requires approval |
-| Modified versions | Must be clearly distinguished |
+All meetings are open for observation. Speaking rights vary by meeting type.
 
 ---
 
 ## Conflict Resolution
 
-### Resolution Process
+### Process
 
 ```mermaid
-flowchart LR
-    Issue[Issue Raised] --> Direct[Direct Resolution]
-    Direct -->|Resolved| End[End]
-    Direct -->|Unresolved| Mediation[Mediation]
-    Mediation -->|Resolved| End
-    Mediation -->|Unresolved| Escalation[TSC Review]
-    Escalation -->|Resolved| End
-    Escalation -->|Unresolved| Board[Board Decision]
-    Board --> End
+flowchart TD
+    A[Conflict Arises] --> B[Direct Discussion]
+    B --> C{Resolved?}
+    C -->|Yes| D[Document]
+    C -->|No| E[Escalate to WG Lead]
+    E --> F{Resolved?}
+    F -->|Yes| D
+    F -->|No| G[Escalate to TSC]
+    G --> H{Resolved?}
+    H -->|Yes| D
+    H -->|No| I[Board Decision]
+    I --> D
 ```
 
-### Escalation Levels
+### Escalation Path
 
-| Level | Mediator | Timeline |
-|-------|----------|----------|
-| **1. Direct** | Parties involved | 7 days |
-| **2. Mediation** | Neutral maintainer | 14 days |
-| **3. TSC Review** | TSC committee | 21 days |
-| **4. Board Decision** | Foundation Board | 30 days |
+| Level | Authority | Timeline |
+|-------|-----------|----------|
+| Direct | Parties involved | 1 week |
+| WG Lead | Working Group | 2 weeks |
+| TSC | Technical Steering Committee | 1 week |
+| Board | Foundation Board | 2 weeks |
+
+### Principles
+
+- Assume good faith
+- Focus on issues, not people
+- Seek win-win solutions
+- Document outcomes
 
 ---
 
-## Amendment Process
+## Changes to Governance
 
-This governance document may be amended through:
+### Amendment Process
 
-1. **Proposal**: RFC submitted to TSC
-2. **Review**: 30-day community review period
-3. **Vote**: TSC vote (75% approval required)
-4. **Ratification**: Board approval for significant changes
-5. **Publication**: Updated document published
+1. **Proposal**: Submit governance change proposal
+2. **Discussion**: 2-week discussion period
+3. **Vote**: TSC supermajority vote
+4. **Board Approval**: Foundation Board approval
+5. **Implementation**: Update documentation
 
 ### Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0 | 2024-12-01 | Initial governance document |
-| 1.1 | 2025-06-01 | Added working groups |
-| 2.0 | 2026-01-01 | Major restructuring for Foundation |
+| 1.0.5 | 2026-01-16 | Updated structure |
+| 1.0.0 | 2025-12-01 | Initial governance |
+
+---
+
+## Code of Conduct
+
+All community members must follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+### Enforcement
+
+Code of Conduct violations are handled separately from technical governance.
+
+---
+
+## Financial Governance
+
+### Budget Process
+
+| Phase | Timeline | Action |
+|-------|----------|--------|
+| Planning | Q4 | Develop next year budget |
+| Review | December | TSC reviews proposal |
+| Approval | January | Board approves budget |
+| Execution | Ongoing | Execute within budget |
+| Reporting | Quarterly | Financial reports |
+
+### Funding Sources
+
+| Source | Type | Governance |
+|--------|------|------------|
+| Donations | Individual | Foundation managed |
+| Sponsorships | Corporate | Board approved |
+| Grants | Institutional | Project specific |
+
+### Expense Categories
+
+| Category | Examples |
+|----------|----------|
+| Infrastructure | Hosting, CI/CD |
+| Events | Conferences, meetups |
+| Development | Bounties, contractors |
+| Operations | Legal, accounting |
+
+---
+
+## Intellectual Property
+
+### License
+
+UCID is licensed under EUPL-1.2. All contributions must be compatible with this license.
+
+### Trademarks
+
+| Trademark | Owner | Usage |
+|-----------|-------|-------|
+| UCID | UCID Foundation | Open |
+| UCID Logo | UCID Foundation | Guidelines apply |
+
+### Patent Policy
+
+The project follows a defensive patent stance:
+
+1. No patent claims against the project
+2. Contributors grant patent license
+3. Patent trolls excluded
+
+---
+
+## Release Governance
+
+### Release Schedule
+
+| Release Type | Frequency | Examples |
+|--------------|-----------|----------|
+| Major (X.0.0) | Annual | Breaking changes |
+| Minor (0.X.0) | Quarterly | New features |
+| Patch (0.0.X) | As needed | Bug fixes |
+
+### Release Process
+
+```mermaid
+flowchart LR
+    A[Feature Freeze] --> B[RC1]
+    B --> C[Testing]
+    C --> D{Issues?}
+    D -->|Yes| E[Fix]
+    E --> C
+    D -->|No| F[Release]
+    F --> G[Announce]
+```
+
+### Release Criteria
+
+| Criteria | Requirement |
+|----------|-------------|
+| Tests | All passing |
+| Coverage | 80%+ |
+| Documentation | Updated |
+| Changelog | Complete |
+| Security | No known vulnerabilities |
+
+---
+
+## Security Governance
+
+### Security Team
+
+| Role | Responsibility |
+|------|----------------|
+| Security Lead | Coordinate security efforts |
+| Security Reviewers | Review security changes |
+| Incident Response | Handle security incidents |
+
+### Vulnerability Process
+
+1. Report received at security@ucid.org
+2. Acknowledged within 24 hours
+3. Triaged and assigned
+4. Fix developed and tested
+5. Coordinated disclosure
+6. Security advisory published
+
+### Security Releases
+
+Security releases are made outside the normal schedule when:
+
+- Critical vulnerability discovered
+- Active exploitation detected
+- Dependency has critical CVE
+
+---
+
+## Communication Channels
+
+### Official Channels
+
+| Channel | Purpose | Moderation |
+|---------|---------|------------|
+| GitHub Issues | Bug reports, features | Core maintainers |
+| GitHub Discussions | Q&A, community | Core maintainers |
+| Discord | Real-time chat | Moderators |
+| Mailing List | Announcements | TSC |
+
+### External Communications
+
+| Type | Approver |
+|------|----------|
+| Press releases | Board |
+| Blog posts | TSC |
+| Social media | Community WG |
+| Conference talks | Individual |
+
+---
+
+## Trademark Policy
+
+### Permitted Uses
+
+- Referring to UCID software
+- Indicating compatibility
+- Community discussions
+- Educational materials
+
+### Prohibited Uses
+
+- Modified versions without indication
+- Commercial products without approval
+- Misleading association
+- Endorsement claims
+
+### Logo Guidelines
+
+| Usage | Permission |
+|-------|------------|
+| Documentation | Allowed |
+| Presentations | Allowed |
+| Commercial products | Requires approval |
+| Merchandise | Requires approval |
 
 ---
 
 ## Contact
 
-For governance-related inquiries:
+| Purpose | Contact |
+|---------|---------|
+| General | contact@ucid.org |
+| Governance | governance@ucid.org |
+| TSC | tsc@ucid.org |
+| Security | security@ucid.org |
+| Legal | legal@ucid.org |
 
-- **Email**: governance@ucid.org
-- **GitHub**: Open an issue with the `governance` label
+---
+
+## References
+
+- [Apache Software Foundation Governance](https://www.apache.org/foundation/governance/)
+- [Node.js Governance](https://github.com/nodejs/governance)
+- [Kubernetes Governance](https://github.com/kubernetes/community/blob/master/governance.md)
+- [Linux Foundation](https://www.linuxfoundation.org/governance/)
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

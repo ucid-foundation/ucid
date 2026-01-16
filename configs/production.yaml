@@ -1,0 +1,164 @@
+# Copyright 2026 UCID Foundation
+#
+# Licensed under the EUPL, Version 1.2 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# production.yaml - UCID Production Configuration
+#
+# This configuration file contains production-ready settings optimized
+# for performance, security, and reliability. Use this configuration
+# when deploying UCID in production environments.
+#
+# Security Considerations:
+#   - Debug mode disabled
+#   - Request logging disabled for privacy
+#   - Strict input validation enabled
+#   - Rate limiting enforced
+#
+# Performance Optimizations:
+#   - All caches enabled
+#   - Preloading enabled
+#   - Optimal worker count
+#
+# Usage:
+#   export UCID_ENV=production
+#   python -m ucid.api
+#
+# Reference Documentation:
+#   - Deployment Guide: https://ucid.readthedocs.io/deployment
+#   - Production Checklist: https://ucid.readthedocs.io/production-checklist
+#
+# Maintainer: UCID Foundation DevOps Team
+# Version: 1.0.5
+# Last Updated: 2026-01-15
+
+# =============================================================================
+# METADATA
+# =============================================================================
+_meta:
+  version: "1.0.5"
+  environment: "production"
+  description: "Production Configuration"
+  last_updated: "2026-01-15"
+
+# =============================================================================
+# CORE SETTINGS - PRODUCTION
+# =============================================================================
+ucid:
+  version_prefix: "UCID-V1"
+  default_resolution: 9
+  strict_mode: true
+  max_ucid_length: 200
+
+# =============================================================================
+# REGISTRY - PRODUCTION
+# =============================================================================
+registry:
+  lazy_load: false
+  preload: true
+
+# =============================================================================
+# PERFORMANCE - OPTIMIZED
+# =============================================================================
+performance:
+  worker_threads: -1  # Auto-detect CPU count
+  max_batch_size: 10000
+  cache_enabled: true
+  cache_size_mb: 500  # Larger cache for production
+  jit_enabled: true
+
+# =============================================================================
+# LOGGING - PRODUCTION
+# =============================================================================
+logging:
+  level: "WARNING"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  colored: false  # Disable colors for log aggregation
+  file:
+    enabled: true
+    path: "/var/log/ucid/ucid.log"
+    max_size_mb: 100
+    backup_count: 10
+
+# =============================================================================
+# CACHE - AGGRESSIVE
+# =============================================================================
+cache:
+  memory:
+    enabled: true
+    max_size_mb: 500
+    ttl_seconds: 7200  # 2 hours
+    eviction_policy: "lru"
+  disk:
+    enabled: true
+    path: "/var/cache/ucid"
+    max_size_gb: 10.0
+    ttl_seconds: 604800  # 7 days
+
+# =============================================================================
+# DATA SOURCES - PRODUCTION
+# =============================================================================
+data_sources:
+  osm:
+    enabled: true
+    timeout_seconds: 60
+    retries: 5
+    retry_delay_seconds: 2
+    cache_ttl_seconds: 604800  # 7 days
+  gtfs:
+    enabled: true
+    update_interval_seconds: 86400  # Daily
+    max_feed_age_days: 7
+
+# =============================================================================
+# API - PRODUCTION
+# =============================================================================
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: -1  # Auto-detect
+  timeout_seconds: 60
+  rate_limit:
+    enabled: true
+    requests_per_minute: 10000
+    burst_size: 1000
+  cors:
+    enabled: true
+    origins: ["https://ucid.org", "https://api.ucid.org"]
+  docs:
+    enabled: false  # Disable in production
+
+# =============================================================================
+# SECURITY - HARDENED
+# =============================================================================
+security:
+  validate_input: true
+  max_input_length: 200
+  sanitize_output: true
+  rate_limiting: true
+  log_requests: false
+  log_ip_addresses: false
+
+# =============================================================================
+# DEVELOPMENT - DISABLED
+# =============================================================================
+development:
+  debug: false
+  profiling: false
+  mock_external: false
+
+# =============================================================================
+# TELEMETRY - OPTIONAL
+# =============================================================================
+telemetry:
+  enabled: false  # Enable if using monitoring
+  anonymize: true

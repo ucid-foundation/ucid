@@ -1,24 +1,130 @@
+# ==============================================================================
+# UCID MANIFEST.in
+# Urban Context Identifier - Python Library
+# Version: 1.0.5
+# Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.
+# ==============================================================================
+#
+# This file specifies which files to include in source distributions.
+# https://packaging.python.org/en/latest/guides/using-manifest-in/
+#
+# ==============================================================================
+
+# ==============================================================================
+# Root Documentation
+# ==============================================================================
 include LICENSE
 include README.md
 include AUTHORS
-include CONTRIBUTING.md
 include CHANGELOG.md
+include CITATION.cff
+include CODE_OF_CONDUCT.md
+include CONTRIBUTING.md
+include CONTRIBUTORS.md
 include GOVERNANCE.md
 include SECURITY.md
-include CODE_OF_CONDUCT.md
-include CITATION.cff
+include SUPPORT.md
+
+# ==============================================================================
+# Build Configuration
+# ==============================================================================
 include pyproject.toml
 include Makefile
+include tox.ini
 
+# ==============================================================================
+# Source Code
+# ==============================================================================
 recursive-include src/ucid *.py
-recursive-include src/ucid/data *.json *.csv *.parquet
-recursive-include docs *
-recursive-include tests *
-recursive-include scripts *.py
-recursive-include examples *.py
-recursive-include notebooks *.ipynb *.md
+recursive-include src/ucid/data *.json *.csv
 
+# Include type stubs
+include src/ucid/py.typed
+recursive-include src/ucid *.pyi
+
+# ==============================================================================
+# Documentation
+# ==============================================================================
+recursive-include docs *.md *.rst *.py
+recursive-include docs/_static *
+recursive-include docs/_templates *
+prune docs/_build
+
+# ==============================================================================
+# Tests (for source distributions)
+# ==============================================================================
+recursive-include tests *.py *.json *.yaml
+include tests/conftest.py
+
+# ==============================================================================
+# Examples
+# ==============================================================================
+recursive-include examples *.py *.md
+
+# ==============================================================================
+# Scripts
+# ==============================================================================
+recursive-include scripts *.py *.sh
+
+# ==============================================================================
+# Notebooks
+# ==============================================================================
+recursive-include notebooks *.ipynb *.md
+prune notebooks/.ipynb_checkpoints
+
+# ==============================================================================
+# Exclusions
+# ==============================================================================
+# Development files
 exclude .gitignore
+exclude .gitattributes
 exclude .dockerignore
+exclude .editorconfig
 exclude .pre-commit-config.yaml
-global-exclude *.py[cod] __pycache__ *.so *.dylib
+exclude .env.example
+exclude codecov.yml
+
+# Docker files
+exclude Dockerfile
+exclude docker-compose.yml
+exclude docker-compose.*.yml
+
+# CI/CD
+prune .github
+prune .circleci
+
+# IDE
+prune .idea
+prune .vscode
+
+# Cache and build
+prune __pycache__
+prune .pytest_cache
+prune .mypy_cache
+prune .ruff_cache
+prune .tox
+prune .nox
+prune htmlcov
+prune build
+prune dist
+
+# Data files (too large for sdist)
+prune data/external
+prune data/raw
+prune datasets
+
+# ==============================================================================
+# Global Exclusions
+# ==============================================================================
+global-exclude *.py[cod]
+global-exclude __pycache__
+global-exclude *.so
+global-exclude *.dylib
+global-exclude .DS_Store
+global-exclude Thumbs.db
+global-exclude *.egg-info
+global-exclude .git*
+
+# ==============================================================================
+# End of MANIFEST.in
+# ==============================================================================

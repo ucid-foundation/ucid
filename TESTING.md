@@ -1,21 +1,30 @@
-# Testing Guide
+# UCID Testing Guide
 
-This document provides comprehensive guidance on testing the UCID (Urban Context Identifier) project, including test strategies, running tests, and writing new tests.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Testing Strategy and Guidelines |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation QA Team |
 
 ---
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Test Categories](#test-categories)
+2. [Test Structure](#test-structure)
 3. [Running Tests](#running-tests)
-4. [Test Configuration](#test-configuration)
-5. [Writing Tests](#writing-tests)
-6. [Mocking and Fixtures](#mocking-and-fixtures)
-7. [Coverage](#coverage)
-8. [Performance Testing](#performance-testing)
-9. [Integration Testing](#integration-testing)
-10. [CI/CD Testing](#cicd-testing)
+4. [Unit Tests](#unit-tests)
+5. [Integration Tests](#integration-tests)
+6. [Performance Tests](#performance-tests)
+7. [Test Coverage](#test-coverage)
+8. [Writing Tests](#writing-tests)
+9. [Test Fixtures](#test-fixtures)
+10. [Mocking](#mocking)
+11. [CI/CD Testing](#cicd-testing)
+12. [Best Practices](#best-practices)
 
 ---
 
@@ -23,106 +32,78 @@ This document provides comprehensive guidance on testing the UCID (Urban Context
 
 ### Testing Philosophy
 
-UCID follows a comprehensive testing strategy:
+UCID follows a comprehensive testing strategy to ensure reliability and quality:
 
 | Principle | Description |
 |-----------|-------------|
-| **Test Pyramid** | Many unit tests, fewer integration tests, few E2E tests |
-| **TDD Optional** | Tests encouraged but TDD not required |
-| **Coverage Goals** | 90% line coverage target |
-| **Fast Tests** | Unit tests should be fast |
+| Test First | Write tests before or with code |
+| Coverage | Aim for 85%+ line coverage |
+| Isolation | Tests should be independent |
+| Speed | Fast tests enable fast iteration |
+| Readability | Tests serve as documentation |
 
-### Test Stack
+### Library Statistics
 
-| Tool | Purpose |
-|------|---------|
-| pytest | Test framework |
-| pytest-cov | Coverage reporting |
-| pytest-xdist | Parallel execution |
-| pytest-mock | Mocking |
-| hypothesis | Property-based testing |
-| pytest-asyncio | Async test support |
-| pytest-benchmark | Performance tests |
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| Test Files | 50+ |
+| Test Cases | 500+ |
+| Line Coverage | 85%+ |
+| Branch Coverage | 78%+ |
+
+### Test Pyramid
+
+```mermaid
+graph TB
+    subgraph "Test Pyramid"
+        E2E[End-to-End Tests<br/>10%]
+        Integration[Integration Tests<br/>20%]
+        Unit[Unit Tests<br/>70%]
+    end
+    
+    E2E --> Integration
+    Integration --> Unit
+```
 
 ---
 
-## Test Categories
+## Test Structure
 
-### Unit Tests
+### Directory Structure
 
-Fast, isolated tests for individual functions and classes.
-
-```python
-# tests/unit/test_parser.py
-import pytest
-from ucid import create_ucid, parse_ucid
-
-def test_create_ucid_valid():
-    """Test UCID creation with valid inputs."""
-    ucid = create_ucid(
-        city="IST",
-        lat=41.015,
-        lon=28.979,
-        timestamp="2026W01T12",
-        context="15MIN",
-    )
-    assert ucid.startswith("UCID:V1:IST:")
-
-def test_create_ucid_invalid_city():
-    """Test UCID creation with invalid city."""
-    with pytest.raises(UCIDValidationError):
-        create_ucid(city="XXX", lat=0, lon=0)
+```
+tests/
+├── conftest.py              # Shared fixtures
+├── __init__.py
+├── unit/                    # Unit tests (70%)
+│   ├── __init__.py
+│   ├── test_parser.py
+│   ├── test_validator.py
+│   ├── test_registry.py
+│   └── test_models.py
+├── integration/             # Integration tests (20%)
+│   ├── __init__.py
+│   ├── test_api.py
+│   ├── test_contexts.py
+│   └── test_data_sources.py
+├── performance/             # Performance tests (10%)
+│   ├── __init__.py
+│   └── test_benchmark.py
+└── fixtures/                # Test data
+    ├── sample_ucids.json
+    └── data.py
 ```
 
-### Integration Tests
+### Test Categories
 
-Tests that verify component interactions.
-
-```python
-# tests/integration/test_context_data.py
-import pytest
-from ucid.contexts import get_context
-from ucid.data import OSMFetcher
-
-@pytest.mark.integration
-def test_context_with_osm_data():
-    """Test context scoring with real OSM data."""
-    context = get_context("15MIN")
-    result = context.compute(
-        lat=41.015,
-        lon=28.979,
-        timestamp="2026W01T12",
-    )
-    assert 0 <= result.score <= 100
-```
-
-### End-to-End Tests
-
-Tests that verify complete workflows.
-
-```python
-# tests/e2e/test_api_workflow.py
-import pytest
-from httpx import AsyncClient
-
-@pytest.mark.e2e
-@pytest.mark.asyncio
-async def test_create_and_retrieve_ucid():
-    """Test complete API workflow."""
-    async with AsyncClient(base_url="http://localhost:8000") as client:
-        # Create UCID
-        response = await client.post("/v1/ucid/create", json={
-            "city": "IST",
-            "lat": 41.015,
-            "lon": 28.979,
-        })
-        assert response.status_code == 201
-        ucid_id = response.json()["id"]
-
-        # Retrieve UCID
-        response = await client.get(f"/v1/ucid/{ucid_id}")
-        assert response.status_code == 200
-```
+| Category | Markers | Purpose |
+|----------|---------|---------|
+| Unit | - | Test individual functions |
+| Integration | `@pytest.mark.integration` | Test component interaction |
+| Performance | `@pytest.mark.performance` | Test performance benchmarks |
+| Slow | `@pytest.mark.slow` | Tests taking >1 second |
 
 ---
 
@@ -137,313 +118,401 @@ pytest
 # Run with verbose output
 pytest -v
 
-# Run specific test file
+# Run specific file
 pytest tests/unit/test_parser.py
 
-# Run specific test function
-pytest tests/unit/test_parser.py::test_create_ucid_valid
+# Run specific test
+pytest tests/unit/test_parser.py::TestParseUCID::test_parse_valid
 
-# Run tests matching pattern
-pytest -k "ucid and valid"
-```
-
-### Test Categories
-
-```bash
-# Run only unit tests
-pytest tests/unit/
-
-# Run only integration tests
+# Run by marker
 pytest -m integration
-
-# Run only E2E tests
-pytest -m e2e
-
-# Exclude slow tests
 pytest -m "not slow"
 ```
 
-### Parallel Execution
+### Common Options
+
+| Option | Description |
+|--------|-------------|
+| `-v` | Verbose output |
+| `-x` | Stop on first failure |
+| `-s` | Show print statements |
+| `--tb=short` | Short traceback |
+| `-k "pattern"` | Filter by name pattern |
+| `-n auto` | Parallel execution |
+
+### Makefile Commands
 
 ```bash
-# Run tests in parallel
-pytest -n auto
-
-# Use specific number of workers
-pytest -n 4
-```
-
-### Watch Mode
-
-```bash
-# Rerun on file changes
-pytest-watch
-# or
-ptw
+make test          # Run all tests
+make test-unit     # Run unit tests only
+make test-cov      # Run with coverage
+make test-quick    # Run fast tests only
 ```
 
 ---
 
-## Test Configuration
+## Unit Tests
 
-### pytest.ini
-
-```ini
-[pytest]
-testpaths = tests
-python_files = test_*.py
-python_classes = Test*
-python_functions = test_*
-addopts = -v --strict-markers
-markers =
-    unit: Unit tests
-    integration: Integration tests
-    e2e: End-to-end tests
-    slow: Slow tests
-    network: Tests requiring network
-```
-
-### conftest.py
+### Parser Tests
 
 ```python
-# tests/conftest.py
+"""Tests for the parser module."""
+
 import pytest
-from ucid import register_city
+from ucid.core.parser import create_ucid, parse_ucid
+from ucid.core.errors import UCIDParseError
 
-@pytest.fixture(scope="session")
-def test_city():
-    """Register test city for all tests."""
-    register_city(
-        code="TST",
-        name="Test City",
-        country="XX",
-        lat=0.0,
-        lon=0.0,
-    )
-    return "TST"
 
-@pytest.fixture
-def sample_ucid():
-    """Return sample UCID for testing."""
-    return "UCID:V1:IST:8a3b5c2d1e0f:2026W01T12:15MIN:72:B:95"
+class TestCreateUCID:
+    """Tests for create_ucid function."""
 
-@pytest.fixture
-def mock_osm_response():
-    """Mock OSM API response."""
-    return {
-        "elements": [
-            {"type": "node", "id": 1, "lat": 41.015, "lon": 28.979},
+    def test_create_valid_ucid(self) -> None:
+        """Test creating a valid UCID."""
+        ucid = create_ucid(
+            city="IST",
+            lat=41.015,
+            lon=28.979,
+            timestamp="2026W03T14",
+            context="15MIN",
+        )
+        
+        assert ucid.city == "IST"
+        assert ucid.lat == 41.015
+        assert ucid.context == "15MIN"
+
+    def test_create_with_defaults(self) -> None:
+        """Test creating UCID with default values."""
+        ucid = create_ucid(city="IST", lat=41.015, lon=28.979)
+        
+        assert ucid.h3_res == 9  # Default resolution
+        assert ucid.context == "NONE"  # Default context
+
+    @pytest.mark.parametrize("city", ["IST", "NYC", "LON", "TYO"])
+    def test_create_multiple_cities(self, city: str) -> None:
+        """Test creating UCIDs for multiple cities."""
+        ucid = create_ucid(city=city, lat=41.0, lon=28.0)
+        assert ucid.city == city
+
+
+class TestParseUCID:
+    """Tests for parse_ucid function."""
+
+    def test_parse_valid_ucid(self) -> None:
+        """Test parsing a valid UCID string."""
+        ucid_str = "UCID-V1:IST:+41.015:+28.979:9:891f2ed6df7ffff:2026W03T14:15MIN:A:0.95"
+        result = parse_ucid(ucid_str)
+        
+        assert result.city == "IST"
+        assert result.grade == "A"
+
+    def test_parse_invalid_raises_error(self) -> None:
+        """Test that invalid input raises UCIDParseError."""
+        with pytest.raises(UCIDParseError):
+            parse_ucid("invalid")
+
+    def test_parse_roundtrip(self) -> None:
+        """Test parse(create()) roundtrip."""
+        original = create_ucid(city="IST", lat=41.015, lon=28.979)
+        parsed = parse_ucid(str(original))
+        
+        assert parsed.city == original.city
+        assert parsed.lat == original.lat
+```
+
+### Validator Tests
+
+```python
+"""Tests for the validator module."""
+
+import pytest
+from ucid.core.validator import validate_ucid, is_valid_ucid
+from ucid.core.errors import UCIDValidationError
+
+
+class TestValidateUCID:
+    """Tests for validate_ucid function."""
+
+    def test_validate_valid_ucid(self) -> None:
+        """Test validating a valid UCID."""
+        ucid_str = "UCID-V1:IST:+41.015:+28.979:9:..."
+        assert validate_ucid(ucid_str) is True
+
+    def test_validate_invalid_city(self) -> None:
+        """Test validation fails for invalid city."""
+        with pytest.raises(UCIDValidationError, match="Invalid city"):
+            validate_ucid("UCID-V1:XXX:+41.015:+28.979:...")
+
+    @pytest.mark.parametrize("lat,lon", [
+        (91.0, 0.0),   # Latitude out of range
+        (-91.0, 0.0),  # Latitude out of range
+        (0.0, 181.0),  # Longitude out of range
+        (0.0, -181.0), # Longitude out of range
+    ])
+    def test_validate_invalid_coordinates(self, lat: float, lon: float) -> None:
+        """Test validation fails for invalid coordinates."""
+        with pytest.raises(UCIDValidationError):
+            validate_ucid(f"UCID-V1:IST:{lat:+}:{lon:+}:...")
+```
+
+---
+
+## Integration Tests
+
+### API Tests
+
+```python
+"""Integration tests for the API."""
+
+import pytest
+from fastapi.testclient import TestClient
+from ucid.api.app import app
+
+
+@pytest.mark.integration
+class TestAPIEndpoints:
+    """Tests for API endpoints."""
+
+    @pytest.fixture
+    def client(self) -> TestClient:
+        """Create test client."""
+        return TestClient(app)
+
+    def test_create_endpoint(self, client: TestClient) -> None:
+        """Test POST /ucid/create endpoint."""
+        response = client.post(
+            "/v1/ucid/create",
+            json={"city": "IST", "lat": 41.015, "lon": 28.979},
+        )
+        
+        assert response.status_code == 200
+        assert "ucid" in response.json()
+
+    def test_parse_endpoint(self, client: TestClient) -> None:
+        """Test POST /ucid/parse endpoint."""
+        response = client.post(
+            "/v1/ucid/parse",
+            json={"ucid": "UCID-V1:IST:+41.015:+28.979:..."},
+        )
+        
+        assert response.status_code == 200
+
+    def test_health_check(self, client: TestClient) -> None:
+        """Test GET /health endpoint."""
+        response = client.get("/health")
+        
+        assert response.status_code == 200
+        assert response.json()["status"] == "healthy"
+```
+
+### Context Tests
+
+```python
+"""Integration tests for context algorithms."""
+
+import pytest
+from ucid.contexts import FifteenMinContext, TransitContext
+
+
+@pytest.mark.integration
+class TestContextIntegration:
+    """Tests for context algorithm integration."""
+
+    def test_fifteen_min_context(self) -> None:
+        """Test 15MIN context scoring."""
+        context = FifteenMinContext()
+        result = context.compute(lat=41.015, lon=28.979)
+        
+        assert 0.0 <= result.score <= 1.0
+        assert result.grade in ["A", "B", "C", "D", "F"]
+
+    @pytest.mark.slow
+    def test_transit_context_with_gtfs(self) -> None:
+        """Test TRANSIT context with real GTFS data."""
+        context = TransitContext()
+        result = context.compute(lat=41.015, lon=28.979)
+        
+        assert result.confidence > 0
+```
+
+---
+
+## Performance Tests
+
+### Benchmark Tests
+
+```python
+"""Performance benchmark tests."""
+
+import pytest
+from ucid import create_ucid, parse_ucid
+
+
+@pytest.mark.performance
+class TestPerformance:
+    """Performance benchmark tests."""
+
+    def test_create_performance(self, benchmark) -> None:
+        """Benchmark UCID creation."""
+        result = benchmark(
+            create_ucid,
+            city="IST",
+            lat=41.015,
+            lon=28.979,
+        )
+        assert result is not None
+
+    def test_parse_performance(self, benchmark) -> None:
+        """Benchmark UCID parsing."""
+        ucid_str = "UCID-V1:IST:+41.015:+28.979:9:891f2ed6df7ffff:2026W03T14:15MIN:A:0.95"
+        result = benchmark(parse_ucid, ucid_str)
+        assert result is not None
+
+    def test_batch_performance(self, benchmark) -> None:
+        """Benchmark batch creation."""
+        locations = [
+            {"city": "IST", "lat": 41.0 + i*0.01, "lon": 28.0}
+            for i in range(100)
         ]
-    }
+        
+        def batch_create():
+            return [create_ucid(**loc) for loc in locations]
+        
+        result = benchmark(batch_create)
+        assert len(result) == 100
+```
+
+---
+
+## Test Coverage
+
+### Running Coverage
+
+```bash
+# Generate coverage report
+pytest --cov=ucid --cov-report=html
+
+# Check minimum coverage
+pytest --cov=ucid --cov-fail-under=80
+
+# Coverage with missing lines
+pytest --cov=ucid --cov-report=term-missing
+```
+
+### Coverage Targets
+
+| Module | Target | Current |
+|--------|--------|---------|
+| core/ | 90% | 92% |
+| contexts/ | 85% | 87% |
+| spatial/ | 85% | 86% |
+| data/ | 80% | 82% |
+| api/ | 80% | 81% |
+| Overall | 85% | 87% |
+
+### Coverage Configuration
+
+```ini
+# pyproject.toml
+[tool.coverage.run]
+source = ["src/ucid"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
 ```
 
 ---
 
 ## Writing Tests
 
-### Test Structure
-
-Follow the AAA pattern:
+### Test Naming
 
 ```python
-def test_example():
-    # Arrange - Set up test data
+# Pattern: test_<what>_<condition>_<expected>
+def test_parse_ucid_valid_string_returns_ucid():
+    ...
+
+def test_validate_ucid_invalid_city_raises_error():
+    ...
+```
+
+### Test Structure (AAA Pattern)
+
+```python
+def test_create_ucid_with_context():
+    # Arrange
     city = "IST"
     lat = 41.015
     lon = 28.979
-
-    # Act - Execute the function
-    ucid = create_ucid(city=city, lat=lat, lon=lon)
-
-    # Assert - Verify the result
-    assert ucid.startswith("UCID:V1:IST:")
-```
-
-### Testing Classes
-
-```python
-class TestUCIDParser:
-    """Tests for UCID parser."""
-
-    def test_parse_valid_ucid(self):
-        """Test parsing valid UCID string."""
-        ucid = parse_ucid("UCID:V1:IST:8a3b:2026W01T12:15MIN:72:B:95")
-        assert ucid.city == "IST"
-        assert ucid.score == 72
-
-    def test_parse_invalid_format(self):
-        """Test parsing invalid UCID string."""
-        with pytest.raises(UCIDParseError):
-            parse_ucid("invalid")
-
-    @pytest.mark.parametrize("city", ["IST", "NYC", "LON"])
-    def test_parse_various_cities(self, city):
-        """Test parsing UCIDs with various cities."""
-        ucid_str = f"UCID:V1:{city}:8a3b:2026W01T12:15MIN:72:B:95"
-        ucid = parse_ucid(ucid_str)
-        assert ucid.city == city
-```
-
-### Parametrized Tests
-
-```python
-@pytest.mark.parametrize("lat,lon,expected", [
-    (0, 0, True),
-    (90, 180, True),
-    (-90, -180, True),
-    (91, 0, False),
-    (0, 181, False),
-])
-def test_coordinate_validation(lat, lon, expected):
-    """Test coordinate validation with various inputs."""
-    result = validate_coordinates(lat, lon)
-    assert result == expected
+    context = "15MIN"
+    
+    # Act
+    result = create_ucid(city=city, lat=lat, lon=lon, context=context)
+    
+    # Assert
+    assert result.city == city
+    assert result.context == context
 ```
 
 ---
 
-## Mocking and Fixtures
+## Test Fixtures
 
-### Using pytest-mock
-
-```python
-def test_with_mock(mocker):
-    """Test with mocked dependency."""
-    mock_fetch = mocker.patch("ucid.data.osm.fetch_pois")
-    mock_fetch.return_value = [{"name": "Test POI"}]
-
-    result = compute_accessibility(lat=41.0, lon=28.9)
-
-    mock_fetch.assert_called_once()
-    assert result > 0
-```
-
-### Custom Fixtures
+### Shared Fixtures
 
 ```python
+# conftest.py
+import pytest
+from ucid import create_ucid
+
+
 @pytest.fixture
-def mock_gtfs_feed(tmp_path):
-    """Create mock GTFS feed for testing."""
-    gtfs_dir = tmp_path / "gtfs"
-    gtfs_dir.mkdir()
-
-    # Create minimal GTFS files
-    (gtfs_dir / "agency.txt").write_text(
-        "agency_id,agency_name\n1,Test Agency"
-    )
-    (gtfs_dir / "routes.txt").write_text(
-        "route_id,agency_id,route_type\n1,1,3"
-    )
-
-    return gtfs_dir
-```
-
----
-
-## Coverage
-
-### Running Coverage
-
-```bash
-# Run with coverage
-pytest --cov=ucid
-
-# Generate HTML report
-pytest --cov=ucid --cov-report=html
-
-# Show missing lines
-pytest --cov=ucid --cov-report=term-missing
-```
-
-### Coverage Configuration
-
-```ini
-# .coveragerc
-[run]
-source = src/ucid
-branch = True
-omit =
-    */tests/*
-    */__pycache__/*
-
-[report]
-fail_under = 90
-show_missing = True
-exclude_lines =
-    pragma: no cover
-    raise NotImplementedError
-    if TYPE_CHECKING:
-```
-
----
-
-## Performance Testing
-
-### Using pytest-benchmark
-
-```python
-def test_create_ucid_performance(benchmark):
-    """Benchmark UCID creation."""
-    result = benchmark(
-        create_ucid,
+def sample_ucid():
+    """Create a sample UCID for testing."""
+    return create_ucid(
         city="IST",
         lat=41.015,
         lon=28.979,
+        timestamp="2026W03T14",
+        context="15MIN",
     )
-    assert result is not None
-```
 
-### Running Benchmarks
 
-```bash
-# Run benchmarks
-pytest tests/benchmarks/ --benchmark-only
+@pytest.fixture
+def sample_coordinates():
+    """Provide sample coordinates."""
+    return {"lat": 41.015, "lon": 28.979}
 
-# Compare with previous run
-pytest --benchmark-compare
 
-# Save results
-pytest --benchmark-save=baseline
+@pytest.fixture
+def sample_cities():
+    """Provide list of sample city codes."""
+    return ["IST", "NYC", "LON", "TYO", "SIN"]
 ```
 
 ---
 
-## Integration Testing
+## Mocking
 
-### Database Tests
-
-```python
-@pytest.fixture
-def db_session():
-    """Create test database session."""
-    engine = create_engine("postgresql://test@localhost/ucid_test")
-    with Session(engine) as session:
-        yield session
-        session.rollback()
-
-def test_save_ucid(db_session):
-    """Test saving UCID to database."""
-    ucid = create_ucid(city="IST", lat=41.0, lon=28.9)
-    db_session.add(UCIDRecord(ucid_string=str(ucid)))
-    db_session.commit()
-
-    result = db_session.query(UCIDRecord).first()
-    assert result is not None
-```
-
-### API Tests
+### Mocking External Services
 
 ```python
-from fastapi.testclient import TestClient
-from ucid.api import app
+from unittest.mock import Mock, patch
 
-client = TestClient(app)
-
-def test_api_health():
-    """Test API health endpoint."""
-    response = client.get("/health")
-    assert response.status_code == 200
-    assert response.json()["status"] == "healthy"
+def test_context_with_mocked_data():
+    mock_response = {"amenities": [...]}
+    
+    with patch("ucid.data.osm_client.fetch") as mock_fetch:
+        mock_fetch.return_value = mock_response
+        
+        result = context.compute(lat=41.0, lon=28.0)
+        
+        mock_fetch.assert_called_once()
+        assert result.score > 0
 ```
 
 ---
@@ -453,31 +522,32 @@ def test_api_health():
 ### GitHub Actions
 
 ```yaml
+# .github/workflows/test.yml
 name: Tests
 on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - run: pip install -e ".[dev]"
-      - run: pytest --cov=ucid --cov-report=xml
-      - uses: codecov/codecov-action@v4
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install dependencies
+        run: pip install -e ".[dev,test]"
+      
+      - name: Run tests
+        run: pytest --cov=ucid --cov-report=xml
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
 ```
-
-### Test Matrix
-
-| Python | OS | Status |
-|--------|-----|--------|
-| 3.11 | Ubuntu | Required |
-| 3.12 | Ubuntu | Required |
-| 3.13 | Ubuntu | Optional |
-| 3.12 | macOS | Required |
-| 3.12 | Windows | Required |
 
 ---
 
@@ -485,30 +555,32 @@ jobs:
 
 ### Do's
 
-| Practice | Reason |
-|----------|--------|
-| Use descriptive names | Clear test purpose |
-| Test one thing per test | Easy debugging |
-| Use fixtures | Reduce duplication |
-| Test edge cases | Catch bugs early |
+| Practice | Benefit |
+|----------|---------|
+| Test one thing per test | Clear failures |
+| Use descriptive names | Self-documenting |
+| Use fixtures | DRY tests |
+| Test edge cases | Robust code |
+| Run tests frequently | Fast feedback |
 
 ### Don'ts
 
-| Practice | Why Avoid |
-|----------|-----------|
-| Test implementation | Fragile tests |
-| Depend on test order | Flaky tests |
-| Use production data | Privacy, size |
-| Skip error cases | Missing coverage |
+| Practice | Problem |
+|----------|---------|
+| Test implementation details | Brittle tests |
+| Rely on test order | Flaky tests |
+| Skip writing tests | Technical debt |
+| Ignore flaky tests | Trust erosion |
 
 ---
 
-## Getting Help
+## References
 
 - [pytest Documentation](https://docs.pytest.org/)
-- [Testing Best Practices](https://ucid.readthedocs.io/testing/)
-- GitHub Discussions
+- [Coverage.py](https://coverage.readthedocs.io/)
+- [pytest-benchmark](https://pytest-benchmark.readthedocs.io/)
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

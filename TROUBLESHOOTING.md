@@ -1,546 +1,776 @@
-# Troubleshooting Guide
+# UCID Troubleshooting Guide
 
-This document provides solutions to common issues encountered when using the UCID (Urban Context Identifier) library.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Troubleshooting and Debugging Guide |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation Support Team |
+| Contact | support@ucid.org |
 
 ---
 
 ## Table of Contents
 
-1. [Installation Issues](#installation-issues)
-2. [Import Errors](#import-errors)
-3. [UCID Creation Errors](#ucid-creation-errors)
-4. [Parsing Errors](#parsing-errors)
-5. [Context Scoring Issues](#context-scoring-issues)
-6. [Data Integration Issues](#data-integration-issues)
+1. [Overview](#overview)
+2. [Installation Issues](#installation-issues)
+3. [Runtime Errors](#runtime-errors)
+4. [Parser Errors](#parser-errors)
+5. [Validation Errors](#validation-errors)
+6. [Context Errors](#context-errors)
 7. [Performance Issues](#performance-issues)
 8. [API Issues](#api-issues)
-9. [Docker Issues](#docker-issues)
-10. [Database Issues](#database-issues)
-11. [Debugging Techniques](#debugging-techniques)
+9. [Database Issues](#database-issues)
+10. [Docker Issues](#docker-issues)
+11. [Debug Mode](#debug-mode)
 12. [Getting Help](#getting-help)
+
+---
+
+## Overview
+
+### Library Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| CREATE Performance | 127,575 ops/sec |
+| PARSE Performance | 61,443 ops/sec |
+
+### Quick Diagnosis
+
+```mermaid
+flowchart TD
+    A[Issue Encountered] --> B{Type?}
+    B -->|Installation| C[Installation Issues]
+    B -->|Runtime| D[Runtime Errors]
+    B -->|Performance| E[Performance Issues]
+    B -->|API| F[API Issues]
+    C --> G[Check Dependencies]
+    D --> H[Check Error Message]
+    E --> I[Run Profiler]
+    F --> J[Check Logs]
+```
+
+### Environment Information
+
+Before troubleshooting, gather this information:
+
+```bash
+# Python version
+python --version
+
+# UCID version
+python -c "import ucid; print(ucid.__version__)"
+
+# Operating system
+python -c "import platform; print(platform.platform())"
+
+# Installed packages
+pip list | grep -E "ucid|h3|pydantic"
+```
 
 ---
 
 ## Installation Issues
 
-### pip Installation Fails
+### Issue: pip install fails
 
-**Symptom**: `pip install ucid` fails with compilation errors.
+**Symptoms:**
+```
+ERROR: Could not build wheels for h3
+```
 
-**Cause**: Missing C compiler or system dependencies.
+**Solutions:**
 
-**Solution**:
-
+1. **Update pip and setuptools:**
 ```bash
-# Ubuntu/Debian
-sudo apt-get install build-essential python3-dev libgeos-dev
+pip install --upgrade pip setuptools wheel
+pip install ucid
+```
 
-# macOS
+2. **Install build dependencies (Linux):**
+```bash
+sudo apt-get install build-essential python3-dev
+pip install ucid
+```
+
+3. **Install build dependencies (macOS):**
+```bash
 xcode-select --install
-brew install geos
-
-# Windows
-# Install Visual Studio Build Tools or use pre-built wheels
-pip install --prefer-binary ucid
-```
-
-### Version Conflicts
-
-**Symptom**: Dependency version conflicts during installation.
-
-**Solution**:
-
-```bash
-# Create clean virtual environment
-python -m venv ucid-env
-source ucid-env/bin/activate  # Linux/macOS
-ucid-env\Scripts\activate     # Windows
-
-# Install UCID
 pip install ucid
 ```
 
-### Missing Optional Dependencies
-
-**Symptom**: ImportError for visualization or context modules.
-
-**Solution**:
-
+4. **Use pre-built wheels:**
 ```bash
-# Install with all optional dependencies
-pip install "ucid[all]"
-
-# Or specific groups
-pip install "ucid[viz]"       # Visualization
-pip install "ucid[contexts]"  # All contexts
-pip install "ucid[dev]"       # Development
+pip install ucid --prefer-binary
 ```
 
 ---
 
-## Import Errors
+### Issue: ModuleNotFoundError
 
-### ModuleNotFoundError: No module named 'ucid'
+**Symptoms:**
+```python
+ModuleNotFoundError: No module named 'ucid'
+```
 
-**Cause**: UCID not installed in current environment.
+**Solutions:**
 
-**Solution**:
-
+1. **Verify installation:**
 ```bash
-# Verify installation
 pip show ucid
+```
 
-# If not found, install
+2. **Check Python path:**
+```python
+import sys
+print(sys.path)
+```
+
+3. **Reinstall in correct environment:**
+```bash
+# Activate your virtual environment first
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+
 pip install ucid
 ```
 
-### ImportError: cannot import name X
+---
 
-**Cause**: Wrong import path or version mismatch.
+### Issue: Import h3 fails
 
-**Solution**:
-
+**Symptoms:**
 ```python
-# Correct imports for v1.0+
-from ucid import create_ucid, parse_ucid
-from ucid.contexts import get_context
-from ucid.spatial import generate_grid_h3
-
-# NOT:
-from ucid.core.parser import create_ucid  # Deprecated
+ImportError: cannot import name 'h3' from 'h3'
 ```
 
-### AttributeError: module 'ucid' has no attribute X
+**Solutions:**
 
-**Cause**: Using API from different version.
+1. **Install h3 explicitly:**
+```bash
+pip install h3>=4.0.0
+```
 
-**Solution**:
-
-```python
-import ucid
-print(ucid.__version__)  # Check version
+2. **Check for version conflicts:**
+```bash
+pip list | grep h3
+pip install h3==4.1.0
 ```
 
 ---
 
-## UCID Creation Errors
+## Runtime Errors
 
-### UCIDValidationError: Unknown city code
+### Issue: UCIDError base exception
 
-**Cause**: City code not in registry.
-
-**Solution**:
-
+**Symptoms:**
 ```python
-from ucid import register_city
-
-# Register custom city
-register_city(
-    code="XYZ",
-    name="Custom City",
-    country="XX",
-    lat=0.0,
-    lon=0.0,
-)
-
-# Now create UCID
-ucid = create_ucid(city="XYZ", lat=0.0, lon=0.0)
+ucid.core.errors.UCIDError: An error occurred
 ```
 
-### UCIDValidationError: Invalid coordinates
+**Solutions:**
 
-**Cause**: Coordinates out of valid range.
-
-**Solution**:
-
+1. **Catch and handle specific exceptions:**
 ```python
-# Latitude must be -90 to 90
-# Longitude must be -180 to 180
-
-# Valid
-ucid = create_ucid(city="IST", lat=41.015, lon=28.979)
-
-# Invalid
-ucid = create_ucid(city="IST", lat=91.0, lon=28.979)  # Error!
-```
-
-### UCIDValidationError: Invalid timestamp
-
-**Cause**: Timestamp format incorrect.
-
-**Solution**:
-
-```python
-# Correct format: {YYYY}W{WW}T{HH}
-timestamp = "2026W01T12"  # Year 2026, Week 01, Hour 12
-
-# Invalid formats:
-# "2026-01-01"  # Date format not supported
-# "2026W1T12"   # Week must be 2 digits
-# "2026W01T25"  # Hour must be 00-23
-```
-
----
-
-## Parsing Errors
-
-### UCIDParseError: Invalid UCID format
-
-**Cause**: Malformed UCID string.
-
-**Solution**:
-
-```python
-from ucid import parse_ucid, is_valid_ucid
-
-# Validate before parsing
-ucid_string = "UCID:V1:IST:8a3b5c2d1e0f:2026W01T12:15MIN:72:B:95"
-
-if is_valid_ucid(ucid_string):
-    ucid = parse_ucid(ucid_string)
-else:
-    print("Invalid UCID format")
-```
-
-### UCIDParseError: Unsupported version
-
-**Cause**: UCID version not supported by library.
-
-**Solution**:
-
-```python
-# Check supported versions
-from ucid import SUPPORTED_VERSIONS
-print(SUPPORTED_VERSIONS)  # ['V1']
-
-# Upgrade library for newer versions
-pip install --upgrade ucid
-```
-
----
-
-## Context Scoring Issues
-
-### ContextNotFoundError
-
-**Cause**: Context not registered or installed.
-
-**Solution**:
-
-```python
-from ucid.contexts import list_contexts, get_context
-
-# List available contexts
-print(list_contexts())  # ['15MIN', 'TRANSIT', 'CLIMATE', ...]
-
-# Install contexts extra
-pip install "ucid[contexts]"
-```
-
-### Data Not Available Error
-
-**Cause**: Required data source not accessible.
-
-**Solution**:
-
-```python
-# Check data availability
-from ucid.data import check_data_availability
-
-result = check_data_availability(
-    lat=41.015,
-    lon=28.979,
-    context="TRANSIT",
-)
-
-print(result.available)  # True/False
-print(result.missing)    # List of missing data
-```
-
-### Low Confidence Scores
-
-**Cause**: Insufficient data for reliable scoring.
-
-**Solution**:
-
-```python
-result = context.compute(lat, lon, timestamp)
-
-if result.confidence < 0.5:
-    print("Warning: Low confidence score")
-    print(f"Reason: {result.confidence_reason}")
-```
-
----
-
-## Data Integration Issues
-
-### OSM Data Fetch Timeout
-
-**Cause**: Network issues or large query.
-
-**Solution**:
-
-```python
-from ucid.data import OSMFetcher
-
-fetcher = OSMFetcher(
-    timeout=120,        # Increase timeout
-    retries=3,          # Retry on failure
-    cache_enabled=True  # Enable caching
-)
-```
-
-### GTFS Feed Parsing Error
-
-**Cause**: Malformed or unsupported GTFS feed.
-
-**Solution**:
-
-```python
-from ucid.data import GTFSLoader
-
-loader = GTFSLoader(
-    validate=True,      # Enable validation
-    strict=False,       # Allow minor issues
-)
+from ucid.core.errors import UCIDError, UCIDParseError, UCIDValidationError
 
 try:
-    feed = loader.load("path/to/gtfs.zip")
-except GTFSValidationError as e:
-    print(f"Validation issues: {e.issues}")
+    result = create_ucid(...)
+except UCIDParseError as e:
+    print(f"Parse error: {e}")
+except UCIDValidationError as e:
+    print(f"Validation error: {e}")
+except UCIDError as e:
+    print(f"General error: {e}")
 ```
 
-### Satellite Imagery Not Available
-
-**Cause**: Cloud cover or date range issues.
-
-**Solution**:
-
+2. **Enable debug logging:**
 ```python
-from ucid.data import SatelliteProcessor
+import logging
+logging.basicConfig(level=logging.DEBUG)
+```
 
-processor = SatelliteProcessor()
+---
 
-# Expand date range and accept higher cloud cover
-scene = processor.load_sentinel2(
-    bbox=(28.8, 40.9, 29.2, 41.1),
-    date_range=("2026-01-01", "2026-06-30"),  # Wider range
-    cloud_cover_max=30,  # Accept more clouds
+### Issue: TypeError in function call
+
+**Symptoms:**
+```python
+TypeError: create_ucid() missing required argument: 'city'
+```
+
+**Solutions:**
+
+1. **Check function signature:**
+```python
+from ucid import create_ucid
+help(create_ucid)
+```
+
+2. **Provide required arguments:**
+```python
+from ucid import create_ucid
+
+ucid = create_ucid(
+    city="IST",       # Required
+    lat=41.015,       # Required
+    lon=28.979,       # Required
+    # Optional parameters below
+    timestamp=None,   # Auto-generated if None
+    context="NONE",   # Default
 )
+```
+
+---
+
+## Parser Errors
+
+### Issue: UCIDParseError - Invalid format
+
+**Symptoms:**
+```python
+ucid.core.errors.UCIDParseError: Invalid UCID format
+```
+
+**Solutions:**
+
+1. **Verify UCID format:**
+```
+UCID-V1:{CITY}:{LAT}:{LON}:{RES}:{H3}:{TIME}:{CTX}:{GRADE}:{CONF}
+```
+
+2. **Check for correct prefix:**
+```python
+ucid_str = "UCID-V1:IST:+41.015:+28.979:9:891f2ed6df7ffff:2026W03T14:15MIN:A:0.95"
+```
+
+3. **Parse with validation disabled:**
+```python
+from ucid import parse_ucid
+
+# For debugging only
+ucid = parse_ucid(ucid_str, validate=False)
+```
+
+---
+
+### Issue: Invalid city code
+
+**Symptoms:**
+```python
+UCIDParseError: Unknown city code: XXX
+```
+
+**Solutions:**
+
+1. **List available cities:**
+```python
+from ucid import list_cities
+
+for city in list_cities():
+    print(f"{city.code}: {city.name}")
+```
+
+2. **Search for city:**
+```python
+from ucid import search_cities
+
+results = search_cities("istanbul")
+for city in results:
+    print(city.code)  # IST
+```
+
+---
+
+### Issue: Invalid coordinates
+
+**Symptoms:**
+```python
+UCIDParseError: Latitude must be between -90 and 90
+```
+
+**Solutions:**
+
+1. **Validate coordinates:**
+```python
+def validate_coords(lat, lon):
+    if not -90 <= lat <= 90:
+        raise ValueError(f"Invalid latitude: {lat}")
+    if not -180 <= lon <= 180:
+        raise ValueError(f"Invalid longitude: {lon}")
+    return True
+```
+
+2. **Check coordinate order:**
+```python
+# Correct: latitude first, then longitude
+create_ucid(city="IST", lat=41.015, lon=28.979)
+
+# Wrong: longitude first
+# create_ucid(city="IST", lat=28.979, lon=41.015)
+```
+
+---
+
+## Validation Errors
+
+### Issue: UCIDValidationError - H3 index mismatch
+
+**Symptoms:**
+```python
+UCIDValidationError: H3 index does not match coordinates
+```
+
+**Solutions:**
+
+1. **Regenerate UCID:**
+```python
+# Let UCID generate the H3 index
+ucid = create_ucid(city="IST", lat=41.015, lon=28.979)
+```
+
+2. **Verify H3 index:**
+```python
+import h3
+
+h3_index = h3.latlng_to_cell(41.015, 28.979, 9)
+print(h3_index)
+```
+
+---
+
+### Issue: City not found in registry
+
+**Symptoms:**
+```python
+UCIDValidationError: City 'XYZ' not in registry
+```
+
+**Solutions:**
+
+1. **Check city exists:**
+```python
+from ucid import get_city
+
+city = get_city("IST")
+if city:
+    print(f"Found: {city.name}")
+else:
+    print("City not found")
+```
+
+2. **Use 405 supported cities:**
+```python
+from ucid import list_cities
+
+cities = list_cities()
+print(f"Supported cities: {len(cities)}")  # 405
+```
+
+---
+
+## Context Errors
+
+### Issue: Context computation timeout
+
+**Symptoms:**
+```python
+TimeoutError: Context computation timed out
+```
+
+**Solutions:**
+
+1. **Increase timeout:**
+```python
+from ucid.contexts import FifteenMinContext
+
+context = FifteenMinContext(timeout=60)  # seconds
+result = context.compute(lat=41.015, lon=28.979)
+```
+
+2. **Use cached results:**
+```python
+context = FifteenMinContext(cache_enabled=True)
+```
+
+3. **Use NONE context for fast results:**
+```python
+ucid = create_ucid(city="IST", lat=41.015, lon=28.979, context="NONE")
+```
+
+---
+
+### Issue: OSM data fetch failed
+
+**Symptoms:**
+```python
+OSMError: Failed to fetch data from Overpass API
+```
+
+**Solutions:**
+
+1. **Check network connectivity:**
+```bash
+curl https://overpass-api.de/api/status
+```
+
+2. **Use alternative endpoint:**
+```python
+from ucid.data import OSMClient
+
+client = OSMClient(
+    endpoint="https://overpass.kumi.systems/api/interpreter"
+)
+```
+
+3. **Use cached data:**
+```python
+from ucid.data import OSMClient
+
+client = OSMClient(cache_enabled=True, cache_ttl=86400)
+```
+
+---
+
+### Issue: GTFS feed not found
+
+**Symptoms:**
+```python
+GTFSError: No GTFS feed available for city: XYZ
+```
+
+**Solutions:**
+
+1. **Check available GTFS feeds:**
+```python
+from ucid.data import list_gtfs_feeds
+
+feeds = list_gtfs_feeds()
+for feed in feeds:
+    print(f"{feed.city}: {feed.name}")
+```
+
+2. **Provide custom GTFS feed:**
+```python
+from ucid.data import GTFSClient
+
+client = GTFSClient()
+client.load_feed("path/to/feed.zip")
 ```
 
 ---
 
 ## Performance Issues
 
-### Slow Grid Generation
+### Issue: Slow UCID creation
 
-**Cause**: Too high H3 resolution or large area.
+**Symptoms:**
+- CREATE taking >1ms (should be ~8us)
 
-**Solution**:
+**Solutions:**
 
+1. **Profile the code:**
 ```python
-from ucid.spatial import generate_grid_h3
+import cProfile
 
-# Lower resolution for faster processing
-grid = generate_grid_h3(
-    bbox=(28.8, 40.9, 29.2, 41.1),
-    resolution=8,  # Lower than default 9
-)
+cProfile.run('create_ucid(city="IST", lat=41.015, lon=28.979)')
 ```
 
-### Memory Errors
-
-**Cause**: Large datasets in memory.
-
-**Solution**:
-
+2. **Use batch processing:**
 ```python
-from ucid.spatial import scan_city_grid
+from ucid import create_ucid_batch
 
-# Use generator for memory efficiency
-for batch in scan_city_grid("IST", batch_size=1000):
-    process_batch(batch)
-    # Memory is released after each batch
+locations = [{"city": "IST", "lat": 41.0+i*0.01, "lon": 28.9} for i in range(1000)]
+ucids = create_ucid_batch(locations)
 ```
 
-### Slow Context Scoring
-
-**Cause**: Data not cached.
-
-**Solution**:
-
+3. **Disable validation for trusted input:**
 ```python
-from ucid.contexts import ClimateContext
+ucid = create_ucid(..., validate=False)
+```
 
-context = ClimateContext(
-    cache_enabled=True,
-    cache_ttl=3600,  # 1 hour
-)
+---
+
+### Issue: High memory usage
+
+**Symptoms:**
+- Memory usage growing over time
+- MemoryError exceptions
+
+**Solutions:**
+
+1. **Use generators:**
+```python
+def generate_ucids(locations):
+    for loc in locations:
+        yield create_ucid(**loc)
+
+# Process one at a time
+for ucid in generate_ucids(locations):
+    process(ucid)
+```
+
+2. **Clear cache periodically:**
+```python
+from ucid.cache import clear_cache
+
+clear_cache()
+```
+
+3. **Process in chunks:**
+```python
+from itertools import islice
+
+def chunked(iterable, size):
+    it = iter(iterable)
+    while chunk := list(islice(it, size)):
+        yield chunk
+
+for chunk in chunked(locations, 1000):
+    process_batch(chunk)
 ```
 
 ---
 
 ## API Issues
 
-### Authentication Failed
+### Issue: 401 Unauthorized
 
-**Cause**: Invalid or expired API key.
+**Symptoms:**
+```
+HTTP 401: Unauthorized
+```
 
-**Solution**:
+**Solutions:**
 
+1. **Provide API key:**
 ```python
 from ucid.api import UCIDClient
 
-# Set API key
-client = UCIDClient(
-    api_key=os.environ["UCID_API_KEY"],
-)
-
-# Or use environment variable
-export UCID_API_KEY=your_api_key
+client = UCIDClient(api_key="your-api-key")
 ```
 
-### Rate Limit Exceeded
-
-**Cause**: Too many requests.
-
-**Solution**:
-
+2. **Check API key validity:**
 ```python
-from ucid.api import UCIDClient
-
-client = UCIDClient(
-    rate_limit=True,        # Enable rate limiting
-    requests_per_second=10, # Limit request rate
-)
-```
-
-### Connection Timeout
-
-**Cause**: Network issues or slow server.
-
-**Solution**:
-
-```python
-client = UCIDClient(
-    timeout=60,      # Increase timeout
-    retries=3,       # Retry on failure
-    backoff=True,    # Exponential backoff
-)
+response = client.get("/v1/auth/verify")
+print(response.json())
 ```
 
 ---
 
-## Docker Issues
+### Issue: 429 Too Many Requests
 
-### Container Won't Start
-
-**Cause**: Port conflict or missing environment.
-
-**Solution**:
-
-```bash
-# Check port availability
-lsof -i :8000
-
-# Use different port
-docker run -p 8080:8000 ucid/ucid-api
-
-# Check logs
-docker logs ucid-container
+**Symptoms:**
+```
+HTTP 429: Rate limit exceeded
 ```
 
-### Database Connection Failed
+**Solutions:**
 
-**Cause**: Database not ready or wrong config.
+1. **Check rate limits:**
+```python
+response = client.get("/v1/ucid/create")
+print(response.headers.get("X-RateLimit-Remaining"))
+```
 
-**Solution**:
+2. **Implement backoff:**
+```python
+import time
+from tenacity import retry, wait_exponential
 
+@retry(wait=wait_exponential(multiplier=1, min=1, max=60))
+def create_with_retry(client, **kwargs):
+    return client.create(**kwargs)
+```
+
+---
+
+### Issue: Connection refused
+
+**Symptoms:**
+```
+ConnectionError: Connection refused
+```
+
+**Solutions:**
+
+1. **Check service is running:**
 ```bash
-# Wait for database
-docker-compose up -d database
-sleep 10
-docker-compose up -d api
+curl http://localhost:8000/health
+```
 
-# Check environment variables
-docker exec ucid-container env | grep DATABASE
+2. **Check port binding:**
+```bash
+netstat -tlnp | grep 8000
 ```
 
 ---
 
 ## Database Issues
 
-### PostGIS Extension Missing
+### Issue: Connection pool exhausted
 
-**Cause**: PostGIS not installed.
-
-**Solution**:
-
-```sql
-CREATE EXTENSION IF NOT EXISTS postgis;
-CREATE EXTENSION IF NOT EXISTS h3;
+**Symptoms:**
+```
+sqlalchemy.exc.TimeoutError: QueuePool limit exceeded
 ```
 
-### Query Performance
+**Solutions:**
 
-**Cause**: Missing indexes.
+1. **Increase pool size:**
+```python
+from sqlalchemy import create_engine
 
-**Solution**:
+engine = create_engine(
+    url,
+    pool_size=20,
+    max_overflow=30,
+)
+```
 
-```sql
-CREATE INDEX idx_ucid_h3 ON ucid_scores USING GIST (h3_cell);
-CREATE INDEX idx_ucid_timestamp ON ucid_scores (timestamp);
+2. **Use connection recycling:**
+```python
+engine = create_engine(
+    url,
+    pool_recycle=3600,
+    pool_pre_ping=True,
+)
 ```
 
 ---
 
-## Debugging Techniques
+### Issue: PostGIS extension not found
+
+**Symptoms:**
+```
+UndefinedFunction: function ST_Distance does not exist
+```
+
+**Solutions:**
+
+1. **Install PostGIS:**
+```sql
+CREATE EXTENSION IF NOT EXISTS postgis;
+```
+
+2. **Verify installation:**
+```sql
+SELECT PostGIS_Version();
+```
+
+---
+
+## Docker Issues
+
+### Issue: Container won't start
+
+**Symptoms:**
+```
+Container exited with code 1
+```
+
+**Solutions:**
+
+1. **Check logs:**
+```bash
+docker logs ucid-api
+```
+
+2. **Check environment variables:**
+```bash
+docker inspect ucid-api | grep -A 20 "Env"
+```
+
+3. **Run interactively:**
+```bash
+docker run -it ucid/ucid-api:latest /bin/bash
+```
+
+---
+
+### Issue: Image build fails
+
+**Symptoms:**
+```
+ERROR: failed to build
+```
+
+**Solutions:**
+
+1. **Clear Docker cache:**
+```bash
+docker builder prune
+docker build --no-cache -t ucid/ucid-api .
+```
+
+2. **Check Dockerfile syntax:**
+```bash
+docker build -t ucid/ucid-api:latest . 2>&1 | head -50
+```
+
+---
+
+## Debug Mode
 
 ### Enable Debug Logging
 
 ```python
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
-ucid_logger = logging.getLogger("ucid")
-ucid_logger.setLevel(logging.DEBUG)
-```
-
-### Verbose Mode
-
-```python
-from ucid import create_ucid
-
-ucid = create_ucid(
-    city="IST",
-    lat=41.015,
-    lon=28.979,
-    verbose=True,  # Print debug info
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
+
+# Now run your code
+from ucid import create_ucid
+ucid = create_ucid(city="IST", lat=41.015, lon=28.979)
 ```
 
-### Diagnostic Report
+### UCID Debug Mode
 
 ```python
-from ucid.debug import diagnostic_report
+import os
+os.environ['UCID_DEBUG'] = 'true'
 
-report = diagnostic_report()
-print(report)
+from ucid import create_ucid
+# Detailed logging enabled
 ```
 
 ---
 
 ## Getting Help
 
-If you cannot resolve your issue:
+### Support Channels
 
-1. Search [GitHub Issues](https://github.com/ucid-foundation/ucid/issues)
-2. Ask in [GitHub Discussions](https://github.com/ucid-foundation/ucid/discussions)
-3. Join our [Discord](https://discord.gg/ucid)
-4. Email: support@ucid.org
+| Channel | Purpose | Response |
+|---------|---------|----------|
+| GitHub Issues | Bug reports | 1-7 days |
+| GitHub Discussions | Questions | 1-3 days |
+| Email | Private inquiries | 3-5 days |
+
+### Contact
+
+| Purpose | Contact |
+|---------|---------|
+| General Support | support@ucid.org |
+| Security Issues | security@ucid.org |
+| Enterprise | enterprise@ucid.org |
+
+---
+
+## References
+
+- [UCID Documentation](https://docs.ucid.org)
+- [GitHub Repository](https://github.com/ucid-foundation/ucid)
+- [SUPPORT.md](SUPPORT.md)
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

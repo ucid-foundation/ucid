@@ -1,0 +1,368 @@
+# Copyright 2026 UCID Foundation
+#
+# Licensed under the EUPL, Version 1.2 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# default.yaml - UCID Default Configuration
+#
+# This file contains the default configuration values for the UCID library.
+# These values are used as the base configuration and can be overridden by
+# environment-specific configurations, environment variables, or runtime
+# parameters.
+#
+# Configuration Loading Priority (highest to lowest):
+#   1. Runtime overrides
+#   2. Environment variables (UCID_*)
+#   3. Environment-specific file (e.g., production.yaml)
+#   4. This file (default.yaml)
+#   5. Built-in defaults
+#
+# Reference Documentation:
+#   - Configuration Guide: https://ucid.readthedocs.io/configuration
+#   - Environment Variables: https://ucid.readthedocs.io/configuration/env-vars
+#
+# Maintainer: UCID Foundation
+# Version: 1.0.5
+# Last Updated: 2026-01-15
+
+# =============================================================================
+# METADATA
+# =============================================================================
+_meta:
+  version: "1.0.5"
+  schema_version: "1.0"
+  description: "UCID Default Configuration"
+  last_updated: "2026-01-15"
+  maintainer: "UCID Foundation"
+
+# =============================================================================
+# CORE SETTINGS
+# =============================================================================
+# Core UCID library settings affecting all operations.
+
+ucid:
+  # UCID version prefix for generated identifiers
+  version_prefix: "UCID-V1"
+
+  # Default H3 resolution for geospatial indexing
+  # Resolution 9: ~174m edge length, ~0.1 km² area
+  # Resolution 10: ~65m edge length, ~0.015 km² area
+  default_resolution: 9
+
+  # Enable strict validation mode
+  # When true, all validation errors raise exceptions
+  # When false, warnings are logged but processing continues
+  strict_mode: true
+
+  # Maximum UCID string length (security limit)
+  max_ucid_length: 200
+
+  # Supported context algorithms
+  supported_contexts:
+    - "15MIN"
+    - "TRANSIT"
+    - "WALK"
+    - "NONE"
+
+# =============================================================================
+# CITY REGISTRY
+# =============================================================================
+# Configuration for the city registry database.
+
+registry:
+  # Path to cities registry JSON file
+  # Relative to package root or absolute path
+  cities_file: "src/ucid/data/cities_registry.json"
+
+  # Enable lazy loading of city data
+  lazy_load: false
+
+  # Preload all cities on startup
+  # Improves performance but increases memory usage
+  preload: true
+
+  # Statistics (read-only, for reference)
+  _stats:
+    total_cities: 405
+    total_countries: 23
+    last_updated: "2026-01-15"
+
+# =============================================================================
+# PERFORMANCE SETTINGS
+# =============================================================================
+# Performance tuning parameters for optimal throughput.
+
+performance:
+  # Number of worker threads for parallel processing
+  # Set to 0 for single-threaded operation
+  # Set to -1 for auto-detection (CPU count)
+  worker_threads: 4
+
+  # Maximum batch size for bulk operations
+  max_batch_size: 10000
+
+  # Enable operation result caching
+  cache_enabled: true
+
+  # Memory cache size in megabytes
+  cache_size_mb: 100
+
+  # Enable JIT optimization (if available)
+  jit_enabled: true
+
+  # Benchmark targets (ops/sec)
+  # These are target values; actual performance may exceed
+  _benchmarks:
+    create_target: 10000
+    create_measured: 127575
+    parse_target: 10000
+    parse_measured: 61443
+    validate_target: 10000
+    validate_measured: 17334
+
+# =============================================================================
+# LOGGING CONFIGURATION
+# =============================================================================
+# Logging settings for debugging and monitoring.
+
+logging:
+  # Root log level
+  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: "INFO"
+
+  # Log format string
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+  # Date format for log timestamps
+  date_format: "%Y-%m-%d %H:%M:%S"
+
+  # Enable colored console output
+  colored: true
+
+  # Log to file
+  file:
+    enabled: false
+    path: "logs/ucid.log"
+    max_size_mb: 10
+    backup_count: 5
+
+  # Module-specific log levels
+  modules:
+    ucid.core: "INFO"
+    ucid.data: "INFO"
+    ucid.contexts: "INFO"
+    ucid.api: "INFO"
+
+# =============================================================================
+# CACHE CONFIGURATION
+# =============================================================================
+# Multi-tier caching configuration for optimized performance.
+
+cache:
+  # Memory cache (L1)
+  memory:
+    enabled: true
+    max_size_mb: 100
+    ttl_seconds: 3600  # 1 hour
+    eviction_policy: "lru"  # lru, lfu, fifo
+
+  # Disk cache (L2)
+  disk:
+    enabled: true
+    path: "~/.ucid/cache"
+    max_size_gb: 1.0
+    ttl_seconds: 86400  # 24 hours
+
+  # Cache statistics collection
+  collect_stats: true
+
+# =============================================================================
+# DATA SOURCES
+# =============================================================================
+# Configuration for external data source connections.
+
+data_sources:
+  # OpenStreetMap Overpass API
+  osm:
+    enabled: true
+    endpoint: "https://overpass-api.de/api/interpreter"
+    timeout_seconds: 30
+    retries: 3
+    retry_delay_seconds: 1
+    cache_ttl_seconds: 86400  # 24 hours
+    rate_limit:
+      requests_per_minute: 60
+
+  # GTFS Transit Feeds
+  gtfs:
+    enabled: true
+    feeds_url: "https://transitfeeds.com"
+    update_interval_seconds: 604800  # 7 days
+    max_feed_age_days: 30
+    cache_directory: "~/.ucid/gtfs"
+
+# =============================================================================
+# CONTEXT ALGORITHMS
+# =============================================================================
+# Configuration for context scoring algorithms.
+
+contexts:
+  # 15-Minute City context
+  fifteen_minute:
+    enabled: true
+    radius_meters: 1000
+    categories:
+      - education
+      - healthcare
+      - food
+      - recreation
+      - services
+    weights:
+      education: 1.0
+      healthcare: 1.0
+      food: 0.8
+      recreation: 0.6
+      services: 0.5
+    min_score: 0.0
+    max_score: 1.0
+
+  # Transit context
+  transit:
+    enabled: true
+    max_walk_meters: 500
+    min_frequency_per_hour: 4
+    route_types:
+      - 0  # Tram
+      - 1  # Subway
+      - 2  # Rail
+      - 3  # Bus
+    weights:
+      subway: 1.0
+      rail: 0.9
+      tram: 0.8
+      bus: 0.6
+
+  # Walkability context
+  walkability:
+    enabled: true
+    grid_size_meters: 100
+    max_slope: 0.08  # 8%
+    crossing_penalty: 0.2
+    factors:
+      sidewalk_coverage: 0.3
+      intersection_density: 0.2
+      pedestrian_amenities: 0.2
+      traffic_safety: 0.3
+
+# =============================================================================
+# API SERVER
+# =============================================================================
+# REST API server configuration (when running as a service).
+
+api:
+  # Server binding
+  host: "0.0.0.0"
+  port: 8000
+
+  # Worker processes
+  workers: 4
+
+  # Request handling
+  timeout_seconds: 30
+  max_request_size_mb: 10
+
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    requests_per_minute: 1000
+    burst_size: 100
+
+  # CORS settings
+  cors:
+    enabled: true
+    origins: ["*"]
+    methods: ["GET", "POST", "OPTIONS"]
+    headers: ["Content-Type", "Authorization"]
+
+  # API documentation
+  docs:
+    enabled: true
+    path: "/docs"
+    openapi_path: "/openapi.json"
+
+# =============================================================================
+# SECURITY
+# =============================================================================
+# Security-related configuration settings.
+
+security:
+  # Input validation
+  validate_input: true
+  max_input_length: 200
+  sanitize_output: true
+
+  # Rate limiting
+  rate_limiting: true
+
+  # Request logging (disable in production for privacy)
+  log_requests: false
+  log_ip_addresses: false
+
+  # API authentication (when enabled)
+  auth:
+    enabled: false
+    type: "api_key"  # api_key, jwt, oauth2
+    header_name: "X-API-Key"
+
+# =============================================================================
+# DEVELOPMENT
+# =============================================================================
+# Development and debugging settings.
+# These settings are typically overridden in development.yaml
+
+development:
+  # Enable debug mode
+  debug: false
+
+  # Enable profiling
+  profiling: false
+
+  # Mock external services
+  mock_external: false
+
+  # Random seed for reproducibility
+  seed: null
+
+# =============================================================================
+# TELEMETRY
+# =============================================================================
+# Optional telemetry and metrics collection.
+
+telemetry:
+  # Enable telemetry collection
+  enabled: false
+
+  # Anonymize data
+  anonymize: true
+
+  # Metrics endpoint
+  endpoint: null
+
+  # Collection interval
+  interval_seconds: 60
+
+  # Metrics to collect
+  metrics:
+    - operation_count
+    - latency_histogram
+    - error_rate
+    - cache_hit_rate

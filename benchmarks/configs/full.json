@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "full",
+  "description": "Full benchmark configuration for release validation",
+  "version": "1.0.0",
+  "settings": {
+    "iterations": 100000,
+    "warmup_iterations": 1000,
+    "timeout_seconds": 1800,
+    "gc_disabled": true,
+    "high_precision_timer": true,
+    "memory_profiling": true
+  },
+  "benchmarks": {
+    "create": {
+      "enabled": true,
+      "iterations": 100000,
+      "description": "UCID creation benchmark"
+    },
+    "parse": {
+      "enabled": true,
+      "iterations": 100000,
+      "description": "UCID parsing benchmark"
+    },
+    "validate": {
+      "enabled": true,
+      "iterations": 100000,
+      "description": "UCID validation benchmark"
+    },
+    "batch": {
+      "enabled": true,
+      "iterations": 10000,
+      "batch_size": 100,
+      "description": "Batch processing benchmark"
+    },
+    "h3_operations": {
+      "enabled": true,
+      "iterations": 100000,
+      "description": "H3 spatial operations benchmark"
+    },
+    "city_lookup": {
+      "enabled": true,
+      "iterations": 100000,
+      "description": "City registry lookup benchmark"
+    }
+  },
+  "output": {
+    "format": "json",
+    "include_latencies": true,
+    "include_percentiles": true,
+    "percentiles": [50, 75, 90, 95, 99, 99.9],
+    "include_histogram": true
+  },
+  "thresholds": {
+    "create_min_ops": 10000,
+    "parse_min_ops": 10000,
+    "validate_min_ops": 5000,
+    "batch_min_ops": 500,
+    "regression_threshold": 0.05
+  },
+  "comparison": {
+    "baseline_file": "results/baseline.json",
+    "compare_to_baseline": true
+  }
+}

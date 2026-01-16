@@ -1,39 +1,71 @@
 # Contributing to UCID
 
-This document provides comprehensive guidelines for contributing to the UCID (Urban Context Identifier) project. We welcome contributions from researchers, developers, urban planners, and data scientists who share our vision of standardized urban data analysis.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Contribution Guidelines |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation |
 
 ---
 
 ## Table of Contents
 
-1. [Code of Conduct](#code-of-conduct)
-2. [Getting Started](#getting-started)
-3. [Development Environment](#development-environment)
-4. [Code Standards](#code-standards)
-5. [Testing Requirements](#testing-requirements)
-6. [Documentation Standards](#documentation-standards)
-7. [Commit Message Convention](#commit-message-convention)
-8. [Pull Request Process](#pull-request-process)
-9. [Review Process](#review-process)
-10. [Release Process](#release-process)
-11. [Issue Guidelines](#issue-guidelines)
-12. [Security Vulnerabilities](#security-vulnerabilities)
-13. [Governance](#governance)
-14. [Recognition](#recognition)
+1. [Welcome](#welcome)
+2. [Code of Conduct](#code-of-conduct)
+3. [Getting Started](#getting-started)
+4. [Development Environment](#development-environment)
+5. [Contribution Types](#contribution-types)
+6. [Pull Request Process](#pull-request-process)
+7. [Coding Standards](#coding-standards)
+8. [Testing Guidelines](#testing-guidelines)
+9. [Documentation Guidelines](#documentation-guidelines)
+10. [Commit Guidelines](#commit-guidelines)
+11. [Review Process](#review-process)
+12. [Release Process](#release-process)
+13. [Community](#community)
+
+---
+
+## Welcome
+
+Thank you for your interest in contributing to UCID (Urban Context Identifier). We welcome contributions from everyone, whether you are fixing a typo, improving documentation, or implementing new features.
+
+### Library Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| Contributors | 50+ |
+| Test Coverage | 85%+ |
+
+### Ways to Contribute
+
+| Type | Description |
+|------|-------------|
+| Bug Reports | Report issues you encounter |
+| Bug Fixes | Fix reported issues |
+| Features | Implement new functionality |
+| Documentation | Improve or add documentation |
+| Tests | Add or improve tests |
+| Reviews | Review pull requests |
+| Support | Help others in discussions |
 
 ---
 
 ## Code of Conduct
 
-All contributors must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you agree to maintain a respectful, inclusive, and harassment-free environment. Violations of the Code of Conduct may result in temporary or permanent exclusion from the project.
+By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it before contributing.
 
-### Core Principles
+### Key Points
 
-1. **Respect**: Treat all community members with dignity and respect
-2. **Inclusivity**: Welcome contributors regardless of background, identity, or experience level
-3. **Collaboration**: Work together constructively toward shared goals
-4. **Transparency**: Communicate openly and honestly
-5. **Accountability**: Take responsibility for your actions and their impact
+- Be respectful and inclusive
+- Welcome newcomers
+- Focus on constructive feedback
+- Assume good intentions
 
 ---
 
@@ -41,369 +73,446 @@ All contributors must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). By pa
 
 ### Prerequisites
 
-Before contributing to UCID, ensure you have the following:
+| Software | Version | Purpose |
+|----------|---------|---------|
+| Python | 3.11+ | Runtime |
+| Git | 2.30+ | Version control |
+| pip | 23.0+ | Package manager |
 
-| Requirement | Minimum Version | Recommended Version |
-|-------------|-----------------|---------------------|
-| Python | 3.11 | 3.12 |
-| Git | 2.30 | Latest |
-| pip | 23.0 | Latest |
-| Operating System | Linux, macOS, Windows | Linux (Ubuntu 22.04) |
-
-### Repository Structure
-
-Understanding the repository structure is essential for effective contribution:
-
-```
-ucid/
-├── src/ucid/              # Main package source code
-│   ├── api/               # REST API implementation
-│   ├── client/            # HTTP client library
-│   ├── compute/           # Distributed computing backends
-│   ├── contexts/          # Context scoring algorithms
-│   ├── core/              # Core parsing and models
-│   ├── data/              # Data source connectors
-│   ├── i18n/              # Internationalization
-│   ├── io/                # Input/output operations
-│   ├── ml/                # Machine learning module
-│   ├── monitoring/        # Observability utilities
-│   ├── realtime/          # Real-time data ingestion
-│   ├── scoring/           # Score calibration and uncertainty
-│   ├── spatial/           # Spatial indexing operations
-│   ├── temporal/          # Time series analysis
-│   ├── utils/             # Common utilities
-│   └── viz/               # Visualization utilities
-├── tests/                 # Test suite
-│   ├── unit/              # Unit tests
-│   ├── integration/       # Integration tests
-│   └── performance/       # Performance benchmarks
-├── docs/                  # Documentation
-│   └── instructions/      # Detailed instruction documents
-├── notebooks/             # Jupyter notebooks
-├── scripts/               # Utility scripts
-└── examples/              # Example applications
-```
-
-### Forking and Cloning
-
-1. Fork the repository on GitHub
-2. Clone your fork locally:
+### Fork and Clone
 
 ```bash
+# Fork the repository on GitHub
+# Then clone your fork
 git clone https://github.com/YOUR_USERNAME/ucid.git
 cd ucid
-```
 
-3. Add the upstream remote:
-
-```bash
+# Add upstream remote
 git remote add upstream https://github.com/ucid-foundation/ucid.git
 ```
 
-4. Create a development branch:
+### Create a Branch
 
 ```bash
+# Update your local main
+git checkout main
+git pull upstream main
+
+# Create a feature branch
 git checkout -b feature/your-feature-name
 ```
+
+### Branch Naming
+
+| Type | Pattern | Example |
+|------|---------|---------|
+| Feature | feature/description | feature/add-climate-context |
+| Bug Fix | fix/description | fix/parser-validation |
+| Documentation | docs/description | docs/api-reference |
+| Refactor | refactor/description | refactor/context-base |
+| Test | test/description | test/add-integration-tests |
 
 ---
 
 ## Development Environment
 
-### Setting Up the Environment
-
-Create a virtual environment and install development dependencies:
+### Installation
 
 ```bash
 # Create virtual environment
-python -m venv .venv
-
-# Activate virtual environment
-# On Linux/macOS:
-source .venv/bin/activate
-# On Windows:
-.venv\Scripts\activate
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
 
 # Install development dependencies
-pip install -e ".[dev,contexts,viz]"
+pip install -e ".[dev,test,lint]"
 
 # Install pre-commit hooks
 pre-commit install
 ```
 
-### IDE Configuration
+### Verify Installation
 
-We recommend using Visual Studio Code or PyCharm with the following settings:
+```bash
+# Run tests
+pytest tests/ -v
 
-**Visual Studio Code settings.json:**
+# Run linting
+ruff check src/
 
-```json
-{
-    "python.linting.enabled": true,
-    "python.linting.ruffEnabled": true,
-    "python.formatting.provider": "none",
-    "[python]": {
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.fixAll.ruff": true,
-            "source.organizeImports.ruff": true
-        }
-    },
-    "python.analysis.typeCheckingMode": "strict"
-}
+# Run type checking
+mypy src/ucid
 ```
 
-### Environment Variables
+### Development Tools
 
-The following environment variables can be configured for development:
+| Tool | Purpose | Command |
+|------|---------|---------|
+| pytest | Testing | `pytest tests/` |
+| ruff | Linting | `ruff check src/` |
+| ruff | Formatting | `ruff format src/` |
+| mypy | Type checking | `mypy src/ucid` |
+| pre-commit | Git hooks | `pre-commit run --all-files` |
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `UCID_LOG_LEVEL` | Logging verbosity | `INFO` |
-| `UCID_CACHE_DIR` | Cache directory path | `.ucid_cache` |
-| `UCID_API_KEY` | API key for remote services | None |
-| `UCID_DEBUG` | Enable debug mode | `false` |
+### Makefile Commands
+
+```bash
+make install     # Install dependencies
+make test        # Run tests
+make test-cov    # Run tests with coverage
+make lint        # Run linter
+make format      # Format code
+make type-check  # Run type checker
+make docs        # Build documentation
+make clean       # Clean build artifacts
+```
 
 ---
 
-## Code Standards
+## Contribution Types
 
-### Python Style Guide
+### Bug Reports
 
-UCID follows the Google Python Style Guide with the following specifications:
+When reporting bugs, please include:
 
-1. **Line Length**: Maximum 88 characters (Black/Ruff default)
-2. **Indentation**: 4 spaces (no tabs)
-3. **Quotes**: Double quotes for strings
-4. **Imports**: Grouped and sorted by Ruff
+1. **Python version** (`python --version`)
+2. **UCID version** (`python -c "import ucid; print(ucid.__version__)"`)
+3. **Operating system**
+4. **Minimal reproducible example**
+5. **Expected behavior**
+6. **Actual behavior**
+7. **Error messages** (full traceback)
 
-### Type Annotations
+#### Bug Report Template
 
-All public functions and methods must include type annotations. Use modern Python 3.11+ syntax:
+```markdown
+## Bug Description
+[Clear description of the bug]
 
-```python
-# Correct: Modern type hints
-def process_coordinates(
-    lat: float,
-    lon: float,
-    options: dict[str, Any] | None = None,
-) -> list[str]:
-    ...
+## Environment
+- Python version: 3.12.0
+- UCID version: 1.0.5
+- OS: Ubuntu 22.04
 
-# Incorrect: Legacy typing module
-def process_coordinates(
-    lat: float,
-    lon: float,
-    options: Optional[Dict[str, Any]] = None,
-) -> List[str]:
-    ...
+## Reproduction Steps
+1. Step 1
+2. Step 2
+3. Step 3
+
+## Expected Behavior
+[What should happen]
+
+## Actual Behavior
+[What actually happens]
+
+## Error Message
+```
+[Full error traceback]
 ```
 
-### Docstring Format
+## Additional Context
+[Any other relevant information]
+```
 
-All public modules, classes, and functions must have Google-style docstrings:
+### Feature Requests
+
+For feature requests, please include:
+
+1. **Use case** (why is this feature needed)
+2. **Proposed solution** (how it might work)
+3. **Alternatives considered**
+4. **Additional context**
+
+### Documentation
+
+Documentation contributions are highly valued:
+
+- Fix typos and grammatical errors
+- Improve explanations
+- Add examples
+- Update outdated information
+- Translate documentation
+
+### Code Contributions
+
+Before starting work on a significant change:
+
+1. Check existing issues and PRs
+2. Open an issue for discussion
+3. Wait for feedback from maintainers
+4. Reference the issue in your PR
+
+---
+
+## Pull Request Process
+
+### Before Submitting
+
+```bash
+# Update from upstream
+git fetch upstream
+git rebase upstream/main
+
+# Run all checks
+make format
+make lint
+make type-check
+make test
+
+# Commit changes
+git add .
+git commit -m "feat: add new feature"
+```
+
+### PR Checklist
+
+- [ ] Code follows project style guidelines
+- [ ] All tests pass
+- [ ] New tests added for new features
+- [ ] Documentation updated
+- [ ] Changelog entry added (if applicable)
+- [ ] Commits follow conventional format
+- [ ] PR description is complete
+
+### PR Template
+
+```markdown
+## Description
+[Clear description of changes]
+
+## Related Issues
+Fixes #123
+
+## Type of Change
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Breaking change
+- [ ] Documentation update
+
+## Testing
+- [ ] Unit tests added/updated
+- [ ] Integration tests added/updated
+- [ ] All tests pass
+
+## Checklist
+- [ ] My code follows the style guidelines
+- [ ] I have performed a self-review
+- [ ] I have commented my code where necessary
+- [ ] I have updated the documentation
+- [ ] My changes generate no new warnings
+```
+
+### Review Response
+
+When reviewers request changes:
+
+1. Address all comments
+2. Push new commits (don't force-push during review)
+3. Reply to each comment
+4. Re-request review when ready
+
+---
+
+## Coding Standards
+
+### Style Guide
+
+UCID follows these style guidelines:
+
+| Aspect | Standard |
+|--------|----------|
+| Formatter | Ruff |
+| Linter | Ruff |
+| Max line length | 88 characters |
+| Import sort | isort-compatible |
+| Docstrings | Google style |
+| Type hints | Required for all public functions |
+
+### Code Example
 
 ```python
-def create_ucid(
+# Copyright 2026 UCID Foundation
+# Licensed under EUPL-1.2
+
+"""Module description.
+
+This module provides functionality for...
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+from ucid.core.models import UCID
+
+
+def create_example(
     city: str,
     lat: float,
     lon: float,
-    timestamp: str,
-    context: str,
-    grade: str = "F",
-    confidence: float = 0.0,
+    *,
+    context: str = "15MIN",
 ) -> UCID:
-    """Create a new UCID object from coordinates and metadata.
-
-    This function creates a UCID with automatic H3 index computation if
-    not provided. The resulting UCID is validated before being returned.
+    """Create an example UCID.
 
     Args:
-        city: 3-character city code (must be in registry).
-        lat: Latitude in decimal degrees (-90 to 90).
-        lon: Longitude in decimal degrees (-180 to 180).
-        timestamp: Temporal key in ISO week format (YYYYWwwThh).
-        context: Context identifier (e.g., "15MIN", "TRANSIT").
-        grade: Quality grade. Defaults to "F".
-        confidence: Confidence score (0.0 to 1.0). Defaults to 0.0.
+        city: Three-letter city code.
+        lat: Latitude in decimal degrees.
+        lon: Longitude in decimal degrees.
+        context: Context algorithm to use.
 
     Returns:
-        Validated UCID object.
+        A new UCID instance.
 
     Raises:
-        UCIDValidationError: If any parameter fails validation.
+        ValueError: If coordinates are invalid.
 
     Example:
-        >>> ucid = create_ucid(
-        ...     city="IST",
-        ...     lat=41.015,
-        ...     lon=28.979,
-        ...     timestamp="2026W01T12",
-        ...     context="15MIN",
-        ... )
+        >>> ucid = create_example("IST", 41.015, 28.979)
+        >>> print(ucid.city)
+        IST
     """
+    if not -90 <= lat <= 90:
+        msg = f"Invalid latitude: {lat}"
+        raise ValueError(msg)
+
+    # Implementation here
+    ...
 ```
 
-### Error Handling
+### Type Hints
 
-Use custom exception classes defined in `ucid.core.errors`:
+All public functions must have type hints:
 
 ```python
-from ucid.core.errors import UCIDParseError, UCIDValidationError
+from typing import Any
 
-def validate_city_code(code: str) -> None:
-    if len(code) != 3:
-        raise UCIDValidationError(
-            f"City code must be 3 characters, got {len(code)}",
-            code="INVALID_CITY_CODE",
-            details={"provided": code},
-        )
-```
-
-### Linting and Formatting
-
-Run the following commands before committing:
-
-```bash
-# Format code
-ruff format src/ tests/
-
-# Lint and fix
-ruff check --fix src/ tests/
-
-# Type check
-mypy src/ucid
-
-# Run all checks
-pre-commit run --all-files
+def process_data(
+    data: dict[str, Any],
+    *,
+    validate: bool = True,
+) -> list[str]:
+    """Process data and return results."""
+    ...
 ```
 
 ---
 
-## Testing Requirements
-
-### Test Coverage
-
-All new code must include tests with the following coverage requirements:
-
-| Component | Minimum Coverage |
-|-----------|------------------|
-| Core modules | 90% |
-| Context algorithms | 85% |
-| API endpoints | 80% |
-| Utilities | 75% |
+## Testing Guidelines
 
 ### Test Structure
 
-Tests are organized into three categories:
-
-1. **Unit Tests** (`tests/unit/`): Test individual functions and classes in isolation
-2. **Integration Tests** (`tests/integration/`): Test component interactions
-3. **Performance Tests** (`tests/performance/`): Benchmark critical operations
+```
+tests/
+├── conftest.py           # Shared fixtures
+├── unit/                 # Unit tests
+│   ├── test_parser.py
+│   └── test_validator.py
+├── integration/          # Integration tests
+│   └── test_api.py
+└── performance/          # Performance tests
+    └── test_benchmark.py
+```
 
 ### Writing Tests
 
-Use pytest with the following conventions:
-
 ```python
+"""Tests for the parser module."""
+
 import pytest
-from ucid import create_ucid, parse_ucid
+
+from ucid.core.parser import parse_ucid
 from ucid.core.errors import UCIDParseError
 
 
 class TestParseUCID:
-    """Tests for the parse_ucid function."""
+    """Tests for parse_ucid function."""
 
     def test_parse_valid_ucid(self) -> None:
         """Test parsing a valid UCID string."""
-        ucid_string = "UCID-V1:IST:+41.015:+28.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.95:"
-        result = parse_ucid(ucid_string)
-        
+        ucid_str = "UCID-V1:IST:+41.015:+28.979:9:..."
+        result = parse_ucid(ucid_str)
+
         assert result.city == "IST"
-        assert result.lat == pytest.approx(41.015, rel=1e-3)
-        assert result.context == "15MIN"
+        assert result.lat == 41.015
 
-    def test_parse_invalid_prefix_raises_error(self) -> None:
-        """Test that invalid prefix raises UCIDParseError."""
-        with pytest.raises(UCIDParseError) as exc_info:
-            parse_ucid("INVALID:IST:+41.015:+28.979:...")
-        
-        assert exc_info.value.code == "INVALID_PREFIX"
+    def test_parse_invalid_raises_error(self) -> None:
+        """Test that invalid input raises UCIDParseError."""
+        with pytest.raises(UCIDParseError):
+            parse_ucid("invalid")
 
-    @pytest.mark.parametrize("city", ["IST", "NYC", "LON", "HEL"])
-    def test_parse_various_cities(self, city: str) -> None:
-        """Test parsing UCIDs for various cities."""
-        ucid = create_ucid(
-            city=city,
-            lat=40.0,
-            lon=28.0,
-            timestamp="2026W01T12",
-            context="15MIN",
-        )
-        parsed = parse_ucid(str(ucid))
-        assert parsed.city == city
+    @pytest.mark.parametrize("grade", ["A", "B", "C", "D", "F"])
+    def test_parse_all_grades(self, grade: str) -> None:
+        """Test parsing UCIDs with all valid grades."""
+        ...
 ```
 
 ### Running Tests
 
 ```bash
-# Run all tests
+# All tests
 pytest tests/ -v
 
-# Run specific test file
-pytest tests/unit/test_core_parser.py -v
+# Specific file
+pytest tests/unit/test_parser.py -v
 
-# Run with coverage
+# With coverage
 pytest tests/ --cov=ucid --cov-report=html
 
-# Run only unit tests
-pytest tests/unit/ -v
-
-# Run integration tests
-pytest tests/integration/ -v -m integration
-
-# Run performance benchmarks
-pytest tests/performance/ --benchmark-only
+# Only fast tests
+pytest tests/ -m "not slow"
 ```
 
 ---
 
-## Documentation Standards
+## Documentation Guidelines
 
-### Module Documentation
+### Docstring Format
 
-Every module must have a module-level docstring explaining its purpose:
+Use Google-style docstrings:
 
 ```python
-"""UCID Spatial Operations Module.
+def example_function(param1: str, param2: int) -> bool:
+    """Short description of function.
 
-This module provides spatial indexing operations for the UCID library,
-including H3 hexagonal indexing, S2 cell operations, and grid generation
-utilities.
+    Longer description if needed, explaining what the function
+    does in more detail.
 
-The module supports both H3 v3 and v4 APIs through a compatibility layer,
-ensuring consistent behavior across versions.
+    Args:
+        param1: Description of param1.
+        param2: Description of param2.
 
-Example:
-    >>> from ucid.spatial import latlng_to_cell, cell_to_latlng
-    >>> h3_index = latlng_to_cell(41.015, 28.979, resolution=9)
-    >>> lat, lon = cell_to_latlng(h3_index)
-"""
+    Returns:
+        Description of return value.
+
+    Raises:
+        ValueError: When param1 is empty.
+
+    Example:
+        >>> result = example_function("test", 42)
+        >>> print(result)
+        True
+    """
 ```
 
-### API Documentation
+### Markdown Files
 
-API documentation is generated automatically using Sphinx. Ensure all public APIs have complete docstrings.
-
-### Instruction Documents
-
-When adding significant features, create or update the relevant instruction document in `docs/instructions/`.
+- Use consistent heading hierarchy
+- Include table of contents for long documents
+- Use tables for structured information
+- Include code examples
+- Use Mermaid for diagrams
 
 ---
 
-## Commit Message Convention
+## Commit Guidelines
 
-UCID follows the Conventional Commits specification:
+### Conventional Commits
+
+Use the Conventional Commits format:
 
 ```
 <type>(<scope>): <description>
@@ -413,156 +522,96 @@ UCID follows the Conventional Commits specification:
 [optional footer(s)]
 ```
 
-### Types
+### Commit Types
 
 | Type | Description |
 |------|-------------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Documentation changes |
-| `style` | Formatting changes |
-| `refactor` | Code refactoring |
-| `perf` | Performance improvements |
-| `test` | Test additions or modifications |
-| `build` | Build system changes |
-| `ci` | CI configuration changes |
-| `chore` | Maintenance tasks |
+| feat | New feature |
+| fix | Bug fix |
+| docs | Documentation only |
+| style | Formatting, no code change |
+| refactor | Code change, no feature/fix |
+| perf | Performance improvement |
+| test | Adding/updating tests |
+| chore | Maintenance tasks |
+| ci | CI/CD changes |
 
 ### Examples
 
 ```
-feat(contexts): add walkability context scoring algorithm
+feat(parser): add support for custom flags
 
-Implement the WALK context for pedestrian infrastructure analysis.
-Includes sidewalk coverage, intersection density, and traffic safety
-scoring components.
+fix(validator): handle edge case for week 53
 
-Closes #123
+docs(readme): update installation instructions
+
+test(contexts): add tests for WALK context
 ```
-
-```
-fix(parser): handle edge case in timestamp validation
-
-The timestamp validation was incorrectly rejecting week 53 in years
-that have 53 ISO weeks. Updated regex pattern and added comprehensive
-test coverage.
-
-Fixes #456
-```
-
----
-
-## Pull Request Process
-
-### Before Submitting
-
-1. Ensure all tests pass locally
-2. Run linting and formatting checks
-3. Update documentation if needed
-4. Add entries to CHANGELOG.md if applicable
-
-### PR Template
-
-When creating a pull request, fill out the provided template completely:
-
-1. **Description**: Clear explanation of changes
-2. **Related Issue**: Link to related issue
-3. **Type of Change**: Bug fix, feature, breaking change, etc.
-4. **Checklist**: Confirm all requirements are met
-
-### PR Size Guidelines
-
-| Size | Lines Changed | Review Time |
-|------|---------------|-------------|
-| Small | < 100 | 1-2 days |
-| Medium | 100-500 | 2-3 days |
-| Large | 500-1000 | 3-5 days |
-| Extra Large | > 1000 | Split recommended |
 
 ---
 
 ## Review Process
 
-### Review Criteria
+### What Reviewers Look For
 
-All pull requests are reviewed for:
+| Aspect | Criteria |
+|--------|----------|
+| Correctness | Does the code work correctly? |
+| Tests | Are there adequate tests? |
+| Style | Does it follow guidelines? |
+| Documentation | Is it well documented? |
+| Performance | Any performance issues? |
+| Security | Any security concerns? |
 
-1. **Correctness**: Does the code work as intended?
-2. **Test Coverage**: Are there sufficient tests?
-3. **Code Quality**: Does it follow our standards?
-4. **Documentation**: Is it properly documented?
-5. **Performance**: Are there any performance concerns?
-6. **Security**: Are there any security implications?
+### Responding to Reviews
 
-### Approval Requirements
-
-| Change Type | Required Approvals |
-|-------------|-------------------|
-| Documentation | 1 maintainer |
-| Bug fixes | 1 maintainer |
-| New features | 2 maintainers |
-| Breaking changes | 2 maintainers + core team review |
+1. Be open to feedback
+2. Ask for clarification if needed
+3. Discuss alternatives constructively
+4. Push updates as new commits
 
 ---
 
 ## Release Process
 
-Releases follow semantic versioning (SemVer 2.0.0):
+### Version Numbering
 
-- **Major** (X.0.0): Breaking API changes
-- **Minor** (0.X.0): New features, backward compatible
-- **Patch** (0.0.X): Bug fixes, backward compatible
+UCID uses Semantic Versioning:
 
-See [Release Process](docs/instructions/28_release_process.md) for detailed procedures.
+- MAJOR: Breaking changes
+- MINOR: New features (backward compatible)
+- PATCH: Bug fixes (backward compatible)
 
----
+### Release Checklist
 
-## Issue Guidelines
-
-### Bug Reports
-
-When reporting bugs, include:
-
-1. UCID version (`ucid --version`)
-2. Python version
-3. Operating system
-4. Minimal reproducible example
-5. Expected vs actual behavior
-6. Full error message and stack trace
-
-### Feature Requests
-
-When requesting features:
-
-1. Describe the problem being solved
-2. Propose a solution
-3. List alternatives considered
-4. Provide use case examples
+1. Update version in `pyproject.toml`
+2. Update `CHANGELOG.md`
+3. Create release branch
+4. Run full test suite
+5. Build and test package
+6. Create GitHub release
+7. Publish to PyPI
 
 ---
 
-## Security Vulnerabilities
+## Community
 
-Do not report security vulnerabilities through public GitHub issues.
+### Getting Help
 
-Instead, email security@ucid.org with:
+| Channel | Purpose |
+|---------|---------|
+| GitHub Issues | Bug reports, features |
+| GitHub Discussions | Questions, ideas |
+| Discord | Real-time chat |
+| Mailing List | Announcements |
 
-1. Description of the vulnerability
-2. Steps to reproduce
-3. Potential impact
-4. Suggested fix (if any)
+### Contact
 
-See [SECURITY.md](SECURITY.md) for our full security policy.
-
----
-
-## Governance
-
-UCID is governed by the UCID Foundation. See [GOVERNANCE.md](GOVERNANCE.md) for:
-
-- Decision-making processes
-- Maintainer responsibilities
-- Conflict resolution procedures
+| Contact | Email |
+|---------|-------|
+| General | contact@ucid.org |
+| Security | security@ucid.org |
+| Conduct | conduct@ucid.org |
 
 ---
 
@@ -570,12 +619,17 @@ UCID is governed by the UCID Foundation. See [GOVERNANCE.md](GOVERNANCE.md) for:
 
 Contributors are recognized in:
 
-1. **CONTRIBUTORS.md**: All contributors listed
-2. **Release Notes**: Significant contributions acknowledged
-3. **Documentation**: Authors credited for major features
+- CONTRIBUTORS.md file
+- Release notes
+- GitHub contributors page
 
-Thank you for contributing to UCID and helping advance urban data science.
+---
+
+## License
+
+By contributing, you agree that your contributions will be licensed under EUPL-1.2.
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

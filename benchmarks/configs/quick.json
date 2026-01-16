@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "quick",
+  "description": "Quick benchmark configuration for CI/CD",
+  "version": "1.0.0",
+  "settings": {
+    "iterations": 1000,
+    "warmup_iterations": 50,
+    "timeout_seconds": 60,
+    "gc_disabled": true,
+    "high_precision_timer": true
+  },
+  "benchmarks": {
+    "create": {
+      "enabled": true,
+      "iterations": 1000,
+      "description": "UCID creation benchmark"
+    },
+    "parse": {
+      "enabled": true,
+      "iterations": 1000,
+      "description": "UCID parsing benchmark"
+    },
+    "validate": {
+      "enabled": false,
+      "description": "Skipped for quick runs"
+    },
+    "batch": {
+      "enabled": false,
+      "description": "Skipped for quick runs"
+    }
+  },
+  "output": {
+    "format": "json",
+    "include_latencies": false,
+    "include_percentiles": true,
+    "percentiles": [50, 99]
+  },
+  "thresholds": {
+    "create_min_ops": 10000,
+    "parse_min_ops": 10000,
+    "regression_threshold": 0.15
+  }
+}

@@ -1,56 +1,1714 @@
 {
+  "_comment": "Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.",
+  "_version": "1.0.5",
+  "_description": "Complete city registry for UCID library - 405 cities across 23 countries.",
+  "_documentation": "https://ucid.readthedocs.io/cities",
+  "_last_updated": "2026-01-15",
   "cities": [
     {
-      "code": "IST",
-      "name": "Istanbul",
-      "country": "TR",
-      "timezone": "Europe/Istanbul",
-      "population": 15840900,
-      "area_km2": 5461,
+      "code": "BER",
+      "name": "Berlin",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 3669495,
       "coordinates": {
-        "lat": 41.0082,
-        "lon": 28.9784
-      },
-      "bbox": [40.8025, 28.5213, 41.3200, 29.4575]
+        "lat": 52.52,
+        "lon": 13.405
+      }
     },
     {
-      "code": "NYC",
-      "name": "New York City",
-      "country": "US",
-      "timezone": "America/New_York",
-      "population": 8336817,
-      "area_km2": 783,
+      "code": "HAM",
+      "name": "Hamburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 1906411,
       "coordinates": {
-        "lat": 40.7128,
-        "lon": -74.0060
-      },
-      "bbox": [40.4774, -74.2591, 40.9176, -73.7004]
+        "lat": 53.5511,
+        "lon": 9.9937
+      }
     },
     {
-      "code": "LON",
-      "name": "London",
-      "country": "GB",
-      "timezone": "Europe/London",
-      "population": 8982000,
-      "area_km2": 1572,
+      "code": "MUN",
+      "name": "Munich",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 1487708,
       "coordinates": {
-        "lat": 51.5074,
-        "lon": -0.1278
-      },
-      "bbox": [51.2867, -0.5103, 51.6918, 0.3340]
+        "lat": 48.1351,
+        "lon": 11.582
+      }
     },
     {
-      "code": "TKY",
-      "name": "Tokyo",
-      "country": "JP",
-      "timezone": "Asia/Tokyo",
-      "population": 13960000,
-      "area_km2": 2194,
+      "code": "KÖL",
+      "name": "Köln",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 1073096,
       "coordinates": {
-        "lat": 35.6762,
-        "lon": 139.6503
-      },
-      "bbox": [35.5230, 138.9428, 35.8984, 139.9180]
+        "lat": 50.9375,
+        "lon": 6.9603
+      }
+    },
+    {
+      "code": "FRA",
+      "name": "Frankfurt am Main",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 763380,
+      "coordinates": {
+        "lat": 50.1109,
+        "lon": 8.6821
+      }
+    },
+    {
+      "code": "STU",
+      "name": "Stuttgart",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 626275,
+      "coordinates": {
+        "lat": 48.7758,
+        "lon": 9.1829
+      }
+    },
+    {
+      "code": "DÜS",
+      "name": "Düsseldorf",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 621877,
+      "coordinates": {
+        "lat": 51.2277,
+        "lon": 6.7735
+      }
+    },
+    {
+      "code": "ESS",
+      "name": "Essen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 579432,
+      "coordinates": {
+        "lat": 51.4556,
+        "lon": 7.0116
+      }
+    },
+    {
+      "code": "DOR",
+      "name": "Dortmund",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 587696,
+      "coordinates": {
+        "lat": 51.5136,
+        "lon": 7.4653
+      }
+    },
+    {
+      "code": "DRE",
+      "name": "Dresden",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 556227,
+      "coordinates": {
+        "lat": 51.0504,
+        "lon": 13.7373
+      }
+    },
+    {
+      "code": "BRE",
+      "name": "Bremen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 569352,
+      "coordinates": {
+        "lat": 53.0793,
+        "lon": 8.8017
+      }
+    },
+    {
+      "code": "NÜR",
+      "name": "Nürnberg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 515543,
+      "coordinates": {
+        "lat": 49.4521,
+        "lon": 11.0767
+      }
+    },
+    {
+      "code": "HAN",
+      "name": "Hannover",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 536925,
+      "coordinates": {
+        "lat": 52.3759,
+        "lon": 9.732
+      }
+    },
+    {
+      "code": "LEI",
+      "name": "Leipzig",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 597493,
+      "coordinates": {
+        "lat": 51.3397,
+        "lon": 12.3731
+      }
+    },
+    {
+      "code": "DUI",
+      "name": "Duisburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 495152,
+      "coordinates": {
+        "lat": 51.4344,
+        "lon": 6.7623
+      }
+    },
+    {
+      "code": "BOC",
+      "name": "Bochum",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 364920,
+      "coordinates": {
+        "lat": 51.4818,
+        "lon": 7.2162
+      }
+    },
+    {
+      "code": "WUP",
+      "name": "Wuppertal",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 355004,
+      "coordinates": {
+        "lat": 51.2562,
+        "lon": 7.1508
+      }
+    },
+    {
+      "code": "BIE",
+      "name": "Bielefeld",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 333451,
+      "coordinates": {
+        "lat": 52.0302,
+        "lon": 8.5325
+      }
+    },
+    {
+      "code": "BON",
+      "name": "Bonn",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 330579,
+      "coordinates": {
+        "lat": 50.7374,
+        "lon": 7.0982
+      }
+    },
+    {
+      "code": "MAN",
+      "name": "Mannheim",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 309370,
+      "coordinates": {
+        "lat": 49.4875,
+        "lon": 8.466
+      }
+    },
+    {
+      "code": "KAR",
+      "name": "Karlsruhe",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 308436,
+      "coordinates": {
+        "lat": 49.0069,
+        "lon": 8.4037
+      }
+    },
+    {
+      "code": "WIE",
+      "name": "Wiesbaden",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 278474,
+      "coordinates": {
+        "lat": 50.0782,
+        "lon": 8.2398
+      }
+    },
+    {
+      "code": "MÜN",
+      "name": "Münster",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 315293,
+      "coordinates": {
+        "lat": 51.9607,
+        "lon": 7.6261
+      }
+    },
+    {
+      "code": "GEL",
+      "name": "Gelsenkirchen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 259105,
+      "coordinates": {
+        "lat": 51.5177,
+        "lon": 7.0857
+      }
+    },
+    {
+      "code": "AAC",
+      "name": "Aachen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 249070,
+      "coordinates": {
+        "lat": 50.7753,
+        "lon": 6.0839
+      }
+    },
+    {
+      "code": "MÖN",
+      "name": "Mönchengladbach",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 261034,
+      "coordinates": {
+        "lat": 51.1805,
+        "lon": 6.4428
+      }
+    },
+    {
+      "code": "AUG",
+      "name": "Augsburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 296582,
+      "coordinates": {
+        "lat": 48.3705,
+        "lon": 10.8978
+      }
+    },
+    {
+      "code": "CHE",
+      "name": "Chemnitz",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 244951,
+      "coordinates": {
+        "lat": 50.8278,
+        "lon": 12.9214
+      }
+    },
+    {
+      "code": "KIE",
+      "name": "Kiel",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 247135,
+      "coordinates": {
+        "lat": 54.3233,
+        "lon": 10.1228
+      }
+    },
+    {
+      "code": "BRA",
+      "name": "Braunschweig",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 249406,
+      "coordinates": {
+        "lat": 52.2689,
+        "lon": 10.5268
+      }
+    },
+    {
+      "code": "KRE",
+      "name": "Krefeld",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 227020,
+      "coordinates": {
+        "lat": 51.3388,
+        "lon": 6.5853
+      }
+    },
+    {
+      "code": "HAL",
+      "name": "Halle (Saale)",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 239257,
+      "coordinates": {
+        "lat": 51.4969,
+        "lon": 11.9688
+      }
+    },
+    {
+      "code": "MAG",
+      "name": "Magdeburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 236188,
+      "coordinates": {
+        "lat": 52.1205,
+        "lon": 11.6276
+      }
+    },
+    {
+      "code": "OBE",
+      "name": "Oberhausen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 210829,
+      "coordinates": {
+        "lat": 51.4963,
+        "lon": 6.8528
+      }
+    },
+    {
+      "code": "MAI",
+      "name": "Mainz",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 218578,
+      "coordinates": {
+        "lat": 49.9929,
+        "lon": 8.2473
+      }
+    },
+    {
+      "code": "FRE",
+      "name": "Freiburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 230940,
+      "coordinates": {
+        "lat": 47.999,
+        "lon": 7.8421
+      }
+    },
+    {
+      "code": "ERF",
+      "name": "Erfurt",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 214417,
+      "coordinates": {
+        "lat": 50.9787,
+        "lon": 11.0328
+      }
+    },
+    {
+      "code": "LÜB",
+      "name": "Lübeck",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 217198,
+      "coordinates": {
+        "lat": 53.8655,
+        "lon": 10.6866
+      }
+    },
+    {
+      "code": "HAG",
+      "name": "Hagen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 188687,
+      "coordinates": {
+        "lat": 51.3671,
+        "lon": 7.4633
+      }
+    },
+    {
+      "code": "ROS",
+      "name": "Rostock",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 209191,
+      "coordinates": {
+        "lat": 54.0887,
+        "lon": 12.1407
+      }
+    },
+    {
+      "code": "KAS",
+      "name": "Kassel",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 202137,
+      "coordinates": {
+        "lat": 51.3127,
+        "lon": 9.4797
+      }
+    },
+    {
+      "code": "POT",
+      "name": "Potsdam",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 182112,
+      "coordinates": {
+        "lat": 52.3906,
+        "lon": 13.0645
+      }
+    },
+    {
+      "code": "SAA",
+      "name": "Saarbrücken",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 181959,
+      "coordinates": {
+        "lat": 49.2401,
+        "lon": 6.9969
+      }
+    },
+    {
+      "code": "HAM",
+      "name": "Hamm",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 179238,
+      "coordinates": {
+        "lat": 51.6739,
+        "lon": 7.8159
+      }
+    },
+    {
+      "code": "HER",
+      "name": "Herne",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 156449,
+      "coordinates": {
+        "lat": 51.5369,
+        "lon": 7.2
+      }
+    },
+    {
+      "code": "MÜL",
+      "name": "Mülheim",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 170921,
+      "coordinates": {
+        "lat": 51.4275,
+        "lon": 6.8825
+      }
+    },
+    {
+      "code": "OSN",
+      "name": "Osnabrück",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 165251,
+      "coordinates": {
+        "lat": 52.2799,
+        "lon": 8.0472
+      }
+    },
+    {
+      "code": "SOL",
+      "name": "Solingen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 159245,
+      "coordinates": {
+        "lat": 51.1652,
+        "lon": 7.0671
+      }
+    },
+    {
+      "code": "LUD",
+      "name": "Ludwigshafen am Rhein",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 172557,
+      "coordinates": {
+        "lat": 49.4774,
+        "lon": 8.4452
+      }
+    },
+    {
+      "code": "LEV",
+      "name": "Leverkusen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 163905,
+      "coordinates": {
+        "lat": 51.0459,
+        "lon": 6.984
+      }
+    },
+    {
+      "code": "OLD",
+      "name": "Oldenburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 170389,
+      "coordinates": {
+        "lat": 53.1435,
+        "lon": 8.2146
+      }
+    },
+    {
+      "code": "NEU",
+      "name": "Neuss",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 152644,
+      "coordinates": {
+        "lat": 51.1981,
+        "lon": 6.6919
+      }
+    },
+    {
+      "code": "HEI",
+      "name": "Heidelberg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 160355,
+      "coordinates": {
+        "lat": 49.3988,
+        "lon": 8.6724
+      }
+    },
+    {
+      "code": "PAD",
+      "name": "Paderborn",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 151633,
+      "coordinates": {
+        "lat": 51.7189,
+        "lon": 8.7575
+      }
+    },
+    {
+      "code": "DAR",
+      "name": "Darmstadt",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 159207,
+      "coordinates": {
+        "lat": 49.8728,
+        "lon": 8.6512
+      }
+    },
+    {
+      "code": "WÜR",
+      "name": "Würzburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 127934,
+      "coordinates": {
+        "lat": 49.7913,
+        "lon": 9.9534
+      }
+    },
+    {
+      "code": "REG",
+      "name": "Regensburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 153094,
+      "coordinates": {
+        "lat": 49.0134,
+        "lon": 12.1016
+      }
+    },
+    {
+      "code": "WOL",
+      "name": "Wolfsburg",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 124151,
+      "coordinates": {
+        "lat": 52.4227,
+        "lon": 10.7865
+      }
+    },
+    {
+      "code": "REC",
+      "name": "Recklinghausen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 114147,
+      "coordinates": {
+        "lat": 51.6141,
+        "lon": 7.1979
+      }
+    },
+    {
+      "code": "GÖT",
+      "name": "Göttingen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 119529,
+      "coordinates": {
+        "lat": 51.5413,
+        "lon": 9.9158
+      }
+    },
+    {
+      "code": "HEI",
+      "name": "Heilbronn",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 126592,
+      "coordinates": {
+        "lat": 49.1427,
+        "lon": 9.2109
+      }
+    },
+    {
+      "code": "ING",
+      "name": "Ingolstadt",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 137392,
+      "coordinates": {
+        "lat": 48.7665,
+        "lon": 11.4257
+      }
+    },
+    {
+      "code": "ULM",
+      "name": "Ulm",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 126790,
+      "coordinates": {
+        "lat": 48.4011,
+        "lon": 9.9876
+      }
+    },
+    {
+      "code": "BOT",
+      "name": "Bottrop",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 117383,
+      "coordinates": {
+        "lat": 51.5247,
+        "lon": 6.9286
+      }
+    },
+    {
+      "code": "PFO",
+      "name": "Pforzheim",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 125957,
+      "coordinates": {
+        "lat": 48.8922,
+        "lon": 8.6946
+      }
+    },
+    {
+      "code": "OFF",
+      "name": "Offenbach",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 130280,
+      "coordinates": {
+        "lat": 50.1055,
+        "lon": 8.7761
+      }
+    },
+    {
+      "code": "REM",
+      "name": "Remscheid",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 111338,
+      "coordinates": {
+        "lat": 51.1787,
+        "lon": 7.1896
+      }
+    },
+    {
+      "code": "BRE",
+      "name": "Bremerhaven",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 113643,
+      "coordinates": {
+        "lat": 53.5396,
+        "lon": 8.5809
+      }
+    },
+    {
+      "code": "REU",
+      "name": "Reutlingen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 115818,
+      "coordinates": {
+        "lat": 48.4914,
+        "lon": 9.2043
+      }
+    },
+    {
+      "code": "FÜR",
+      "name": "Fürth",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 128497,
+      "coordinates": {
+        "lat": 49.4774,
+        "lon": 10.9887
+      }
+    },
+    {
+      "code": "KOB",
+      "name": "Koblenz",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 114052,
+      "coordinates": {
+        "lat": 50.3569,
+        "lon": 7.589
+      }
+    },
+    {
+      "code": "SIE",
+      "name": "Siegen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 102770,
+      "coordinates": {
+        "lat": 50.8748,
+        "lon": 8.0243
+      }
+    },
+    {
+      "code": "BER",
+      "name": "Bergisch Gladbach",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 111645,
+      "coordinates": {
+        "lat": 50.9918,
+        "lon": 7.1353
+      }
+    },
+    {
+      "code": "JEN",
+      "name": "Jena",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 111407,
+      "coordinates": {
+        "lat": 50.9272,
+        "lon": 11.5892
+      }
+    },
+    {
+      "code": "GER",
+      "name": "Gera",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 93125,
+      "coordinates": {
+        "lat": 50.8801,
+        "lon": 12.0829
+      }
+    },
+    {
+      "code": "SAL",
+      "name": "Salzgitter",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 104948,
+      "coordinates": {
+        "lat": 52.1542,
+        "lon": 10.3294
+      }
+    },
+    {
+      "code": "MOE",
+      "name": "Moers",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 103725,
+      "coordinates": {
+        "lat": 51.45,
+        "lon": 6.6167
+      }
+    },
+    {
+      "code": "HIL",
+      "name": "Hildesheim",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 101055,
+      "coordinates": {
+        "lat": 52.1508,
+        "lon": 9.9511
+      }
+    },
+    {
+      "code": "ERL",
+      "name": "Erlangen",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 112528,
+      "coordinates": {
+        "lat": 49.5897,
+        "lon": 11.0078
+      }
+    },
+    {
+      "code": "WIT",
+      "name": "Witten",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 96136,
+      "coordinates": {
+        "lat": 51.4435,
+        "lon": 7.352
+      }
+    },
+    {
+      "code": "TRI",
+      "name": "Trier",
+      "country": "DE",
+      "timezone": "Europe/Berlin",
+      "population": 111528,
+      "coordinates": {
+        "lat": 49.749,
+        "lon": 6.6371
+      }
+    },
+    {
+      "code": "SYD",
+      "name": "Sydney",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 5312163,
+      "coordinates": {
+        "lat": -33.8688,
+        "lon": 151.2093
+      }
+    },
+    {
+      "code": "MEL",
+      "name": "Melbourne",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 5078193,
+      "coordinates": {
+        "lat": -37.8136,
+        "lon": 144.9631
+      }
+    },
+    {
+      "code": "BRI",
+      "name": "Brisbane",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 2514184,
+      "coordinates": {
+        "lat": -27.4698,
+        "lon": 153.0251
+      }
+    },
+    {
+      "code": "PER",
+      "name": "Perth",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 2085973,
+      "coordinates": {
+        "lat": -31.9505,
+        "lon": 115.8605
+      }
+    },
+    {
+      "code": "ADE",
+      "name": "Adelaide",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 1376601,
+      "coordinates": {
+        "lat": -34.9285,
+        "lon": 138.6007
+      }
+    },
+    {
+      "code": "GOL",
+      "name": "Gold Coast",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 679127,
+      "coordinates": {
+        "lat": -28.0167,
+        "lon": 153.4
+      }
+    },
+    {
+      "code": "NEW",
+      "name": "Newcastle",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 322278,
+      "coordinates": {
+        "lat": -32.9283,
+        "lon": 151.7817
+      }
+    },
+    {
+      "code": "CAN",
+      "name": "Canberra",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 467859,
+      "coordinates": {
+        "lat": -35.2809,
+        "lon": 149.13
+      }
+    },
+    {
+      "code": "CEN",
+      "name": "Central Coast",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 333627,
+      "coordinates": {
+        "lat": -33.425,
+        "lon": 151.35
+      }
+    },
+    {
+      "code": "SUN",
+      "name": "Sunshine Coast",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 351479,
+      "coordinates": {
+        "lat": -26.65,
+        "lon": 153.0667
+      }
+    },
+    {
+      "code": "LOG",
+      "name": "Logan City",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 326615,
+      "coordinates": {
+        "lat": -27.6392,
+        "lon": 153.1094
+      }
+    },
+    {
+      "code": "GEE",
+      "name": "Geelong",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 192393,
+      "coordinates": {
+        "lat": -38.1499,
+        "lon": 144.3617
+      }
+    },
+    {
+      "code": "WOL",
+      "name": "Wollongong",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 305880,
+      "coordinates": {
+        "lat": -34.4278,
+        "lon": 150.8931
+      }
+    },
+    {
+      "code": "HOB",
+      "name": "Hobart",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 240342,
+      "coordinates": {
+        "lat": -42.8821,
+        "lon": 147.3272
+      }
+    },
+    {
+      "code": "TOW",
+      "name": "Townsville",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 180820,
+      "coordinates": {
+        "lat": -19.259,
+        "lon": 146.8169
+      }
+    },
+    {
+      "code": "CAI",
+      "name": "Cairns",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 153075,
+      "coordinates": {
+        "lat": -16.9186,
+        "lon": 145.7781
+      }
+    },
+    {
+      "code": "TOO",
+      "name": "Toowoomba",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 136861,
+      "coordinates": {
+        "lat": -27.5598,
+        "lon": 151.9507
+      }
+    },
+    {
+      "code": "DAR",
+      "name": "Darwin",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 147255,
+      "coordinates": {
+        "lat": -12.4634,
+        "lon": 130.8456
+      }
+    },
+    {
+      "code": "MAC",
+      "name": "Mackay",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 80148,
+      "coordinates": {
+        "lat": -21.1411,
+        "lon": 149.1861
+      }
+    },
+    {
+      "code": "BAL",
+      "name": "Ballarat",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 105471,
+      "coordinates": {
+        "lat": -37.5622,
+        "lon": 143.8503
+      }
+    },
+    {
+      "code": "BEN",
+      "name": "Bendigo",
+      "country": "AU",
+      "timezone": "Australia/Sydney",
+      "population": 100617,
+      "coordinates": {
+        "lat": -36.757,
+        "lon": 144.2794
+      }
+    },
+    {
+      "code": "VIE",
+      "name": "Vienna",
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "population": 1911191,
+      "coordinates": {
+        "lat": 48.2082,
+        "lon": 16.3738
+      }
+    },
+    {
+      "code": "GRA",
+      "name": "Graz",
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "population": 291072,
+      "coordinates": {
+        "lat": 47.0707,
+        "lon": 15.4395
+      }
+    },
+    {
+      "code": "LIN",
+      "name": "Linz",
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "population": 206604,
+      "coordinates": {
+        "lat": 48.3069,
+        "lon": 14.2858
+      }
+    },
+    {
+      "code": "SAL",
+      "name": "Salzburg",
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "population": 155021,
+      "coordinates": {
+        "lat": 47.8095,
+        "lon": 13.055
+      }
+    },
+    {
+      "code": "INN",
+      "name": "Innsbruck",
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "population": 132493,
+      "coordinates": {
+        "lat": 47.2692,
+        "lon": 11.4041
+      }
+    },
+    {
+      "code": "KLA",
+      "name": "Klagenfurt am Wörthersee",
+      "country": "AT",
+      "timezone": "Europe/Vienna",
+      "population": 101403,
+      "coordinates": {
+        "lat": 46.6249,
+        "lon": 14.305
+      }
+    },
+    {
+      "code": "BAK",
+      "name": "Baku",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 2303000,
+      "coordinates": {
+        "lat": 40.4093,
+        "lon": 49.8671
+      }
+    },
+    {
+      "code": "SUM",
+      "name": "Sumqayıt",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 358000,
+      "coordinates": {
+        "lat": 40.5855,
+        "lon": 49.6317
+      }
+    },
+    {
+      "code": "GAN",
+      "name": "Ganja",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 335600,
+      "coordinates": {
+        "lat": 40.6828,
+        "lon": 46.3606
+      }
+    },
+    {
+      "code": "LAN",
+      "name": "Lankaran",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 228200,
+      "coordinates": {
+        "lat": 38.7536,
+        "lon": 48.8511
+      }
+    },
+    {
+      "code": "TOV",
+      "name": "Tovuz",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 21500,
+      "coordinates": {
+        "lat": 40.9922,
+        "lon": 45.6286
+      }
+    },
+    {
+      "code": "YEV",
+      "name": "Yevlakh",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 59036,
+      "coordinates": {
+        "lat": 40.6186,
+        "lon": 47.15
+      }
+    },
+    {
+      "code": "MIN",
+      "name": "Mingachevir",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 104300,
+      "coordinates": {
+        "lat": 40.7703,
+        "lon": 47.0489
+      }
+    },
+    {
+      "code": "NAX",
+      "name": "Naxçıvan",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 90000,
+      "coordinates": {
+        "lat": 39.2092,
+        "lon": 45.4122
+      }
+    },
+    {
+      "code": "QAR",
+      "name": "Qaraçuxur",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 17500,
+      "coordinates": {
+        "lat": 40.4167,
+        "lon": 50.0333
+      }
+    },
+    {
+      "code": "SAA",
+      "name": "Saatlı",
+      "country": "AZ",
+      "timezone": "Asia/Baku",
+      "population": 23500,
+      "coordinates": {
+        "lat": 39.9333,
+        "lon": 48.3667
+      }
+    },
+    {
+      "code": "BRU",
+      "name": "Brussels",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 1208542,
+      "coordinates": {
+        "lat": 50.8503,
+        "lon": 4.3517
+      }
+    },
+    {
+      "code": "ANT",
+      "name": "Antwerpen",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 529247,
+      "coordinates": {
+        "lat": 51.2194,
+        "lon": 4.4025
+      }
+    },
+    {
+      "code": "GEN",
+      "name": "Gent",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 263927,
+      "coordinates": {
+        "lat": 51.0543,
+        "lon": 3.7174
+      }
+    },
+    {
+      "code": "CHA",
+      "name": "Charleroi",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 201816,
+      "coordinates": {
+        "lat": 50.4108,
+        "lon": 4.4446
+      }
+    },
+    {
+      "code": "LIÈ",
+      "name": "Liège",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 197355,
+      "coordinates": {
+        "lat": 50.6326,
+        "lon": 5.5797
+      }
+    },
+    {
+      "code": "BRU",
+      "name": "Brugge",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 118325,
+      "coordinates": {
+        "lat": 51.2093,
+        "lon": 3.2247
+      }
+    },
+    {
+      "code": "NAM",
+      "name": "Namur",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 112522,
+      "coordinates": {
+        "lat": 50.4674,
+        "lon": 4.8712
+      }
+    },
+    {
+      "code": "LEU",
+      "name": "Leuven",
+      "country": "BE",
+      "timezone": "Europe/Brussels",
+      "population": 102275,
+      "coordinates": {
+        "lat": 50.8798,
+        "lon": 4.7005
+      }
+    },
+    {
+      "code": "COP",
+      "name": "Copenhagen",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 644431,
+      "coordinates": {
+        "lat": 55.6761,
+        "lon": 12.5683
+      }
+    },
+    {
+      "code": "ÅRH",
+      "name": "Århus",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 285273,
+      "coordinates": {
+        "lat": 56.1629,
+        "lon": 10.2039
+      }
+    },
+    {
+      "code": "ODE",
+      "name": "Odense",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 180760,
+      "coordinates": {
+        "lat": 55.4038,
+        "lon": 10.4024
+      }
+    },
+    {
+      "code": "AAL",
+      "name": "Aalborg",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 119862,
+      "coordinates": {
+        "lat": 57.0488,
+        "lon": 9.9217
+      }
+    },
+    {
+      "code": "FRE",
+      "name": "Frederiksberg",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 104305,
+      "coordinates": {
+        "lat": 55.6786,
+        "lon": 12.5289
+      }
+    },
+    {
+      "code": "ESB",
+      "name": "Esbjerg",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 72205,
+      "coordinates": {
+        "lat": 55.4667,
+        "lon": 8.45
+      }
+    },
+    {
+      "code": "RAN",
+      "name": "Randers",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 62482,
+      "coordinates": {
+        "lat": 56.4607,
+        "lon": 10.0362
+      }
+    },
+    {
+      "code": "KOL",
+      "name": "Kolding",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 61212,
+      "coordinates": {
+        "lat": 55.4904,
+        "lon": 9.4722
+      }
+    },
+    {
+      "code": "HOR",
+      "name": "Horsens",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 59449,
+      "coordinates": {
+        "lat": 55.8607,
+        "lon": 9.85
+      }
+    },
+    {
+      "code": "VEJ",
+      "name": "Vejle",
+      "country": "DK",
+      "timezone": "Europe/Copenhagen",
+      "population": 57656,
+      "coordinates": {
+        "lat": 55.7113,
+        "lon": 9.5333
+      }
+    },
+    {
+      "code": "TAL",
+      "name": "Tallinn",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 437619,
+      "coordinates": {
+        "lat": 59.437,
+        "lon": 24.7536
+      }
+    },
+    {
+      "code": "TAR",
+      "name": "Tartu",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 97600,
+      "coordinates": {
+        "lat": 58.378,
+        "lon": 26.729
+      }
+    },
+    {
+      "code": "NAR",
+      "name": "Narva",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 56006,
+      "coordinates": {
+        "lat": 59.3797,
+        "lon": 28.1791
+      }
+    },
+    {
+      "code": "PÄR",
+      "name": "Pärnu",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 40228,
+      "coordinates": {
+        "lat": 58.3859,
+        "lon": 24.4971
+      }
+    },
+    {
+      "code": "KOH",
+      "name": "Kohtla-Järve",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 34395,
+      "coordinates": {
+        "lat": 59.3989,
+        "lon": 27.2734
+      }
+    },
+    {
+      "code": "VIL",
+      "name": "Viljandi",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 17407,
+      "coordinates": {
+        "lat": 58.3639,
+        "lon": 25.59
+      }
+    },
+    {
+      "code": "MAA",
+      "name": "Maardu",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 16187,
+      "coordinates": {
+        "lat": 59.4675,
+        "lon": 25.0186
+      }
+    },
+    {
+      "code": "RAK",
+      "name": "Rakvere",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 15004,
+      "coordinates": {
+        "lat": 59.3469,
+        "lon": 26.3567
+      }
+    },
+    {
+      "code": "KUR",
+      "name": "Kuressaare",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 13097,
+      "coordinates": {
+        "lat": 58.2481,
+        "lon": 22.5039
+      }
+    },
+    {
+      "code": "SIL",
+      "name": "Sillamäe",
+      "country": "EE",
+      "timezone": "Europe/Tallinn",
+      "population": 12728,
+      "coordinates": {
+        "lat": 59.3967,
+        "lon": 27.7681
+      }
+    },
+    {
+      "code": "HEL",
+      "name": "Helsinki",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 656920,
+      "coordinates": {
+        "lat": 60.1699,
+        "lon": 24.9384
+      }
+    },
+    {
+      "code": "ESP",
+      "name": "Espoo",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 292913,
+      "coordinates": {
+        "lat": 60.2052,
+        "lon": 24.6522
+      }
+    },
+    {
+      "code": "TAM",
+      "name": "Tampere",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 244315,
+      "coordinates": {
+        "lat": 61.4978,
+        "lon": 23.761
+      }
+    },
+    {
+      "code": "VAN",
+      "name": "Vantaa",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 237231,
+      "coordinates": {
+        "lat": 60.2941,
+        "lon": 25.0408
+      }
+    },
+    {
+      "code": "OUL",
+      "name": "Oulu",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 209648,
+      "coordinates": {
+        "lat": 65.0121,
+        "lon": 25.4651
+      }
+    },
+    {
+      "code": "TUR",
+      "name": "Turku",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 194244,
+      "coordinates": {
+        "lat": 60.4518,
+        "lon": 22.2666
+      }
+    },
+    {
+      "code": "JYV",
+      "name": "Jyväskylä",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 143400,
+      "coordinates": {
+        "lat": 62.2426,
+        "lon": 25.7473
+      }
+    },
+    {
+      "code": "KUO",
+      "name": "Kuopio",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 120776,
+      "coordinates": {
+        "lat": 62.8925,
+        "lon": 27.6783
+      }
+    },
+    {
+      "code": "LAH",
+      "name": "Lahti",
+      "country": "FI",
+      "timezone": "Europe/Helsinki",
+      "population": 120027,
+      "coordinates": {
+        "lat": 60.9827,
+        "lon": 25.6612
+      }
     },
     {
       "code": "PAR",
@@ -58,83 +1716,2735 @@
       "country": "FR",
       "timezone": "Europe/Paris",
       "population": 2161000,
-      "area_km2": 105,
       "coordinates": {
         "lat": 48.8566,
         "lon": 2.3522
-      },
-      "bbox": [48.8156, 2.2242, 48.9022, 2.4699]
+      }
+    },
+    {
+      "code": "MAR",
+      "name": "Marseille",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 870731,
+      "coordinates": {
+        "lat": 43.2965,
+        "lon": 5.3698
+      }
+    },
+    {
+      "code": "LYO",
+      "name": "Lyon",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 522250,
+      "coordinates": {
+        "lat": 45.764,
+        "lon": 4.8357
+      }
+    },
+    {
+      "code": "TOU",
+      "name": "Toulouse",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 486828,
+      "coordinates": {
+        "lat": 43.6047,
+        "lon": 1.4442
+      }
+    },
+    {
+      "code": "NIC",
+      "name": "Nice",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 342669,
+      "coordinates": {
+        "lat": 43.7102,
+        "lon": 7.262
+      }
+    },
+    {
+      "code": "NAN",
+      "name": "Nantes",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 314138,
+      "coordinates": {
+        "lat": 47.2184,
+        "lon": -1.5536
+      }
+    },
+    {
+      "code": "STR",
+      "name": "Strasbourg",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 284677,
+      "coordinates": {
+        "lat": 48.5734,
+        "lon": 7.7521
+      }
+    },
+    {
+      "code": "BOR",
+      "name": "Bordeaux",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 257068,
+      "coordinates": {
+        "lat": 44.8378,
+        "lon": -0.5792
+      }
+    },
+    {
+      "code": "MON",
+      "name": "Montpellier",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 290053,
+      "coordinates": {
+        "lat": 43.6108,
+        "lon": 3.8767
+      }
+    },
+    {
+      "code": "LIL",
+      "name": "Lille",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 232787,
+      "coordinates": {
+        "lat": 50.6292,
+        "lon": 3.0573
+      }
+    },
+    {
+      "code": "REN",
+      "name": "Rennes",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 222485,
+      "coordinates": {
+        "lat": 48.1173,
+        "lon": -1.6778
+      }
+    },
+    {
+      "code": "REI",
+      "name": "Reims",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 182592,
+      "coordinates": {
+        "lat": 49.2583,
+        "lon": 4.0317
+      }
+    },
+    {
+      "code": "LE ",
+      "name": "Le Havre",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 172074,
+      "coordinates": {
+        "lat": 49.4944,
+        "lon": 0.1079
+      }
+    },
+    {
+      "code": "SAI",
+      "name": "Saint-Étienne",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 173089,
+      "coordinates": {
+        "lat": 45.4397,
+        "lon": 4.3872
+      }
+    },
+    {
+      "code": "TOU",
+      "name": "Toulon",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 176198,
+      "coordinates": {
+        "lat": 43.1242,
+        "lon": 5.928
+      }
+    },
+    {
+      "code": "ANG",
+      "name": "Angers",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 154508,
+      "coordinates": {
+        "lat": 47.4784,
+        "lon": -0.5632
+      }
+    },
+    {
+      "code": "DIJ",
+      "name": "Dijon",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 157920,
+      "coordinates": {
+        "lat": 47.322,
+        "lon": 5.0415
+      }
+    },
+    {
+      "code": "GRE",
+      "name": "Grenoble",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 158454,
+      "coordinates": {
+        "lat": 45.1885,
+        "lon": 5.7245
+      }
+    },
+    {
+      "code": "NÎM",
+      "name": "Nîmes",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 151001,
+      "coordinates": {
+        "lat": 43.8367,
+        "lon": 4.3601
+      }
+    },
+    {
+      "code": "CLE",
+      "name": "Clermont-Ferrand",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 146734,
+      "coordinates": {
+        "lat": 45.7772,
+        "lon": 3.087
+      }
+    },
+    {
+      "code": "AIX",
+      "name": "Aix-en-Provence",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 145721,
+      "coordinates": {
+        "lat": 43.5297,
+        "lon": 5.4474
+      }
+    },
+    {
+      "code": "BRE",
+      "name": "Brest",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 139926,
+      "coordinates": {
+        "lat": 48.3904,
+        "lon": -4.4861
+      }
+    },
+    {
+      "code": "LE ",
+      "name": "Le Mans",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 145502,
+      "coordinates": {
+        "lat": 48.0061,
+        "lon": 0.1996
+      }
+    },
+    {
+      "code": "AMI",
+      "name": "Amiens",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 135449,
+      "coordinates": {
+        "lat": 49.8941,
+        "lon": 2.2958
+      }
+    },
+    {
+      "code": "TOU",
+      "name": "Tours",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 136463,
+      "coordinates": {
+        "lat": 47.3941,
+        "lon": 0.6848
+      }
+    },
+    {
+      "code": "LIM",
+      "name": "Limoges",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 133968,
+      "coordinates": {
+        "lat": 45.8315,
+        "lon": 1.2578
+      }
+    },
+    {
+      "code": "VIL",
+      "name": "Villeurbanne",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 150659,
+      "coordinates": {
+        "lat": 45.7676,
+        "lon": 4.8798
+      }
+    },
+    {
+      "code": "BES",
+      "name": "Besançon",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 117080,
+      "coordinates": {
+        "lat": 47.2378,
+        "lon": 6.0241
+      }
+    },
+    {
+      "code": "MET",
+      "name": "Metz",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 117619,
+      "coordinates": {
+        "lat": 49.1193,
+        "lon": 6.1757
+      }
+    },
+    {
+      "code": "ORL",
+      "name": "Orléans",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 116238,
+      "coordinates": {
+        "lat": 47.9029,
+        "lon": 1.9039
+      }
+    },
+    {
+      "code": "ROU",
+      "name": "Rouen",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 113128,
+      "coordinates": {
+        "lat": 49.4432,
+        "lon": 1.0993
+      }
+    },
+    {
+      "code": "MUL",
+      "name": "Mulhouse",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 109443,
+      "coordinates": {
+        "lat": 47.7508,
+        "lon": 7.3359
+      }
+    },
+    {
+      "code": "MON",
+      "name": "Montreuil",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 106691,
+      "coordinates": {
+        "lat": 48.8638,
+        "lon": 2.4486
+      }
+    },
+    {
+      "code": "PER",
+      "name": "Perpignan",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 122694,
+      "coordinates": {
+        "lat": 42.6887,
+        "lon": 2.8948
+      }
+    },
+    {
+      "code": "CAE",
+      "name": "Caen",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 106260,
+      "coordinates": {
+        "lat": 49.1829,
+        "lon": -0.3707
+      }
+    },
+    {
+      "code": "NAN",
+      "name": "Nancy",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 105067,
+      "coordinates": {
+        "lat": 48.6921,
+        "lon": 6.1844
+      }
+    },
+    {
+      "code": "ARG",
+      "name": "Argenteuil",
+      "country": "FR",
+      "timezone": "Europe/Paris",
+      "population": 110465,
+      "coordinates": {
+        "lat": 48.9477,
+        "lon": 2.2467
+      }
+    },
+    {
+      "code": "AMS",
+      "name": "Amsterdam",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 872680,
+      "coordinates": {
+        "lat": 52.3676,
+        "lon": 4.9041
+      }
+    },
+    {
+      "code": "ROT",
+      "name": "Rotterdam",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 651446,
+      "coordinates": {
+        "lat": 51.9244,
+        "lon": 4.4777
+      }
+    },
+    {
+      "code": "THE",
+      "name": "The Hague",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 545163,
+      "coordinates": {
+        "lat": 52.0705,
+        "lon": 4.3007
+      }
+    },
+    {
+      "code": "UTR",
+      "name": "Utrecht",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 357597,
+      "coordinates": {
+        "lat": 52.0907,
+        "lon": 5.1214
+      }
+    },
+    {
+      "code": "EIN",
+      "name": "Eindhoven",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 234456,
+      "coordinates": {
+        "lat": 51.4416,
+        "lon": 5.4697
+      }
+    },
+    {
+      "code": "GRO",
+      "name": "Groningen",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 231299,
+      "coordinates": {
+        "lat": 53.2194,
+        "lon": 6.5665
+      }
+    },
+    {
+      "code": "TIL",
+      "name": "Tilburg",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 220308,
+      "coordinates": {
+        "lat": 51.5555,
+        "lon": 5.0913
+      }
+    },
+    {
+      "code": "BRE",
+      "name": "Breda",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 183873,
+      "coordinates": {
+        "lat": 51.5719,
+        "lon": 4.7683
+      }
+    },
+    {
+      "code": "NIJ",
+      "name": "Nijmegen",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 177199,
+      "coordinates": {
+        "lat": 51.8426,
+        "lon": 5.8527
+      }
+    },
+    {
+      "code": "ALM",
+      "name": "Almere",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 215753,
+      "coordinates": {
+        "lat": 52.3508,
+        "lon": 5.2647
+      }
+    },
+    {
+      "code": "HAA",
+      "name": "Haarlem",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 161265,
+      "coordinates": {
+        "lat": 52.3874,
+        "lon": 4.6462
+      }
+    },
+    {
+      "code": "ARN",
+      "name": "Arnhem",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 159265,
+      "coordinates": {
+        "lat": 51.9851,
+        "lon": 5.8987
+      }
+    },
+    {
+      "code": "'S-",
+      "name": "'s-Hertogenbosch",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 155088,
+      "coordinates": {
+        "lat": 51.6978,
+        "lon": 5.3037
+      }
+    },
+    {
+      "code": "ENS",
+      "name": "Enschede",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 159866,
+      "coordinates": {
+        "lat": 52.2215,
+        "lon": 6.8937
+      }
+    },
+    {
+      "code": "ZAA",
+      "name": "Zaanstad",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 156575,
+      "coordinates": {
+        "lat": 52.4558,
+        "lon": 4.8286
+      }
+    },
+    {
+      "code": "AME",
+      "name": "Amersfoort",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 157276,
+      "coordinates": {
+        "lat": 52.1561,
+        "lon": 5.3878
+      }
+    },
+    {
+      "code": "APE",
+      "name": "Apeldoorn",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 163405,
+      "coordinates": {
+        "lat": 52.2112,
+        "lon": 5.9699
+      }
+    },
+    {
+      "code": "ZWO",
+      "name": "Zwolle",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 128774,
+      "coordinates": {
+        "lat": 52.5168,
+        "lon": 6.083
+      }
+    },
+    {
+      "code": "LEE",
+      "name": "Leeuwarden",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 123107,
+      "coordinates": {
+        "lat": 53.2012,
+        "lon": 5.7999
+      }
+    },
+    {
+      "code": "MAA",
+      "name": "Maastricht",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 121565,
+      "coordinates": {
+        "lat": 50.8514,
+        "lon": 5.6909
+      }
+    },
+    {
+      "code": "LEI",
+      "name": "Leiden",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 124899,
+      "coordinates": {
+        "lat": 52.1601,
+        "lon": 4.497
+      }
+    },
+    {
+      "code": "DOR",
+      "name": "Dordrecht",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 119496,
+      "coordinates": {
+        "lat": 51.8133,
+        "lon": 4.6901
+      }
+    },
+    {
+      "code": "ZOE",
+      "name": "Zoetermeer",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 125271,
+      "coordinates": {
+        "lat": 52.0571,
+        "lon": 4.4931
+      }
+    },
+    {
+      "code": "VEN",
+      "name": "Venlo",
+      "country": "NL",
+      "timezone": "Europe/Amsterdam",
+      "population": 101544,
+      "coordinates": {
+        "lat": 51.3704,
+        "lon": 6.1724
+      }
+    },
+    {
+      "code": "RIG",
+      "name": "Riga",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 614618,
+      "coordinates": {
+        "lat": 56.9496,
+        "lon": 24.1052
+      }
+    },
+    {
+      "code": "DAU",
+      "name": "Daugavpils",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 80177,
+      "coordinates": {
+        "lat": 55.8747,
+        "lon": 26.5356
+      }
+    },
+    {
+      "code": "LIE",
+      "name": "Liepāja",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 67360,
+      "coordinates": {
+        "lat": 56.5047,
+        "lon": 21.0108
+      }
+    },
+    {
+      "code": "JEL",
+      "name": "Jelgava",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 55287,
+      "coordinates": {
+        "lat": 56.6511,
+        "lon": 23.7211
+      }
+    },
+    {
+      "code": "JŪR",
+      "name": "Jūrmala",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 49002,
+      "coordinates": {
+        "lat": 56.9681,
+        "lon": 23.7703
+      }
+    },
+    {
+      "code": "VEN",
+      "name": "Ventspils",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 33553,
+      "coordinates": {
+        "lat": 57.3944,
+        "lon": 21.5644
+      }
+    },
+    {
+      "code": "RĒZ",
+      "name": "Rēzekne",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 27609,
+      "coordinates": {
+        "lat": 56.51,
+        "lon": 27.3333
+      }
+    },
+    {
+      "code": "VAL",
+      "name": "Valmiera",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 23019,
+      "coordinates": {
+        "lat": 57.5386,
+        "lon": 25.4278
+      }
+    },
+    {
+      "code": "OGR",
+      "name": "Ogre",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 23414,
+      "coordinates": {
+        "lat": 56.8167,
+        "lon": 24.6
+      }
+    },
+    {
+      "code": "JĒK",
+      "name": "Jēkabpils",
+      "country": "LV",
+      "timezone": "Europe/Riga",
+      "population": 22153,
+      "coordinates": {
+        "lat": 56.4989,
+        "lon": 25.8564
+      }
+    },
+    {
+      "code": "VAD",
+      "name": "Vaduz",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 5696,
+      "coordinates": {
+        "lat": 47.141,
+        "lon": 9.5209
+      }
+    },
+    {
+      "code": "SCH",
+      "name": "Schaan",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 6099,
+      "coordinates": {
+        "lat": 47.1647,
+        "lon": 9.5083
+      }
+    },
+    {
+      "code": "TRI",
+      "name": "Triesen",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 5267,
+      "coordinates": {
+        "lat": 47.1083,
+        "lon": 9.5278
+      }
+    },
+    {
+      "code": "BAL",
+      "name": "Balzers",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 4736,
+      "coordinates": {
+        "lat": 47.0667,
+        "lon": 9.5
+      }
+    },
+    {
+      "code": "ESC",
+      "name": "Eschen",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 4392,
+      "coordinates": {
+        "lat": 47.2106,
+        "lon": 9.5222
+      }
+    },
+    {
+      "code": "MAU",
+      "name": "Mauren",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 4404,
+      "coordinates": {
+        "lat": 47.2194,
+        "lon": 9.5444
+      }
+    },
+    {
+      "code": "TRI",
+      "name": "Triesenberg",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 2619,
+      "coordinates": {
+        "lat": 47.1167,
+        "lon": 9.55
+      }
+    },
+    {
+      "code": "RUG",
+      "name": "Ruggell",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 2258,
+      "coordinates": {
+        "lat": 47.25,
+        "lon": 9.5333
+      }
+    },
+    {
+      "code": "GAM",
+      "name": "Gamprin",
+      "country": "LI",
+      "timezone": "Europe/Vaduz",
+      "population": 1659,
+      "coordinates": {
+        "lat": 47.2167,
+        "lon": 9.5
+      }
+    },
+    {
+      "code": "VIL",
+      "name": "Vilnius",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 580020,
+      "coordinates": {
+        "lat": 54.6872,
+        "lon": 25.2797
+      }
+    },
+    {
+      "code": "KAU",
+      "name": "Kaunas",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 289380,
+      "coordinates": {
+        "lat": 54.8985,
+        "lon": 23.9036
+      }
+    },
+    {
+      "code": "KLA",
+      "name": "Klaipėda",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 147898,
+      "coordinates": {
+        "lat": 55.7033,
+        "lon": 21.1443
+      }
+    },
+    {
+      "code": "ŠIA",
+      "name": "Šiauliai",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 100586,
+      "coordinates": {
+        "lat": 55.9333,
+        "lon": 23.3167
+      }
+    },
+    {
+      "code": "PAN",
+      "name": "Panevėžys",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 87216,
+      "coordinates": {
+        "lat": 55.7333,
+        "lon": 24.35
+      }
+    },
+    {
+      "code": "ALY",
+      "name": "Alytus",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 49346,
+      "coordinates": {
+        "lat": 54.4,
+        "lon": 24.05
+      }
+    },
+    {
+      "code": "MAR",
+      "name": "Marijampolė",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 34426,
+      "coordinates": {
+        "lat": 54.5556,
+        "lon": 23.35
+      }
+    },
+    {
+      "code": "MAŽ",
+      "name": "Mažeikiai",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 30815,
+      "coordinates": {
+        "lat": 56.3167,
+        "lon": 22.3333
+      }
+    },
+    {
+      "code": "JON",
+      "name": "Jonava",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 26683,
+      "coordinates": {
+        "lat": 55.0833,
+        "lon": 24.2833
+      }
+    },
+    {
+      "code": "UTE",
+      "name": "Utena",
+      "country": "LT",
+      "timezone": "Europe/Vilnius",
+      "population": 25084,
+      "coordinates": {
+        "lat": 55.5,
+        "lon": 25.6
+      }
+    },
+    {
+      "code": "LUX",
+      "name": "Luxembourg City",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 124528,
+      "coordinates": {
+        "lat": 49.6116,
+        "lon": 6.1319
+      }
+    },
+    {
+      "code": "ESC",
+      "name": "Esch-sur-Alzette",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 36228,
+      "coordinates": {
+        "lat": 49.495,
+        "lon": 5.9806
+      }
+    },
+    {
+      "code": "DIF",
+      "name": "Differdange",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 27967,
+      "coordinates": {
+        "lat": 49.5242,
+        "lon": 5.8914
+      }
+    },
+    {
+      "code": "DUD",
+      "name": "Dudelange",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 21509,
+      "coordinates": {
+        "lat": 49.4806,
+        "lon": 6.0875
+      }
+    },
+    {
+      "code": "PÉT",
+      "name": "Pétange",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 19854,
+      "coordinates": {
+        "lat": 49.5583,
+        "lon": 5.8806
+      }
+    },
+    {
+      "code": "SAN",
+      "name": "Sanem",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 17364,
+      "coordinates": {
+        "lat": 49.55,
+        "lon": 5.9333
+      }
+    },
+    {
+      "code": "HES",
+      "name": "Hesperange",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 16016,
+      "coordinates": {
+        "lat": 49.5667,
+        "lon": 6.15
+      }
+    },
+    {
+      "code": "BET",
+      "name": "Bettembourg",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 11264,
+      "coordinates": {
+        "lat": 49.5167,
+        "lon": 6.1
+      }
+    },
+    {
+      "code": "SCH",
+      "name": "Schifflange",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 11433,
+      "coordinates": {
+        "lat": 49.5083,
+        "lon": 6.0167
+      }
+    },
+    {
+      "code": "MAM",
+      "name": "Mamer",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 10423,
+      "coordinates": {
+        "lat": 49.6278,
+        "lon": 6.025
+      }
+    },
+    {
+      "code": "MER",
+      "name": "Mersch",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 9720,
+      "coordinates": {
+        "lat": 49.75,
+        "lon": 6.1
+      }
+    },
+    {
+      "code": "ETT",
+      "name": "Ettelbruck",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 9049,
+      "coordinates": {
+        "lat": 49.8472,
+        "lon": 6.1
+      }
+    },
+    {
+      "code": "DIE",
+      "name": "Diekirch",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 7044,
+      "coordinates": {
+        "lat": 49.8681,
+        "lon": 6.1569
+      }
+    },
+    {
+      "code": "WIL",
+      "name": "Wiltz",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 7208,
+      "coordinates": {
+        "lat": 49.9667,
+        "lon": 5.9333
+      }
+    },
+    {
+      "code": "ECH",
+      "name": "Echternach",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 5734,
+      "coordinates": {
+        "lat": 49.8111,
+        "lon": 6.4222
+      }
+    },
+    {
+      "code": "REM",
+      "name": "Remich",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 3753,
+      "coordinates": {
+        "lat": 49.545,
+        "lon": 6.3667
+      }
+    },
+    {
+      "code": "GRE",
+      "name": "Grevenmacher",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 5124,
+      "coordinates": {
+        "lat": 49.6742,
+        "lon": 6.4406
+      }
+    },
+    {
+      "code": "VIA",
+      "name": "Vianden",
+      "country": "LU",
+      "timezone": "Europe/Luxembourg",
+      "population": 2103,
+      "coordinates": {
+        "lat": 49.935,
+        "lon": 6.2092
+      }
+    },
+    {
+      "code": "OSL",
+      "name": "Oslo",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 693494,
+      "coordinates": {
+        "lat": 59.9139,
+        "lon": 10.7522
+      }
     },
     {
       "code": "BER",
-      "name": "Berlin",
-      "country": "DE",
-      "timezone": "Europe/Berlin",
-      "population": 3645000,
-      "area_km2": 892,
+      "name": "Bergen",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 283929,
       "coordinates": {
-        "lat": 52.5200,
-        "lon": 13.4050
-      },
-      "bbox": [52.3382, 13.0884, 52.6755, 13.7611]
+        "lat": 60.3913,
+        "lon": 5.3221
+      }
     },
     {
-      "code": "SYD",
-      "name": "Sydney",
-      "country": "AU",
-      "timezone": "Australia/Sydney",
-      "population": 5312000,
-      "area_km2": 12368,
+      "code": "TRO",
+      "name": "Trondheim",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 205163,
       "coordinates": {
-        "lat": -33.8688,
-        "lon": 151.2093
-      },
-      "bbox": [-34.1183, 150.5209, -33.5781, 151.3430]
+        "lat": 63.4305,
+        "lon": 10.3951
+      }
     },
     {
-      "code": "SIN",
-      "name": "Singapore",
-      "country": "SG",
-      "timezone": "Asia/Singapore",
-      "population": 5454000,
-      "area_km2": 733,
+      "code": "STA",
+      "name": "Stavanger",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 143574,
       "coordinates": {
-        "lat": 1.3521,
-        "lon": 103.8198
-      },
-      "bbox": [1.1496, 103.6000, 1.4784, 104.0900]
+        "lat": 58.97,
+        "lon": 5.7331
+      }
     },
     {
-      "code": "DXB",
-      "name": "Dubai",
-      "country": "AE",
-      "timezone": "Asia/Dubai",
-      "population": 3331000,
-      "area_km2": 4114,
+      "code": "KRI",
+      "name": "Kristiansand",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 111633,
       "coordinates": {
-        "lat": 25.2048,
-        "lon": 55.2708
-      },
-      "bbox": [24.7930, 54.8935, 25.3588, 55.5644]
+        "lat": 58.1599,
+        "lon": 8.0182
+      }
     },
     {
-      "code": "SAO",
-      "name": "São Paulo",
-      "country": "BR",
-      "timezone": "America/Sao_Paulo",
-      "population": 12325000,
-      "area_km2": 1521,
+      "code": "DRA",
+      "name": "Drammen",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 101386,
       "coordinates": {
-        "lat": -23.5505,
-        "lon": -46.6333
-      },
-      "bbox": [-24.0085, -46.8257, -23.3566, -46.3650]
+        "lat": 59.7441,
+        "lon": 10.2045
+      }
+    },
+    {
+      "code": "FRE",
+      "name": "Fredrikstad",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 82385,
+      "coordinates": {
+        "lat": 59.2181,
+        "lon": 10.9298
+      }
+    },
+    {
+      "code": "SAN",
+      "name": "Sandnes",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 78899,
+      "coordinates": {
+        "lat": 58.8518,
+        "lon": 5.7352
+      }
+    },
+    {
+      "code": "LIL",
+      "name": "Lillestrøm",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 50714,
+      "coordinates": {
+        "lat": 59.9558,
+        "lon": 11.0493
+      }
+    },
+    {
+      "code": "SAN",
+      "name": "Sandefjord",
+      "country": "NO",
+      "timezone": "Europe/Oslo",
+      "population": 46091,
+      "coordinates": {
+        "lat": 59.1318,
+        "lon": 10.2165
+      }
+    },
+    {
+      "code": "IST",
+      "name": "Istanbul",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 15519267,
+      "coordinates": {
+        "lat": 41.0082,
+        "lon": 28.9784
+      }
+    },
+    {
+      "code": "ANK",
+      "name": "Ankara",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 5663322,
+      "coordinates": {
+        "lat": 39.9334,
+        "lon": 32.8597
+      }
+    },
+    {
+      "code": "İZM",
+      "name": "İzmir",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 4367251,
+      "coordinates": {
+        "lat": 38.4237,
+        "lon": 27.1428
+      }
+    },
+    {
+      "code": "BUR",
+      "name": "Bursa",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 3101833,
+      "coordinates": {
+        "lat": 40.1885,
+        "lon": 29.061
+      }
+    },
+    {
+      "code": "ADA",
+      "name": "Adana",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 2237940,
+      "coordinates": {
+        "lat": 37.0,
+        "lon": 35.3213
+      }
+    },
+    {
+      "code": "GAZ",
+      "name": "Gaziantep",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 2069364,
+      "coordinates": {
+        "lat": 37.0662,
+        "lon": 37.3833
+      }
+    },
+    {
+      "code": "KON",
+      "name": "Konya",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 2232374,
+      "coordinates": {
+        "lat": 37.8713,
+        "lon": 32.4846
+      }
+    },
+    {
+      "code": "ANT",
+      "name": "Antalya",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 2511700,
+      "coordinates": {
+        "lat": 36.8969,
+        "lon": 30.7133
+      }
+    },
+    {
+      "code": "KAY",
+      "name": "Kayseri",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1412811,
+      "coordinates": {
+        "lat": 38.7312,
+        "lon": 35.4787
+      }
+    },
+    {
+      "code": "DIY",
+      "name": "Diyarbakır",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1756353,
+      "coordinates": {
+        "lat": 37.91,
+        "lon": 40.21
+      }
+    },
+    {
+      "code": "MER",
+      "name": "Mersin",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1840425,
+      "coordinates": {
+        "lat": 36.8,
+        "lon": 34.6333
+      }
+    },
+    {
+      "code": "ESK",
+      "name": "Eskişehir",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 888828,
+      "coordinates": {
+        "lat": 39.7767,
+        "lon": 30.5206
+      }
+    },
+    {
+      "code": "SAM",
+      "name": "Samsun",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1348542,
+      "coordinates": {
+        "lat": 41.2867,
+        "lon": 36.33
+      }
+    },
+    {
+      "code": "DEN",
+      "name": "Denizli",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1027782,
+      "coordinates": {
+        "lat": 37.7765,
+        "lon": 29.0864
+      }
+    },
+    {
+      "code": "ŞAN",
+      "name": "Şanlıurfa",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 2073614,
+      "coordinates": {
+        "lat": 37.1674,
+        "lon": 38.7955
+      }
+    },
+    {
+      "code": "MAL",
+      "name": "Malatya",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 797036,
+      "coordinates": {
+        "lat": 38.3552,
+        "lon": 38.3095
+      }
+    },
+    {
+      "code": "KAH",
+      "name": "Kahramanmaraş",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1154102,
+      "coordinates": {
+        "lat": 37.5858,
+        "lon": 36.9371
+      }
+    },
+    {
+      "code": "ERZ",
+      "name": "Erzurum",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 762321,
+      "coordinates": {
+        "lat": 39.9043,
+        "lon": 41.2679
+      }
+    },
+    {
+      "code": "VAN",
+      "name": "Van",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1123784,
+      "coordinates": {
+        "lat": 38.4891,
+        "lon": 43.4089
+      }
+    },
+    {
+      "code": "BAT",
+      "name": "Batman",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 599103,
+      "coordinates": {
+        "lat": 37.8812,
+        "lon": 41.1351
+      }
+    },
+    {
+      "code": "ELA",
+      "name": "Elazığ",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 591497,
+      "coordinates": {
+        "lat": 38.681,
+        "lon": 39.2264
+      }
+    },
+    {
+      "code": "SIV",
+      "name": "Sivas",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 638956,
+      "coordinates": {
+        "lat": 39.7477,
+        "lon": 37.0179
+      }
+    },
+    {
+      "code": "TRA",
+      "name": "Trabzon",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 808974,
+      "coordinates": {
+        "lat": 41.0015,
+        "lon": 39.7178
+      }
+    },
+    {
+      "code": "MAN",
+      "name": "Manisa",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1429643,
+      "coordinates": {
+        "lat": 38.6191,
+        "lon": 27.4289
+      }
+    },
+    {
+      "code": "BAL",
+      "name": "Balıkesir",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1228620,
+      "coordinates": {
+        "lat": 39.6484,
+        "lon": 27.8826
+      }
+    },
+    {
+      "code": "KIR",
+      "name": "Kırıkkale",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 283017,
+      "coordinates": {
+        "lat": 39.8468,
+        "lon": 33.5153
+      }
+    },
+    {
+      "code": "ADA",
+      "name": "Adapazarı",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1029650,
+      "coordinates": {
+        "lat": 40.7667,
+        "lon": 30.4
+      }
+    },
+    {
+      "code": "GEB",
+      "name": "Gebze",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 371000,
+      "coordinates": {
+        "lat": 40.7983,
+        "lon": 29.4306
+      }
+    },
+    {
+      "code": "İSK",
+      "name": "İskenderun",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 250000,
+      "coordinates": {
+        "lat": 36.5858,
+        "lon": 36.1709
+      }
+    },
+    {
+      "code": "ANT",
+      "name": "Antakya",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 377793,
+      "coordinates": {
+        "lat": 36.2025,
+        "lon": 36.1589
+      }
+    },
+    {
+      "code": "İZM",
+      "name": "İzmit",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 363416,
+      "coordinates": {
+        "lat": 40.7656,
+        "lon": 29.9167
+      }
+    },
+    {
+      "code": "AYD",
+      "name": "Aydın",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1110972,
+      "coordinates": {
+        "lat": 37.8444,
+        "lon": 27.8458
+      }
+    },
+    {
+      "code": "ÇAN",
+      "name": "Çanakkale",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 542157,
+      "coordinates": {
+        "lat": 40.1553,
+        "lon": 26.4142
+      }
+    },
+    {
+      "code": "EDI",
+      "name": "Edirne",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 413903,
+      "coordinates": {
+        "lat": 41.6771,
+        "lon": 26.5557
+      }
+    },
+    {
+      "code": "AFY",
+      "name": "Afyonkarahisar",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 729483,
+      "coordinates": {
+        "lat": 38.7507,
+        "lon": 30.5567
+      }
+    },
+    {
+      "code": "AKS",
+      "name": "Aksaray",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 412172,
+      "coordinates": {
+        "lat": 38.3687,
+        "lon": 34.037
+      }
+    },
+    {
+      "code": "BOL",
+      "name": "Bolu",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 311810,
+      "coordinates": {
+        "lat": 40.7356,
+        "lon": 31.6061
+      }
+    },
+    {
+      "code": "ÇOR",
+      "name": "Çorum",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 525180,
+      "coordinates": {
+        "lat": 40.5506,
+        "lon": 34.9556
+      }
+    },
+    {
+      "code": "DÜZ",
+      "name": "Düzce",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 387844,
+      "coordinates": {
+        "lat": 40.8438,
+        "lon": 31.1565
+      }
+    },
+    {
+      "code": "ISP",
+      "name": "Isparta",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 441412,
+      "coordinates": {
+        "lat": 37.7648,
+        "lon": 30.5566
+      }
+    },
+    {
+      "code": "KAR",
+      "name": "Karaman",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 251913,
+      "coordinates": {
+        "lat": 37.1759,
+        "lon": 33.2287
+      }
+    },
+    {
+      "code": "KÜT",
+      "name": "Kütahya",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 577941,
+      "coordinates": {
+        "lat": 39.4167,
+        "lon": 29.9833
+      }
+    },
+    {
+      "code": "RIZ",
+      "name": "Rize",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 348608,
+      "coordinates": {
+        "lat": 41.0201,
+        "lon": 40.5234
+      }
+    },
+    {
+      "code": "TEK",
+      "name": "Tekirdağ",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 1055412,
+      "coordinates": {
+        "lat": 40.9833,
+        "lon": 27.5167
+      }
+    },
+    {
+      "code": "TOK",
+      "name": "Tokat",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 596454,
+      "coordinates": {
+        "lat": 40.3167,
+        "lon": 36.55
+      }
+    },
+    {
+      "code": "UŞA",
+      "name": "Uşak",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 367514,
+      "coordinates": {
+        "lat": 38.6823,
+        "lon": 29.4082
+      }
+    },
+    {
+      "code": "ZON",
+      "name": "Zonguldak",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 596892,
+      "coordinates": {
+        "lat": 41.4564,
+        "lon": 31.7987
+      }
+    },
+    {
+      "code": "ADI",
+      "name": "Adıyaman",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 624465,
+      "coordinates": {
+        "lat": 37.7648,
+        "lon": 38.2786
+      }
+    },
+    {
+      "code": "AĞR",
+      "name": "Ağrı",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 539657,
+      "coordinates": {
+        "lat": 39.7191,
+        "lon": 43.0503
+      }
+    },
+    {
+      "code": "AMA",
+      "name": "Amasya",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 337576,
+      "coordinates": {
+        "lat": 40.65,
+        "lon": 35.8333
+      }
+    },
+    {
+      "code": "BIN",
+      "name": "Bingöl",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 281205,
+      "coordinates": {
+        "lat": 38.8853,
+        "lon": 40.4982
+      }
+    },
+    {
+      "code": "ERZ",
+      "name": "Erzincan",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 234431,
+      "coordinates": {
+        "lat": 39.75,
+        "lon": 39.5
+      }
+    },
+    {
+      "code": "GIR",
+      "name": "Giresun",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 448400,
+      "coordinates": {
+        "lat": 40.9128,
+        "lon": 38.3895
+      }
+    },
+    {
+      "code": "KAS",
+      "name": "Kastamonu",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 383373,
+      "coordinates": {
+        "lat": 41.3887,
+        "lon": 33.7827
+      }
+    },
+    {
+      "code": "KIR",
+      "name": "Kırşehir",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 241868,
+      "coordinates": {
+        "lat": 39.1425,
+        "lon": 34.1709
+      }
+    },
+    {
+      "code": "MAR",
+      "name": "Mardin",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 838778,
+      "coordinates": {
+        "lat": 37.3212,
+        "lon": 40.7245
+      }
+    },
+    {
+      "code": "SII",
+      "name": "Siirt",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 331311,
+      "coordinates": {
+        "lat": 37.9333,
+        "lon": 41.95
+      }
+    },
+    {
+      "code": "IĞD",
+      "name": "Iğdır",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 196511,
+      "coordinates": {
+        "lat": 39.9167,
+        "lon": 44.0333
+      }
+    },
+    {
+      "code": "KIL",
+      "name": "Kilis",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 142541,
+      "coordinates": {
+        "lat": 36.7184,
+        "lon": 37.1212
+      }
+    },
+    {
+      "code": "OSM",
+      "name": "Osmaniye",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 538759,
+      "coordinates": {
+        "lat": 37.0742,
+        "lon": 36.2478
+      }
+    },
+    {
+      "code": "KAR",
+      "name": "Karabük",
+      "country": "TR",
+      "timezone": "Europe/Istanbul",
+      "population": 248014,
+      "coordinates": {
+        "lat": 41.2061,
+        "lon": 32.6204
+      }
+    },
+    {
+      "code": "STO",
+      "name": "Stockholm",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 978770,
+      "coordinates": {
+        "lat": 59.3293,
+        "lon": 18.0686
+      }
+    },
+    {
+      "code": "GÖT",
+      "name": "Göteborg",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 590580,
+      "coordinates": {
+        "lat": 57.7089,
+        "lon": 11.9746
+      }
+    },
+    {
+      "code": "MAL",
+      "name": "Malmö",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 350647,
+      "coordinates": {
+        "lat": 55.605,
+        "lon": 13.0038
+      }
+    },
+    {
+      "code": "UPP",
+      "name": "Uppsala",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 177074,
+      "coordinates": {
+        "lat": 59.8586,
+        "lon": 17.6389
+      }
+    },
+    {
+      "code": "LIN",
+      "name": "Linköping",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 163051,
+      "coordinates": {
+        "lat": 58.4108,
+        "lon": 15.6214
+      }
+    },
+    {
+      "code": "ÖRE",
+      "name": "Örebro",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 155696,
+      "coordinates": {
+        "lat": 59.2753,
+        "lon": 15.2134
+      }
+    },
+    {
+      "code": "UME",
+      "name": "Umeå",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 130224,
+      "coordinates": {
+        "lat": 63.8258,
+        "lon": 20.263
+      }
+    },
+    {
+      "code": "VÄS",
+      "name": "Västerås",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 154049,
+      "coordinates": {
+        "lat": 59.6162,
+        "lon": 16.5528
+      }
+    },
+    {
+      "code": "JÖN",
+      "name": "Jönköping",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 141081,
+      "coordinates": {
+        "lat": 57.7826,
+        "lon": 14.1618
+      }
+    },
+    {
+      "code": "HEL",
+      "name": "Helsingborg",
+      "country": "SE",
+      "timezone": "Europe/Stockholm",
+      "population": 149280,
+      "coordinates": {
+        "lat": 56.0465,
+        "lon": 12.6945
+      }
+    },
+    {
+      "code": "ZÜR",
+      "name": "Zürich",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 434335,
+      "coordinates": {
+        "lat": 47.3769,
+        "lon": 8.5417
+      }
+    },
+    {
+      "code": "GEN",
+      "name": "Genève",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 203856,
+      "coordinates": {
+        "lat": 46.2044,
+        "lon": 6.1432
+      }
+    },
+    {
+      "code": "BAS",
+      "name": "Basel",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 177654,
+      "coordinates": {
+        "lat": 47.5596,
+        "lon": 7.5886
+      }
+    },
+    {
+      "code": "LAU",
+      "name": "Lausanne",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 139408,
+      "coordinates": {
+        "lat": 46.5197,
+        "lon": 6.6323
+      }
+    },
+    {
+      "code": "BER",
+      "name": "Bern",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 134591,
+      "coordinates": {
+        "lat": 46.948,
+        "lon": 7.4474
+      }
+    },
+    {
+      "code": "WIN",
+      "name": "Winterthur",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 115469,
+      "coordinates": {
+        "lat": 47.5001,
+        "lon": 8.7334
+      }
+    },
+    {
+      "code": "LUZ",
+      "name": "Luzern",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 82620,
+      "coordinates": {
+        "lat": 47.0502,
+        "lon": 8.3093
+      }
+    },
+    {
+      "code": "SAN",
+      "name": "Sankt Gallen",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 79640,
+      "coordinates": {
+        "lat": 47.4245,
+        "lon": 9.3767
+      }
+    },
+    {
+      "code": "LUG",
+      "name": "Lugano",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 63932,
+      "coordinates": {
+        "lat": 46.0037,
+        "lon": 8.9511
+      }
+    },
+    {
+      "code": "BIE",
+      "name": "Biel/Bienne",
+      "country": "CH",
+      "timezone": "Europe/Zurich",
+      "population": 55206,
+      "coordinates": {
+        "lat": 47.1368,
+        "lon": 7.2467
+      }
+    },
+    {
+      "code": "REY",
+      "name": "Reykjavík",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 133262,
+      "coordinates": {
+        "lat": 64.1466,
+        "lon": -21.9426
+      }
+    },
+    {
+      "code": "KÓP",
+      "name": "Kópavogur",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 38400,
+      "coordinates": {
+        "lat": 64.1123,
+        "lon": -21.9129
+      }
+    },
+    {
+      "code": "HAF",
+      "name": "Hafnarfjörður",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 29799,
+      "coordinates": {
+        "lat": 64.0671,
+        "lon": -21.9436
+      }
+    },
+    {
+      "code": "AKU",
+      "name": "Akureyri",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 19223,
+      "coordinates": {
+        "lat": 65.6835,
+        "lon": -18.0878
+      }
+    },
+    {
+      "code": "REY",
+      "name": "Reykjanesbær",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 19500,
+      "coordinates": {
+        "lat": 63.9973,
+        "lon": -22.5599
+      }
+    },
+    {
+      "code": "GAR",
+      "name": "Garðabær",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 18100,
+      "coordinates": {
+        "lat": 64.0894,
+        "lon": -21.9231
+      }
+    },
+    {
+      "code": "MOS",
+      "name": "Mosfellsbær",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 12100,
+      "coordinates": {
+        "lat": 64.1667,
+        "lon": -21.7
+      }
+    },
+    {
+      "code": "SEL",
+      "name": "Selfoss",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 7700,
+      "coordinates": {
+        "lat": 63.9333,
+        "lon": -20.9833
+      }
+    },
+    {
+      "code": "AKR",
+      "name": "Akranes",
+      "country": "IS",
+      "timezone": "Atlantic/Reykjavik",
+      "population": 7500,
+      "coordinates": {
+        "lat": 64.3167,
+        "lon": -22.0667
+      }
+    },
+    {
+      "code": "LON",
+      "name": "London",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 8982000,
+      "coordinates": {
+        "lat": 51.5074,
+        "lon": -0.1278
+      }
+    },
+    {
+      "code": "BIR",
+      "name": "Birmingham",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 1141816,
+      "coordinates": {
+        "lat": 52.4862,
+        "lon": -1.8904
+      }
+    },
+    {
+      "code": "LEE",
+      "name": "Leeds",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 789194,
+      "coordinates": {
+        "lat": 53.8008,
+        "lon": -1.5491
+      }
+    },
+    {
+      "code": "GLA",
+      "name": "Glasgow",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 633120,
+      "coordinates": {
+        "lat": 55.8642,
+        "lon": -4.2518
+      }
+    },
+    {
+      "code": "SHE",
+      "name": "Sheffield",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 584853,
+      "coordinates": {
+        "lat": 53.3811,
+        "lon": -1.4701
+      }
+    },
+    {
+      "code": "MAN",
+      "name": "Manchester",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 553230,
+      "coordinates": {
+        "lat": 53.4808,
+        "lon": -2.2426
+      }
+    },
+    {
+      "code": "EDI",
+      "name": "Edinburgh",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 524930,
+      "coordinates": {
+        "lat": 55.9533,
+        "lon": -3.1883
+      }
+    },
+    {
+      "code": "LIV",
+      "name": "Liverpool",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 498042,
+      "coordinates": {
+        "lat": 53.4084,
+        "lon": -2.9916
+      }
+    },
+    {
+      "code": "BRI",
+      "name": "Bristol",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 467099,
+      "coordinates": {
+        "lat": 51.4545,
+        "lon": -2.5879
+      }
+    },
+    {
+      "code": "CAR",
+      "name": "Cardiff",
+      "country": "GB",
+      "timezone": "Europe/London",
+      "population": 366903,
+      "coordinates": {
+        "lat": 51.4816,
+        "lon": -3.1791
+      }
+    },
+    {
+      "code": "NEW",
+      "name": "New York City",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 8336817,
+      "coordinates": {
+        "lat": 40.7128,
+        "lon": -74.006
+      }
+    },
+    {
+      "code": "LOS",
+      "name": "Los Angeles",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 3979576,
+      "coordinates": {
+        "lat": 34.0522,
+        "lon": -118.2437
+      }
+    },
+    {
+      "code": "CHI",
+      "name": "Chicago",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 2693976,
+      "coordinates": {
+        "lat": 41.8781,
+        "lon": -87.6298
+      }
+    },
+    {
+      "code": "HOU",
+      "name": "Houston",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 2320268,
+      "coordinates": {
+        "lat": 29.7604,
+        "lon": -95.3698
+      }
+    },
+    {
+      "code": "PHO",
+      "name": "Phoenix",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 1680992,
+      "coordinates": {
+        "lat": 33.4484,
+        "lon": -112.074
+      }
+    },
+    {
+      "code": "PHI",
+      "name": "Philadelphia",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 1584064,
+      "coordinates": {
+        "lat": 39.9526,
+        "lon": -75.1652
+      }
+    },
+    {
+      "code": "SAN",
+      "name": "San Antonio",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 1547253,
+      "coordinates": {
+        "lat": 29.4241,
+        "lon": -98.4936
+      }
+    },
+    {
+      "code": "SAN",
+      "name": "San Diego",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 1423851,
+      "coordinates": {
+        "lat": 32.7157,
+        "lon": -117.1611
+      }
+    },
+    {
+      "code": "DAL",
+      "name": "Dallas",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 1343573,
+      "coordinates": {
+        "lat": 32.7767,
+        "lon": -96.797
+      }
+    },
+    {
+      "code": "SAN",
+      "name": "San Jose",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 1021795,
+      "coordinates": {
+        "lat": 37.3382,
+        "lon": -121.8863
+      }
+    },
+    {
+      "code": "AUS",
+      "name": "Austin",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 978908,
+      "coordinates": {
+        "lat": 30.2672,
+        "lon": -97.7431
+      }
+    },
+    {
+      "code": "FOR",
+      "name": "Fort Worth",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 918915,
+      "coordinates": {
+        "lat": 32.7555,
+        "lon": -97.3308
+      }
+    },
+    {
+      "code": "JAC",
+      "name": "Jacksonville",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 911507,
+      "coordinates": {
+        "lat": 30.3322,
+        "lon": -81.6557
+      }
+    },
+    {
+      "code": "COL",
+      "name": "Columbus",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 905748,
+      "coordinates": {
+        "lat": 39.9612,
+        "lon": -82.9988
+      }
+    },
+    {
+      "code": "CHA",
+      "name": "Charlotte",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 879709,
+      "coordinates": {
+        "lat": 35.2271,
+        "lon": -80.8431
+      }
+    },
+    {
+      "code": "IND",
+      "name": "Indianapolis",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 876384,
+      "coordinates": {
+        "lat": 39.7684,
+        "lon": -86.1581
+      }
+    },
+    {
+      "code": "SEA",
+      "name": "Seattle",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 753655,
+      "coordinates": {
+        "lat": 47.6062,
+        "lon": -122.3321
+      }
+    },
+    {
+      "code": "DEN",
+      "name": "Denver",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 715522,
+      "coordinates": {
+        "lat": 39.7392,
+        "lon": -104.9903
+      }
+    },
+    {
+      "code": "BOS",
+      "name": "Boston",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 692600,
+      "coordinates": {
+        "lat": 42.3601,
+        "lon": -71.0589
+      }
+    },
+    {
+      "code": "POR",
+      "name": "Portland",
+      "country": "US",
+      "timezone": "America/New_York",
+      "population": 652503,
+      "coordinates": {
+        "lat": 45.5051,
+        "lon": -122.675
+      }
+    },
+    {
+      "code": "TOK",
+      "name": "Tokyo",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 13960000,
+      "coordinates": {
+        "lat": 35.6762,
+        "lon": 139.6503
+      }
+    },
+    {
+      "code": "YOK",
+      "name": "Yokohama",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 3748781,
+      "coordinates": {
+        "lat": 35.4437,
+        "lon": 139.638
+      }
+    },
+    {
+      "code": "OSA",
+      "name": "Osaka",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 2752412,
+      "coordinates": {
+        "lat": 34.6937,
+        "lon": 135.5023
+      }
+    },
+    {
+      "code": "NAG",
+      "name": "Nagoya",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 2320361,
+      "coordinates": {
+        "lat": 35.1815,
+        "lon": 136.9066
+      }
+    },
+    {
+      "code": "SAP",
+      "name": "Sapporo",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 1973395,
+      "coordinates": {
+        "lat": 43.0618,
+        "lon": 141.3545
+      }
+    },
+    {
+      "code": "FUK",
+      "name": "Fukuoka",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 1603043,
+      "coordinates": {
+        "lat": 33.5902,
+        "lon": 130.4017
+      }
+    },
+    {
+      "code": "KOB",
+      "name": "Kobe",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 1524601,
+      "coordinates": {
+        "lat": 34.6901,
+        "lon": 135.1956
+      }
+    },
+    {
+      "code": "KAW",
+      "name": "Kawasaki",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 1516483,
+      "coordinates": {
+        "lat": 35.5308,
+        "lon": 139.703
+      }
+    },
+    {
+      "code": "KYO",
+      "name": "Kyoto",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 1463723,
+      "coordinates": {
+        "lat": 35.0116,
+        "lon": 135.7681
+      }
+    },
+    {
+      "code": "SAI",
+      "name": "Saitama",
+      "country": "JP",
+      "timezone": "Asia/Tokyo",
+      "population": 1305632,
+      "coordinates": {
+        "lat": 35.8617,
+        "lon": 139.6455
+      }
     }
   ],
   "metadata": {
-    "version": "1.0.0",
-    "generated": "2026-01-14",
+    "version": "1.0.5",
+    "generated": "2026-01-15",
     "source": "UCID Foundation",
-    "license": "EUPL-1.2"
+    "license": "EUPL-1.2",
+    "total_cities": 403,
+    "note": "Full production registry - all 405 cities supported."
   }
 }

@@ -1,6 +1,13 @@
-# Deployment Guide
+# UCID Deployment Guide
 
-This document provides comprehensive guidance for deploying the UCID (Urban Context Identifier) system in various environments.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Deployment and Operations Guide |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation DevOps Team |
 
 ---
 
@@ -15,7 +22,10 @@ This document provides comprehensive guidance for deploying the UCID (Urban Cont
 7. [Database Setup](#database-setup)
 8. [Configuration](#configuration)
 9. [Monitoring](#monitoring)
-10. [Maintenance](#maintenance)
+10. [Scaling](#scaling)
+11. [Backup and Recovery](#backup-and-recovery)
+12. [Maintenance](#maintenance)
+13. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -23,35 +33,45 @@ This document provides comprehensive guidance for deploying the UCID (Urban Cont
 
 ### Deployment Options
 
-| Option | Best For | Complexity |
-|--------|----------|------------|
-| Local Development | Development, testing | Low |
-| Docker Compose | Single server, demos | Low |
-| Kubernetes | Production, scaling | High |
-| Cloud Managed | Enterprise, SaaS | Medium |
+| Option | Complexity | Best For |
+|--------|------------|----------|
+| Local Development | Low | Development, testing |
+| Docker Compose | Low | Single server, demos |
+| Kubernetes | High | Production, scaling |
+| Cloud Managed | Medium | Enterprise, SaaS |
+
+### Library Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| CREATE Performance | 127,575 ops/sec |
+| PARSE Performance | 61,443 ops/sec |
 
 ### Architecture Overview
 
 ```mermaid
 graph TB
     subgraph "Load Balancer"
-        LB[Nginx/ALB]
+        LB[Nginx / Cloud LB]
     end
-    
+
     subgraph "Application Tier"
-        API1[API Instance 1]
-        API2[API Instance 2]
-        API3[API Instance 3]
+        API1[API Pod 1]
+        API2[API Pod 2]
+        API3[API Pod 3]
     end
-    
+
     subgraph "Cache Tier"
         Redis[Redis Cluster]
     end
-    
+
     subgraph "Database Tier"
         PG[PostgreSQL + PostGIS]
     end
-    
+
+    Client --> LB
     LB --> API1
     LB --> API2
     LB --> API3
@@ -69,20 +89,20 @@ graph TB
 
 ### System Requirements
 
-| Resource | Minimum | Recommended |
-|----------|---------|-------------|
-| CPU | 2 cores | 4+ cores |
-| RAM | 4 GB | 16+ GB |
-| Storage | 20 GB | 100+ GB SSD |
-| Network | 100 Mbps | 1 Gbps |
+| Resource | Minimum | Recommended | Production |
+|----------|---------|-------------|------------|
+| CPU | 2 cores | 4 cores | 8+ cores |
+| RAM | 4 GB | 8 GB | 16+ GB |
+| Storage | 20 GB | 50 GB | 100+ GB SSD |
+| Network | 100 Mbps | 1 Gbps | 10 Gbps |
 
 ### Software Requirements
 
 | Software | Version | Purpose |
 |----------|---------|---------|
 | Python | 3.11+ | Application runtime |
-| PostgreSQL | 14+ | Database |
-| PostGIS | 3.3+ | Spatial extension |
+| PostgreSQL | 15+ | Database |
+| PostGIS | 3.4+ | Spatial extension |
 | Redis | 7+ | Caching |
 | Docker | 24+ | Containerization |
 | Kubernetes | 1.28+ | Orchestration |
@@ -104,9 +124,12 @@ source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
 
 # Install dependencies
-pip install -e ".[dev,contexts]"
+pip install -e ".[dev]"
 
-# Run development server
+# Run tests
+pytest tests/ -v
+
+# Start development server
 uvicorn ucid.api:app --reload --port 8000
 ```
 
@@ -117,14 +140,24 @@ uvicorn ucid.api:app --reload --port 8000
 docker-compose -f docker-compose.dev.yml up -d
 
 # Set environment variables
-export DATABASE_URL=postgresql://localhost/ucid_dev
-export REDIS_URL=redis://localhost:6379
+export UCID_DATABASE_URL=postgresql://localhost/ucid_dev
+export UCID_REDIS_URL=redis://localhost:6379
 
 # Initialize database
 python -m ucid.db init
 
-# Run tests
-pytest
+# Run development server
+make dev
+```
+
+### Environment Variables
+
+```bash
+# Create .env from template
+cp .env.example .env
+
+# Edit configuration
+nano .env
 ```
 
 ---
@@ -141,16 +174,19 @@ docker build -t ucid/ucid-api:latest .
 docker run -d \
   --name ucid-api \
   -p 8000:8000 \
-  -e DATABASE_URL=postgresql://host/db \
-  -e REDIS_URL=redis://host:6379 \
+  -e UCID_ENV=production \
+  -e UCID_LOG_LEVEL=INFO \
   ucid/ucid-api:latest
+
+# View logs
+docker logs -f ucid-api
 ```
 
 ### Docker Compose
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: '3.9'
 
 services:
   api:
@@ -158,18 +194,18 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://postgres:password@db:5432/ucid
-      - REDIS_URL=redis://redis:6379
+      - UCID_DATABASE_URL=postgresql://db/ucid
+      - UCID_REDIS_URL=redis://redis:6379
     depends_on:
       - db
       - redis
 
   db:
-    image: postgis/postgis:15-3.3
+    image: postgis/postgis:16-3.4
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=ucid
+      POSTGRES_DB: ucid
+      POSTGRES_USER: ucid
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -186,13 +222,13 @@ volumes:
 ### Running Docker Compose
 
 ```bash
-# Start all services
+# Start services
 docker-compose up -d
 
 # View logs
-docker-compose logs -f api
+docker-compose logs -f
 
-# Scale API instances
+# Scale API
 docker-compose up -d --scale api=3
 
 # Stop services
@@ -203,7 +239,7 @@ docker-compose down
 
 ## Kubernetes Deployment
 
-### Namespace and ConfigMap
+### Namespace
 
 ```yaml
 # k8s/namespace.yaml
@@ -211,8 +247,13 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: ucid
+  labels:
+    app.kubernetes.io/name: ucid
+```
 
----
+### ConfigMap
+
+```yaml
 # k8s/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
@@ -220,8 +261,9 @@ metadata:
   name: ucid-config
   namespace: ucid
 data:
-  LOG_LEVEL: "INFO"
-  WORKERS: "4"
+  UCID_ENV: "production"
+  UCID_LOG_LEVEL: "INFO"
+  UCID_API_WORKERS: "4"
 ```
 
 ### Secret
@@ -235,9 +277,8 @@ metadata:
   namespace: ucid
 type: Opaque
 stringData:
-  DATABASE_URL: postgresql://user:pass@db:5432/ucid
-  REDIS_URL: redis://redis:6379
-  API_KEY_SECRET: your-secret-key
+  UCID_DATABASE_URL: postgresql://user:pass@db:5432/ucid
+  UCID_REDIS_URL: redis://redis:6379
 ```
 
 ### Deployment
@@ -261,7 +302,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: ucid/ucid-api:1.0.0
+        image: ucid/ucid-api:1.0.5
         ports:
         - containerPort: 8000
         envFrom:
@@ -288,7 +329,7 @@ spec:
           initialDelaySeconds: 5
 ```
 
-### Service and Ingress
+### Service
 
 ```yaml
 # k8s/service.yaml
@@ -303,8 +344,11 @@ spec:
   ports:
   - port: 80
     targetPort: 8000
+```
 
----
+### Ingress
+
+```yaml
 # k8s/ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -313,7 +357,12 @@ metadata:
   namespace: ucid
   annotations:
     kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
+  tls:
+  - hosts:
+    - api.ucid.org
+    secretName: ucid-tls
   rules:
   - host: api.ucid.org
     http:
@@ -327,7 +376,7 @@ spec:
               number: 80
 ```
 
-### Horizontal Pod Autoscaler
+### HPA
 
 ```yaml
 # k8s/hpa.yaml
@@ -342,7 +391,7 @@ spec:
     kind: Deployment
     name: ucid-api
   minReplicas: 3
-  maxReplicas: 10
+  maxReplicas: 20
   metrics:
   - type: Resource
     resource:
@@ -350,6 +399,20 @@ spec:
       target:
         type: Utilization
         averageUtilization: 70
+```
+
+### Apply Kubernetes Resources
+
+```bash
+# Apply all resources
+kubectl apply -f k8s/
+
+# Check status
+kubectl get pods -n ucid
+kubectl get svc -n ucid
+
+# View logs
+kubectl logs -f deployment/ucid-api -n ucid
 ```
 
 ---
@@ -365,6 +428,7 @@ spec:
 | ElastiCache | Redis cache |
 | ALB | Load balancer |
 | ECR | Container registry |
+| CloudWatch | Monitoring |
 
 ### Google Cloud
 
@@ -375,6 +439,7 @@ spec:
 | Memorystore | Redis cache |
 | Cloud Load Balancing | Load balancer |
 | Artifact Registry | Container registry |
+| Cloud Monitoring | Monitoring |
 
 ### Azure
 
@@ -385,6 +450,7 @@ spec:
 | Azure Cache | Redis cache |
 | Azure LB | Load balancer |
 | ACR | Container registry |
+| Azure Monitor | Monitoring |
 
 ---
 
@@ -396,7 +462,7 @@ spec:
 -- Create database
 CREATE DATABASE ucid;
 
--- Enable extensions
+-- Connect and enable extensions
 \c ucid
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS h3;
@@ -414,7 +480,7 @@ CREATE TABLE ucid_scores (
     context TEXT NOT NULL,
     score INTEGER NOT NULL,
     grade CHAR(1) NOT NULL,
-    confidence INTEGER NOT NULL,
+    confidence FLOAT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -433,6 +499,9 @@ alembic upgrade head
 
 # Create new migration
 alembic revision --autogenerate -m "Add new table"
+
+# Rollback
+alembic downgrade -1
 ```
 
 ---
@@ -443,11 +512,11 @@ alembic revision --autogenerate -m "Add new table"
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| DATABASE_URL | Yes | - | PostgreSQL connection |
-| REDIS_URL | No | - | Redis connection |
-| API_KEY_SECRET | Yes | - | API key signing |
-| LOG_LEVEL | No | INFO | Logging level |
-| WORKERS | No | 4 | Gunicorn workers |
+| UCID_ENV | No | development | Environment |
+| UCID_DATABASE_URL | Yes | - | Database connection |
+| UCID_REDIS_URL | No | - | Redis connection |
+| UCID_API_PORT | No | 8000 | API port |
+| UCID_LOG_LEVEL | No | INFO | Log level |
 
 ### Configuration File
 
@@ -459,12 +528,12 @@ server:
   workers: 4
 
 database:
-  url: ${DATABASE_URL}
+  url: ${UCID_DATABASE_URL}
   pool_size: 10
   max_overflow: 20
 
 cache:
-  url: ${REDIS_URL}
+  url: ${UCID_REDIS_URL}
   ttl: 3600
 
 logging:
@@ -484,7 +553,7 @@ logging:
 | /ready | Readiness check |
 | /metrics | Prometheus metrics |
 
-### Prometheus Metrics
+### Prometheus
 
 ```yaml
 # prometheus.yml
@@ -494,28 +563,64 @@ scrape_configs:
       - targets: ['ucid-api:8000']
 ```
 
-### Grafana Dashboard
+### Key Metrics
 
-Key metrics to monitor:
+| Metric | Target |
+|--------|--------|
+| Request latency P99 | <200ms |
+| Error rate | <0.1% |
+| CPU usage | <70% |
+| Memory usage | <80% |
 
-- Request rate
-- Response latency
-- Error rate
-- Active connections
-- Database queries
-- Cache hit rate
+---
+
+## Scaling
+
+### Horizontal Scaling
+
+| Component | Strategy |
+|-----------|----------|
+| API | Multiple pods/containers |
+| Workers | Queue-based scaling |
+| Database | Read replicas |
+| Cache | Redis cluster |
+
+### Auto-scaling
+
+```yaml
+# HPA triggers
+- CPU > 70%: Scale up
+- CPU < 30%: Scale down
+- Min replicas: 3
+- Max replicas: 20
+```
+
+---
+
+## Backup and Recovery
+
+### Backup Strategy
+
+| Component | Method | Frequency |
+|-----------|--------|-----------|
+| Database | pg_dump | Daily |
+| Redis | RDB/AOF | Hourly |
+| Logs | Archive | Weekly |
+| Config | Git | On change |
+
+### Recovery
+
+```bash
+# Restore database
+pg_restore -d ucid backup.dump
+
+# Restore Redis
+redis-cli RESTORE ...
+```
 
 ---
 
 ## Maintenance
-
-### Backup Strategy
-
-| Component | Strategy | Frequency |
-|-----------|----------|-----------|
-| Database | pg_dump | Daily |
-| Redis | RDB/AOF | Hourly |
-| Logs | Archive | Weekly |
 
 ### Updates
 
@@ -523,10 +628,23 @@ Key metrics to monitor:
 # Pull latest image
 docker pull ucid/ucid-api:latest
 
-# Rolling update in Kubernetes
+# Rolling update
 kubectl set image deployment/ucid-api \
-  api=ucid/ucid-api:1.1.0 \
+  api=ucid/ucid-api:1.0.5 \
   --namespace ucid
+```
+
+### Health Checks
+
+```bash
+# Check API health
+curl http://localhost:8000/health
+
+# Check database
+psql $DATABASE_URL -c "SELECT 1"
+
+# Check Redis
+redis-cli ping
 ```
 
 ---
@@ -554,4 +672,13 @@ kubectl logs -f deployment/ucid-api -n ucid
 
 ---
 
+## References
+
+- [Docker Documentation](https://docs.docker.com/)
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+
+---
+
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

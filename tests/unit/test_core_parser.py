@@ -20,7 +20,7 @@ from ucid.core.errors import UCIDParseError
 from ucid.core.parser import canonicalize, create_ucid, parse_ucid
 
 
-class TestParseUCID:
+class TestParseUCID-V1:
     """Tests for parse_ucid function."""
 
     def test_parse_valid_ucid(self) -> None:
@@ -91,7 +91,7 @@ class TestParseUCID:
             assert ucid.grade == grade
 
 
-class TestCreateUCID:
+class TestCreateUCID-V1:
     """Tests for create_ucid function."""
 
     def test_create_basic_ucid(self) -> None:

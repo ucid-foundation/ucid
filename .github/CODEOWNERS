@@ -1,16 +1,57 @@
-# CODEOWNERS file for UCID
-# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# Code Owners
+# This file defines the code owners for the UCID repository.
+# Code owners are automatically requested for review when someone
+# opens a pull request that modifies code they own.
+#
+# Reference: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
-# Default owners for everything in the repo
-*       @ucid-foundation/maintainers
+# Default owners for everything in the repository
+* @ucid-foundation/core-maintainers
 
-# Core module requires senior review
-/src/ucid/core/     @ucid-foundation/core-team
+# Core library
+/src/ucid/ @ucid-foundation/core-maintainers
+/src/ucid/core/ @ucid-foundation/core-maintainers
+/src/ucid/models/ @ucid-foundation/core-maintainers
 
-# Security-sensitive files
-/SECURITY.md        @ucid-foundation/security
-/.github/workflows/ @ucid-foundation/devops
+# Context algorithms
+/src/ucid/contexts/ @ucid-foundation/contexts-team
+
+# Spatial operations
+/src/ucid/spatial/ @ucid-foundation/spatial-team
+
+# API
+/src/ucid/api/ @ucid-foundation/api-team
+
+# CLI
+/src/ucid/cli/ @ucid-foundation/cli-team
+
+# Data and registry
+/src/ucid/data/ @ucid-foundation/data-team
+/data/ @ucid-foundation/data-team
+/datasets/ @ucid-foundation/data-team
+
+# Tests
+/tests/ @ucid-foundation/core-maintainers
 
 # Documentation
-/docs/              @ucid-foundation/docs-team
-/README.md          @ucid-foundation/maintainers
+/docs/ @ucid-foundation/docs-team
+*.md @ucid-foundation/docs-team
+
+# Examples and notebooks
+/examples/ @ucid-foundation/docs-team
+/notebooks/ @ucid-foundation/docs-team
+
+# Configuration and CI/CD
+/.github/ @ucid-foundation/devops-team
+/configs/ @ucid-foundation/devops-team
+pyproject.toml @ucid-foundation/core-maintainers
+Dockerfile @ucid-foundation/devops-team
+docker-compose.yml @ucid-foundation/devops-team
+
+# Security
+SECURITY.md @ucid-foundation/security-team
+/.github/SECURITY.md @ucid-foundation/security-team
+
+# Benchmarks
+/benchmarks/ @ucid-foundation/performance-team
+/scripts/benchmark.py @ucid-foundation/performance-team

@@ -90,19 +90,19 @@ from ucid.contexts import FifteenMinuteContext, TransitContext
 A UCID string follows this structure:
 
 ```
-UCID-V1:CITY:LAT:LON:H3R:H3:TIME:CTX:GRD:CONF:FLAGS
+UCID:CITY:LAT:LON:H3R:H3:TIME:CTX:GRD:CONF:FLAGS
 ```
 
 Example:
 ```
-UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:
+UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:
 ```
 
 The components are:
 
 ```mermaid
 graph LR
-    A[UCID-V1] --> B[IST]
+    A[UCID] --> B[IST]
     B --> C[+41.015]
     C --> D[+028.979]
     D --> E[9]
@@ -147,7 +147,7 @@ ucid = create_ucid(
 )
 
 print(ucid)
-# Output: UCID-V1:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:F:0.00:
+# Output: UCID:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:F:0.00:
 ```
 
 ### UCID Creation with Scoring
@@ -229,7 +229,7 @@ Parse a UCID string to extract its components:
 ```python
 from ucid import parse_ucid
 
-ucid_string = "UCID-V1:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
+ucid_string = "UCID:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
 
 parsed = parse_ucid(ucid_string)
 
@@ -258,7 +258,7 @@ except UCIDParseError as e:
     print(f"Parse error: {e}")
 
 # Permissive parsing - attempts to parse despite errors
-parsed = parse_ucid("UCID-V1:IST:+41.0:+28.9:9:...", strict=False)
+parsed = parse_ucid("UCID:IST:+41.0:+28.9:9:...", strict=False)
 ```
 
 ### Accessing UCID Properties
@@ -268,7 +268,7 @@ The parsed UCID object provides convenient properties:
 ```python
 from ucid import parse_ucid
 
-ucid_string = "UCID-V1:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
+ucid_string = "UCID:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
 parsed = parse_ucid(ucid_string)
 
 # Geographic coordinates as tuple
@@ -510,12 +510,12 @@ print(gdf.head())
 ### Parse Command
 
 ```bash
-ucid parse "UCID-V1:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
+ucid parse "UCID:IST:+41.008:+028.978:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
 ```
 
 Output:
 ```
-Version:    UCID-V1
+Version:    UCID
 City:       IST
 Latitude:   41.008
 Longitude:  28.978
@@ -537,7 +537,7 @@ ucid create --city IST --lat 41.008 --lon 28.978 --timestamp 2026W01T12 --contex
 ### Canonicalize Command
 
 ```bash
-ucid canonicalize "ucid-v1:ist:+41:+28:9:..."
+ucid canonicalize "UCID:ist:+41:+28:9:..."
 ```
 
 ---

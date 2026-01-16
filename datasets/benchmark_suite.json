@@ -1,0 +1,84 @@
+{
+  "_comment": "Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.",
+  "_version": "1.0.5",
+  "_description": "Benchmark dataset for UCID library performance testing.",
+  "_documentation": "https://ucid.readthedocs.io/benchmarks",
+  "_last_updated": "2026-01-15",
+  "metadata": {
+    "name": "UCID Performance Benchmark Suite",
+    "version": "1.0.5",
+    "created": "2026-01-15",
+    "author": "UCID Foundation",
+    "license": "EUPL-1.2",
+    "total_records": 1000,
+    "seed": 42
+  },
+  "config": {
+    "iterations": 100000,
+    "warmup": 1000,
+    "runs": 5,
+    "timeout_ms": 1000
+  },
+  "targets": {
+    "create": {
+      "throughput_min": 10000,
+      "latency_p99_max_ms": 1.0
+    },
+    "parse": {
+      "throughput_min": 10000,
+      "latency_p99_max_ms": 1.0
+    },
+    "validate": {
+      "throughput_min": 10000,
+      "latency_p99_max_ms": 5.0
+    }
+  },
+  "measured": {
+    "date": "2026-01-15",
+    "create": {
+      "throughput": 127575,
+      "latency_p50_ms": 0.0075,
+      "latency_p95_ms": 0.0090,
+      "latency_p99_ms": 0.0120
+    },
+    "parse": {
+      "throughput": 61443,
+      "latency_p50_ms": 0.0155,
+      "latency_p95_ms": 0.0200,
+      "latency_p99_ms": 0.0280
+    },
+    "validate": {
+      "throughput": 17334,
+      "latency_p50_ms": 0.0550,
+      "latency_p95_ms": 0.0750,
+      "latency_p99_ms": 0.0950
+    }
+  },
+  "test_data": {
+    "cities": [
+      {"code": "IST", "lat": 41.0082, "lon": 28.9784},
+      {"code": "BER", "lat": 52.5200, "lon": 13.4050},
+      {"code": "AMS", "lat": 52.3702, "lon": 4.8952},
+      {"code": "VIE", "lat": 48.2082, "lon": 16.3738},
+      {"code": "ZUR", "lat": 47.3769, "lon": 8.5417},
+      {"code": "MUN", "lat": 48.1351, "lon": 11.5820},
+      {"code": "HAM", "lat": 53.5511, "lon": 9.9937},
+      {"code": "FRA", "lat": 50.1109, "lon": 8.6821},
+      {"code": "ANK", "lat": 39.9334, "lon": 32.8597},
+      {"code": "IZM", "lat": 38.4192, "lon": 27.1287},
+      {"code": "BRU", "lat": 50.8476, "lon": 4.3572},
+      {"code": "ROT", "lat": 51.9244, "lon": 4.4777},
+      {"code": "UTR", "lat": 52.0907, "lon": 5.1214},
+      {"code": "COL", "lat": 50.9375, "lon": 6.9603},
+      {"code": "DUS", "lat": 51.2277, "lon": 6.7735},
+      {"code": "ANT", "lat": 51.2194, "lon": 4.4025},
+      {"code": "GRA", "lat": 47.0707, "lon": 15.4395},
+      {"code": "LIN", "lat": 48.3064, "lon": 14.2858},
+      {"code": "BAS", "lat": 47.5596, "lon": 7.5886},
+      {"code": "GEN", "lat": 46.2044, "lon": 6.1432}
+    ],
+    "contexts": ["15MIN", "TRANSIT", "WALK", "NONE"],
+    "resolutions": [7, 8, 9, 10, 11],
+    "grades": ["A", "B", "C", "D", "F"]
+  }
+}

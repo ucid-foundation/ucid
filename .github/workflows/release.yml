@@ -1,46 +1,138 @@
+# Release Workflow
+# Automated release process for PyPI publishing.
+
 name: Release
 
 on:
   push:
     tags:
-      - 'v*'
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g., 1.0.5)"
+        required: true
 
 permissions:
-  contents: read
+  contents: write
+  id-token: write
 
 jobs:
   build:
+    name: Build Distribution
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
-      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          python-version: '3.11'
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - name: Install build tools
-        run: pip install build==1.2.1
-      - name: Build distributions
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+
+      - name: Build package
         run: python -m build
-      - uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08  # v4.6.0
+
+      - name: Check package
+        run: twine check dist/*
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: distributions
+          name: dist
           path: dist/
 
-  # Note: PyPI publishing requires trusted publisher configuration on PyPI.org
-  # See: https://docs.pypi.org/trusted-publishers/
-  # Uncomment when trusted publisher is configured:
-  # publish:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: pypi
-  #     url: https://pypi.org/p/UCID
-  #   steps:
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         name: distributions
-  #         path: dist/
-  #     - name: Publish to PyPI
-  #       uses: pypa/gh-action-pypi-publish@release/v1
+  test:
+    name: Test Distribution
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install from wheel
+        run: pip install dist/*.whl
+
+      - name: Test import
+        run: python -c "import ucid; print(ucid.__version__)"
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/ucid/
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+
+  github-release:
+    name: Create GitHub Release
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+
+  sbom:
+    name: Generate SBOM
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install CycloneDX
+        run: pip install cyclonedx-bom
+
+      - name: Generate SBOM
+        run: cyclonedx-py -r -o sbom.json
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.json

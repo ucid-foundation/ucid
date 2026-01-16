@@ -97,7 +97,7 @@ ALPHANUM       = ALPHA / DIGIT
 ```mermaid
 graph LR
     subgraph "UCID String Structure"
-        F0[Version<br/>UCID-V1]
+        F0[Version<br/>UCID]
         F1[City<br/>IST]
         F2[Latitude<br/>+41.015]
         F3[Longitude<br/>+028.979]
@@ -149,7 +149,7 @@ The version identifier specifies the UCID protocol version.
 | Property | Value |
 |----------|-------|
 | Format | `UCID-V` followed by version number |
-| Current Version | `UCID-V1` |
+| Current Version | `UCID` |
 | Case | Uppercase required |
 
 Version history:
@@ -369,7 +369,7 @@ flowchart TD
 
 | Field | Validation Rule |
 |-------|-----------------|
-| Version | Exact match: `UCID-V1` |
+| Version | Exact match: `UCID` |
 | City | 3 uppercase letters AND in registry |
 | Latitude | Float AND $\lvert\lambda\rvert \leq 90$ |
 | Longitude | Float AND $\lvert\phi\rvert \leq 180$ |
@@ -398,7 +398,7 @@ UCIDs are canonicalized according to these rules:
 
 | Field | Canonical Form |
 |-------|----------------|
-| Version | Uppercase: `UCID-V1` |
+| Version | Uppercase: `UCID` |
 | City | Uppercase: `IST` |
 | Latitude | Sign + 2 digits + `.` + 3 digits: `+41.015` |
 | Longitude | Sign + 3 digits + `.` + 3 digits: `+028.979` |
@@ -414,12 +414,12 @@ UCIDs are canonicalized according to these rules:
 
 Input:
 ```
-ucid-v1:ist:+41.0150:+28.979:09:891F2ED6DF7FFFF:2026W1T12:15min:a:0.9200:verified;official
+UCID:ist:+41.0150:+28.979:09:891F2ED6DF7FFFF:2026W1T12:15min:a:0.9200:verified;official
 ```
 
 Canonical output:
 ```
-UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:OFFICIAL;VERIFIED;
+UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:OFFICIAL;VERIFIED;
 ```
 
 ---
@@ -434,7 +434,7 @@ UCIDs are encoded as UTF-8 strings. All characters are within the ASCII subset.
 
 ```json
 {
-  "ucid": "UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:",
+  "ucid": "UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:",
   "version": "V1",
   "city": "IST",
   "lat": 41.015,
@@ -530,18 +530,18 @@ Reserved version numbers:
 Valid UCIDs:
 
 ```
-UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:
-UCID-V1:NYC:+40.712:−074.006:9:892a1072d63ffff:2026W01T12:TRANSIT:B:0.85:
-UCID-V1:LON:+51.507:−000.127:9:8d1fb46f93bffff:2026W52T23:CLIMATE:A+:0.98:VERIFIED;
+UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:
+UCID:NYC:+40.712:−074.006:9:892a1072d63ffff:2026W01T12:TRANSIT:B:0.85:
+UCID:LON:+51.507:−000.127:9:8d1fb46f93bffff:2026W52T23:CLIMATE:A+:0.98:VERIFIED;
 ```
 
 Invalid UCIDs:
 
 ```
 UCID-V2:IST:...                    # Invalid version
-UCID-V1:istanbul:...               # Invalid city format
-UCID-V1:IST:41.015:28.979:...      # Missing coordinate signs
-UCID-V1:IST:+41.015:+28.979:16:... # Invalid resolution
+UCID:istanbul:...               # Invalid city format
+UCID:IST:41.015:28.979:...      # Missing coordinate signs
+UCID:IST:+41.015:+28.979:16:... # Invalid resolution
 ```
 
 ---
@@ -551,12 +551,12 @@ UCID-V1:IST:+41.015:+28.979:16:... # Invalid resolution
 ### Complete Example
 
 ```
-UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:VERIFIED;OFFICIAL;
+UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:VERIFIED;OFFICIAL;
 ```
 
 | Field | Value | Interpretation |
 |-------|-------|----------------|
-| Version | UCID-V1 | Protocol version 1 |
+| Version | UCID | Protocol version 1 |
 | City | IST | Istanbul, Turkey |
 | Latitude | +41.015 | 41.015 degrees North |
 | Longitude | +028.979 | 28.979 degrees East |

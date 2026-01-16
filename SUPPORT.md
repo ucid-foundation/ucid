@@ -1,142 +1,379 @@
-# Support
+# UCID Support
 
-This document provides information about how to get help and support for the UCID (Urban Context Identifier) project.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Support and Help Guide |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation |
+| Contact | support@ucid.org |
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Getting Help](#getting-help)
-3. [Community Support](#community-support)
-4. [Professional Support](#professional-support)
-5. [Bug Reports](#bug-reports)
-6. [Feature Requests](#feature-requests)
-7. [Security Issues](#security-issues)
-8. [Documentation](#documentation)
-9. [Training](#training)
-10. [FAQ](#faq)
+1. [Getting Help](#getting-help)
+2. [Documentation](#documentation)
+3. [Community Resources](#community-resources)
+4. [Issue Reporting](#issue-reporting)
+5. [Frequently Asked Questions](#frequently-asked-questions)
+6. [Troubleshooting](#troubleshooting)
+7. [Professional Support](#professional-support)
+8. [Training Resources](#training-resources)
+9. [Feedback](#feedback)
 
 ---
 
-## Overview
+## Library Statistics
 
-UCID is an open source project maintained by the UCID Foundation and community contributors. We offer multiple support channels to help you use UCID effectively.
-
-### Support Philosophy
-
-| Principle | Description |
-|-----------|-------------|
-| **Community First** | Community support is the primary support channel |
-| **Documentation** | Comprehensive docs to enable self-service |
-| **Responsiveness** | We strive to respond promptly to all requests |
-| **Accessibility** | Support available in multiple formats |
-
-### Support Matrix
-
-| Support Type | Availability | Response Time |
-|--------------|--------------|---------------|
-| GitHub Issues | 24/7 | 2-5 business days |
-| GitHub Discussions | 24/7 | Best effort |
-| Discord | 24/7 | Best effort |
-| Security Reports | 24/7 | 24-48 hours |
-| Professional Support | Business hours | SLA-based |
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| CREATE Performance | 127,575 ops/sec |
+| PARSE Performance | 61,443 ops/sec |
+| Test Coverage | 85%+ |
 
 ---
 
 ## Getting Help
 
-### Before Asking for Help
+### Support Channels Overview
 
-Before reaching out for support, please:
+| Channel | Best For | Response Time |
+|---------|----------|---------------|
+| Documentation | Self-service learning | Immediate |
+| GitHub Discussions | General questions | 1-3 days |
+| GitHub Issues | Bug reports | 1-7 days |
+| Stack Overflow | Technical questions | Community |
+| Discord | Real-time chat | Community |
+| Email | Private inquiries | 3-5 days |
 
-1. **Check the Documentation**: Review the [official documentation](https://ucid.readthedocs.io/)
-2. **Search Existing Issues**: Look for similar issues on [GitHub](https://github.com/ucid-foundation/ucid/issues)
-3. **Check Discussions**: Browse [GitHub Discussions](https://github.com/ucid-foundation/ucid/discussions)
-4. **Review the FAQ**: Check the FAQ section below
-5. **Prepare Details**: Gather relevant information about your issue
+### Choosing the Right Channel
 
-### Required Information
-
-When asking for help, please include:
-
-| Information | Description |
-|-------------|-------------|
-| **UCID Version** | Output of `python -c "import ucid; print(ucid.__version__)"` |
-| **Python Version** | Output of `python --version` |
-| **Operating System** | Windows, macOS, Linux distribution |
-| **Error Message** | Complete error traceback if applicable |
-| **Minimal Example** | Smallest code that reproduces the issue |
-| **Expected Behavior** | What you expected to happen |
-| **Actual Behavior** | What actually happened |
-
-### Example Support Request
-
-```markdown
-## Environment
-- UCID Version: 1.0.0
-- Python Version: 3.12.0
-- OS: Ubuntu 22.04
-
-## Issue Description
-When trying to create a UCID with a specific city code, I get a validation error.
-
-## Code to Reproduce
-```python
-from ucid import create_ucid
-
-ucid = create_ucid(
-    city="XYZ",
-    lat=41.015,
-    lon=28.979,
-    timestamp="2026W01T12",
-    context="15MIN",
-)
-```
-
-## Error Message
-```
-UCIDValidationError: Unknown city code: XYZ
-```
-
-## Expected Behavior
-UCID should be created with the city code XYZ.
-
-## Additional Context
-XYZ is a custom city code we use internally.
+```mermaid
+flowchart TD
+    A[Need Help] --> B{What kind?}
+    B -->|Bug| C[GitHub Issues]
+    B -->|Question| D[Discussions]
+    B -->|Security| E[security@ucid.org]
+    B -->|Feature| F[GitHub Issues]
+    B -->|General| G[Discord]
+    B -->|Private| H[Email]
 ```
 
 ---
 
-## Community Support
+## Documentation
 
-### GitHub Discussions
+### Official Documentation
 
-For general questions, ideas, and discussions:
+| Resource | URL | Description |
+|----------|-----|-------------|
+| README | GitHub README | Quick start guide |
+| API Docs | docs.ucid.org | API reference |
+| User Guide | docs.ucid.org/guide | Complete user guide |
+| Examples | examples/ | Code examples |
 
-- **Q&A**: Ask questions about using UCID
-- **Ideas**: Share ideas for new features
-- **Show and Tell**: Share projects using UCID
-- **General**: General discussions about urban data
+### Documentation Structure
 
-URL: https://github.com/ucid-foundation/ucid/discussions
+```
+docs/
+├── instructions/           # Step-by-step guides
+│   ├── 00_project_overview.md
+│   ├── 01_installation.md
+│   ├── 02_quickstart.md
+│   └── ...
+├── api/                    # API reference
+└── examples/               # Usage examples
+```
 
-### Discord Server
+### In-Code Documentation
 
-Join our Discord for real-time community chat:
+All public functions have docstrings:
 
-- **#general**: General discussion
-- **#help**: Get help from the community
-- **#showcase**: Share your projects
-- **#development**: Development discussions
+```python
+from ucid import create_ucid
 
-### Mailing List
+help(create_ucid)  # View documentation
+```
 
-Subscribe to our mailing list for announcements:
+---
 
-- **ucid-announce**: Low-traffic, major announcements only
-- **ucid-users**: User discussions and questions
-- **ucid-dev**: Development discussions
+## Community Resources
+
+### GitHub
+
+| Resource | URL | Purpose |
+|----------|-----|---------|
+| Repository | github.com/ucid-foundation/ucid | Source code |
+| Issues | /issues | Bug reports, features |
+| Discussions | /discussions | Q&A, ideas |
+| Wiki | /wiki | Community docs |
+
+### Social Media
+
+| Platform | Handle | Purpose |
+|----------|--------|---------|
+| Twitter/X | @ucid_org | Announcements |
+| LinkedIn | UCID Foundation | Professional updates |
+| YouTube | UCID Foundation | Tutorials |
+
+### Community Chat
+
+| Platform | Link | Purpose |
+|----------|------|---------|
+| Discord | discord.gg/ucid | Real-time help |
+
+---
+
+## Issue Reporting
+
+### Before Creating an Issue
+
+1. **Search existing issues** - Your issue may already be reported
+2. **Check documentation** - The answer may be in the docs
+3. **Try latest version** - Update to see if issue persists
+4. **Minimal reproduction** - Create a minimal example
+
+### Bug Report Template
+
+```markdown
+## Bug Description
+[Clear, concise description]
+
+## Environment
+- Python version: `python --version`
+- UCID version: `pip show ucid`
+- Operating System:
+
+## Steps to Reproduce
+1. Step 1
+2. Step 2
+3. Step 3
+
+## Expected Behavior
+[What should happen]
+
+## Actual Behavior
+[What actually happens]
+
+## Error Message
+```
+[Full error traceback]
+```
+
+## Minimal Reproduction
+```python
+# Minimal code that reproduces the issue
+from ucid import create_ucid
+
+# Your code here
+```
+
+## Additional Context
+[Screenshots, logs, etc.]
+```
+
+### Feature Request Template
+
+```markdown
+## Feature Description
+[Clear description of the feature]
+
+## Use Case
+[Why is this feature needed?]
+
+## Proposed Solution
+[How might this work?]
+
+## Alternatives Considered
+[Other approaches you considered]
+
+## Additional Context
+[Mockups, examples, etc.]
+```
+
+---
+
+## Frequently Asked Questions
+
+### Installation
+
+**Q: How do I install UCID?**
+
+```bash
+pip install ucid
+```
+
+**Q: What Python versions are supported?**
+
+A: Python 3.11, 3.12, and 3.13.
+
+**Q: How do I install optional dependencies?**
+
+```bash
+pip install "ucid[all]"      # All features
+pip install "ucid[contexts]"  # Context algorithms
+pip install "ucid[api]"       # REST API
+```
+
+### Basic Usage
+
+**Q: How do I create a UCID?**
+
+```python
+from ucid import create_ucid
+
+ucid = create_ucid(
+    city="IST",
+    lat=41.015,
+    lon=28.979,
+    timestamp="2026W03T14",
+    context="15MIN",
+)
+print(ucid)
+```
+
+**Q: How do I parse a UCID string?**
+
+```python
+from ucid import parse_ucid
+
+ucid = parse_ucid("UCID-V1:IST:+41.015:+28.979:9:...")
+print(f"City: {ucid.city}, Grade: {ucid.grade}")
+```
+
+**Q: What cities are supported?**
+
+A: 405 cities across 23 countries. List them with:
+
+```python
+from ucid import list_cities
+
+for city in list_cities():
+    print(f"{city.code}: {city.name}, {city.country}")
+```
+
+### Contexts
+
+**Q: What contexts are available?**
+
+| Context | Description |
+|---------|-------------|
+| 15MIN | 15-Minute City accessibility |
+| TRANSIT | Public transit quality |
+| WALK | Walkability score |
+| NONE | No context scoring |
+
+**Q: How do I use contexts?**
+
+```python
+from ucid import create_ucid
+
+# With 15MIN context
+ucid = create_ucid(
+    city="IST",
+    lat=41.015,
+    lon=28.979,
+    context="15MIN",
+)
+print(f"Grade: {ucid.grade}, Confidence: {ucid.confidence}")
+```
+
+### Performance
+
+**Q: What is the performance?**
+
+| Operation | Performance |
+|-----------|-------------|
+| CREATE | 127,575 ops/sec |
+| PARSE | 61,443 ops/sec |
+| VALIDATE | 17,334 ops/sec |
+
+**Q: How can I improve performance?**
+
+1. Use batch processing for multiple UCIDs
+2. Enable caching for context scoring
+3. Use appropriate H3 resolution
+
+### API
+
+**Q: Is there a REST API?**
+
+A: Yes. Install with:
+
+```bash
+pip install "ucid[api]"
+```
+
+Run with:
+
+```bash
+uvicorn ucid.api:app --host 0.0.0.0 --port 8000
+```
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+#### Installation Errors
+
+**Issue**: `ModuleNotFoundError: No module named 'h3'`
+
+**Solution**:
+```bash
+pip install h3
+```
+
+**Issue**: Installation fails on Windows
+
+**Solution**:
+```bash
+pip install --upgrade pip
+pip install ucid
+```
+
+#### Runtime Errors
+
+**Issue**: `UCIDParseError: Invalid UCID format`
+
+**Solution**: Ensure UCID string follows correct format:
+```
+UCID-V1:{CITY}:{LAT}:{LON}:{RES}:{H3}:{TIME}:{CTX}:{GRADE}:{CONF}
+```
+
+**Issue**: `UCIDValidationError: Invalid city code`
+
+**Solution**: Use valid 3-letter city codes:
+```python
+from ucid import list_cities
+print([c.code for c in list_cities()])
+```
+
+#### Performance Issues
+
+**Issue**: Slow context scoring
+
+**Solution**: Enable caching:
+```python
+from ucid.contexts import FifteenMinContext
+
+context = FifteenMinContext(cache_enabled=True)
+```
+
+### Debug Mode
+
+Enable debug logging:
+
+```python
+import logging
+logging.basicConfig(level=logging.DEBUG)
+```
 
 ---
 
@@ -144,290 +381,134 @@ Subscribe to our mailing list for announcements:
 
 ### Enterprise Support
 
-For organizations requiring guaranteed support:
+For enterprise users requiring dedicated support:
 
-| Tier | Response Time | Includes |
-|------|---------------|----------|
-| **Bronze** | 5 business days | Email support |
-| **Silver** | 2 business days | Email + video calls |
-| **Gold** | 1 business day | Priority support + training |
-| **Platinum** | 4 hours | 24/7 support + dedicated engineer |
+| Tier | Features | Contact |
+|------|----------|---------|
+| Standard | Email support, 48h response | enterprise@ucid.org |
+| Premium | Priority support, 24h response | enterprise@ucid.org |
+| Enterprise | Dedicated support, SLA | enterprise@ucid.org |
 
 ### Consulting Services
 
-The UCID Foundation offers consulting services:
+Available consulting services:
 
-- Custom context development
-- Performance optimization
-- Architecture review
-- Training and workshops
-- Integration support
-
-Contact: enterprise@ucid.org
-
-### Training Programs
-
-| Program | Duration | Format |
-|---------|----------|--------|
-| UCID Fundamentals | 1 day | Online/In-person |
-| Advanced Contexts | 2 days | Online/In-person |
-| Custom Development | 3 days | In-person |
-| Administrator Training | 1 day | Online |
+| Service | Description |
+|---------|-------------|
+| Integration | Help integrating UCID |
+| Custom Contexts | Develop custom contexts |
+| Training | On-site or remote training |
+| Optimization | Performance optimization |
 
 ---
 
-## Bug Reports
+## Training Resources
 
-### How to Report a Bug
+### Tutorials
 
-1. Check if the issue already exists
-2. Create a new issue using the bug template
-3. Provide all required information
-4. Be patient while we investigate
-
-### Bug Report Template
-
-Use the issue template at: `.github/ISSUE_TEMPLATE/bug_report.md`
-
-### Bug Lifecycle
-
-```mermaid
-graph LR
-    New[New] --> Triage[Triage]
-    Triage --> Confirmed[Confirmed]
-    Confirmed --> InProgress[In Progress]
-    InProgress --> Review[Review]
-    Review --> Fixed[Fixed]
-    Review --> Triage
-```
-
-### Bug Severity Levels
-
-| Severity | Description | Target Resolution |
-|----------|-------------|-------------------|
-| **Critical** | System unusable | 24-48 hours |
-| **High** | Major functionality broken | 1 week |
-| **Medium** | Minor functionality affected | 2 weeks |
-| **Low** | Cosmetic or minor issues | Next release |
-
----
-
-## Feature Requests
-
-### How to Request a Feature
-
-1. Check existing feature requests
-2. Create a new discussion in "Ideas"
-3. Describe the problem you're solving
-4. Propose a solution
-5. Engage with community feedback
-
-### Feature Request Template
-
-```markdown
-## Problem Statement
-What problem does this feature solve?
-
-## Proposed Solution
-How would you like this to work?
-
-## Alternatives Considered
-What other approaches have you considered?
-
-## Additional Context
-Any other relevant information.
-```
-
-### Feature Prioritization
-
-| Factor | Weight | Description |
-|--------|--------|-------------|
-| User Impact | 30% | How many users benefit |
-| Strategic Alignment | 25% | Fits project direction |
-| Implementation Effort | 20% | Development cost |
-| Community Interest | 15% | Votes and comments |
-| Maintainability | 10% | Long-term support cost |
-
----
-
-## Security Issues
-
-### Reporting Security Issues
-
-**Do NOT report security issues publicly.**
-
-Email: security@ucid.org
-
-See [SECURITY.md](SECURITY.md) for full details.
-
-### Response Timeline
-
-| Phase | Timeline |
-|-------|----------|
-| Acknowledgment | 24 hours |
-| Triage | 48 hours |
-| Fix Development | 1-2 weeks |
-| Release | Coordinated |
-
----
-
-## Documentation
-
-### Available Documentation
-
-| Resource | URL | Description |
-|----------|-----|-------------|
-| User Guide | ucid.readthedocs.io | Complete user documentation |
-| API Reference | ucid.readthedocs.io/api | Python API docs |
-| Tutorials | notebooks/ | Jupyter notebooks |
-| Examples | examples/ | Example code |
-
-### Documentation Issues
-
-Report documentation issues:
-
-1. Create an issue with the `documentation` label
-2. Or submit a PR with the fix
-
----
-
-## Training
-
-### Self-Paced Learning
-
-| Resource | Level | Duration |
+| Tutorial | Level | Duration |
 |----------|-------|----------|
-| Getting Started Guide | Beginner | 30 min |
-| Tutorial Notebooks | Beginner-Intermediate | 2-4 hours |
-| Advanced Documentation | Advanced | Self-paced |
+| Getting Started | Beginner | 30 min |
+| Context Algorithms | Intermediate | 1 hour |
+| API Integration | Intermediate | 1 hour |
+| Performance Tuning | Advanced | 2 hours |
 
-### Instructor-Led Training
+### Examples
 
-Contact training@ucid.org for:
+Find examples in the `examples/` directory:
 
-- Corporate training
-- University courses
-- Workshop facilitation
+```
+examples/
+├── basic_usage.py
+├── batch_processing.py
+├── context_scoring.py
+├── api_client.py
+└── visualization.py
+```
 
----
+### Workshops
 
-## FAQ
-
-### General Questions
-
-**Q: Is UCID free to use?**
-A: Yes, UCID is open source under the EUPL-1.2 license.
-
-**Q: Can I use UCID commercially?**
-A: Yes, the EUPL-1.2 allows commercial use.
-
-**Q: What Python versions are supported?**
-A: Python 3.11 and later.
-
-### Technical Questions
-
-**Q: How do I add a custom city?**
-A: Use `register_city()` to add custom cities.
-
-**Q: Can I use S2 instead of H3?**
-A: S2 support is experimental in v1.1+.
-
-**Q: How do I improve scoring performance?**
-A: Enable caching and reduce H3 resolution for faster results.
-
-### Support Questions
-
-**Q: How long until my issue is addressed?**
-A: We aim for initial triage within 2-5 business days.
-
-**Q: Can I get paid support?**
-A: Yes, see the Professional Support section.
-
-**Q: How do I contribute to UCID?**
-A: See [CONTRIBUTING.md](CONTRIBUTING.md).
+| Workshop | Frequency | Format |
+|----------|-----------|--------|
+| UCID Introduction | Monthly | Online |
+| Advanced UCID | Quarterly | Online |
+| Conference Sessions | Annual | In-person |
 
 ---
 
-## Contact
+## Feedback
 
-### General Inquiries
+### Providing Feedback
 
-- **Email**: info@ucid.org
-- **Website**: https://ucid.org
+We welcome feedback on:
 
-### Technical Support
+- Documentation quality
+- API usability
+- Feature requests
+- General experience
 
-- **GitHub Issues**: For bugs and features
-- **GitHub Discussions**: For questions
+### Feedback Channels
 
-### Security
+| Type | Channel |
+|------|---------|
+| General | feedback@ucid.org |
+| Documentation | GitHub issues |
+| Features | GitHub discussions |
+| Surveys | Periodic email surveys |
 
-- **Email**: security@ucid.org
+### User Research
 
-### Enterprise
+Participate in user research:
 
-- **Email**: enterprise@ucid.org
+1. User interviews
+2. Usability testing
+3. Beta testing
 
----
-
-## Version History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | 2026-01-01 | Initial support document |
-
----
-
-## Additional Resources
-
-### Community Events
-
-| Event | Frequency | Description |
-|-------|-----------|-------------|
-| Community Call | Monthly | Open community discussion |
-| Office Hours | Weekly | Ask maintainers questions |
-| Hackathons | Quarterly | Build projects together |
-| Conference Talks | Annual | Presentations at events |
-
-### Learning Materials
-
-| Resource | Format | Level |
-|----------|--------|-------|
-| Getting Started Video | Video | Beginner |
-| Context Deep Dives | Blog | Intermediate |
-| Architecture Overview | Documentation | Advanced |
-| Research Papers | Academic | Expert |
-
-### Partner Programs
-
-| Program | Description | Contact |
-|---------|-------------|---------|
-| Academic Partner | Research collaboration | research@ucid.org |
-| City Partner | Municipal integration | cities@ucid.org |
-| Technology Partner | Integration partnership | partners@ucid.org |
+Contact: research@ucid.org
 
 ---
 
-## Support Metrics
+## Contact Summary
 
-### Response Time Goals
+| Purpose | Contact |
+|---------|---------|
+| General Support | support@ucid.org |
+| Security Issues | security@ucid.org |
+| Enterprise | enterprise@ucid.org |
+| Feedback | feedback@ucid.org |
+| Research | research@ucid.org |
 
-| Priority | First Response | Resolution |
-|----------|----------------|------------|
-| Critical | 4 hours | 24 hours |
-| High | 1 day | 1 week |
-| Medium | 3 days | 2 weeks |
-| Low | 5 days | Next release |
+---
 
-### Satisfaction Metrics
+## Release Information
 
-| Metric | Target | Current |
-|--------|--------|---------|
-| First Response Time | < 24h | - |
-| Resolution Time | < 5 days | - |
-| User Satisfaction | > 90% | - |
-| Repeat Issues | < 5% | - |
+### Current Version
+
+| Version | Date | Notes |
+|---------|------|-------|
+| 1.0.5 | 2026-01-16 | Latest stable |
+
+### Getting Updates
+
+```bash
+# Upgrade to latest
+pip install --upgrade ucid
+
+# Check current version
+python -c "import ucid; print(ucid.__version__)"
+```
+
+---
+
+## References
+
+- [UCID Documentation](https://docs.ucid.org)
+- [GitHub Repository](https://github.com/ucid-foundation/ucid)
+- [API Reference](https://docs.ucid.org/api)
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- [PyPI Package](https://pypi.org/project/ucid/)
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

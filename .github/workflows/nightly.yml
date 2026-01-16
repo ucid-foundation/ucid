@@ -1,42 +1,85 @@
+# Nightly Build
+# Runs comprehensive tests nightly.
+
 name: Nightly
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: "0 2 * * *"  # Daily at 2 AM UTC
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
-  benchmark:
+  nightly-tests:
+    name: Nightly Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
-      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install dependencies
-        run: pip install pytest==8.2.0 pytest-benchmark==4.0.0
-      - name: Run benchmarks
-        run: pytest tests/ -v --benchmark-only --benchmark-json=benchmark.json || echo "Benchmarks skipped"
-      - name: Upload benchmark results
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08  # v4.6.0
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[all,test]"
+
+      - name: Run full test suite
+        run: pytest tests/ -v --tb=long --cov=ucid --cov-report=xml
+
+      - name: Run slow tests
+        run: pytest tests/ -v --slow
+
+  benchmark:
+    name: Nightly Benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          name: benchmark
-          path: benchmark.json
-          if-no-files-found: warn
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[all]"
+
+      - name: Run benchmarks
+        run: python scripts/benchmark.py --output benchmarks/results/nightly.json
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmarks/results/
 
   security-audit:
+    name: Security Audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
-      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install audit tools
-        run: pip install pip-audit==2.7.3 bandit==1.7.9
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-audit safety bandit
+
       - name: Run pip-audit
-        run: pip-audit --strict || echo "Some vulnerabilities found"
-      - name: Run bandit
-        run: bandit -r src/ucid -ll || echo "Some issues found"
+        run: pip-audit --strict
+
+      - name: Run Safety
+        run: safety check
+
+      - name: Run Bandit
+        run: bandit -r src/ucid -ll

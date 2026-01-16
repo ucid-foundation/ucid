@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "name": "baseline",
+    "version": "1.0.5",
+    "timestamp": "2026-01-16T00:00:00Z",
+    "python_version": "3.11.7",
+    "platform": "Linux-6.5.0-x86_64",
+    "cpu": "Intel Core i7-12700",
+    "description": "Baseline benchmark results for v1.0.5"
+  },
+  "results": {
+    "create": {
+      "iterations": 100000,
+      "total_seconds": 0.787,
+      "ops_per_second": 127065,
+      "mean_latency_us": 7.87,
+      "min_latency_us": 5.21,
+      "max_latency_us": 45.32,
+      "p50_latency_us": 7.15,
+      "p95_latency_us": 12.45,
+      "p99_latency_us": 15.23,
+      "std_dev_us": 2.34
+    },
+    "parse": {
+      "iterations": 100000,
+      "total_seconds": 1.639,
+      "ops_per_second": 61012,
+      "mean_latency_us": 16.39,
+      "min_latency_us": 12.11,
+      "max_latency_us": 78.54,
+      "p50_latency_us": 15.22,
+      "p95_latency_us": 24.67,
+      "p99_latency_us": 28.53,
+      "std_dev_us": 4.12
+    },
+    "validate": {
+      "iterations": 100000,
+      "total_seconds": 5.882,
+      "ops_per_second": 17001,
+      "mean_latency_us": 58.82,
+      "min_latency_us": 45.23,
+      "max_latency_us": 156.78,
+      "p50_latency_us": 55.12,
+      "p95_latency_us": 85.34,
+      "p99_latency_us": 95.12,
+      "std_dev_us": 12.45
+    },
+    "batch": {
+      "iterations": 10000,
+      "batch_size": 100,
+      "total_seconds": 8.696,
+      "ops_per_second": 1150,
+      "mean_latency_us": 869.57,
+      "min_latency_us": 756.23,
+      "max_latency_us": 1523.45,
+      "p50_latency_us": 845.67,
+      "p95_latency_us": 1125.34,
+      "p99_latency_us": 1250.12,
+      "std_dev_us": 95.67
+    }
+  },
+  "summary": {
+    "total_operations": 410000,
+    "total_time_seconds": 17.004,
+    "all_thresholds_met": true
+  }
+}

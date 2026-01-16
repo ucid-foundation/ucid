@@ -1,0 +1,386 @@
+# Copyright 2026 UCID Foundation
+#
+# Licensed under the EUPL, Version 1.2 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# paper_benchmark.yaml - Academic Paper Benchmark Configuration
+#
+# This configuration file defines the parameters for reproducible benchmarks
+# used in academic publications. The settings ensure consistent, reproducible
+# results across different systems and environments.
+#
+# Academic Paper Reference:
+#   Title: "UCID: A Standardized Urban Context Identifier for
+#           Interoperable Urban Analytics"
+#   Authors: UCID Foundation Research Team
+#   Year: 2026
+#   DOI: 10.xxxx/ucid.2026.xxxxx
+#
+# Reproducibility Requirements:
+#   - Fixed random seed for deterministic results
+#   - Specified hardware baseline
+#   - Defined iteration counts for statistical significance
+#   - Version-pinned dependencies
+#
+# Usage:
+#   python scripts/benchmark.py --config configs/paper_benchmark.yaml
+#
+# Reference Documentation:
+#   - Benchmarking Guide: https://ucid.readthedocs.io/benchmarking
+#   - Reproducibility: https://ucid.readthedocs.io/reproducibility
+#
+# Maintainer: UCID Foundation Research Team
+# Version: 1.0.5
+# Last Updated: 2026-01-15
+
+# =============================================================================
+# METADATA
+# =============================================================================
+_meta:
+  version: "1.0.5"
+  schema_version: "1.0"
+  description: "Academic Paper Benchmark Configuration"
+  last_updated: "2026-01-15"
+  paper_version: "v1.0"
+  reproducibility_hash: "sha256:a1b2c3d4e5f6..."
+
+# =============================================================================
+# REPRODUCIBILITY SETTINGS
+# =============================================================================
+# Settings to ensure reproducible benchmark results.
+
+reproducibility:
+  # Random seed for all stochastic operations
+  # This seed is used for:
+  #   - City selection in random sampling
+  #   - Coordinate generation for synthetic tests
+  #   - Shuffle operations in batch processing
+  seed: 42
+
+  # Enable deterministic mode
+  # When true, forces deterministic algorithms even if slower
+  deterministic: true
+
+  # Pin floating-point rounding mode
+  float_precision: "double"
+
+  # Disable JIT compilation for reproducibility
+  # JIT can cause slight timing variations
+  disable_jit: true
+
+  # Lock Python garbage collection during timing
+  gc_disabled_during_timing: true
+
+# =============================================================================
+# BENCHMARK TARGETS
+# =============================================================================
+# Target performance metrics from the academic paper.
+# All targets are minimum acceptable values.
+
+targets:
+  # CREATE operation: Generate new UCID
+  create:
+    throughput_ops_per_sec: 10000
+    max_latency_p99_ms: 1.0
+
+  # PARSE operation: Parse UCID string to object
+  parse:
+    throughput_ops_per_sec: 10000
+    max_latency_p99_ms: 1.0
+
+  # VALIDATE operation: Full validation with registry lookup
+  validate:
+    throughput_ops_per_sec: 10000
+    max_latency_p99_ms: 5.0
+
+  # Memory usage targets
+  memory:
+    max_base_mb: 50
+    max_per_city_kb: 10
+    max_cache_mb: 100
+
+# =============================================================================
+# MEASURED RESULTS
+# =============================================================================
+# Actual measured results from official benchmarks.
+# These are reference values; your results may vary based on hardware.
+#
+# Hardware Baseline:
+#   CPU: AMD Ryzen 9 5900X (12 cores, 24 threads)
+#   RAM: 64GB DDR4-3200
+#   Storage: NVMe SSD
+#   OS: Ubuntu 22.04 LTS
+#   Python: 3.12.0
+
+measured_results:
+  # Test Date: 2026-01-15
+  test_date: "2026-01-15"
+
+  create:
+    throughput_ops_per_sec: 127575
+    latency_mean_ms: 0.0078
+    latency_p50_ms: 0.0075
+    latency_p95_ms: 0.0090
+    latency_p99_ms: 0.0120
+
+  parse:
+    strict_true:
+      throughput_ops_per_sec: 61443
+      latency_mean_ms: 0.0163
+      latency_p50_ms: 0.0155
+      latency_p95_ms: 0.0200
+      latency_p99_ms: 0.0280
+    strict_false:
+      throughput_ops_per_sec: 17334
+      latency_mean_ms: 0.0577
+      latency_p50_ms: 0.0550
+      latency_p95_ms: 0.0750
+      latency_p99_ms: 0.0950
+
+  validate:
+    throughput_ops_per_sec: 17334
+    latency_mean_ms: 0.0577
+    latency_p50_ms: 0.0550
+    latency_p95_ms: 0.0750
+    latency_p99_ms: 0.0950
+
+  memory:
+    base_mb: 45.2
+    per_city_kb: 8.3
+    with_all_cities_mb: 48.6
+    with_cache_mb: 148.6
+
+  registry:
+    total_cities: 405
+    total_countries: 23
+    load_time_ms: 12.5
+
+# =============================================================================
+# BENCHMARK CONFIGURATION
+# =============================================================================
+# Parameters controlling benchmark execution.
+
+benchmark:
+  # Number of iterations for each benchmark
+  # Higher values provide more statistical significance
+  iterations: 100000
+
+  # Warmup iterations (not counted in results)
+  # Allows JIT compilation and cache warming
+  warmup_iterations: 1000
+
+  # Number of benchmark runs for averaging
+  runs: 5
+
+  # Timeout per operation (milliseconds)
+  timeout_ms: 1000
+
+  # Operations to benchmark
+  operations:
+    - create
+    - parse_strict
+    - parse_lenient
+    - validate
+    - batch_create
+    - batch_parse
+
+  # Batch sizes to test
+  batch_sizes:
+    - 1
+    - 10
+    - 100
+    - 1000
+    - 10000
+
+  # Thread counts to test
+  thread_counts:
+    - 1
+    - 2
+    - 4
+    - 8
+
+# =============================================================================
+# TEST DATA CONFIGURATION
+# =============================================================================
+# Configuration for synthetic test data generation.
+
+test_data:
+  # Cities to use in benchmarks
+  # "all" uses all 405 registered cities
+  # Can also be a list of specific city codes
+  cities: "all"
+
+  # Coordinate generation bounds
+  coordinates:
+    min_lat: -90.0
+    max_lat: 90.0
+    min_lon: -180.0
+    max_lon: 180.0
+    precision: 6  # Decimal places
+
+  # H3 resolutions to test
+  h3_resolutions:
+    - 7
+    - 8
+    - 9   # Default
+    - 10
+    - 11
+
+  # Context types to include
+  contexts:
+    - "15MIN"
+    - "TRANSIT"
+    - "WALK"
+    - "NONE"
+
+  # Grade distribution
+  grades:
+    A: 0.10
+    B: 0.25
+    C: 0.40
+    D: 0.15
+    F: 0.10
+
+  # Confidence range
+  confidence:
+    min: 0.0
+    max: 1.0
+    distribution: "uniform"
+
+# =============================================================================
+# OUTPUT CONFIGURATION
+# =============================================================================
+# Configuration for benchmark result output.
+
+output:
+  # Output directory for results
+  directory: "benchmark_results"
+
+  # Output formats
+  formats:
+    - json
+    - csv
+    - markdown
+
+  # Include in output
+  include:
+    summary: true
+    detailed_stats: true
+    histograms: true
+    system_info: true
+
+  # Chart generation
+  charts:
+    enabled: true
+    format: "png"
+    dpi: 300
+
+  # Include raw timing data (large files)
+  include_raw_data: false
+
+# =============================================================================
+# COMPARISON BASELINES
+# =============================================================================
+# Baseline performance from previous versions for comparison.
+
+baselines:
+  v1_0_0:
+    date: "2025-10-01"
+    create_ops_per_sec: 95000
+    parse_ops_per_sec: 48000
+    validate_ops_per_sec: 12000
+    cities: 365
+
+  v1_0_3:
+    date: "2026-01-05"
+    create_ops_per_sec: 115000
+    parse_ops_per_sec: 55000
+    validate_ops_per_sec: 15000
+    cities: 385
+
+  v1_0_5:
+    date: "2026-01-15"
+    create_ops_per_sec: 127575
+    parse_ops_per_sec: 61443
+    validate_ops_per_sec: 17334
+    cities: 405
+
+# =============================================================================
+# STATISTICAL ANALYSIS
+# =============================================================================
+# Configuration for statistical analysis of results.
+
+statistics:
+  # Confidence level for intervals
+  confidence_level: 0.95
+
+  # Statistical tests to perform
+  tests:
+    - mean
+    - median
+    - std_dev
+    - variance
+    - percentiles
+    - normality_test
+
+  # Percentiles to calculate
+  percentiles:
+    - 50
+    - 90
+    - 95
+    - 99
+    - 99.9
+
+  # Outlier detection
+  outliers:
+    method: "iqr"  # iqr, zscore, mad
+    threshold: 1.5
+    remove_outliers: true
+
+# =============================================================================
+# HARDWARE REQUIREMENTS
+# =============================================================================
+# Minimum hardware requirements for reproducible results.
+
+hardware_requirements:
+  cpu:
+    min_cores: 4
+    recommended_cores: 8
+    min_frequency_ghz: 2.0
+
+  memory:
+    min_gb: 8
+    recommended_gb: 16
+
+  storage:
+    type: "ssd"
+    min_free_gb: 1
+
+# =============================================================================
+# ENVIRONMENT REQUIREMENTS
+# =============================================================================
+# Software environment requirements.
+
+environment:
+  python:
+    min_version: "3.10"
+    recommended_version: "3.12"
+
+  dependencies:
+    h3: "3.7.7"
+    numpy: ">=1.24.0"
+    pydantic: ">=2.0.0"
+
+  os:
+    - "linux"
+    - "macos"
+    - "windows"

@@ -1,0 +1,44 @@
+# Stale Issue Management
+# Automatically manages stale issues and pull requests.
+
+name: Stale
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Daily at midnight UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    name: Manage Stale Issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stale Issues and PRs
+        uses: actions/stale@v9
+        with:
+          stale-issue-message: |
+            This issue has been automatically marked as stale because it has not had recent activity.
+            It will be closed in 14 days if no further activity occurs.
+            If this issue is still relevant, please comment to keep it open.
+          stale-pr-message: |
+            This pull request has been automatically marked as stale because it has not had recent activity.
+            It will be closed in 14 days if no further activity occurs.
+            Please rebase and update if you wish to continue with this PR.
+          close-issue-message: |
+            This issue has been automatically closed due to inactivity.
+            Feel free to reopen if this is still relevant.
+          close-pr-message: |
+            This pull request has been automatically closed due to inactivity.
+            Feel free to reopen if you wish to continue working on it.
+          days-before-stale: 60
+          days-before-close: 14
+          stale-issue-label: "stale"
+          stale-pr-label: "stale"
+          exempt-issue-labels: "pinned,priority:high,in-progress"
+          exempt-pr-labels: "pinned,priority:high,in-progress"
+          exempt-all-milestones: true
+          operations-per-run: 100

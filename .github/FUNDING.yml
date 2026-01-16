@@ -1,5 +1,13 @@
-# Funding information for UCID Foundation
-# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+# Funding Configuration
+# This file configures funding options for the UCID project.
+# Reference: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
 
-github: ucid-foundation
-custom: ["https://www.ucid.org/donate"]
+# GitHub Sponsors
+github: [ucid-foundation]
+
+# Open Collective
+open_collective: ucid
+
+# Custom funding URLs
+custom:
+  - https://ucid.org/donate

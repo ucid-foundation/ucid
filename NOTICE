@@ -1,0 +1,69 @@
+UCID - Urban Context Identifier
+Copyright 2026 UCID Foundation
+
+This product includes software developed by the UCID Foundation
+(https://github.com/ucid-foundation/ucid).
+
+This product includes the following third-party components:
+
+---
+
+H3: Hexagonal Hierarchical Spatial Index
+Copyright 2018 Uber Technologies, Inc.
+Licensed under the Apache License, Version 2.0
+https://github.com/uber/h3
+
+---
+
+Pydantic: Data validation using Python type hints
+Copyright 2017-present Samuel Colvin and other contributors
+Licensed under the MIT License
+https://github.com/pydantic/pydantic
+
+---
+
+FastAPI: Modern, fast web framework for building APIs
+Copyright 2018-present Sebastián Ramírez
+Licensed under the MIT License
+https://github.com/tiangolo/fastapi
+
+---
+
+NumPy: The fundamental package for scientific computing with Python
+Copyright 2005-2024 NumPy Developers
+Licensed under the BSD 3-Clause License
+https://numpy.org/
+
+---
+
+Pandas: Powerful data structures for data analysis
+Copyright 2008-2024 AQR Capital Management, LLC, Lambda Foundry, Inc.
+Licensed under the BSD 3-Clause License
+https://pandas.pydata.org/
+
+---
+
+GeoPandas: Geographic pandas extensions
+Copyright 2013-2024 GeoPandas developers
+Licensed under the BSD 3-Clause License
+https://geopandas.org/
+
+---
+
+Shapely: Manipulation and analysis of geometric objects
+Copyright 2007-2024 Sean Gillies and the Shapely contributors
+Licensed under the BSD 3-Clause License
+https://shapely.readthedocs.io/
+
+---
+
+OpenStreetMap Data
+Copyright OpenStreetMap contributors
+Licensed under the Open Database License (ODbL)
+https://www.openstreetmap.org/copyright
+
+---
+
+This NOTICE file is provided for informational purposes only. It is not
+intended to modify the terms of any license under which such software
+is distributed.

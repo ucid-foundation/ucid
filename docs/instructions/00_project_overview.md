@@ -203,7 +203,7 @@ sequenceDiagram
 A UCID string is a colon-separated sequence of 11 fields:
 
 ```
-UCID-V1:CITY:LAT:LON:H3R:H3:TIME:CTX:GRD:CONF:FLAGS
+UCID:CITY:LAT:LON:H3R:H3:TIME:CTX:GRD:CONF:FLAGS
 ```
 
 The mathematical representation of a UCID can be expressed as:
@@ -226,7 +226,7 @@ Where:
 
 | Field | Symbol | Type | Range | Example |
 |-------|--------|------|-------|---------|
-| Version | $V$ | String | `UCID-V1` | `UCID-V1` |
+| Version | $V$ | String | `UCID` | `UCID` |
 | City | $C$ | String | 3 uppercase letters | `IST` |
 | Latitude | $\lambda$ | Float | $[-90, 90]$ | `+41.015` |
 | Longitude | $\phi$ | Float | $[-180, 180]$ | `+28.979` |

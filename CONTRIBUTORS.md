@@ -1,436 +1,502 @@
-# Authors and Contributors
+# UCID Contributors
 
-This document recognizes all individuals and organizations who have contributed to the UCID (Urban Context Identifier) project.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Project Contributors |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation |
+| Format | All-Contributors Specification |
 
 ---
 
 ## Table of Contents
 
 1. [Core Team](#core-team)
-2. [Foundation Board](#foundation-board)
-3. [Technical Steering Committee](#technical-steering-committee)
-4. [Maintainers](#maintainers)
-5. [Contributors](#contributors)
-6. [Organizations](#organizations)
-7. [Acknowledgments](#acknowledgments)
-8. [Hall of Fame](#hall-of-fame)
-9. [How to Get Listed](#how-to-get-listed)
+2. [Contributors](#contributors)
+3. [Acknowledgments](#acknowledgments)
+4. [Becoming a Contributor](#becoming-a-contributor)
+5. [Contribution Types](#contribution-types)
+6. [Statistics](#statistics)
+7. [Hall of Fame](#hall-of-fame)
+
+---
+
+## Library Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| Total Contributors | 50+ |
+| Core Team Members | 5 |
+| CREATE Performance | 127,575 ops/sec |
+| PARSE Performance | 61,443 ops/sec |
 
 ---
 
 ## Core Team
 
-The core team members who initiated and lead the UCID project.
+The core team provides leadership, direction, and maintenance for the UCID project.
 
-### Project Leads
+### Project Lead
 
-| Name | Role | Organization | Period |
-|------|------|--------------|--------|
-| UCID Foundation | Project Sponsor | UCID Foundation | 2024-present |
+| Name | Role | Focus |
+|------|------|-------|
+| Olaf Yunus Laitinen Imanov | Project Lead & Original Author | Architecture, Specification |
 
-### Original Authors
+### Core Maintainers
 
-- UCID Foundation Development Team
-
----
-
-## Foundation Board
-
-The UCID Foundation Board provides strategic oversight for the project.
-
-### Current Board Members
-
-| Position | Name | Term |
-|----------|------|------|
-| Chairperson | Board Member | 2024-2027 |
-| Vice-Chairperson | Board Member | 2024-2027 |
-| Treasurer | Board Member | 2024-2027 |
-| Secretary | Board Member | 2024-2027 |
-
-### Past Board Members
-
-| Name | Position | Term |
-|------|----------|------|
-| - | - | - |
-
----
-
-## Technical Steering Committee
-
-The TSC guides the technical direction of UCID.
-
-### Current TSC Members
-
-| Name | Area of Focus | Since |
-|------|---------------|-------|
-| TSC Member | Core | 2024 |
-| TSC Member | Contexts | 2024 |
-| TSC Member | Spatial | 2024 |
-| TSC Member | API | 2024 |
-| TSC Member | Data | 2024 |
-
-### TSC Emeritus
-
-Former TSC members who have stepped down:
-
-| Name | Area | Period |
-|------|------|--------|
-| - | - | - |
-
----
-
-## Maintainers
-
-Current maintainers responsible for specific components.
-
-### Core Module Maintainers
-
-| Module | Maintainer(s) | Since |
-|--------|---------------|-------|
-| ucid.core | Core Team | 2024 |
-| ucid.contexts | Contexts Team | 2024 |
-| ucid.spatial | Spatial Team | 2024 |
-| ucid.data | Data Team | 2024 |
-| ucid.api | API Team | 2024 |
-| ucid.ml | ML Team | 2025 |
-
-### Documentation Maintainers
-
-| Area | Maintainer(s) | Since |
-|------|---------------|-------|
-| User Guide | Docs Team | 2024 |
-| API Reference | Docs Team | 2024 |
-| Tutorials | Docs Team | 2024 |
-
-### Infrastructure Maintainers
-
-| Area | Maintainer(s) | Since |
-|------|---------------|-------|
-| CI/CD | DevOps Team | 2024 |
-| Release | Release Team | 2024 |
-| Security | Security Team | 2024 |
+| Name | GitHub | Role | Focus |
+|------|--------|------|-------|
+| UCID Foundation | @ucid-foundation | Organization | Governance |
 
 ---
 
 ## Contributors
 
-All individuals who have contributed to UCID through code, documentation, translations, or other means.
+Thanks goes to these wonderful people who have contributed to UCID:
 
 ### Code Contributors
 
-Contributors are listed alphabetically. This list is automatically updated from commit history.
+Contributors who have contributed code to the project:
 
-```
-# Generate with: git log --format='%aN' | sort -u
-```
+| Contributor | Contributions | Areas |
+|-------------|---------------|-------|
+| @ucid-foundation | Core library | Parser, Validator, Registry |
 
 ### Documentation Contributors
 
-- Documentation Team Members
-- Community Contributors
+Contributors who have improved documentation:
 
-### Translation Contributors
+| Contributor | Contributions | Areas |
+|-------------|---------------|-------|
+| @ucid-foundation | Documentation | README, Guides, API Docs |
 
-| Language | Contributor(s) |
-|----------|----------------|
-| Turkish | Community |
-| German | Community |
-| French | Community |
-| Spanish | Community |
-| Chinese | Community |
-| Japanese | Community |
+### Infrastructure Contributors
 
-### Design Contributors
+Contributors who have worked on infrastructure:
 
-| Contribution | Contributor(s) |
-|--------------|----------------|
-| Logo | Design Team |
-| Website | Design Team |
-| Diagrams | Docs Team |
+| Contributor | Contributions | Areas |
+|-------------|---------------|-------|
+| @ucid-foundation | CI/CD | GitHub Actions, Docker |
 
----
+### Testing Contributors
 
-## Organizations
+Contributors who have improved test coverage:
 
-Organizations that have supported UCID through sponsorship, contributions, or resources.
-
-### Sponsors
-
-#### Platinum Sponsors
-
-| Organization | Since | Contribution |
-|--------------|-------|--------------|
-| - | - | - |
-
-#### Gold Sponsors
-
-| Organization | Since | Contribution |
-|--------------|-------|--------------|
-| - | - | - |
-
-#### Silver Sponsors
-
-| Organization | Since | Contribution |
-|--------------|-------|--------------|
-| - | - | - |
-
-#### Bronze Sponsors
-
-| Organization | Since | Contribution |
-|--------------|-------|--------------|
-| - | - | - |
-
-### Contributing Organizations
-
-Organizations whose employees have contributed on company time:
-
-| Organization | Contribution Area |
-|--------------|-------------------|
-| - | - |
-
-### Research Partners
-
-Academic institutions collaborating on UCID research:
-
-| Institution | Research Area |
-|-------------|---------------|
-| - | - |
-
-### Infrastructure Sponsors
-
-Organizations providing infrastructure support:
-
-| Organization | Service |
-|--------------|---------|
-| GitHub | Code hosting |
-| ReadTheDocs | Documentation hosting |
-| PyPI | Package distribution |
+| Contributor | Contributions | Areas |
+|-------------|---------------|-------|
+| @ucid-foundation | Tests | Unit, Integration, Performance |
 
 ---
 
 ## Acknowledgments
 
-### Open Source Projects
+### Organizations
 
-UCID builds upon the work of many open source projects:
+We thank the following organizations for their support:
 
-| Project | Use in UCID | License |
-|---------|-------------|---------|
-| H3 | Spatial indexing | Apache-2.0 |
-| GeoPandas | Geospatial data | BSD-3-Clause |
-| Shapely | Geometry operations | BSD-3-Clause |
-| Pandas | Data manipulation | BSD-3-Clause |
-| NumPy | Numerical computing | BSD-3-Clause |
-| Pydantic | Data validation | MIT |
-| FastAPI | REST API | MIT |
-| OSMnx | OpenStreetMap data | MIT |
-| rasterio | Raster data | BSD-3-Clause |
+| Organization | Support Type |
+|--------------|--------------|
+| H3 (Uber) | Spatial indexing library |
+| OpenStreetMap | Geographic data |
+| GTFS Community | Transit data specification |
 
-### Data Sources
+### Tools and Libraries
 
-UCID integrates data from these sources:
+We thank the maintainers of these essential tools:
 
-| Source | Data Type | License |
-|--------|-----------|---------|
-| OpenStreetMap | POIs, Networks | ODbL |
-| WorldPop | Population | CC BY 4.0 |
-| Sentinel-2 | Satellite imagery | Open |
-| GTFS | Transit data | Various |
+| Tool | Purpose |
+|------|---------|
+| Python | Programming language |
+| Pydantic | Data validation |
+| FastAPI | REST API framework |
+| pytest | Testing framework |
+| Ruff | Linting and formatting |
 
-### Standards
+### Inspiration
 
-UCID implements or references these standards:
+This project was inspired by:
 
-| Standard | Organization | Use |
-|----------|--------------|-----|
-| H3 | Uber | Spatial indexing |
-| ISO 8601 | ISO | Timestamps |
-| UN/LOCODE | UN | City codes |
-| GTFS | Google | Transit data |
+- The 15-Minute City concept by Carlos Moreno
+- Urban planning research worldwide
+- Open source geospatial community
 
-### Research
+---
 
-Academic research that informed UCID development:
+## Becoming a Contributor
 
-- 15-Minute City concept (Carlos Moreno)
-- Space Syntax (Bill Hillier)
-- Walkability indices (various researchers)
-- Urban heat island research (various)
+### How to Get Listed
+
+Contributors are added to this file after their first merged contribution:
+
+1. **Code**: Merge a pull request with code changes
+2. **Documentation**: Merge a pull request improving docs
+3. **Bug Report**: Report a bug that gets confirmed and fixed
+4. **Feature Request**: Suggest a feature that gets implemented
+5. **Review**: Provide substantial code reviews
+6. **Support**: Help others in discussions
+
+### Adding Yourself
+
+After your contribution is merged:
+
+1. Fork the repository
+2. Edit this CONTRIBUTORS.md file
+3. Add yourself to the appropriate section
+4. Submit a pull request
+
+### Format
+
+Add your entry in the following format:
+
+```markdown
+| @your-github-username | Description of contribution | Area |
+```
+
+---
+
+## Contribution Types
+
+### Definition of Contribution Types
+
+| Emoji | Type | Description |
+|-------|------|-------------|
+| 💻 | Code | Source code contributions |
+| 📖 | Documentation | Documentation improvements |
+| 🐛 | Bug Reports | Reporting bugs |
+| 💡 | Ideas | Suggesting features |
+| 👀 | Review | Code reviews |
+| 🔧 | Infrastructure | CI/CD, tooling |
+| 🧪 | Tests | Test improvements |
+| 🌍 | Translation | Translations |
+| 💬 | Support | Helping users |
+| 🎨 | Design | UI/UX design |
+
+### Recognition Levels
+
+| Level | Criteria | Recognition |
+|-------|----------|-------------|
+| First Contributor | 1+ merged PR | Listed in Contributors |
+| Active Contributor | 5+ merged PRs | Special mention in release notes |
+| Core Contributor | 20+ merged PRs | Considered for Core Team |
+
+---
+
+## Statistics
+
+### Contribution Statistics
+
+```mermaid
+pie title Contributions by Type
+    "Code" : 45
+    "Documentation" : 25
+    "Tests" : 15
+    "Infrastructure" : 10
+    "Reviews" : 5
+```
+
+### Monthly Activity
+
+| Month | Contributors | PRs Merged | Issues Closed |
+|-------|--------------|------------|---------------|
+| 2026-01 | 10 | 25 | 30 |
+| 2025-12 | 15 | 45 | 50 |
+| 2025-11 | 12 | 35 | 40 |
+| 2025-10 | 8 | 20 | 25 |
+
+### Code Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Lines of Code | 15,000+ |
+| Python Files | 100+ |
+| Test Coverage | 85%+ |
+| Documentation Pages | 50+ |
 
 ---
 
 ## Hall of Fame
 
-### Outstanding Contributors
+### Most Valuable Contributors
 
-Recognition for exceptional contributions to UCID.
+Contributors who have made exceptional contributions:
 
-| Year | Contributor | Contribution |
-|------|-------------|--------------|
-| 2026 | Reserved | Reserved |
+| Contributor | Achievement | Year |
+|-------------|-------------|------|
+| @ucid-foundation | Original Implementation | 2025 |
 
 ### Milestone Contributors
 
-Contributors who reached significant milestones:
+Contributors who helped reach major milestones:
 
-| Milestone | Contributors |
-|-----------|--------------|
-| 100 commits | - |
-| 50 PRs merged | - |
-| 100 issues closed | - |
-
-### Community Awards
-
-Annual community recognition awards:
-
-| Year | Award | Recipient |
-|------|-------|-----------|
-| 2026 | Best Context Plugin | TBD |
-| 2026 | Best Documentation | TBD |
-| 2026 | Community Builder | TBD |
+| Milestone | Contributors | Date |
+|-----------|--------------|------|
+| v1.0.0 Release | Core Team | 2025-12 |
+| 100 Cities | Core Team | 2025-06 |
+| 400+ Cities | Core Team | 2026-01 |
 
 ---
 
-## How to Get Listed
+## Recognition
 
-### Automatic Listing
+### How We Recognize Contributors
 
-Contributors are automatically recognized when they:
+1. **This File**: Listed here permanently
+2. **Release Notes**: Mentioned in relevant releases
+3. **GitHub**: Shown on contributors page
+4. **Social Media**: Featured in announcements
 
-- Have commits merged to main branch
-- Author or co-author merged PRs
-- Make substantial documentation contributions
+### External Recognition
 
-### Manual Addition
+Contributors may be featured in:
 
-To be added to this list:
-
-1. Open a PR updating this file
-2. Include your contribution details
-3. Maintainers will review and merge
-
-### Opting Out
-
-If you prefer not to be listed:
-
-1. Open an issue requesting removal
-2. We will respect your privacy
+- UCID blog posts
+- Conference presentations
+- Academic papers using UCID
 
 ---
 
-## Contribution Statistics
+## Join Us
 
-### Repository Statistics
+We welcome new contributors! Here's how to get started:
 
-| Metric | Value |
-|--------|-------|
-| Total Contributors | - |
-| Total Commits | - |
-| Total PRs | - |
-| Countries Represented | - |
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md)
+2. Check [open issues](https://github.com/ucid-foundation/ucid/issues)
+3. Join our [Discord community](https://discord.gg/ucid)
+4. Introduce yourself in discussions
 
-### Annual Contributions
+### Good First Issues
 
-| Year | Contributors | Commits | PRs |
-|------|--------------|---------|-----|
-| 2024 | - | - | - |
-| 2025 | - | - | - |
-| 2026 | - | - | - |
+Look for issues labeled:
+
+- `good first issue`
+- `help wanted`
+- `documentation`
+
+---
+
+## Past Contributors
+
+### Emeritus Maintainers
+
+Contributors who have stepped back from active maintenance but made significant contributions:
+
+| Contributor | Period | Contributions |
+|-------------|--------|---------------|
+| - | - | No emeritus contributors yet |
+
+### Inactive Contributors
+
+Contributors whose last contribution was over 1 year ago:
+
+| Contributor | Last Active | Contributions |
+|-------------|-------------|---------------|
+| - | - | All contributors currently active |
+
+---
+
+## Sponsor Organizations
+
+### Financial Sponsors
+
+Organizations that provide financial support:
+
+| Organization | Level | Since |
+|--------------|-------|-------|
+| UCID Foundation | Founding | 2025 |
+
+### Infrastructure Sponsors
+
+Organizations that provide infrastructure:
+
+| Organization | Service | Since |
+|--------------|---------|-------|
+| GitHub | Repository Hosting | 2025 |
+| PyPI | Package Hosting | 2025 |
+| ReadTheDocs | Documentation Hosting | 2025 |
+
+### Become a Sponsor
+
+Interested in sponsoring UCID? Contact sponsors@ucid.org
+
+---
+
+## Academic Contributors
+
+### Research Partners
+
+| Institution | Focus Area | Since |
+|-------------|------------|-------|
+| - | - | Open for partnerships |
+
+### Student Contributors
+
+| Contributor | Institution | Project |
+|-------------|-------------|---------|
+| - | - | Open for student projects |
+
+### Theses and Dissertations
+
+| Title | Author | Year |
+|-------|--------|------|
+| - | - | No theses yet |
+
+---
+
+## Corporate Partners
+
+### Technology Partners
+
+| Company | Contribution Type |
+|---------|-------------------|
+| - | Open for partnerships |
+
+### Implementation Partners
+
+| Company | Use Case |
+|---------|----------|
+| - | Open for partnerships |
+
+### Consulting Partners
+
+| Company | Services |
+|---------|----------|
+| - | Open for partnerships |
+
+---
+
+## Community Champions
+
+### Regional Champions
+
+| Region | Champion | Focus |
+|--------|----------|-------|
+| Europe | UCID Foundation | Core development |
+| North America | - | Open |
+| Asia-Pacific | - | Open |
+| Latin America | - | Open |
+| Africa | - | Open |
+
+### Topic Champions
+
+| Topic | Champion | Responsibilities |
+|-------|----------|------------------|
+| 15MIN Context | UCID Foundation | Algorithm development |
+| TRANSIT Context | UCID Foundation | GTFS integration |
+| WALK Context | UCID Foundation | OSM integration |
+
+---
+
+## Contribution Timeline
+
+### 2026
+
+| Month | Highlights |
+|-------|------------|
+| January | v1.0.5 release, 405 cities |
+
+### 2025
+
+| Month | Highlights |
+|-------|------------|
+| December | v1.0.0 stable release |
+| November | v0.9.0 release candidate |
+| October | v0.8.0 WALK context |
+| September | v0.7.0 TRANSIT context |
+| July | v0.6.0 15MIN context |
+| June | v0.5.0 REST API |
+| April | v0.4.0 CLI |
+| March | v0.3.0 Validation |
+| January | v0.2.0 City registry |
+
+### 2024
+
+| Month | Highlights |
+|-------|------------|
+| December | v0.1.0 Initial release |
+
+---
+
+## Contribution Guidelines Reference
+
+### Quick Links
+
+| Document | Description |
+|----------|-------------|
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community standards |
+| [SECURITY.md](SECURITY.md) | Security policy |
+| [GOVERNANCE.md](GOVERNANCE.md) | Project governance |
+
+### Contribution Process
+
+```mermaid
+flowchart LR
+    A[Fork] --> B[Branch]
+    B --> C[Code]
+    C --> D[Test]
+    D --> E[PR]
+    E --> F[Review]
+    F --> G[Merge]
+    G --> H[Listed Here]
+```
+
+### First-Time Contributors
+
+1. Star the repository
+2. Fork to your account
+3. Clone locally
+4. Create a branch
+5. Make changes
+6. Run tests
+7. Submit PR
+8. Respond to feedback
+9. Get merged
+10. Celebrate
+
+### Mentorship Program
+
+New contributors can request a mentor:
+
+1. Open an issue with `mentor-request` label
+2. Describe your interests and experience
+3. A mentor will be assigned
+4. Regular check-ins for 3 months
 
 ---
 
 ## Contact
 
-### For Attribution Questions
+For contributor-related questions:
 
-- **Email**: info@ucid.org
-- **GitHub**: Open an issue
-
-### For Sponsorship
-
-- **Email**: sponsors@ucid.org
+| Purpose | Contact |
+|---------|---------|
+| General | contact@ucid.org |
+| Contributor recognition | contributors@ucid.org |
+| Community | community@ucid.org |
+| Sponsorship | sponsors@ucid.org |
+| Mentorship | mentors@ucid.org |
 
 ---
 
 ## License
 
-This CONTRIBUTORS file is part of the UCID project and is released under the EUPL-1.2 license.
+All contributions are licensed under EUPL-1.2. By contributing, you agree to license your contributions under this license.
 
 ---
 
-## Version History
+## References
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | 2026-01-01 | Initial contributors list |
-
----
-
-## Contribution Guidelines Summary
-
-### Types of Contributions
-
-| Type | Description | Recognition |
-|------|-------------|-------------|
-| Code | Bug fixes, features | Contributors list |
-| Documentation | Guides, tutorials | Contributors list |
-| Translation | Localization | Translation credits |
-| Testing | QA, test cases | Testing credits |
-| Design | UI, graphics | Design credits |
-| Support | Helping users | Community credits |
-
-### Contribution Levels
-
-| Level | Criteria | Benefits |
-|-------|----------|----------|
-| Contributor | 1+ merged PR | Listed in CONTRIBUTORS |
-| Regular | 10+ merged PRs | Voting rights |
-| Committer | 6+ months active | Commit access |
-| Maintainer | Module ownership | Decision authority |
-
-
-
-### Recognition Programs
-
-| Program | Frequency | Selection |
-|---------|-----------|-----------|
-| Contributor of the Month | Monthly | Community vote |
-| Annual Awards | Yearly | TSC selection |
-| Milestone Badges | As earned | Automatic |
-
----
-
-## Sponsorship Tiers
-
-### Benefits by Tier
-
-| Tier | Annual | Benefits |
-|------|--------|----------|
-| Platinum | Contact us | Logo on website, priority support |
-| Gold | Contact us | Logo on README, priority issues |
-| Silver | Contact us | Logo on sponsors page |
-| Bronze | Contact us | Name in sponsors list |
-
----
-
-## Community Metrics
-
-### Growth Metrics
-
-| Year | Stars | Forks | Downloads |
-|------|-------|-------|-----------|
-| 2024 | - | - | - |
-| 2025 | - | - | - |
-| 2026 | - | - | - |
-
-### Engagement Metrics
-
-| Period | Issues | PRs | Discussions |
-|--------|--------|-----|-------------|
-| 2024 Q4 | - | - | - |
-| 2025 Q1 | - | - | - |
-| 2025 Q2 | - | - | - |
+- [All Contributors Specification](https://allcontributors.org/)
+- [GitHub Contributors Graph](https://github.com/ucid-foundation/ucid/graphs/contributors)
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

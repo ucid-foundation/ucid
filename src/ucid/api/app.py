@@ -78,7 +78,7 @@ class UCIDResponse(BaseModel):
 
     Attributes:
         valid: Whether the UCID is valid.
-        ucid: The canonical UCID string.
+        UCID-V1: The canonical UCID string.
         city: 3-character city code.
         lat: Latitude in decimal degrees.
         lon: Longitude in decimal degrees.
@@ -89,7 +89,7 @@ class UCIDResponse(BaseModel):
     """
 
     valid: bool
-    ucid: str
+    UCID-V1: str
     city: str
     lat: float
     lon: float

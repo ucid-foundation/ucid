@@ -1,3 +1,66 @@
+# ClusterFuzzLite Project Configuration
+# Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.
+#
+# This file configures the ClusterFuzzLite fuzzing project settings.
+# Reference: https://google.github.io/clusterfuzzlite/
+
+# Project identification
 homepage: "https://github.com/ucid-foundation/ucid"
-language: python
 main_repo: "https://github.com/ucid-foundation/ucid"
+primary_contact: "security@ucid.org"
+vendor_ccs:
+  - "maintainers@ucid.org"
+
+# Language configuration
+language: python
+
+# Fuzzing engines to use
+fuzzing_engines:
+  - libfuzzer
+  - afl
+
+# Sanitizers for detecting bugs
+sanitizers:
+  - address
+  - undefined
+
+# Architecture
+architectures:
+  - x86_64
+
+# Build configuration
+builds:
+  - coverage
+  - libfuzzer
+  - afl
+
+# Fuzzer specific settings
+fuzzer_configs:
+  fuzz_parser:
+    max_len: 1024
+    timeout: 30
+
+  fuzz_validator:
+    max_len: 1024
+    timeout: 30
+
+  fuzz_creator:
+    max_len: 512
+    timeout: 60
+
+  fuzz_h3:
+    max_len: 256
+    timeout: 30
+
+# Labels for issue tracking
+labels:
+  - fuzzing
+  - security
+  - automated
+
+# Disable certain features if needed
+disabled: false
+
+# Experimental features
+experimental:
+  enabled: false

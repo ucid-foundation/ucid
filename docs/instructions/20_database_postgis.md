@@ -220,7 +220,7 @@ repo.insert_many(ucids, batch_size=1000)
 
 ```python
 # Get by UCID string
-ucid = repo.get_by_string("UCID-V1:IST:+41.015:...")
+ucid = repo.get_by_string("UCID:IST:+41.015:...")
 
 # Get by H3 cell
 ucids = repo.get_by_h3("891f2ed6df7ffff")

@@ -1,49 +1,141 @@
+# ==============================================================================
+# UCID CITATION.cff
+# Urban Context Identifier - Python Library
+# Version: 1.0.5
+# Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.
+# https://citation-file-format.github.io/
+# ==============================================================================
+
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: "If you use this software in your research, please cite it as below."
+
+# ==============================================================================
+# Software Information
+# ==============================================================================
+title: "UCID: Urban Context Identifier"
+version: 1.0.5
+date-released: 2026-01-15
+doi: 10.5281/zenodo.18256962
+
+# ==============================================================================
+# Repository Information
+# ==============================================================================
+url: "https://www.ucid.org"
+repository-code: "https://github.com/ucid-foundation/ucid"
+repository-artifact: "https://pypi.org/project/ucid/"
+license: EUPL-1.2
+type: software
+
+# ==============================================================================
+# Authors
+# ==============================================================================
 authors:
   - name: "UCID Foundation"
     email: "contact@ucid.org"
-title: "UCID: Urban Context Identifier"
-version: 1.0.0
-doi: 10.5281/zenodo.18231105
-date-released: 2026-01-12
-url: "https://github.com/ucid-foundation/ucid"
-repository-code: "https://github.com/ucid-foundation/ucid"
-license: EUPL-1.2
-type: software
+    website: "https://www.ucid.org"
+
+# ==============================================================================
+# Keywords
+# ==============================================================================
 keywords:
-  - urban-planning
-  - urban-context
-  - city-analysis
-  - gis
-  - geospatial
-  - spatial-analysis
-  - h3
-  - hexagonal-grid
-  - 15-minute-city
+  - urban planning
+  - urban context
+  - urban analytics
+  - city analysis
+  - 15-minute city
   - walkability
-  - transit
-  - gtfs
-  - openstreetmap
-  - climate
-  - equity
-  - accessibility
-  - smart-city
-  - sustainable-cities
-  - python
+  - transit accessibility
+  - GIS
+  - geospatial
+  - spatial analysis
+  - H3
+  - hexagonal grid
+  - GTFS
+  - OpenStreetMap
+  - smart city
+  - sustainable cities
+  - urban informatics
+  - location intelligence
+  - Python
+
+# ==============================================================================
+# Abstract
+# ==============================================================================
 abstract: >-
-  UCID (Urban Context Identifier) is a standardized, temporal identifier
-  system and Python library for comprehensive urban context analysis.
-  It provides a universal key for joining disparate urban datasets
-  across global cities, supporting 6 context types: 15-Minute City,
-  Transit Quality, Climate/Heat Island, Walkability, Urban Vitality,
-  and Equity/Accessibility.
+  UCID (Urban Context Identifier) is a standardized, temporal identifier system
+  and Python library for comprehensive urban context analysis. It provides a
+  universal key for joining disparate urban datasets across global cities,
+  enabling cross-city comparisons and longitudinal studies of urban quality.
+
+  Version 1.0.5 supports 405 cities across 23 countries with production-ready
+  context algorithms including 15-Minute City accessibility, Transit Quality,
+  and Walkability. The library achieves CREATE performance of 127,575 ops/sec
+  and PARSE performance of 61,443 ops/sec.
+
+  Key features:
+  - Standardized UCID format with 10 components
+  - H3 hexagonal spatial indexing (resolution 9 default, 174m edge)
+  - ISO week temporal stamps
+  - Letter grades A-F with score thresholds
+  - Confidence scores 0.0-1.0
+  - Full Python 3.11+ type hints support
+
+# ==============================================================================
+# Preferred Citation
+# ==============================================================================
 preferred-citation:
   type: software
   authors:
     - name: "UCID Foundation"
   title: "UCID: Urban Context Identifier"
-  version: 1.0.0
-  doi: 10.5281/zenodo.18231105
+  version: 1.0.5
+  doi: 10.5281/zenodo.18256962
   year: 2026
-  url: "https://doi.org/10.5281/zenodo.18231105"
+  url: "https://doi.org/10.5281/zenodo.18256962"
+  repository-code: "https://github.com/ucid-foundation/ucid"
+  license: EUPL-1.2
+
+# ==============================================================================
+# References
+# ==============================================================================
+references:
+  - type: article
+    authors:
+      - family-names: "Moreno"
+        given-names: "Carlos"
+    title: "Introducing the 15-Minute City: Sustainability, Resilience and Place Identity in Future Post Pandemic Cities"
+    journal: "Smart Cities"
+    year: 2021
+    doi: 10.3390/smartcities4010006
+
+  - type: software
+    authors:
+      - name: "Uber Technologies"
+    title: "H3: A Hexagonal Hierarchical Geospatial Indexing System"
+    url: "https://h3geo.org"
+    year: 2018
+
+  - type: dataset
+    authors:
+      - name: "OpenStreetMap contributors"
+    title: "OpenStreetMap"
+    url: "https://www.openstreetmap.org"
+
+  - type: standard
+    title: "General Transit Feed Specification (GTFS)"
+    url: "https://gtfs.org"
+
+# ==============================================================================
+# Identifiers
+# ==============================================================================
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.18256962
+    description: "Zenodo DOI for version 1.0.5"
+  - type: url
+    value: "https://pypi.org/project/ucid/"
+    description: "PyPI package"
+
+# ==============================================================================
+# End of CITATION.cff
+# ==============================================================================

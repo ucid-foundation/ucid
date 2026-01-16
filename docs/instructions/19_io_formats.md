@@ -168,7 +168,7 @@ export_geojson(
         "coordinates": [28.979, 41.015]
       },
       "properties": {
-        "ucid": "UCID-V1:IST:+41.015:+028.979:9:...",
+        "ucid": "UCID:IST:+41.015:+028.979:9:...",
         "city": "IST",
         "grade": "A",
         "confidence": 0.92,
@@ -214,7 +214,7 @@ export_csv(
 
 | ucid | city | lat | lon | h3_index | timestamp | context | grade | confidence |
 |------|------|-----|-----|----------|-----------|---------|-------|------------|
-| UCID-V1:... | IST | 41.015 | 28.979 | 891f2e... | 2026W01T12 | 15MIN | A | 0.92 |
+| UCID:... | IST | 41.015 | 28.979 | 891f2e... | 2026W01T12 | 15MIN | A | 0.92 |
 
 ### Options
 

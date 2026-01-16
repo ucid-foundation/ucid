@@ -1,0 +1,104 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[FEATURE]: "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a feature. Please fill out the form below.
+
+  - type: checkboxes
+    id: existing
+    attributes:
+      label: Existing Requests
+      description: Please confirm you have checked for existing requests
+      options:
+        - label: I have searched the existing issues and this feature has not been requested
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: Describe the problem or use case...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution
+      placeholder: Describe how you envision this feature working...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What alternatives have you considered?
+      placeholder: Describe any alternative solutions or workarounds...
+    validations:
+      required: false
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example Usage
+      description: How would you use this feature?
+      render: python
+      placeholder: |
+        from ucid import new_feature
+
+        # Example usage
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Core functionality
+        - Context algorithms
+        - API
+        - CLI
+        - Documentation
+        - Performance
+        - Testing
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Suggested Priority
+      options:
+        - Low - Nice to have
+        - Medium - Would be useful
+        - High - Important for my use case
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Willingness to Contribute
+      options:
+        - label: I would be willing to help implement this feature
+          required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any additional information
+      placeholder: Add any other context, mockups, or references...
+    validations:
+      required: false

@@ -1,36 +1,40 @@
 {
+  "$schema": "https://zenodo.org/schemas/deposits/records/legacyrecord.json",
   "title": "UCID: Urban Context Identifier",
-  "description": "A standardized temporal identifier system and Python library for comprehensive urban context analysis across global cities. UCID provides a universal key for joining disparate urban datasets.",
+  "description": "UCID (Urban Context Identifier) is a standardized, temporal identifier system and Python library for comprehensive urban context analysis. Version 1.0.5 supports 405 cities across 23 countries with production-ready context algorithms. The library provides a universal key for joining disparate urban datasets, enabling cross-city comparisons and longitudinal studies of urban quality of life metrics.",
   "creators": [
     {
       "name": "UCID Foundation",
-      "affiliation": "UCID Foundation"
+      "affiliation": "UCID Foundation",
+      "orcid": ""
     }
   ],
   "contributors": [
     {
       "name": "UCID Contributors",
-      "type": "Other"
+      "type": "Other",
+      "affiliation": "Open Source Community"
     }
   ],
   "keywords": [
     "urban planning",
     "urban context",
+    "urban analytics",
     "city analysis",
-    "GIS",
-    "geospatial",
-    "H3",
-    "hexagonal grid",
     "15-minute city",
     "walkability",
-    "transit",
+    "transit accessibility",
+    "GIS",
+    "geospatial",
+    "spatial analysis",
+    "H3",
+    "hexagonal grid",
     "GTFS",
     "OpenStreetMap",
-    "climate",
-    "equity",
-    "accessibility",
     "smart city",
     "sustainable cities",
+    "urban informatics",
+    "location intelligence",
     "Python"
   ],
   "license": {
@@ -38,20 +42,54 @@
   },
   "upload_type": "software",
   "access_right": "open",
-  "version": "1.0.0",
+  "version": "1.0.5",
+  "publication_date": "2026-01-15",
   "language": "eng",
-  "notes": "This is the first stable release of UCID, featuring complete support for urban context analysis with 6 context types: 15MIN (15-Minute City), TRANSIT (Public Transit Quality), CLIMATE (Heat/Green Space), WALK (Walkability), VITALITY (Urban Diversity), and EQUITY (Accessibility Equity).",
+  "notes": "UCID v1.0.5 Key Features:\n\n- 405 cities across 23 countries\n- Production contexts: 15MIN, TRANSIT, WALK, NONE\n- Performance: CREATE 127,575 ops/sec, PARSE 61,443 ops/sec\n- H3 hexagonal spatial indexing (resolution 9 default)\n- ISO week temporal stamps\n- Grade scale: A (>=0.80), B (>=0.60), C (>=0.40), D (>=0.20), F (<0.20)\n- Confidence scores 0.0-1.0\n- Full type hints and Python 3.11+ support",
   "related_identifiers": [
     {
       "identifier": "https://github.com/ucid-foundation/ucid",
       "relation": "isSupplementTo",
       "scheme": "url"
+    },
+    {
+      "identifier": "https://pypi.org/project/ucid/",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://ucid.readthedocs.io/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.18256962",
+      "relation": "isVersionOf",
+      "scheme": "doi"
     }
+  ],
+  "references": [
+    "Moreno, C. et al. (2021). Introducing the 15-Minute City. Journal of Urban Health.",
+    "Uber Technologies. (2018). H3: A Hexagonal Hierarchical Geospatial Indexing System.",
+    "OpenStreetMap contributors. OpenStreetMap. https://www.openstreetmap.org/",
+    "GTFS. General Transit Feed Specification. https://gtfs.org/"
   ],
   "grants": [],
   "communities": [
     {
       "identifier": "zenodo"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Urban Planning",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85141324",
+      "scheme": "url"
+    },
+    {
+      "term": "Geographic Information Systems",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh92000922",
+      "scheme": "url"
     }
   ]
 }

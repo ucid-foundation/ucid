@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ucid.org/schemas/city.schema.json",
+  "title": "UCID City Schema",
+  "description": "JSON Schema for UCID city registry entries. Defines the structure of city records in the UCID database.",
+  "type": "object",
+  "required": ["name", "lat", "lon"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "City name in local language",
+      "minLength": 1,
+      "maxLength": 100,
+      "examples": ["Istanbul", "Berlin", "Amsterdam"]
+    },
+    "lat": {
+      "type": "number",
+      "description": "Latitude in decimal degrees (WGS84)",
+      "minimum": -90,
+      "maximum": 90,
+      "examples": [41.0082, 52.5200, 52.3702]
+    },
+    "lon": {
+      "type": "number",
+      "description": "Longitude in decimal degrees (WGS84)",
+      "minimum": -180,
+      "maximum": 180,
+      "examples": [28.9784, 13.4050, 4.8952]
+    },
+    "population": {
+      "type": "integer",
+      "description": "City population (latest census)",
+      "minimum": 0,
+      "examples": [15840900, 3645000, 872757]
+    },
+    "area_km2": {
+      "type": "number",
+      "description": "City area in square kilometers",
+      "minimum": 0,
+      "examples": [5461, 892, 219]
+    },
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone identifier",
+      "pattern": "^[A-Za-z]+/[A-Za-z_]+$",
+      "examples": ["Europe/Istanbul", "Europe/Berlin", "Europe/Amsterdam"]
+    },
+    "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code",
+      "pattern": "^[A-Z]{2}$",
+      "examples": ["TR", "DE", "NL"]
+    },
+    "bbox": {
+      "type": "array",
+      "description": "Bounding box [min_lat, min_lon, max_lat, max_lon]",
+      "items": {"type": "number"},
+      "minItems": 4,
+      "maxItems": 4
+    }
+  },
+  "additionalProperties": false,
+  "_meta": {
+    "version": "1.0.5",
+    "created": "2026-01-15",
+    "author": "UCID Foundation"
+  }
+}

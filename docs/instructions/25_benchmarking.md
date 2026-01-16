@@ -112,21 +112,21 @@ class TestCoreBenchmarks:
     @pytest.mark.benchmark(group="core")
     def test_parse_ucid_performance(self, benchmark):
         """Benchmark UCID parsing."""
-        ucid_str = "UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
+        ucid_str = "UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
         result = benchmark(parse_ucid, ucid_str)
         assert result.city == "IST"
     
     @pytest.mark.benchmark(group="core")
     def test_canonicalize_performance(self, benchmark):
         """Benchmark UCID canonicalization."""
-        ucid_str = "ucid-v1:IST:+41.015:+28.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
+        ucid_str = "UCID:IST:+41.015:+28.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
         result = benchmark(canonicalize_ucid, ucid_str)
-        assert result.startswith("UCID-V1:")
+        assert result.startswith("UCID:")
     
     @pytest.mark.benchmark(group="core")
     def test_validate_performance(self, benchmark):
         """Benchmark UCID validation."""
-        ucid_str = "UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
+        ucid_str = "UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
         result = benchmark(validate_ucid, ucid_str)
         assert result is True
 ```

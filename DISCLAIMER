@@ -1,0 +1,65 @@
+UCID - Urban Context Identifier
+DISCLAIMER
+
+This software is provided "as is" without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose, and noninfringement.
+
+In no event shall the authors, copyright holders, or the UCID Foundation be
+liable for any claim, damages, or other liability, whether in an action of
+contract, tort, or otherwise, arising from, out of, or in connection with
+the software or the use or other dealings in the software.
+
+---
+
+DATA DISCLAIMER
+
+The urban context scores, grades, and metrics provided by UCID are derived
+from publicly available data sources including OpenStreetMap, GTFS feeds,
+and other open datasets. These scores are provided for informational and
+research purposes only and should not be:
+
+1. Used as the sole basis for urban planning decisions
+2. Considered definitive measures of urban quality
+3. Applied without local validation and expert review
+4. Used for regulatory compliance without proper verification
+
+The accuracy of scores depends on the quality and currency of underlying
+data sources. Users are responsible for validating results against
+authoritative local sources before making decisions.
+
+---
+
+GEOGRAPHIC DATA DISCLAIMER
+
+UCID uses the H3 hexagonal spatial indexing system developed by Uber
+Technologies. The spatial indexing is approximate and should not be used
+for precise boundary determination or legal property delineation.
+
+City boundaries and codes are approximate and may not align with official
+administrative boundaries. Coverage areas are indicative only.
+
+---
+
+RESEARCH USE
+
+UCID is designed for academic research and urban analytics. When using UCID
+in research, users are encouraged to:
+
+1. Cite the appropriate academic references
+2. Document the version of UCID and data sources used
+3. Validate findings with ground-truth data where possible
+4. Report any issues or inaccuracies to the maintainers
+
+---
+
+NO ENDORSEMENT
+
+Reference to any specific commercial products, processes, or services by
+trade name, trademark, manufacturer, or otherwise does not constitute or
+imply endorsement, recommendation, or favoring by the UCID Foundation.
+
+---
+
+Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

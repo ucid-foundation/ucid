@@ -1,44 +1,69 @@
 {
+  "_comment": "Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.",
+  "_version": "1.0.5",
+  "_description": "Grade scale definitions for UCID context scoring.",
+  "_documentation": "https://ucid.readthedocs.io/grading",
+  "_last_updated": "2026-01-15",
   "grades": {
     "A": {
-      "range": [0.90, 1.00],
+      "range": [0.80, 1.00],
       "label": "Excellent",
-      "color": "#22c55e",
-      "description": "Exceptional performance in all measured dimensions"
+      "color_primary": "#0dab76",
+      "color_hex": "#0dab76",
+      "description": "Exceptional performance, meeting or exceeding all criteria in the evaluated context."
     },
     "B": {
-      "range": [0.75, 0.90],
+      "range": [0.60, 0.80],
       "label": "Good",
-      "color": "#84cc16",
-      "description": "Above average performance with minor improvements possible"
+      "color_primary": "#139a43",
+      "color_hex": "#139a43",
+      "description": "Above average performance with minor areas for improvement."
     },
     "C": {
-      "range": [0.50, 0.75],
-      "label": "Average",
-      "color": "#eab308",
-      "description": "Satisfactory performance meeting basic requirements"
+      "range": [0.40, 0.60],
+      "label": "Moderate",
+      "color_primary": "#f59e0b",
+      "color_hex": "#f59e0b",
+      "description": "Satisfactory performance meeting basic requirements with notable improvement opportunities."
     },
     "D": {
-      "range": [0.25, 0.50],
-      "label": "Below Average",
-      "color": "#f97316",
-      "description": "Performance below expectations with significant room for improvement"
+      "range": [0.20, 0.40],
+      "label": "Limited",
+      "color_primary": "#ef4444",
+      "color_hex": "#ef4444",
+      "description": "Below average performance with significant gaps in the evaluated criteria."
     },
     "F": {
-      "range": [0.00, 0.25],
+      "range": [0.00, 0.20],
       "label": "Poor",
-      "color": "#ef4444",
-      "description": "Failing to meet minimum requirements"
+      "color_primary": "#dc2626",
+      "color_hex": "#dc2626",
+      "description": "Failing to meet minimum requirements in the evaluated context."
     }
   },
   "confidence_levels": {
-    "high": {"range": [0.85, 1.00], "label": "High Confidence"},
-    "medium": {"range": [0.60, 0.85], "label": "Medium Confidence"},
-    "low": {"range": [0.00, 0.60], "label": "Low Confidence"}
+    "high": {
+      "range": [0.85, 1.00],
+      "label": "High Confidence",
+      "description": "Score based on comprehensive data with high reliability."
+    },
+    "medium": {
+      "range": [0.60, 0.85],
+      "label": "Medium Confidence",
+      "description": "Score based on partial data with moderate reliability."
+    },
+    "low": {
+      "range": [0.00, 0.60],
+      "label": "Low Confidence",
+      "description": "Score based on limited data, interpret with caution."
+    }
   },
   "metadata": {
-    "version": "1.0.0",
-    "generated": "2026-01-14",
-    "source": "UCID Foundation"
+    "version": "1.0.5",
+    "generated": "2026-01-15",
+    "source": "UCID Foundation",
+    "license": "EUPL-1.2",
+    "grade_count": 5,
+    "color_palette": "UCID Brand Colors"
   }
 }

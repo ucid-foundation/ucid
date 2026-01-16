@@ -1,12 +1,28 @@
-# Byte-compiled / optimized / DLL files
+# ==============================================================================
+# UCID .gitignore
+# Urban Context Identifier - Python Library
+# Version: 1.0.5
+# Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.
+# ==============================================================================
+
+# ==============================================================================
+# Python Bytecode and Optimization
+# ==============================================================================
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
+*.pyd
 
-# C extensions
+# ==============================================================================
+# C Extensions
+# ==============================================================================
 *.so
+*.dylib
 
-# Distribution / packaging
+# ==============================================================================
+# Distribution and Packaging
+# ==============================================================================
 .Python
 build/
 develop-eggs/
@@ -26,15 +42,21 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# ==============================================================================
 # PyInstaller
+# ==============================================================================
 *.manifest
 *.spec
 
-# Installer logs
+# ==============================================================================
+# Installer Logs
+# ==============================================================================
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# ==============================================================================
+# Unit Test and Coverage Reports
+# ==============================================================================
 htmlcov/
 .tox/
 .nox/
@@ -48,38 +70,57 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+pytest_cache/
 
+# ==============================================================================
 # Translations
+# ==============================================================================
 *.mo
 *.pot
 
-# Django stuff:
+# ==============================================================================
+# Framework-specific
+# ==============================================================================
+# Django
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Flask stuff:
+# Flask
 instance/
 .webassets-cache
 
-# Scrapy stuff:
+# Scrapy
 .scrapy
 
-# Sphinx documentation
+# ==============================================================================
+# Documentation
+# ==============================================================================
 docs/_build/
+site/
 
-# PyBuilder
+# ==============================================================================
+# Build Tools
+# ==============================================================================
 .pybuilder/
 target/
 
+# ==============================================================================
 # Jupyter Notebook
+# ==============================================================================
 .ipynb_checkpoints
+*/.ipynb_checkpoints/*
 
+# ==============================================================================
 # IPython
+# ==============================================================================
 profile_default/
 ipython_config.py
 
+# ==============================================================================
+# Environment and Package Managers
+# ==============================================================================
 # pyenv
 .python-version
 
@@ -94,17 +135,26 @@ poetry.lock
 .pdm-python
 .pdm-build/
 
+# uv
+uv.lock
+
 # PEP 582
 __pypackages__/
 
-# Celery stuff
+# ==============================================================================
+# Celery
+# ==============================================================================
 celerybeat-schedule
 celerybeat.pid
 
-# SageMath parsed files
+# ==============================================================================
+# SageMath
+# ==============================================================================
 *.sage.py
 
-# Environments
+# ==============================================================================
+# Virtual Environments
+# ==============================================================================
 .env
 .venv
 env/
@@ -112,50 +162,126 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.virtualenv/
 
-# Spyder project settings
+# ==============================================================================
+# IDE and Editor Settings
+# ==============================================================================
+# Spyder
 .spyderproject
 .spyproject
 
-# Rope project settings
+# Rope
 .ropeproject
 
-# mkdocs documentation
-/site
+# PyCharm
+.idea/
 
+# VS Code
+.vscode/
+*.code-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+.#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ==============================================================================
+# Type Checkers
+# ==============================================================================
 # mypy
 .mypy_cache/
 .dmypy.json
 dmypy.json
 
-# Pyre type checker
+# Pyre
 .pyre/
 
-# pytype static type analyzer
+# pytype
 .pytype/
 
-# Cython debug symbols
-cython_debug/
+# pyright
+pyrightconfig.json
 
+# ==============================================================================
+# Linters and Formatters
+# ==============================================================================
 # Ruff
 .ruff_cache/
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
+# Cython
+cython_debug/
+
+# ==============================================================================
+# Operating System
+# ==============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
 *~
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Project specific
+# ==============================================================================
+# UCID Project Specific
+# ==============================================================================
+# Cache directories
 .cache/
+cache/
+
+# Generated data files
 *.parquet
 *.geojson
-sbom.json
-sbom.xml
+*.gpkg
+
+# Benchmark and test outputs
 benchmark.json
 results.sarif
+sbom.json
+sbom.xml
+
+# API keys and secrets (never commit)
+.env.local
+.env.production
+secrets.yaml
+*.pem
+*.key
+
+# Large data files
+data/external/
+data/raw/
+*.gtfs.zip
+*.osm.pbf
+
+# Model files
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+
+# ==============================================================================
+# End of .gitignore
+# ==============================================================================

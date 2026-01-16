@@ -1,0 +1,62 @@
+name: Documentation Issue
+description: Report a documentation issue or suggest improvements
+title: "[DOCS]: "
+labels: ["documentation", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve our documentation.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue Type
+      options:
+        - Incorrect information
+        - Missing documentation
+        - Unclear explanation
+        - Typo or grammar
+        - Broken link
+        - Code example issue
+        - API documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+      description: URL or file path of the affected documentation
+      placeholder: "https://docs.ucid.org/... or docs/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Documentation
+      description: What does the current documentation say?
+      placeholder: Copy or describe the current documentation...
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested Improvement
+      description: What should the documentation say?
+      placeholder: Describe your suggested change...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Willingness to Contribute
+      options:
+        - label: I would be willing to submit a PR to fix this
+          required: false

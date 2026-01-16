@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "default",
+  "description": "Default benchmark configuration for development",
+  "version": "1.0.0",
+  "settings": {
+    "iterations": 10000,
+    "warmup_iterations": 100,
+    "timeout_seconds": 300,
+    "gc_disabled": true,
+    "high_precision_timer": true
+  },
+  "benchmarks": {
+    "create": {
+      "enabled": true,
+      "iterations": 10000,
+      "description": "UCID creation benchmark"
+    },
+    "parse": {
+      "enabled": true,
+      "iterations": 10000,
+      "description": "UCID parsing benchmark"
+    },
+    "validate": {
+      "enabled": true,
+      "iterations": 10000,
+      "description": "UCID validation benchmark"
+    },
+    "batch": {
+      "enabled": true,
+      "iterations": 1000,
+      "batch_size": 100,
+      "description": "Batch processing benchmark"
+    }
+  },
+  "output": {
+    "format": "json",
+    "include_latencies": false,
+    "include_percentiles": true,
+    "percentiles": [50, 95, 99]
+  },
+  "thresholds": {
+    "create_min_ops": 10000,
+    "parse_min_ops": 10000,
+    "validate_min_ops": 5000,
+    "regression_threshold": 0.10
+  }
+}

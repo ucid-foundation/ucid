@@ -86,7 +86,7 @@ class City(BaseModel):
 class UCID(BaseModel):
     """Urban Context Identifier model.
 
-    Format: UCID-V1:{CITY}:{LAT3}:{LON3}:{H3R}:{H3}:{TIME}:{CONTEXT}:{GRADE}:{CONF}:{FLAGS}
+    Format: UCID:{CITY}:{LAT3}:{LON3}:{H3R}:{H3}:{TIME}:{CONTEXT}:{GRADE}:{CONF}:{FLAGS}
 
     Attributes:
         version: UCID format version (e.g., "V1").

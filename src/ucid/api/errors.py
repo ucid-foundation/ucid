@@ -28,7 +28,7 @@ class ErrorCode(str, Enum):
     clients identify and handle specific error conditions.
 
     Attributes:
-        INVALID_UCID: The provided UCID string is malformed.
+        INVALID_UCID-V1: The provided UCID string is malformed.
         MISSING_FIELD: A required field is missing from the request.
         INVALID_COORDINATES: Latitude or longitude is out of range.
         INVALID_CONTEXT: The specified context type is not recognized.

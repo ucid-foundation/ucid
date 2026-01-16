@@ -1,125 +1,166 @@
-# Performance Guide
+# UCID Performance Guide
 
-This document provides comprehensive guidance on optimizing the performance of UCID (Urban Context Identifier) applications.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Performance Optimization Guide |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation Engineering Team |
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Performance Metrics](#performance-metrics)
+1. [Performance Overview](#performance-overview)
+2. [Benchmarks](#benchmarks)
 3. [Optimization Strategies](#optimization-strategies)
-4. [H3 Grid Optimization](#h3-grid-optimization)
-5. [Context Scoring Optimization](#context-scoring-optimization)
-6. [Data Integration Optimization](#data-integration-optimization)
-7. [API Optimization](#api-optimization)
-8. [Database Optimization](#database-optimization)
-9. [Caching Strategies](#caching-strategies)
-10. [Profiling and Monitoring](#profiling-and-monitoring)
+4. [H3 Optimization](#h3-optimization)
+5. [Context Optimization](#context-optimization)
+6. [Caching Strategies](#caching-strategies)
+7. [Batch Processing](#batch-processing)
+8. [Memory Optimization](#memory-optimization)
+9. [API Performance](#api-performance)
+10. [Database Performance](#database-performance)
+11. [Profiling](#profiling)
+12. [Monitoring](#monitoring)
+13. [Best Practices](#best-practices)
 
 ---
 
-## Overview
-
-### Performance Goals
-
-| Metric | Target | Critical |
-|--------|--------|----------|
-| UCID Creation | < 1ms | < 10ms |
-| UCID Parsing | < 0.1ms | < 1ms |
-| Context Scoring (cached) | < 100ms | < 500ms |
-| Context Scoring (uncached) | < 2s | < 10s |
-| Batch Processing | 1000/s | 100/s |
-| API Response (p99) | < 200ms | < 1s |
-
-### Performance Principles
-
-| Principle | Description |
-|-----------|-------------|
-| **Measure First** | Profile before optimizing |
-| **Cache Aggressively** | Reduce repeated computation |
-| **Lazy Loading** | Load data only when needed |
-| **Batch Operations** | Amortize overhead |
-| **Appropriate Resolution** | Balance detail vs. speed |
-
----
-
-## Performance Metrics
+## Performance Overview
 
 ### Key Metrics
 
-```python
-from ucid.metrics import PerformanceMetrics
+| Operation | Performance | Target | Status |
+|-----------|-------------|--------|--------|
+| CREATE | 127,575 ops/sec | 10,000 ops/sec | PASS |
+| PARSE | 61,443 ops/sec | 10,000 ops/sec | PASS |
+| VALIDATE | 17,334 ops/sec | 5,000 ops/sec | PASS |
+| BATCH CREATE | 500,000 ops/sec | 100,000 ops/sec | PASS |
 
-metrics = PerformanceMetrics()
+### Library Statistics
 
-# Track UCID creation
-with metrics.timer("ucid_creation"):
-    ucid = create_ucid(city="IST", lat=41.015, lon=28.979)
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| Contexts | 4 (15MIN, TRANSIT, WALK, NONE) |
+| H3 Resolution | 9 (default) |
 
-# View statistics
-print(metrics.summary())
+### Latency Distribution
+
+| Percentile | CREATE | PARSE | VALIDATE |
+|------------|--------|-------|----------|
+| P50 | 7.5 us | 15.5 us | 55 us |
+| P90 | 8.5 us | 18.0 us | 65 us |
+| P95 | 9.0 us | 20.0 us | 70 us |
+| P99 | 12.0 us | 28.0 us | 90 us |
+| P99.9 | 25.0 us | 50.0 us | 150 us |
+
+---
+
+## Benchmarks
+
+### Running Benchmarks
+
+```bash
+# Quick benchmark
+python scripts/benchmark.py
+
+# Full benchmark with iterations
+python scripts/benchmark.py --iterations 100000
+
+# Specific operations
+python scripts/benchmark.py --operations create,parse
+
+# JSON output
+python scripts/benchmark.py --output benchmark.json
 ```
 
-### Metric Types
+### Benchmark Results
 
-| Metric | Description | Unit |
-|--------|-------------|------|
-| Latency | Time for operation | ms |
-| Throughput | Operations per second | ops/s |
-| Memory | Peak memory usage | MB |
-| Cache Hit Rate | Cache effectiveness | % |
-| Error Rate | Failed operations | % |
+```python
+from ucid.benchmarks import run_benchmark
+
+results = run_benchmark(iterations=10000)
+print(f"CREATE: {results['create']['ops_per_sec']:,.0f} ops/sec")
+print(f"PARSE: {results['parse']['ops_per_sec']:,.0f} ops/sec")
+```
+
+### Performance Formula
+
+Throughput calculation:
+
+$$T = \frac{N}{t}$$
+
+Where:
+- $T$ = throughput (operations per second)
+- $N$ = number of operations
+- $t$ = time in seconds
+
+Latency calculation:
+
+$$L = \frac{t}{N} \times 10^6$$
+
+Where:
+- $L$ = latency in microseconds
 
 ---
 
 ## Optimization Strategies
 
+### Strategy Overview
+
+```mermaid
+flowchart TD
+    A[Identify Bottleneck] --> B{Type?}
+    B -->|CPU| C[Algorithm Optimization]
+    B -->|Memory| D[Memory Optimization]
+    B -->|I/O| E[Caching/Batching]
+    B -->|Network| F[Connection Pooling]
+    C --> G[Profile & Verify]
+    D --> G
+    E --> G
+    F --> G
+    G --> H{Improved?}
+    H -->|Yes| I[Document]
+    H -->|No| A
+```
+
 ### Common Optimizations
 
 | Strategy | Benefit | When to Use |
 |----------|---------|-------------|
-| Caching | Reduce compute | Repeated queries |
-| Batching | Reduce overhead | Many operations |
-| Lazy loading | Reduce memory | Large datasets |
-| Parallelization | Use all cores | CPU-bound |
-| Resolution tuning | Faster processing | Large areas |
-
-### Optimization Process
-
-```mermaid
-graph TD
-    A[Identify Bottleneck] --> B[Profile]
-    B --> C[Analyze]
-    C --> D[Optimize]
-    D --> E[Verify]
-    E --> F{Improved?}
-    F -->|Yes| G[Document]
-    F -->|No| A
-```
+| Caching | Reduce repeated computation | Repeated queries |
+| Batching | Amortize overhead | Multiple operations |
+| Lazy Loading | Reduce memory | Large datasets |
+| Parallelization | Use multiple cores | CPU-bound tasks |
+| Resolution Tuning | Faster processing | Large areas |
+| Connection Pooling | Reduce latency | Database/API calls |
 
 ---
 
-## H3 Grid Optimization
+## H3 Optimization
 
 ### Resolution Selection
 
-| Resolution | Avg. Hex Area | Cells per km2 | Use Case |
-|------------|---------------|---------------|----------|
-| 7 | 5.16 km2 | 0.19 | Regional analysis |
-| 8 | 0.74 km2 | 1.35 | City-wide |
-| 9 | 0.11 km2 | 9.48 | Default, urban |
-| 10 | 0.015 km2 | 66.4 | Detailed |
-| 11 | 0.002 km2 | 465 | Very detailed |
+| Resolution | Edge Length | Cells/km2 | Use Case |
+|------------|-------------|-----------|----------|
+| 7 | 5.16 km | 0.19 | Regional analysis |
+| 8 | 1.95 km | 1.35 | City-wide |
+| 9 | 174 m | 9.48 | Default urban |
+| 10 | 65 m | 66.4 | Detailed |
+| 11 | 24 m | 465 | Very detailed |
 
 ### Performance by Resolution
 
 ```python
-# Use lowest resolution that meets requirements
 from ucid.spatial import generate_grid_h3
 
-# Fast - regional overview
-grid_fast = generate_grid_h3(bbox, resolution=7)  # ~1000 cells
+# Fast - regional
+grid_fast = generate_grid_h3(bbox, resolution=7)  # ~1,000 cells
 
 # Balanced - default
 grid_balanced = generate_grid_h3(bbox, resolution=9)  # ~100,000 cells
@@ -128,45 +169,52 @@ grid_balanced = generate_grid_h3(bbox, resolution=9)  # ~100,000 cells
 grid_detailed = generate_grid_h3(bbox, resolution=11)  # ~10M cells
 ```
 
-### Compact Representation
+### Resolution Formula
+
+Cell count scales by factor of 7:
+
+$$C_r = C_{r-1} \times 7$$
+
+Processing time:
+
+$$T_{processing} \propto C_r$$
+
+### H3 Compact Representation
 
 ```python
 from ucid.spatial import compact_h3_set, uncompact_h3_set
 
-# Compact cells for storage
+# Compact for storage (7x reduction)
 cells = generate_grid_h3(bbox, resolution=9)
-compacted = compact_h3_set(cells)  # Reduces count by 7x
+compacted = compact_h3_set(cells)
 
 # Expand when needed
-expanded = uncompact_h3_set(compacted, target_resolution=9)
+expanded = uncompact_h3_set(compacted, resolution=9)
 ```
 
 ---
 
-## Context Scoring Optimization
+## Context Optimization
+
+### Context Performance
+
+| Context | Uncached | Cached | Speedup |
+|---------|----------|--------|---------|
+| 15MIN | 500 ms | 5 ms | 100x |
+| TRANSIT | 800 ms | 8 ms | 100x |
+| WALK | 300 ms | 3 ms | 100x |
+| NONE | 0.01 ms | 0.01 ms | 1x |
 
 ### Enable Caching
 
 ```python
-from ucid.contexts import ClimateContext
+from ucid.contexts import FifteenMinContext
 
-context = ClimateContext(
+context = FifteenMinContext(
     cache_enabled=True,
-    cache_ttl=3600,          # 1 hour
-    cache_backend="redis",    # Or "memory", "file"
+    cache_ttl=3600,
+    cache_backend="redis",
 )
-```
-
-### Batch Processing
-
-```python
-from ucid.contexts import BatchScorer
-
-scorer = BatchScorer(contexts=["15MIN", "TRANSIT"])
-
-# Process in batches
-locations = [(lat, lon) for lat, lon in grid]
-results = scorer.score_batch(locations, batch_size=1000)
 ```
 
 ### Parallel Scoring
@@ -175,12 +223,11 @@ results = scorer.score_batch(locations, batch_size=1000)
 from ucid.contexts import ParallelScorer
 
 scorer = ParallelScorer(
+    contexts=["15MIN", "TRANSIT"],
     workers=4,
-    contexts=["CLIMATE", "VITALITY"],
 )
 
-# Score in parallel
-results = scorer.score_parallel(locations)
+results = scorer.score_batch(locations)
 ```
 
 ### Selective Components
@@ -190,144 +237,7 @@ results = scorer.score_parallel(locations)
 result = context.compute(
     lat=41.015,
     lon=28.979,
-    components=["green_coverage", "tree_canopy"],  # Skip others
-)
-```
-
----
-
-## Data Integration Optimization
-
-### OSM Data Caching
-
-```python
-from ucid.data import OSMFetcher
-
-fetcher = OSMFetcher(
-    cache_path="./cache/osm",
-    cache_ttl=86400,  # 24 hours
-    use_pbf=True,     # Faster format
-)
-```
-
-### GTFS Pre-processing
-
-```python
-from ucid.data import GTFSLoader
-
-# Pre-process GTFS for faster queries
-loader = GTFSLoader()
-feed = loader.load("city.gtfs.zip")
-
-# Build spatial index
-loader.build_stop_index(feed)  # O(1) stop lookups
-loader.build_route_index(feed)  # O(1) route lookups
-
-# Save processed data
-loader.save_processed("city_processed.pkl")
-```
-
-### Lazy Data Loading
-
-```python
-from ucid.data import LazyDataLoader
-
-loader = LazyDataLoader()
-
-# Data loaded only when accessed
-data = loader.get("satellite_ndvi", bounds=bbox)
-```
-
----
-
-## API Optimization
-
-### Connection Pooling
-
-```python
-from ucid.api import UCIDClient
-
-client = UCIDClient(
-    pool_size=10,
-    pool_recycle=300,
-    keepalive=True,
-)
-```
-
-### Request Batching
-
-```python
-# Batch API requests
-locations = [
-    {"city": "IST", "lat": 41.0, "lon": 28.9},
-    {"city": "IST", "lat": 41.1, "lon": 29.0},
-    # ... more locations
-]
-
-response = client.batch_create(locations)
-```
-
-### Async Operations
-
-```python
-import asyncio
-from ucid.api import AsyncUCIDClient
-
-async def score_locations(locations):
-    async with AsyncUCIDClient() as client:
-        tasks = [client.score(loc) for loc in locations]
-        results = await asyncio.gather(*tasks)
-    return results
-```
-
----
-
-## Database Optimization
-
-### Indexing Strategy
-
-```sql
--- Spatial index for geometry queries
-CREATE INDEX idx_geom ON ucid_scores USING GIST (geom);
-
--- H3 index for cell lookups
-CREATE INDEX idx_h3 ON ucid_scores (h3_index);
-
--- Composite index for common queries
-CREATE INDEX idx_city_context ON ucid_scores (city, context);
-
--- Partial index for recent data
-CREATE INDEX idx_recent ON ucid_scores (created_at)
-WHERE created_at > NOW() - INTERVAL '30 days';
-```
-
-### Query Optimization
-
-```sql
--- Use EXPLAIN ANALYZE
-EXPLAIN ANALYZE
-SELECT * FROM ucid_scores
-WHERE city = 'IST' AND context = '15MIN'
-ORDER BY score DESC
-LIMIT 100;
-
--- Avoid SELECT *
-SELECT ucid_string, score, grade
-FROM ucid_scores
-WHERE city = 'IST';
-```
-
-### Connection Pooling
-
-```python
-from sqlalchemy import create_engine
-
-engine = create_engine(
-    DATABASE_URL,
-    pool_size=20,
-    max_overflow=30,
-    pool_pre_ping=True,
-    pool_recycle=3600,
+    components=["education", "healthcare"],  # Skip others
 )
 ```
 
@@ -338,14 +248,15 @@ engine = create_engine(
 ### Multi-Level Cache
 
 ```mermaid
-graph LR
+flowchart LR
     Request --> L1[L1: Memory]
     L1 -->|Miss| L2[L2: Redis]
     L2 -->|Miss| L3[L3: File]
-    L3 -->|Miss| Compute[Compute]
+    L3 -->|Miss| Compute
     Compute --> L3
     L3 --> L2
     L2 --> L1
+    L1 --> Response
 ```
 
 ### Cache Configuration
@@ -368,12 +279,20 @@ config = CacheConfig(
 )
 ```
 
+### Cache TTL Guidelines
+
+| Data Type | TTL | Reason |
+|-----------|-----|--------|
+| City registry | 24h | Rarely changes |
+| Context scores | 1h | Time-dependent |
+| OSM data | 24h | Updates daily |
+| GTFS data | Feed validity | Per feed |
+
 ### Cache Warming
 
 ```python
 from ucid.cache import warm_cache
 
-# Pre-populate cache for common queries
 warm_cache(
     cities=["IST", "NYC", "LON"],
     contexts=["15MIN", "TRANSIT"],
@@ -383,28 +302,66 @@ warm_cache(
 
 ---
 
-## Profiling and Monitoring
+## Batch Processing
 
-### Python Profiling
+### Batch API
 
 ```python
-import cProfile
-import pstats
+from ucid import create_ucid_batch
 
-# Profile function
-profiler = cProfile.Profile()
-profiler.enable()
+locations = [
+    {"city": "IST", "lat": 41.0, "lon": 28.9},
+    {"city": "IST", "lat": 41.1, "lon": 29.0},
+    # ... thousands more
+]
 
-# Run code
-for _ in range(1000):
-    create_ucid(city="IST", lat=41.015, lon=28.979)
+ucids = create_ucid_batch(locations, batch_size=1000)
+```
 
-profiler.disable()
+### Batch Performance
 
-# Analyze
-stats = pstats.Stats(profiler)
-stats.sort_stats('cumulative')
-stats.print_stats(20)
+| Batch Size | Throughput | Memory |
+|------------|------------|--------|
+| 1 | 127,575 ops/sec | Low |
+| 100 | 350,000 ops/sec | Low |
+| 1,000 | 500,000 ops/sec | Medium |
+| 10,000 | 600,000 ops/sec | High |
+
+### Async Batch Processing
+
+```python
+import asyncio
+from ucid.async_client import AsyncUCIDClient
+
+async def process_batch(locations):
+    async with AsyncUCIDClient() as client:
+        tasks = [client.create(loc) for loc in locations]
+        return await asyncio.gather(*tasks)
+```
+
+---
+
+## Memory Optimization
+
+### Memory Usage
+
+| Component | Memory | Notes |
+|-----------|--------|-------|
+| City registry | 2 MB | 405 cities |
+| H3 grid (res 9, city) | 50 MB | ~100k cells |
+| Context cache | Variable | TTL-based |
+
+### Memory-Efficient Patterns
+
+```python
+# Generator instead of list
+def generate_ucids(locations):
+    for loc in locations:
+        yield create_ucid(**loc)
+
+# Process in chunks
+for chunk in chunked(locations, 1000):
+    process(chunk)
 ```
 
 ### Memory Profiling
@@ -413,10 +370,110 @@ stats.print_stats(20)
 from memory_profiler import profile
 
 @profile
-def process_city_grid():
+def process_city():
     grid = generate_grid_h3(bbox, resolution=9)
     scores = score_batch(grid)
     return scores
+```
+
+---
+
+## API Performance
+
+### Connection Pooling
+
+```python
+from ucid.api import UCIDClient
+
+client = UCIDClient(
+    pool_size=10,
+    pool_recycle=300,
+    keepalive=True,
+)
+```
+
+### Rate Limiting
+
+| Tier | Rate Limit | Burst |
+|------|------------|-------|
+| Free | 100/min | 10 |
+| Pro | 1000/min | 100 |
+| Enterprise | 10000/min | 1000 |
+
+### Response Compression
+
+```python
+# Enable gzip compression
+headers = {"Accept-Encoding": "gzip"}
+response = client.get("/ucids", headers=headers)
+```
+
+---
+
+## Database Performance
+
+### Indexing Strategy
+
+```sql
+-- Spatial index
+CREATE INDEX idx_geom ON ucid_scores USING GIST (geom);
+
+-- H3 index
+CREATE INDEX idx_h3 ON ucid_scores (h3_index);
+
+-- Composite index
+CREATE INDEX idx_city_context ON ucid_scores (city, context);
+
+-- Partial index for recent data
+CREATE INDEX idx_recent ON ucid_scores (created_at)
+WHERE created_at > NOW() - INTERVAL '30 days';
+```
+
+### Query Optimization
+
+```sql
+-- Use EXPLAIN ANALYZE
+EXPLAIN ANALYZE
+SELECT * FROM ucid_scores
+WHERE city = 'IST' AND context = '15MIN'
+ORDER BY score DESC
+LIMIT 100;
+```
+
+### Connection Pooling
+
+```python
+from sqlalchemy import create_engine
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_size=20,
+    max_overflow=30,
+    pool_pre_ping=True,
+    pool_recycle=3600,
+)
+```
+
+---
+
+## Profiling
+
+### Python Profiling
+
+```python
+import cProfile
+import pstats
+
+profiler = cProfile.Profile()
+profiler.enable()
+
+# Code to profile
+for _ in range(10000):
+    create_ucid(city="IST", lat=41.015, lon=28.979)
+
+profiler.disable()
+stats = pstats.Stats(profiler)
+stats.sort_stats('cumulative').print_stats(20)
 ```
 
 ### Line Profiling
@@ -425,20 +482,18 @@ def process_city_grid():
 from line_profiler import profile
 
 @profile
-def compute_context():
-    # Each line is profiled
-    data = fetch_data()
-    processed = process_data(data)
-    score = calculate_score(processed)
-    return score
+def process():
+    data = fetch()
+    processed = transform(data)
+    return save(processed)
 ```
 
-### Benchmarking
+### Benchmark Testing
 
 ```python
 import pytest
 
-def test_create_ucid_benchmark(benchmark):
+def test_create_benchmark(benchmark):
     result = benchmark(
         create_ucid,
         city="IST",
@@ -446,6 +501,35 @@ def test_create_ucid_benchmark(benchmark):
         lon=28.979,
     )
     assert result is not None
+```
+
+---
+
+## Monitoring
+
+### Key Metrics to Monitor
+
+| Metric | Target | Alert Threshold |
+|--------|--------|-----------------|
+| Latency P99 | <100ms | >500ms |
+| Error Rate | <0.1% | >1% |
+| Cache Hit Rate | >90% | <70% |
+| Memory Usage | <80% | >90% |
+
+### Prometheus Metrics
+
+```python
+from prometheus_client import Counter, Histogram
+
+ucid_create_total = Counter(
+    'ucid_create_total',
+    'Total UCID creations'
+)
+
+ucid_create_latency = Histogram(
+    'ucid_create_latency_seconds',
+    'UCID creation latency'
+)
 ```
 
 ---
@@ -473,12 +557,14 @@ def test_create_ucid_benchmark(benchmark):
 
 ---
 
-## Resources
+## References
 
 - [Python Profiling](https://docs.python.org/3/library/profile.html)
 - [H3 Performance](https://h3geo.org/docs/core-library/perf)
 - [PostgreSQL Performance](https://www.postgresql.org/docs/current/performance-tips.html)
+- [Redis Optimization](https://redis.io/docs/management/optimization/)
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

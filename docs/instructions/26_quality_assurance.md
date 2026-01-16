@@ -214,7 +214,7 @@ class TestUCIDParsing:
     
     def test_parse_valid_ucid(self):
         """Test parsing a valid UCID string."""
-        ucid_str = "UCID-V1:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
+        ucid_str = "UCID:IST:+41.015:+028.979:9:891f2ed6df7ffff:2026W01T12:15MIN:A:0.92:"
         ucid = parse_ucid(ucid_str)
         
         assert ucid.city == "IST"

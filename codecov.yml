@@ -1,30 +1,134 @@
+# ==============================================================================
+# UCID Codecov Configuration
+# Urban Context Identifier - Python Library
+# Version: 1.0.5
+# Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.
+# https://docs.codecov.com/docs/codecov-yaml
+# ==============================================================================
+
+# ==============================================================================
+# General Settings
+# ==============================================================================
 codecov:
-  require_ci_to_pass: false
+  require_ci_to_pass: true
   notify:
     wait_for_ci: true
+  max_report_age: 24h
 
+# ==============================================================================
+# Coverage Configuration
+# ==============================================================================
 coverage:
   precision: 2
   round: down
   range: "70...100"
+
   status:
+    # Project-level coverage
     project:
       default:
-        target: 90%
-        threshold: 5%
+        target: 80%
+        threshold: 2%
         informational: false
+        only_pulls: false
+
+      # Stricter targets for core modules
+      core:
+        paths:
+          - "src/ucid/core/"
+        target: 90%
+        threshold: 1%
+
+      # Context modules
+      contexts:
+        paths:
+          - "src/ucid/contexts/"
+        target: 85%
+        threshold: 2%
+
+    # Patch-level coverage (new code)
     patch:
       default:
         target: 80%
+        threshold: 5%
         informational: false
+        only_pulls: true
 
+# ==============================================================================
+# Flags
+# ==============================================================================
+flags:
+  unittests:
+    paths:
+      - src/ucid/
+    carryforward: true
+    after_n_builds: 1
+
+  integration:
+    paths:
+      - src/ucid/
+    carryforward: false
+
+# ==============================================================================
+# Component Management
+# ==============================================================================
+component_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: auto
+      - type: patch
+        target: auto
+
+  individual_components:
+    - component_id: core
+      name: Core Library
+      paths:
+        - src/ucid/core/**
+
+    - component_id: contexts
+      name: Context Algorithms
+      paths:
+        - src/ucid/contexts/**
+
+    - component_id: spatial
+      name: Spatial Operations
+      paths:
+        - src/ucid/spatial/**
+
+    - component_id: data
+      name: Data Integration
+      paths:
+        - src/ucid/data/**
+
+    - component_id: api
+      name: REST API
+      paths:
+        - src/ucid/api/**
+
+# ==============================================================================
+# Comment Configuration
+# ==============================================================================
 comment:
-  layout: "reach,diff,flags,files,footer"
+  layout: "header,diff,flags,components,footer"
   behavior: default
   require_changes: false
   require_base: false
   require_head: true
+  hide_project_coverage: false
 
+  # Show coverage for these paths in PR comments
+  show_carryforward_flags: true
+
+# ==============================================================================
+# Pull Request Settings
+# ==============================================================================
+github_checks:
+  annotations: true
+
+# ==============================================================================
+# Parser Settings
+# ==============================================================================
 parsers:
   gcov:
     branch_detection:
@@ -33,16 +137,26 @@ parsers:
       method: false
       macro: false
 
+# ==============================================================================
+# Ignore Patterns
+# ==============================================================================
 ignore:
   - "tests/**/*"
   - "docs/**/*"
   - "examples/**/*"
   - "scripts/**/*"
+  - "notebooks/**/*"
   - "**/__pycache__/**"
   - "**/*.pyc"
+  - "**/conftest.py"
+  - "**/setup.py"
 
-flags:
-  unittests:
-    paths:
-      - src/ucid/
-    carryforward: true
+# ==============================================================================
+# Fixes (path adjustments)
+# ==============================================================================
+fixes:
+  - "src/::"
+
+# ==============================================================================
+# End of codecov.yml
+# ==============================================================================

@@ -1,33 +1,62 @@
+# Documentation Build
+# Builds and deploys documentation.
+
 name: Docs
 
 on:
   push:
     branches: [main]
+    paths:
+      - "docs/**"
+      - "src/**"
+      - "mkdocs.yml"
   pull_request:
     branches: [main]
+    paths:
+      - "docs/**"
+      - "src/**"
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
+    name: Build Documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
-      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d  # v5.1.0
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install dependencies
         run: |
-          pip install sphinx==7.3.7 myst-parser==3.0.1 sphinx-rtd-theme==2.0.0
-          pip install -e "."
+          python -m pip install --upgrade pip
+          pip install -e ".[docs]"
+
       - name: Build docs
-        run: |
-          cd docs
-          sphinx-build -b html . _build/html || echo "Docs build completed with warnings"
+        run: mkdocs build --strict
+
       - name: Upload artifact
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08  # v4.6.0
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: docs
-          path: docs/_build/html
-          if-no-files-found: warn
+          path: site/
+
+  deploy:
+    name: Deploy Documentation
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

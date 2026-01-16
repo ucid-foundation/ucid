@@ -1,0 +1,267 @@
+# Copyright 2026 UCID Foundation
+#
+# Licensed under the EUPL, Version 1.2 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# logging.yaml - UCID Logging Configuration
+#
+# This configuration file defines the logging behavior for the UCID library.
+# It uses Python's standard logging module and supports structured logging,
+# multiple handlers, and per-module configuration.
+#
+# Log Levels:
+#   DEBUG (10)    - Detailed debugging information
+#   INFO (20)     - Confirmation that things are working
+#   WARNING (30)  - Something unexpected but recoverable
+#   ERROR (40)    - Serious problem, function failed
+#   CRITICAL (50) - Serious error, program may crash
+#
+# Reference Documentation:
+#   - Python Logging: https://docs.python.org/3/library/logging.html
+#   - Structured Logging: https://ucid.readthedocs.io/logging
+#
+# Maintainer: UCID Foundation
+# Version: 1.0.5
+# Last Updated: 2026-01-15
+
+# =============================================================================
+# METADATA
+# =============================================================================
+_meta:
+  version: "1.0.5"
+  description: "UCID Logging Configuration"
+  last_updated: "2026-01-15"
+
+# =============================================================================
+# LOGGING VERSION
+# =============================================================================
+# Required for Python's logging.config.dictConfig()
+version: 1
+
+# Disable existing loggers
+disable_existing_loggers: false
+
+# =============================================================================
+# FORMATTERS
+# =============================================================================
+# Define output formats for log messages.
+
+formatters:
+  # Standard format for console output
+  standard:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+  # Detailed format for file logging
+  detailed:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(module)s:%(funcName)s:%(lineno)d - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S.%f"
+
+  # JSON format for log aggregation systems
+  json:
+    format: '{"timestamp": "%(asctime)s", "name": "%(name)s", "level": "%(levelname)s", "module": "%(module)s", "function": "%(funcName)s", "line": %(lineno)d, "message": "%(message)s"}'
+    datefmt: "%Y-%m-%dT%H:%M:%S.%fZ"
+
+  # Minimal format for development
+  minimal:
+    format: "%(levelname)s: %(message)s"
+
+  # Colored format for development console
+  colored:
+    format: "%(log_color)s%(levelname)-8s%(reset)s %(blue)s%(name)s%(reset)s - %(message)s"
+    datefmt: "%H:%M:%S"
+
+# =============================================================================
+# FILTERS
+# =============================================================================
+# Define filters to selectively include/exclude log records.
+
+filters:
+  # Filter to only include UCID-related logs
+  ucid_only:
+    name: "ucid"
+
+  # Filter to exclude noisy third-party logs
+  no_external:
+    name: ""
+
+# =============================================================================
+# HANDLERS
+# =============================================================================
+# Define where log messages are sent.
+
+handlers:
+  # Console handler for standard output
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: standard
+    stream: ext://sys.stdout
+
+  # Console handler with colors (development)
+  console_colored:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: colored
+    stream: ext://sys.stdout
+
+  # File handler with rotation
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: detailed
+    filename: logs/ucid.log
+    maxBytes: 10485760  # 10 MB
+    backupCount: 5
+    encoding: utf-8
+
+  # Error file handler
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/ucid_error.log
+    maxBytes: 10485760  # 10 MB
+    backupCount: 10
+    encoding: utf-8
+
+  # JSON file handler for log aggregation
+  json_file:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: json
+    filename: logs/ucid.json
+    maxBytes: 52428800  # 50 MB
+    backupCount: 5
+    encoding: utf-8
+
+  # Null handler for disabled logging
+  null:
+    class: logging.NullHandler
+
+# =============================================================================
+# LOGGERS
+# =============================================================================
+# Define logger-specific configurations.
+
+loggers:
+  # Root UCID logger
+  ucid:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # Core module logger
+  ucid.core:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # Parser module logger
+  ucid.core.parser:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # Validator module logger
+  ucid.core.validator:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # Registry module logger
+  ucid.core.registry:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # Data module logger
+  ucid.data:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # OSM client logger
+  ucid.data.osm_client:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # GTFS client logger
+  ucid.data.gtfs_client:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # Context algorithms logger
+  ucid.contexts:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # API logger
+  ucid.api:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  # Third-party loggers (silenced)
+  urllib3:
+    level: WARNING
+    handlers: [null]
+    propagate: false
+
+  httpx:
+    level: WARNING
+    handlers: [null]
+    propagate: false
+
+  asyncio:
+    level: WARNING
+    handlers: [null]
+    propagate: false
+
+# =============================================================================
+# ROOT LOGGER
+# =============================================================================
+# Default logger for uncategorized messages.
+
+root:
+  level: WARNING
+  handlers: [console]
+
+# =============================================================================
+# ENVIRONMENT-SPECIFIC OVERRIDES
+# =============================================================================
+# These are applied based on UCID_ENV environment variable.
+
+environments:
+  development:
+    ucid:
+      level: DEBUG
+      handlers: [console_colored]
+    root:
+      level: DEBUG
+
+  testing:
+    ucid:
+      level: DEBUG
+      handlers: [console]
+    root:
+      level: WARNING
+
+  production:
+    ucid:
+      level: WARNING
+      handlers: [file, error_file, json_file]
+    root:
+      level: ERROR

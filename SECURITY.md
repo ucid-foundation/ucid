@@ -1,77 +1,117 @@
-# Security Policy
+# UCID Security Policy
 
-This document outlines the security policies, vulnerability reporting procedures, and security practices for the UCID (Urban Context Identifier) project.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Security Policy and Guidelines |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Security Team |
+| Contact | security@ucid.org |
 
 ---
 
 ## Table of Contents
 
-1. [Supported Versions](#supported-versions)
-2. [Reporting a Vulnerability](#reporting-a-vulnerability)
-3. [Security Response Process](#security-response-process)
+1. [Reporting Security Issues](#reporting-security-issues)
+2. [Security Response Process](#security-response-process)
+3. [Supported Versions](#supported-versions)
 4. [Security Practices](#security-practices)
-5. [Dependency Management](#dependency-management)
+5. [Vulnerability Disclosure Policy](#vulnerability-disclosure-policy)
 6. [Security Advisories](#security-advisories)
-7. [Security Contact](#security-contact)
-8. [Bug Bounty Program](#bug-bounty-program)
-9. [Compliance](#compliance)
+7. [Dependency Security](#dependency-security)
+8. [Security Checklist](#security-checklist)
+9. [Security Testing](#security-testing)
+10. [Incident Response](#incident-response)
 
 ---
 
-## Supported Versions
+## Library Statistics
 
-The following versions of UCID are currently receiving security updates:
-
-| Version | Supported | End of Life |
-|---------|-----------|-------------|
-| 1.0.x | Yes | December 2027 |
-| 0.9.x | Yes | June 2026 |
-| 0.8.x | No | December 2025 |
-| < 0.8 | No | Not supported |
-
-### Support Policy
-
-| Support Level | Duration | Includes |
-|---------------|----------|----------|
-| **Active** | 18 months | Features, fixes, security |
-| **Maintenance** | 6 months | Critical fixes, security |
-| **End of Life** | None | No updates |
-
-We recommend always using the latest stable release to ensure you have the most recent security patches.
+| Metric | Value |
+|--------|-------|
+| Total Cities | 405 |
+| Countries | 23 |
+| Security Audits | 2 |
+| CVEs Fixed | 0 |
+| Last Security Review | 2026-01 |
 
 ---
 
-## Reporting a Vulnerability
+## Reporting Security Issues
 
 ### How to Report
 
 If you discover a security vulnerability in UCID, please report it responsibly:
 
-**Email**: security@ucid.org
-
-**PGP Key**: Available at [keys.openpgp.org](https://keys.openpgp.org)
-
-**Alternative**: Open a private security advisory on GitHub
+| Method | Details |
+|--------|---------|
+| Email | security@ucid.org |
+| PGP Key | Available at [keyserver](https://keys.openpgp.org) |
+| GitHub | Private security advisory |
 
 ### What to Include
 
-When reporting a vulnerability, please provide:
+When reporting, please provide:
 
-| Information | Description |
-|-------------|-------------|
-| **Description** | Clear explanation of the vulnerability |
-| **Impact** | Potential security impact and affected components |
-| **Reproduction** | Step-by-step instructions to reproduce |
-| **Environment** | UCID version, Python version, OS |
-| **Proof of Concept** | Code or commands demonstrating the issue |
-| **Suggested Fix** | If available, your proposed solution |
+1. **Description**: Clear description of the vulnerability
+2. **Impact**: Potential impact of the vulnerability
+3. **Reproduction**: Steps to reproduce the issue
+4. **Environment**: Python version, OS, UCID version
+5. **Proof of Concept**: Code or commands to demonstrate
+6. **Suggested Fix**: If you have ideas for a fix
+
+### Report Template
+
+```
+Subject: [SECURITY] Brief description
+
+## Vulnerability Details
+
+**Type:** [e.g., SQL Injection, XSS, RCE]
+**Severity:** [Critical/High/Medium/Low]
+**CVSS Score:** [if known]
+
+## Affected Versions
+- [ ] 1.0.5
+- [ ] 1.0.4
+- [ ] Earlier versions
+
+## Description
+[Detailed description of the vulnerability]
+
+## Steps to Reproduce
+1. Step 1
+2. Step 2
+3. Step 3
+
+## Impact
+[What can an attacker achieve?]
+
+## Environment
+- Python version: 
+- UCID version: 
+- OS: 
+
+## Proof of Concept
+```python
+# Code demonstrating the vulnerability
+```
+
+## Suggested Fix
+[If you have suggestions]
+
+## Additional Information
+[Any other relevant details]
+```
 
 ### What NOT to Do
 
-- Do not disclose the vulnerability publicly before we have addressed it
-- Do not exploit the vulnerability beyond what is necessary to demonstrate it
-- Do not access, modify, or delete data belonging to others
-- Do not perform denial of service attacks
+- Do NOT open public issues for security vulnerabilities
+- Do NOT share vulnerability details publicly before fixed
+- Do NOT exploit the vulnerability beyond proof of concept
+- Do NOT access data belonging to others
 
 ---
 
@@ -79,117 +119,127 @@ When reporting a vulnerability, please provide:
 
 ### Response Timeline
 
-| Phase | Timeline | Actions |
-|-------|----------|---------|
-| **Acknowledgment** | 24 hours | Confirm receipt of report |
-| **Triage** | 48 hours | Assess severity and impact |
-| **Investigation** | 1-2 weeks | Develop and test fix |
-| **Notification** | Before release | Notify reporter of timeline |
-| **Release** | As scheduled | Publish patch and advisory |
-| **Disclosure** | 90 days max | Public disclosure |
+| Phase | Timeline | Description |
+|-------|----------|-------------|
+| Acknowledgment | 24 hours | Confirm receipt of report |
+| Initial Assessment | 48 hours | Assess severity and impact |
+| Investigation | 1-2 weeks | Investigate and develop fix |
+| Patch Development | 1-2 weeks | Develop and test patch |
+| Release | 1 week | Release security update |
+| Disclosure | 30 days | Public disclosure |
 
-### Severity Classification
+### Process Flow
 
-| Severity | CVSS Score | Response Time | Examples |
-|----------|------------|---------------|----------|
-| **Critical** | 9.0-10.0 | 24-48 hours | RCE, authentication bypass |
-| **High** | 7.0-8.9 | 1 week | Privilege escalation, data exposure |
-| **Medium** | 4.0-6.9 | 2 weeks | DoS, information disclosure |
-| **Low** | 0.1-3.9 | Next release | Minor issues, hardening |
+```mermaid
+flowchart TD
+    A[Report Received] --> B[Acknowledge Receipt]
+    B --> C[Initial Assessment]
+    C --> D{Valid Vulnerability?}
+    D -->|No| E[Close with Explanation]
+    D -->|Yes| F[Assign Severity]
+    F --> G[Investigate]
+    G --> H[Develop Fix]
+    H --> I[Internal Testing]
+    I --> J[Release Patch]
+    J --> K[Notify Reporter]
+    K --> L[Public Disclosure]
+    L --> M[Update Advisories]
+```
 
-### Coordinated Disclosure
+### Severity Ratings
 
-We follow responsible disclosure practices:
+| Severity | CVSS Score | Response Time |
+|----------|------------|---------------|
+| Critical | 9.0-10.0 | 24 hours |
+| High | 7.0-8.9 | 72 hours |
+| Medium | 4.0-6.9 | 1 week |
+| Low | 0.1-3.9 | 2 weeks |
 
-1. Reporter notifies us privately
-2. We acknowledge and investigate
-3. We develop and test a fix
-4. We coordinate release timing with reporter
-5. We publish security advisory and patch
-6. Reporter may publish details after 90 days
+---
+
+## Supported Versions
+
+### Currently Supported
+
+| Version | Supported | End of Support |
+|---------|-----------|----------------|
+| 1.0.x | Yes | Active |
+| 0.9.x | Security only | 2026-06-01 |
+| 0.8.x | No | 2025-12-01 |
+| < 0.8 | No | Not supported |
+
+### Security Support Policy
+
+- **Active**: Full security and bug fixes
+- **Security Only**: Security fixes only
+- **Unsupported**: No updates, upgrade required
 
 ---
 
 ## Security Practices
 
-### Development Practices
+### Code Security
 
 | Practice | Implementation |
 |----------|----------------|
-| **Code Review** | All changes require review |
-| **Static Analysis** | Bandit, CodeQL on every PR |
-| **Dependency Scanning** | Dependabot, pip-audit daily |
-| **Secret Scanning** | detect-secrets pre-commit hook |
-| **SAST** | GitHub Advanced Security |
-| **Signed Commits** | GPG signatures required for maintainers |
+| Input Validation | Pydantic models, explicit validation |
+| Type Safety | Full type hints, mypy checking |
+| Dependency Pinning | Locked versions in pyproject.toml |
+| Code Review | Required for all changes |
+| Static Analysis | Ruff, Bandit in CI |
 
-### Input Validation
+### API Security
 
-All user input is validated:
+| Practice | Implementation |
+|----------|----------------|
+| Authentication | API keys, OAuth2 |
+| Rate Limiting | Token bucket algorithm |
+| Input Sanitization | Strict validation |
+| TLS | Required for all connections |
+| CORS | Configurable allowed origins |
 
-```python
-from pydantic import BaseModel, Field, validator
-from typing import Annotated
+### Data Security
 
-class UCIDRequest(BaseModel):
-    """Validated UCID creation request."""
-    
-    city: Annotated[str, Field(pattern=r'^[A-Z]{3}$')]
-    lat: Annotated[float, Field(ge=-90, le=90)]
-    lon: Annotated[float, Field(ge=-180, le=180)]
-    
-    @validator('city')
-    def validate_city(cls, v):
-        if v not in ALLOWED_CITIES:
-            raise ValueError(f"Unknown city code: {v}")
-        return v
-```
-
-### Authentication and Authorization
-
-| Component | Mechanism | Implementation |
-|-----------|-----------|----------------|
-| **API Keys** | HMAC-SHA256 | Header-based |
-| **OAuth2** | JWT tokens | FastAPI Security |
-| **Rate Limiting** | Token bucket | Redis-backed |
-| **RBAC** | Role-based | Custom middleware |
-
-### Data Protection
-
-| Data Type | Protection |
-|-----------|------------|
-| **API Keys** | Hashed with Argon2id |
-| **In Transit** | TLS 1.3 required |
-| **At Rest** | AES-256 encryption |
-| **Logs** | PII redaction |
+| Practice | Implementation |
+|----------|----------------|
+| No PII Storage | No personal data stored |
+| Data Validation | Strict coordinate validation |
+| Logging | No sensitive data in logs |
+| Encryption | TLS 1.3 for transport |
 
 ---
 
-## Dependency Management
+## Vulnerability Disclosure Policy
 
-### Dependency Policy
+### Responsible Disclosure
 
-| Criterion | Requirement |
-|-----------|-------------|
-| **License** | OSI-approved, compatible with EUPL-1.2 |
-| **Maintenance** | Last commit within 6 months |
-| **Security** | No known critical CVEs |
-| **Reputation** | Established project or vetted newcomer |
+We follow responsible disclosure practices:
 
-### Automated Scanning
+1. **Report**: Security issues reported privately
+2. **Acknowledgment**: We acknowledge within 24 hours
+3. **Collaboration**: We work with reporters on fixes
+4. **Credit**: Reporters credited in advisories
+5. **Disclosure**: Coordinated public disclosure
 
-- **Dependabot**: Daily dependency updates
-- **pip-audit**: CI pipeline check
-- **Safety**: Pre-release validation
-- **Snyk**: Optional integration
+### Disclosure Timeline
 
-### Update Process
+| Event | Timeline |
+|-------|----------|
+| Report received | Day 0 |
+| Acknowledgment | Day 1 |
+| Fix developed | Day 14 |
+| Patch released | Day 21 |
+| Public disclosure | Day 30 |
 
-1. Automated PR created by Dependabot
-2. CI runs full test suite
-3. Security team reviews for breaking changes
-4. Maintainer approves and merges
-5. Changelog updated for security fixes
+### CVE Process
+
+For significant vulnerabilities:
+
+1. Request CVE ID from MITRE
+2. Develop and test patch
+3. Prepare security advisory
+4. Coordinate release date
+5. Publish CVE details
 
 ---
 
@@ -197,236 +247,307 @@ class UCIDRequest(BaseModel):
 
 ### Published Advisories
 
-Security advisories are published on:
-
-- [GitHub Security Advisories](https://github.com/ucid-foundation/ucid/security/advisories)
-- [CVE Database](https://cve.mitre.org/)
-- Project mailing list (security@lists.ucid.org)
+| ID | Date | Severity | Description | Status |
+|----|------|----------|-------------|--------|
+| None | - | - | No security advisories to date | - |
 
 ### Advisory Format
 
+Security advisories follow this format:
+
 ```markdown
-# UCID-SEC-2026-001: [Title]
+# Security Advisory: [Title]
+
+**Advisory ID:** UCID-2026-001
+**Date:** 2026-01-16
+**Severity:** High
+**CVSS Score:** 7.5
 
 ## Summary
-Brief description of the vulnerability.
-
-## Severity
-CVSS: X.X (Severity)
+[Brief summary of the vulnerability]
 
 ## Affected Versions
-- ucid >= 1.0.0, < 1.2.3
-
-## Patched Versions
-- ucid >= 1.2.3
+- 1.0.0 - 1.0.4
 
 ## Impact
-Description of potential impact.
+[What is the impact?]
 
-## Workarounds
-Temporary mitigations if upgrade not immediately possible.
+## Mitigation
+[How to mitigate before patching]
 
-## References
-- CVE-2026-XXXXX
-- GitHub Advisory GHSA-XXXX-XXXX-XXXX
+## Resolution
+Upgrade to version 1.0.5 or later.
+
+## Timeline
+- 2026-01-01: Report received
+- 2026-01-02: Confirmed
+- 2026-01-10: Fix developed
+- 2026-01-15: Patch released
+- 2026-01-16: Public disclosure
+
+## Credit
+[Reporter credit]
 ```
 
 ---
 
-## Security Contact
+## Dependency Security
 
-### Primary Contact
+### Dependency Monitoring
 
-- **Email**: security@ucid.org
-- **Response**: Within 24 hours
+| Tool | Purpose |
+|------|---------|
+| Dependabot | Automated dependency updates |
+| pip-audit | Vulnerability scanning |
+| Safety | Security check |
 
-### Security Team
+### Update Policy
 
-| Role | Responsibility |
-|------|----------------|
-| **Security Lead** | Triage, coordination |
-| **Core Maintainer** | Fix development |
-| **Release Manager** | Patch deployment |
-| **Communications** | Advisory publication |
+| Type | Timeline |
+|------|----------|
+| Security patches | Immediate |
+| Minor updates | Weekly |
+| Major updates | Evaluated per case |
 
----
+### Dependency Review
 
-## Bug Bounty Program
+All new dependencies must:
 
-### Eligibility
-
-We appreciate responsible security research. While we do not currently offer monetary rewards, we recognize researchers through:
-
-- Credit in security advisories
-- Acknowledgment in SECURITY.md
-- Hall of Fame on project website
-- Swag for significant findings
-
-### Scope
-
-| In Scope | Out of Scope |
-|----------|--------------|
-| UCID core library | Third-party dependencies |
-| Official API service | User deployments |
-| Official Docker images | Social engineering |
-| Documentation site | Physical security |
-
-### Hall of Fame
-
-We thank the following researchers for their contributions:
-
-| Year | Researcher | Contribution |
-|------|------------|--------------|
-| 2026 | Reserved | Reserved |
+1. Have active maintenance
+2. Have no known vulnerabilities
+3. Have appropriate license
+4. Be reviewed by maintainer
 
 ---
 
-## Compliance
+## Security Checklist
 
-### Standards
+### For Contributors
 
-UCID follows industry security standards:
+- [ ] No hardcoded credentials
+- [ ] Input validation on all user input
+- [ ] No sensitive data in logs
+- [ ] No sensitive data in error messages
+- [ ] Dependencies from trusted sources
+- [ ] No eval() or exec() with user input
 
-| Standard | Status | Notes |
-|----------|--------|-------|
-| **SLSA Level 3** | Compliant | Build provenance |
-| **OpenSSF Scorecard** | 8.5/10 | Best practices |
-| **CII Best Practices** | Silver | Linux Foundation |
+### For Maintainers
 
-### SBOM
+- [ ] Review all changes for security
+- [ ] Run security linters (Bandit)
+- [ ] Check for dependency vulnerabilities
+- [ ] Verify no secrets in commits
+- [ ] Update security documentation
 
-Software Bill of Materials is provided for each release:
+### For Deployers
 
-- Format: CycloneDX JSON
-- Location: Release assets
-- Contents: All direct and transitive dependencies
-
-### Provenance
-
-Build provenance attestations are signed with Sigstore:
-
-```bash
-# Verify release provenance
-slsa-verifier verify-artifact \
-  ucid-1.0.0.tar.gz \
-  --provenance-path ucid-1.0.0.intoto.jsonl \
-  --source-uri github.com/ucid-foundation/ucid \
-  --source-tag v1.0.0
-```
+- [ ] Use HTTPS only
+- [ ] Configure rate limiting
+- [ ] Use environment variables for secrets
+- [ ] Enable logging and monitoring
+- [ ] Regular security updates
 
 ---
 
-## Best Practices for Users
+## Security Testing
 
-### Deployment Security
+### Automated Testing
 
-| Practice | Recommendation |
-|----------|----------------|
-| **Updates** | Apply security patches promptly |
-| **Configuration** | Use secure defaults |
-| **Secrets** | Use environment variables |
-| **Logging** | Enable audit logging |
-| **Monitoring** | Alert on anomalies |
+| Test Type | Tool | Frequency |
+|-----------|------|-----------|
+| Static Analysis | Bandit | Every PR |
+| Dependency Scan | pip-audit | Daily |
+| Secret Detection | detect-secrets | Every PR |
+| Container Scan | Trivy | Every build |
 
-### API Security
+### Manual Testing
 
-```python
-# Recommended API client configuration
-from ucid.api import UCIDClient
-
-client = UCIDClient(
-    base_url="https://api.ucid.org",
-    api_key=os.environ["UCID_API_KEY"],
-    timeout=30,
-    verify_ssl=True,
-    max_retries=3,
-)
-```
-
----
-
-## Version History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0 | 2024-12-01 | Initial security policy |
-| 1.1 | 2025-06-01 | Added bug bounty section |
-| 2.0 | 2026-01-01 | Updated for SLSA compliance |
-
----
-
-## Threat Model
-
-### Attack Surface
-
-| Surface | Threats | Mitigations |
-|---------|---------|-------------|
-| **API Endpoints** | Injection, DoS | Input validation, rate limiting |
-| **Dependencies** | Supply chain | Scanning, pinning |
-| **Configuration** | Misconfiguration | Secure defaults |
-| **Data** | Exposure, tampering | Encryption, validation |
-| **Build Pipeline** | Tampering | SLSA, signed builds |
-
-### Security Architecture
-
-```mermaid
-graph TD
-    subgraph "Security Layers"
-        L1[Input Validation]
-        L2[Authentication]
-        L3[Authorization]
-        L4[Encryption]
-        L5[Audit Logging]
-    end
-    
-    L1 --> L2
-    L2 --> L3
-    L3 --> L4
-    L4 --> L5
-```
+| Test Type | Frequency |
+|-----------|-----------|
+| Penetration Testing | Annually |
+| Code Audit | Major releases |
+| Security Review | Quarterly |
 
 ---
 
 ## Incident Response
 
-### Response Phases
+### Incident Response Plan
 
-| Phase | Actions | Timeline |
-|-------|---------|----------|
-| **Detection** | Identify and classify | Immediate |
-| **Containment** | Limit damage | Hours |
-| **Eradication** | Remove threat | Days |
-| **Recovery** | Restore service | Days |
-| **Lessons Learned** | Post-mortem | Week |
+```mermaid
+flowchart TD
+    A[Incident Detected] --> B[Assess Severity]
+    B --> C{Critical?}
+    C -->|Yes| D[Immediate Response]
+    C -->|No| E[Standard Response]
+    D --> F[Contain]
+    E --> F
+    F --> G[Investigate]
+    G --> H[Remediate]
+    H --> I[Communicate]
+    I --> J[Post-Incident Review]
+    J --> K[Update Procedures]
+```
 
-### Communication Plan
+### Response Team
 
-| Audience | Channel | Timing |
-|----------|---------|--------|
-| Security Team | Direct | Immediate |
-| Maintainers | Private channel | Same day |
-| Affected Users | Email | Before disclosure |
-| Public | Advisory | At release |
+| Role | Responsibility |
+|------|----------------|
+| Incident Lead | Coordinate response |
+| Security Team | Technical investigation |
+| Communications | External communication |
+| Legal | Legal requirements |
 
 ---
 
-## Security Training
+## Security Architecture
 
-### Required Training
+### Defense in Depth
 
-| Role | Training | Frequency |
-|------|----------|-----------|
-| Maintainer | Secure coding | Annual |
-| Contributor | Security basics | Onboarding |
-| Reviewer | Security review | Annual |
+```mermaid
+graph TB
+    subgraph "Perimeter"
+        WAF[WAF/Firewall]
+    end
+    
+    subgraph "Application"
+        Auth[Authentication]
+        Authz[Authorization]
+        Valid[Input Validation]
+    end
+    
+    subgraph "Data"
+        Encrypt[Encryption]
+        Audit[Audit Logging]
+    end
+    
+    WAF --> Auth
+    Auth --> Authz
+    Authz --> Valid
+    Valid --> Encrypt
+    Encrypt --> Audit
+```
 
-### Resources
+### Security Boundaries
 
-- OWASP Top 10
-- CWE/SANS Top 25
-- Python Security Best Practices
-- Supply Chain Security
+| Boundary | Protection |
+|----------|------------|
+| Network | TLS 1.3, firewall |
+| Application | Authentication, authorization |
+| Data | Encryption, access control |
+| Logging | Audit trails, monitoring |
+
+---
+
+## Common Vulnerabilities
+
+### OWASP Top 10 Considerations
+
+| Vulnerability | UCID Mitigation |
+|---------------|-----------------|
+| Injection | Parameterized queries, input validation |
+| Broken Auth | OAuth2, API keys, rate limiting |
+| Sensitive Data | No PII storage, TLS |
+| XXE | XML parsing disabled |
+| Broken Access | RBAC, least privilege |
+| Security Misconfig | Secure defaults |
+| XSS | Output encoding |
+| Insecure Deserialization | JSON only, validation |
+| Vulnerable Components | Dependency scanning |
+| Insufficient Logging | Comprehensive audit logs |
+
+### Python-Specific Considerations
+
+| Risk | Mitigation |
+|------|------------|
+| Pickle deserialization | Never unpickle untrusted data |
+| eval/exec | Never use with user input |
+| Path traversal | Use pathlib, validate paths |
+| YAML loading | Use safe_load only |
+
+---
+
+## Security Hardening
+
+### Production Hardening Checklist
+
+- [ ] TLS 1.3 enforced
+- [ ] HTTP Strict Transport Security enabled
+- [ ] Content Security Policy configured
+- [ ] X-Frame-Options set
+- [ ] X-Content-Type-Options set
+- [ ] Rate limiting configured
+- [ ] Logging enabled
+- [ ] Monitoring active
+- [ ] Secrets in vault/env
+- [ ] Debug mode disabled
+
+### Container Security
+
+| Practice | Implementation |
+|----------|----------------|
+| Non-root user | Run as UID 1000 |
+| Read-only filesystem | Mount as read-only |
+| No privileged mode | Drop all capabilities |
+| Resource limits | Set CPU/memory limits |
+| Image scanning | Trivy in CI |
+
+---
+
+## Compliance
+
+### Regulatory Considerations
+
+| Regulation | Relevance | Status |
+|------------|-----------|--------|
+| GDPR | No PII processed | N/A |
+| CCPA | No PII processed | N/A |
+| SOC 2 | Security controls | Aligned |
+| ISO 27001 | Security management | Aligned |
+
+### Data Classification
+
+| Classification | Examples | Handling |
+|----------------|----------|----------|
+| Public | City coordinates, UCIDs | Open |
+| Internal | Logs, metrics | Restricted |
+| Confidential | API keys, credentials | Encrypted |
+
+---
+
+## Contact
+
+| Purpose | Contact |
+|---------|---------|
+| Security Reports | security@ucid.org |
+| General Security Questions | security@ucid.org |
+| PGP Key | [Key Server](https://keys.openpgp.org) |
+
+---
+
+## Bug Bounty
+
+Currently, UCID does not offer a formal bug bounty program. However, we recognize and thank security researchers who responsibly disclose vulnerabilities.
+
+### Recognition
+
+Researchers who report valid vulnerabilities receive:
+
+- Credit in security advisories
+- Listing in CONTRIBUTORS.md
+- Letter of recognition (on request)
+
+---
+
+## References
+
+- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)
+- [Python Security Best Practices](https://docs.python-guide.org/writing/security/)
+- [GitHub Security Advisories](https://docs.github.com/en/code-security/security-advisories)
+- [CWE - Common Weakness Enumeration](https://cwe.mitre.org/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

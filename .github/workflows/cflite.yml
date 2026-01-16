@@ -1,3 +1,6 @@
+# ClusterFuzzLite Integration
+# Continuous fuzzing for security testing.
+
 name: ClusterFuzzLite
 
 on:
@@ -6,30 +9,30 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 5 * * *'  # Daily at 5 AM
+    - cron: "0 6 * * 0"  # Weekly on Sunday at 6 AM UTC
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   fuzzing:
+    name: Fuzzing
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Build Fuzzers
         id: build
-        uses: google/clusterfuzzlite/actions/build_fuzzers@884713a6c30a92e5e8544c39945cd7cb630abcd1  # v1
+        uses: google/clusterfuzzlite/actions/build_fuzzers@v1
         with:
           language: python
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          sanitizer: address
 
       - name: Run Fuzzers
-        uses: google/clusterfuzzlite/actions/run_fuzzers@884713a6c30a92e5e8544c39945cd7cb630abcd1  # v1
+        uses: google/clusterfuzzlite/actions/run_fuzzers@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           fuzz-seconds: 300
-          mode: 'code-change'
-          sanitizer: address
-          output-sarif: true
+          mode: "code-change"

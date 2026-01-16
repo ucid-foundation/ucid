@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UCID Third-Party Licenses",
+  "description": "Machine-readable inventory of third-party dependencies and their licenses",
+  "version": "1.0.0",
+  "generated": "2026-01-16T00:00:00Z",
+  "project": {
+    "name": "ucid",
+    "license": "EUPL-1.2",
+    "repository": "https://github.com/ucid-foundation/ucid"
+  },
+  "dependencies": {
+    "runtime": [
+      {
+        "name": "h3",
+        "version": ">=3.7.7",
+        "license": "Apache-2.0",
+        "spdx": "Apache-2.0",
+        "homepage": "https://h3geo.org/",
+        "repository": "https://github.com/uber/h3-py",
+        "copyright": "Copyright 2018 Uber Technologies, Inc.",
+        "usage": "Hexagonal spatial indexing",
+        "compatible": true
+      },
+      {
+        "name": "pydantic",
+        "version": ">=2.6.0",
+        "license": "MIT",
+        "spdx": "MIT",
+        "homepage": "https://pydantic.dev/",
+        "repository": "https://github.com/pydantic/pydantic",
+        "copyright": "Copyright (c) 2017-present Samuel Colvin and other contributors",
+        "usage": "Data validation and models",
+        "compatible": true
+      },
+      {
+        "name": "python-dateutil",
+        "version": ">=2.8.2",
+        "license": "Apache-2.0",
+        "spdx": "Apache-2.0",
+        "homepage": "https://dateutil.readthedocs.io/",
+        "repository": "https://github.com/dateutil/dateutil",
+        "copyright": "Copyright (c) 2003-2024 Gustavo Niemeyer and contributors",
+        "usage": "Date and time parsing",
+        "compatible": true
+      }
+    ],
+    "optional": [
+      {
+        "name": "fastapi",
+        "version": ">=0.110.0",
+        "license": "MIT",
+        "spdx": "MIT",
+        "homepage": "https://fastapi.tiangolo.com/",
+        "repository": "https://github.com/tiangolo/fastapi",
+        "copyright": "Copyright (c) 2018-present Sebastián Ramírez",
+        "usage": "REST API framework",
+        "compatible": true,
+        "extra": "api"
+      },
+      {
+        "name": "uvicorn",
+        "version": ">=0.27.0",
+        "license": "BSD-3-Clause",
+        "spdx": "BSD-3-Clause",
+        "homepage": "https://www.uvicorn.org/",
+        "repository": "https://github.com/encode/uvicorn",
+        "copyright": "Copyright (c) 2017-present Encode OSS Ltd.",
+        "usage": "ASGI server",
+        "compatible": true,
+        "extra": "api"
+      },
+      {
+        "name": "numpy",
+        "version": ">=1.26.0",
+        "license": "BSD-3-Clause",
+        "spdx": "BSD-3-Clause",
+        "homepage": "https://numpy.org/",
+        "repository": "https://github.com/numpy/numpy",
+        "copyright": "Copyright (c) 2005-2024 NumPy Developers",
+        "usage": "Numerical operations",
+        "compatible": true,
+        "extra": "data"
+      },
+      {
+        "name": "pandas",
+        "version": ">=2.2.0",
+        "license": "BSD-3-Clause",
+        "spdx": "BSD-3-Clause",
+        "homepage": "https://pandas.pydata.org/",
+        "repository": "https://github.com/pandas-dev/pandas",
+        "copyright": "Copyright (c) 2008-2024 AQR Capital Management, LLC",
+        "usage": "Data manipulation",
+        "compatible": true,
+        "extra": "data"
+      },
+      {
+        "name": "geopandas",
+        "version": ">=0.14.0",
+        "license": "BSD-3-Clause",
+        "spdx": "BSD-3-Clause",
+        "homepage": "https://geopandas.org/",
+        "repository": "https://github.com/geopandas/geopandas",
+        "copyright": "Copyright (c) 2013-2024 GeoPandas developers",
+        "usage": "Geospatial DataFrames",
+        "compatible": true,
+        "extra": "geo"
+      },
+      {
+        "name": "shapely",
+        "version": ">=2.0.0",
+        "license": "BSD-3-Clause",
+        "spdx": "BSD-3-Clause",
+        "homepage": "https://shapely.readthedocs.io/",
+        "repository": "https://github.com/shapely/shapely",
+        "copyright": "Copyright (c) 2007-2024 Sean Gillies and contributors",
+        "usage": "Geometric operations",
+        "compatible": true,
+        "extra": "geo"
+      },
+      {
+        "name": "httpx",
+        "version": ">=0.27.0",
+        "license": "BSD-3-Clause",
+        "spdx": "BSD-3-Clause",
+        "homepage": "https://www.python-httpx.org/",
+        "repository": "https://github.com/encode/httpx",
+        "copyright": "Copyright (c) 2019-2024 Encode OSS Ltd.",
+        "usage": "HTTP client for OSM queries",
+        "compatible": true,
+        "extra": "osm"
+      }
+    ],
+    "development": [
+      {
+        "name": "pytest",
+        "version": ">=8.0.0",
+        "license": "MIT",
+        "spdx": "MIT",
+        "homepage": "https://pytest.org/",
+        "repository": "https://github.com/pytest-dev/pytest",
+        "copyright": "Copyright (c) 2004-2024 Holger Krekel and others",
+        "usage": "Testing framework",
+        "compatible": true
+      },
+      {
+        "name": "pytest-cov",
+        "version": ">=4.1.0",
+        "license": "MIT",
+        "spdx": "MIT",
+        "homepage": "https://pytest-cov.readthedocs.io/",
+        "repository": "https://github.com/pytest-dev/pytest-cov",
+        "copyright": "Copyright (c) 2010-2024 pytest-dev",
+        "usage": "Coverage reporting",
+        "compatible": true
+      },
+      {
+        "name": "mypy",
+        "version": ">=1.8.0",
+        "license": "MIT",
+        "spdx": "MIT",
+        "homepage": "https://mypy-lang.org/",
+        "repository": "https://github.com/python/mypy",
+        "copyright": "Copyright (c) 2012-2024 Jukka Lehtosalo and contributors",
+        "usage": "Static type checking",
+        "compatible": true
+      },
+      {
+        "name": "ruff",
+        "version": ">=0.2.0",
+        "license": "MIT",
+        "spdx": "MIT",
+        "homepage": "https://docs.astral.sh/ruff/",
+        "repository": "https://github.com/astral-sh/ruff",
+        "copyright": "Copyright (c) 2022-2024 Astral Software Inc.",
+        "usage": "Linting and formatting",
+        "compatible": true
+      },
+      {
+        "name": "pre-commit",
+        "version": ">=3.6.0",
+        "license": "MIT",
+        "spdx": "MIT",
+        "homepage": "https://pre-commit.com/",
+        "repository": "https://github.com/pre-commit/pre-commit",
+        "copyright": "Copyright (c) 2014-2024 pre-commit dev team",
+        "usage": "Git hooks",
+        "compatible": true
+      }
+    ]
+  },
+  "data_sources": [
+    {
+      "name": "OpenStreetMap",
+      "license": "ODbL-1.0",
+      "spdx": "ODbL-1.0",
+      "homepage": "https://www.openstreetmap.org/",
+      "attribution": "Data © OpenStreetMap contributors",
+      "usage": "Point-of-interest queries for context algorithms"
+    },
+    {
+      "name": "GTFS",
+      "license": "Various",
+      "homepage": "https://gtfs.org/",
+      "usage": "Transit data for TRANSIT context algorithm"
+    }
+  ],
+  "license_files": [
+    "LICENSES/Apache-2.0.txt",
+    "LICENSES/MIT.txt",
+    "LICENSES/BSD-3-Clause.txt",
+    "LICENSES/PSF-2.0.txt"
+  ]
+}

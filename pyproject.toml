@@ -1,6 +1,6 @@
 [project]
 name = "UCID"
-version = "1.0.3"
+version = "1.0.5"
 description = "Urban Context Identifier - A standardized temporal identifier system for comprehensive urban context analysis across global cities"
 readme = "README.md"
 license = {text = "EUPL-1.2"}
@@ -109,20 +109,23 @@ viz = [
     "plotly>=5.17.0,<7.0.0",
     "folium>=0.15.0,<1.0.0",
 ]
-dev = [
+test = [
     "pytest>=7.4.0,<9.0.0",
     "pytest-cov>=4.1.0,<6.0.0",
     "pytest-benchmark>=4.0.0,<5.0.0",
     "hypothesis>=6.92.0,<7.0.0",
+]
+dev = [
+    "UCID[test]",
     "mypy>=1.7.0,<2.0.0",
     "ruff>=0.1.9,<1.0.0",
     "pre-commit>=3.5.0,<4.0.0",
 ]
 docs = [
-    "sphinx>=7.2.0,<9.0.0",
-    "sphinx-rtd-theme>=2.0.0,<3.0.0",
-    "myst-parser>=2.0.0,<5.0.0",
-    "nbsphinx>=0.9.0,<1.0.0",
+    "mkdocs>=1.5.0,<2.0.0",
+    "mkdocs-material>=9.5.0,<10.0.0",
+    "mkdocstrings[python]>=0.24.0,<1.0.0",
+    "mkdocs-gen-files>=0.5.0,<1.0.0",
 ]
 security = [
     "pip-audit>=2.6.0,<3.0.0",
@@ -262,3 +265,4 @@ exclude_lines = [
     "if __name__ == .__main__.:",
     "if TYPE_CHECKING:",
 ]
+fail_under = 70

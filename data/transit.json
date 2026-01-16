@@ -1,67 +1,137 @@
 {
+  "_comment": "Copyright 2026 UCID Foundation. Licensed under EUPL-1.2.",
+  "_version": "1.0.5",
+  "_description": "Transit type definitions for UCID library. Based on GTFS route_type specification.",
+  "_documentation": "https://gtfs.org/schedule/reference/#routestxt",
+  "_last_updated": "2026-01-15",
   "transit_types": [
-    {"id": "metro", "name": "Metro/Subway", "icon": "🚇", "weight": 1.0},
-    {"id": "bus", "name": "Bus", "icon": "🚌", "weight": 0.7},
-    {"id": "tram", "name": "Tram/Light Rail", "icon": "🚊", "weight": 0.85},
-    {"id": "ferry", "name": "Ferry", "icon": "⛴️", "weight": 0.6},
-    {"id": "train", "name": "Commuter Rail", "icon": "🚆", "weight": 0.9},
-    {"id": "brt", "name": "Bus Rapid Transit", "icon": "🚍", "weight": 0.8}
+    {
+      "id": 0,
+      "code": "TRAM",
+      "name": "Tram/Light Rail",
+      "description": "Tram, streetcar, light rail. Any light rail or street level system within a metropolitan area.",
+      "weight": 0.80
+    },
+    {
+      "id": 1,
+      "code": "SUBWAY",
+      "name": "Subway/Metro",
+      "description": "Subway, metro. Any underground rail system within a metropolitan area.",
+      "weight": 1.00
+    },
+    {
+      "id": 2,
+      "code": "RAIL",
+      "name": "Rail",
+      "description": "Rail. Used for intercity or long-distance travel.",
+      "weight": 0.90
+    },
+    {
+      "id": 3,
+      "code": "BUS",
+      "name": "Bus",
+      "description": "Bus. Used for short- and long-distance bus routes.",
+      "weight": 0.60
+    },
+    {
+      "id": 4,
+      "code": "FERRY",
+      "name": "Ferry",
+      "description": "Ferry. Used for short- and long-distance boat service.",
+      "weight": 0.70
+    },
+    {
+      "id": 5,
+      "code": "CABLE_TRAM",
+      "name": "Cable Tram",
+      "description": "Cable tram. Used for street-level rail cars where the cable runs beneath the vehicle.",
+      "weight": 0.50
+    },
+    {
+      "id": 6,
+      "code": "AERIAL",
+      "name": "Aerial Lift",
+      "description": "Aerial lift, suspended cable car (e.g., gondola lift, aerial tramway).",
+      "weight": 0.40
+    },
+    {
+      "id": 7,
+      "code": "FUNICULAR",
+      "name": "Funicular",
+      "description": "Funicular. Any rail system designed for steep inclines.",
+      "weight": 0.40
+    },
+    {
+      "id": 11,
+      "code": "TROLLEY",
+      "name": "Trolleybus",
+      "description": "Trolleybus. Electric buses that draw power from overhead wires.",
+      "weight": 0.65
+    },
+    {
+      "id": 12,
+      "code": "MONORAIL",
+      "name": "Monorail",
+      "description": "Monorail. Railway in which the track consists of a single rail or beam.",
+      "weight": 0.75
+    }
   ],
   "sample_stops": [
     {
       "city": "IST",
       "stop_id": "ist_kadikoy_metro",
-      "name": "Kadıköy Metro Station",
-      "type": "metro",
+      "name": "Kadikoy Metro Station",
+      "type": 1,
       "coordinates": {"lat": 40.9913, "lon": 29.0236},
       "routes": ["M4", "Marmaray"],
-      "frequency_peak": 3,
-      "frequency_offpeak": 6
+      "frequency_peak_minutes": 3,
+      "frequency_offpeak_minutes": 6
     },
     {
       "city": "IST",
       "stop_id": "ist_kadikoy_ferry",
-      "name": "Kadıköy Ferry Terminal",
-      "type": "ferry",
+      "name": "Kadikoy Ferry Terminal",
+      "type": 4,
       "coordinates": {"lat": 40.9906, "lon": 29.0235},
-      "routes": ["Kadıköy-Eminönü", "Kadıköy-Karaköy", "Kadıköy-Beşiktaş"],
-      "frequency_peak": 10,
-      "frequency_offpeak": 20
+      "routes": ["Kadikoy-Eminonu", "Kadikoy-Karakoy", "Kadikoy-Besiktas"],
+      "frequency_peak_minutes": 10,
+      "frequency_offpeak_minutes": 20
     },
     {
       "city": "NYC",
       "stop_id": "nyc_times_sq",
       "name": "Times Square-42nd Street",
-      "type": "metro",
+      "type": 1,
       "coordinates": {"lat": 40.7580, "lon": -73.9855},
       "routes": ["1", "2", "3", "7", "N", "Q", "R", "W", "S"],
-      "frequency_peak": 2,
-      "frequency_offpeak": 5
+      "frequency_peak_minutes": 2,
+      "frequency_offpeak_minutes": 5
     },
     {
       "city": "LON",
       "stop_id": "lon_westminster",
       "name": "Westminster Underground",
-      "type": "metro",
+      "type": 1,
       "coordinates": {"lat": 51.5013, "lon": -0.1247},
       "routes": ["Circle", "District", "Jubilee"],
-      "frequency_peak": 3,
-      "frequency_offpeak": 6
+      "frequency_peak_minutes": 3,
+      "frequency_offpeak_minutes": 6
     },
     {
       "city": "TKY",
       "stop_id": "tky_tokyo_station",
       "name": "Tokyo Station",
-      "type": "train",
+      "type": 2,
       "coordinates": {"lat": 35.6812, "lon": 139.7671},
       "routes": ["Marunouchi", "Chiyoda", "Yamanote", "Tokaido Shinkansen"],
-      "frequency_peak": 2,
-      "frequency_offpeak": 4
+      "frequency_peak_minutes": 2,
+      "frequency_offpeak_minutes": 4
     }
   ],
   "metadata": {
-    "version": "1.0.0",
-    "generated": "2026-01-14",
-    "source": "UCID Foundation"
+    "version": "1.0.5",
+    "generated": "2026-01-15",
+    "source": "UCID Foundation",
+    "license": "EUPL-1.2"
   }
 }

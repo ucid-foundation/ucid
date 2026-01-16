@@ -1,6 +1,14 @@
-# Contributor Covenant Code of Conduct
+# UCID Code of Conduct
 
-This Code of Conduct establishes the standards and expectations for all participants in the UCID (Urban Context Identifier) community. Our goal is to create an inclusive, respectful, and productive environment for everyone involved in the project.
+## Document Information
+
+| Field | Value |
+|-------|-------|
+| Document Title | UCID Community Code of Conduct |
+| Version | 1.0.5 |
+| Last Updated | 2026-01-16 |
+| Maintainer | UCID Foundation |
+| Based On | Contributor Covenant 2.1 |
 
 ---
 
@@ -8,399 +16,530 @@ This Code of Conduct establishes the standards and expectations for all particip
 
 1. [Our Pledge](#our-pledge)
 2. [Our Standards](#our-standards)
-3. [Responsibilities](#responsibilities)
+3. [Enforcement Responsibilities](#enforcement-responsibilities)
 4. [Scope](#scope)
-5. [Enforcement](#enforcement)
-6. [Enforcement Guidelines](#enforcement-guidelines)
-7. [Reporting](#reporting)
+5. [Reporting Guidelines](#reporting-guidelines)
+6. [Enforcement Process](#enforcement-process)
+7. [Enforcement Guidelines](#enforcement-guidelines)
 8. [Appeals Process](#appeals-process)
-9. [Definitions](#definitions)
-10. [Frequently Asked Questions](#frequently-asked-questions)
+9. [Community Guidelines](#community-guidelines)
+10. [Technical Conduct](#technical-conduct)
 11. [Attribution](#attribution)
 
 ---
 
 ## Our Pledge
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+We as members, contributors, and leaders pledge to make participation in the UCID community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
 
 We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
 
 ### Core Values
 
-The UCID community is built on the following core values:
-
 | Value | Description |
 |-------|-------------|
-| **Respect** | Treat all community members with dignity and courtesy |
-| **Inclusivity** | Actively welcome and support people of all backgrounds |
-| **Collaboration** | Work together constructively toward shared goals |
+| **Respect** | Treat all community members with dignity |
+| **Inclusivity** | Welcome people of all backgrounds |
+| **Collaboration** | Work together constructively |
 | **Transparency** | Communicate openly and honestly |
-| **Accountability** | Take responsibility for our actions and their impact |
-| **Excellence** | Strive for quality in all contributions |
-
-### Community Goals
-
-Our community aims to:
-
-1. Advance the field of urban data science through open source software
-2. Provide accessible tools for researchers and practitioners worldwide
-3. Foster innovation in urban planning and policy analysis
-4. Build a sustainable, self-governing open source community
-5. Maintain the highest standards of code quality and documentation
-6. Create opportunities for learning and professional development
+| **Accountability** | Take responsibility for our actions |
 
 ---
 
 ## Our Standards
 
-### Positive Behavior
+### Positive Behaviors
 
-Examples of behavior that contributes to a positive environment for our community include:
+Examples of behavior that contributes to a positive environment:
 
-#### Communication Standards
-
-| Standard | Examples |
+| Category | Examples |
 |----------|----------|
-| **Constructive Feedback** | Specific, actionable suggestions for improvement |
-| **Active Listening** | Acknowledging others' perspectives before responding |
-| **Clear Expression** | Writing clearly and avoiding jargon when possible |
-| **Timely Response** | Responding to issues and PRs within reasonable timeframes |
-| **Inclusive Language** | Using gender-neutral terms and avoiding exclusionary language |
+| **Communication** | Using welcoming and inclusive language |
+| **Respect** | Being respectful of differing viewpoints and experiences |
+| **Feedback** | Giving and gracefully accepting constructive feedback |
+| **Collaboration** | Focusing on what is best for the community |
+| **Empathy** | Showing empathy towards other community members |
+| **Learning** | Being open to learning from others |
+| **Recognition** | Acknowledging others' contributions |
+| **Patience** | Being patient with newcomers |
 
-#### Collaboration Standards
+### Positive Communication Examples
 
-1. **Demonstrating empathy and kindness toward other people**
-   - Acknowledging the feelings and perspectives of others
-   - Offering help to those who are struggling
-   - Celebrating the successes of community members
-   - Being patient with newcomers and those learning
+```
+Good: "I think there might be a different approach we could try. What do you think about..."
 
-2. **Being respectful of differing opinions, viewpoints, and experiences**
-   - Engaging in productive debate without personal attacks
-   - Seeking to understand before seeking to be understood
-   - Accepting that reasonable people can disagree
-   - Valuing diverse perspectives as a strength
+Good: "Thank you for your contribution! I have some suggestions that might help..."
 
-3. **Giving and gracefully accepting constructive feedback**
-   - Focusing on the work, not the person
-   - Providing specific, actionable suggestions
-   - Thanking reviewers for their time and input
-   - Accepting criticism as an opportunity to improve
+Good: "I don't fully understand this yet. Could you explain more about..."
 
-4. **Accepting responsibility and apologizing to those affected by our mistakes**
-   - Acknowledging errors promptly and sincerely
-   - Taking corrective action to prevent recurrence
-   - Learning from the experience
-   - Not making excuses or shifting blame
+Good: "That's an interesting perspective. Have you considered..."
+```
 
-5. **Focusing on what is best for the overall community**
-   - Considering the long-term impact of decisions
-   - Balancing individual preferences with community needs
-   - Supporting decisions once they are made
-   - Prioritizing project health over personal interests
+### Unacceptable Behaviors
 
-#### Technical Standards
+Examples of unacceptable behavior:
 
-| Area | Expectations |
-|------|--------------|
-| **Code Review** | Respectful, thorough, and educational feedback |
-| **Issue Reporting** | Clear, complete, and reproducible problem descriptions |
-| **Documentation** | Accurate, comprehensive, and accessible writing |
-| **Testing** | Thorough coverage that helps maintain quality |
-| **Mentoring** | Patience and support for new contributors |
-
-### Unacceptable Behavior
-
-The following behaviors are considered unacceptable in our community:
-
-#### Harassment and Discrimination
-
-1. **The use of sexualized language or imagery, and sexual attention or advances of any kind**
-   - This includes unwelcome comments about appearance
-   - Sexual jokes, innuendo, or requests for sexual favors
-   - Sharing sexually explicit content
-   - Unwelcome physical contact at events
-
-2. **Trolling, insulting or derogatory comments, and personal or political attacks**
-   - Deliberately inflammatory or provocative statements
-   - Name-calling, slurs, or derogatory nicknames
-   - Sustained disruption of discussions
-   - Personal attacks unrelated to technical matters
-
-3. **Public or private harassment**
-   - Repeated unwanted contact after being asked to stop
-   - Following or stalking behavior
-   - Threats of violence or intimidation
-   - Doxing (publishing private information)
-
-4. **Publishing others' private information without explicit permission**
-   - Real names, addresses, or phone numbers
-   - Email addresses or social media accounts
-   - Employer information or financial details
-   - Private communications without consent
-
-5. **Other conduct which could reasonably be considered inappropriate in a professional setting**
-   - Excessive profanity
-   - Aggressive or confrontational tone
-   - Refusing to follow community guidelines
-   - Deliberate intimidation
-
-#### Professional Misconduct
-
-| Behavior | Examples |
+| Category | Examples |
 |----------|----------|
-| **Plagiarism** | Copying code or documentation without attribution |
-| **Misrepresentation** | Falsely claiming contributions or credentials |
-| **Sabotage** | Intentionally introducing bugs or security vulnerabilities |
-| **Spam** | Excessive self-promotion or off-topic content |
-| **Bad Faith** | Deliberately wasting maintainers' time |
+| **Harassment** | Sexual language, imagery, or unwanted attention |
+| **Attacks** | Trolling, insulting, or derogatory comments |
+| **Personal** | Personal or political attacks |
+| **Privacy** | Publishing others' private information |
+| **Professional** | Conduct inappropriate in a professional setting |
+| **Discrimination** | Any form of discrimination |
+| **Intimidation** | Threatening or intimidating behavior |
+| **Disruption** | Sustained disruption of discussions |
+
+### Unacceptable Communication Examples
+
+```
+Bad: "That's a stupid question."
+
+Bad: "You clearly don't know what you're doing."
+
+Bad: "This code is garbage."
+
+Bad: Any personal insults or attacks
+```
 
 ---
 
-## Responsibilities
+## Enforcement Responsibilities
 
 ### Community Leaders
 
 Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.
 
-#### Leader Responsibilities
+### Leader Responsibilities
 
 | Responsibility | Description |
 |----------------|-------------|
-| **Enforcement** | Apply Code of Conduct fairly and consistently |
-| **Communication** | Explain decisions clearly and respectfully |
-| **Confidentiality** | Protect reporter identity in investigations |
-| **Impartiality** | Recuse themselves when personally involved |
-| **Timeliness** | Respond to reports within stated timeframes |
-| **Documentation** | Keep records of incidents and decisions |
+| **Clarification** | Clearly explain community standards |
+| **Enforcement** | Consistently apply standards fairly |
+| **Privacy** | Protect reporter confidentiality |
+| **Impartiality** | Remain neutral in disputes |
+| **Documentation** | Record incidents and actions |
+| **Communication** | Keep parties informed of process |
 
-Community leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.
+### Rights of Leaders
 
-### Maintainers
+Community leaders have the right and responsibility to:
 
-Maintainers have additional responsibilities:
-
-1. Reviewing and merging contributions fairly
-2. Providing constructive feedback on pull requests
-3. Helping new contributors understand the project
-4. Escalating Code of Conduct violations appropriately
-5. Modeling positive behavior for the community
-6. Creating a welcoming environment for all participants
-
-### Contributors
-
-All contributors are expected to:
-
-1. Read and follow this Code of Conduct
-2. Treat all community members with respect
-3. Accept feedback gracefully
-4. Report violations they witness
-5. Support the goals of the community
-6. Help maintain a positive environment
+1. Remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct
+2. Temporarily or permanently ban any contributor for behaviors deemed inappropriate, threatening, offensive, or harmful
+3. Communicate reasons for moderation decisions when appropriate
 
 ---
 
 ## Scope
 
-This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces.
+### Where This Applies
 
-### Covered Spaces
+This Code of Conduct applies within all community spaces, including:
 
-| Space Type | Examples |
-|------------|----------|
-| **Code Repositories** | GitHub issues, PRs, comments, commits |
-| **Communication Channels** | Discord, Slack, mailing lists, forums |
-| **Events** | Conferences, meetups, workshops, webinars |
-| **Social Media** | Official accounts and project-related posts |
-| **Documentation** | README files, wikis, tutorials |
+| Space | Examples |
+|-------|----------|
+| **Code Repositories** | GitHub issues, pull requests, comments |
+| **Communication** | Mailing lists, chat channels, forums |
+| **Events** | Conferences, meetups, workshops |
+| **Social Media** | Official accounts and hashtags |
+| **Direct** | One-on-one communications in community context |
 
-### Official Representation
+### External Representation
 
-Examples of representing our community include:
+This Code of Conduct also applies when an individual is officially representing the community in public spaces. Examples include:
 
 - Using an official project email address
 - Posting via an official social media account
 - Acting as an appointed representative at an online or offline event
-- Speaking at conferences about the project
-- Wearing project-branded merchandise at events
+- Representing UCID at conferences or meetups
 
 ---
 
-## Enforcement
+## Reporting Guidelines
 
-### Reporting Process
+### How to Report
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at:
+If you experience or witness unacceptable behavior, please report it by contacting the conduct team:
 
-**Email**: conduct@ucid.org
+| Contact | Purpose |
+|---------|---------|
+| conduct@ucid.org | Primary conduct team email |
+| security@ucid.org | Security-related conduct issues |
 
-**Response Time**: We aim to respond within 48 hours
+### What to Include
 
-All complaints will be reviewed and investigated promptly and fairly.
+When reporting, please include:
+
+1. **Your contact information** (if comfortable sharing)
+2. **Names of people involved** (usernames, real names if known)
+3. **Description of the incident** (what happened)
+4. **When and where it occurred** (date, time, location/URL)
+5. **Any witnesses** (usernames if applicable)
+6. **Screenshots or logs** (if available)
+7. **Additional context** (prior interactions, etc.)
+
+### Report Template
+
+```
+Subject: Code of Conduct Report
+
+1. Reporter Information (optional):
+   Name:
+   Email:
+
+2. Incident Details:
+   Date/Time:
+   Location/URL:
+
+3. People Involved:
+   - [Person 1]:
+   - [Person 2]:
+
+4. Description:
+   [Detailed description of what happened]
+
+5. Witnesses:
+   - [Witness 1]:
+
+6. Evidence:
+   [Links to screenshots, logs, etc.]
+
+7. Additional Context:
+   [Any other relevant information]
+```
 
 ### Confidentiality
 
-All community leaders are obligated to respect the privacy and security of the reporter of any incident.
+All reports will be handled with discretion. We will:
 
-| Information | Confidentiality |
-|-------------|-----------------|
-| Reporter identity | Not disclosed without consent |
-| Report contents | Shared only with enforcement team |
-| Investigation details | Limited to necessary parties |
-| Final decision | Public with identifying details removed |
+- Protect the identity of the reporter
+- Only share information on a need-to-know basis
+- Keep records secure and confidential
+- Not retaliate against good-faith reporters
+
+---
+
+## Enforcement Process
+
+### Process Overview
+
+```mermaid
+flowchart TD
+    A[Report Received] --> B[Initial Review]
+    B --> C{Valid Report?}
+    C -->|Yes| D[Investigation]
+    C -->|No| E[Close with Explanation]
+    D --> F[Determine Action]
+    F --> G[Notify Parties]
+    G --> H[Implement Action]
+    H --> I[Follow-up]
+    I --> J[Document and Close]
+```
+
+### Timeline
+
+| Phase | Timeline | Description |
+|-------|----------|-------------|
+| Acknowledgment | 24 hours | Confirm receipt of report |
+| Initial Review | 48 hours | Assess validity and urgency |
+| Investigation | 1-2 weeks | Gather information |
+| Decision | 72 hours | Determine appropriate action |
+| Notification | 24 hours | Inform all parties |
+| Implementation | Immediate | Apply consequences |
+| Appeal Window | 14 days | Allow for appeals |
 
 ---
 
 ## Enforcement Guidelines
 
-Community leaders will follow these Community Impact Guidelines:
+Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct.
 
-### 1. Correction
+### Level 1: Correction
 
-**Community Impact**: Use of inappropriate language or other behavior deemed unprofessional.
+**Community Impact**: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.
 
-**Consequence**: A private, written warning providing clarity around the nature of the violation.
+**Consequence**: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
 
-**Duration**: Immediate and one-time
+| Aspect | Details |
+|--------|---------|
+| Duration | Immediate |
+| Record | Kept for 6 months |
+| Escalation | Level 2 if repeated |
 
-### 2. Warning
+### Level 2: Warning
 
 **Community Impact**: A violation through a single incident or series of actions.
 
-**Consequence**: A warning with consequences for continued behavior. No interaction with the people involved for a specified period.
+**Consequence**: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.
 
-**Duration**: Typically 30-90 days
+| Aspect | Details |
+|--------|---------|
+| Duration | 30 days |
+| Record | Kept for 1 year |
+| Escalation | Level 3 if violated |
 
-### 3. Temporary Ban
+### Level 3: Temporary Ban
 
 **Community Impact**: A serious violation of community standards, including sustained inappropriate behavior.
 
-**Consequence**: A temporary ban from any sort of interaction or public communication with the community.
+**Consequence**: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.
 
-**Duration**: Typically 90 days to 1 year
+| Aspect | Details |
+|--------|---------|
+| Duration | 90 days |
+| Record | Kept for 2 years |
+| Escalation | Level 4 if violated |
 
-### 4. Permanent Ban
+### Level 4: Permanent Ban
 
-**Community Impact**: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior or harassment.
+**Community Impact**: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.
 
 **Consequence**: A permanent ban from any sort of public interaction within the community.
 
-**Duration**: Indefinite
-
----
-
-## Reporting
-
-### How to Report
-
-If you experience or witness behavior that violates this Code of Conduct:
-
-1. **Direct Resolution**: If comfortable, address the issue directly with the person involved
-2. **Report to Leaders**: Email conduct@ucid.org with details
-3. **Anonymous Report**: Use our anonymous reporting form (if available)
-
-### What to Include
-
-| Information | Description |
-|-------------|-------------|
-| **Date and Time** | When the incident occurred |
-| **Location** | Where the incident occurred (channel, PR, etc.) |
-| **Description** | What happened, as specifically as possible |
-| **Evidence** | Screenshots, links, or other documentation |
-| **Witnesses** | Names of others who observed the incident |
-| **Context** | Any relevant background information |
+| Aspect | Details |
+|--------|---------|
+| Duration | Permanent |
+| Record | Kept indefinitely |
+| Appeal | After 1 year minimum |
 
 ---
 
 ## Appeals Process
 
-### Appealing a Decision
+### How to Appeal
 
-If you believe an enforcement decision was made in error:
+If you believe an enforcement decision was made in error, you may appeal:
 
-1. Submit an appeal to appeals@ucid.org within 30 days
-2. Include the original decision and your reasoning
-3. Provide any new information not previously considered
-4. The appeals committee will review within 14 days
-5. The appeals decision is final
+1. **Submit appeal** to conduct-appeals@ucid.org within 14 days
+2. **Include** the original incident reference number
+3. **Explain** why you believe the decision was incorrect
+4. **Provide** any new information or context
 
----
+### Appeal Review
 
-## Definitions
-
-### Glossary
-
-| Term | Definition |
-|------|------------|
-| **Community** | All participants in UCID, including users, contributors, maintainers, and leaders |
-| **Community Leaders** | Individuals responsible for enforcing this Code of Conduct |
-| **Contributor** | Anyone who contributes to the project (code, documentation, issues, etc.) |
-| **Harassment** | Unwanted behavior that demeans, threatens, or offends |
-| **Maintainer** | Project members with commit access and review responsibilities |
-| **Public Space** | Any venue where community members interact publicly |
-| **Safe Space** | An environment free from harassment and discrimination |
+Appeals will be reviewed by community leaders who were not involved in the original decision. The appeal decision is final.
 
 ---
 
-## Frequently Asked Questions
+## Community Guidelines
+
+### General Guidelines
+
+| Guideline | Description |
+|-----------|-------------|
+| **Be Welcoming** | Help newcomers feel included |
+| **Be Patient** | Remember everyone was new once |
+| **Be Considerate** | Think about how your actions affect others |
+| **Be Respectful** | Disagreement is not an excuse for poor behavior |
+| **Be Careful with Words** | Sarcasm and jokes may be misunderstood |
+| **Be Forgiving** | Assume good intentions |
+
+### Communication Guidelines
+
+1. **Use clear language**: Avoid jargon when possible
+2. **Be concise**: Respect others' time
+3. **Stay on topic**: Keep discussions focused
+4. **Use proper channels**: Ask in appropriate forums
+5. **Search first**: Check if questions have been answered
+
+---
+
+## Technical Conduct
+
+### Code Review Conduct
+
+| Do | Don't |
+|----|-------|
+| Focus on the code, not the person | Make personal attacks |
+| Explain your reasoning | Be dismissive |
+| Offer alternatives | Just say "this is wrong" |
+| Be timely with reviews | Leave PRs hanging |
+| Acknowledge good work | Only point out problems |
+
+### Issue and PR Conduct
+
+1. **Be descriptive**: Provide enough context
+2. **Be responsive**: Reply to questions promptly
+3. **Be patient**: Maintainers are often volunteers
+4. **Be grateful**: Thank contributors for their work
+5. **Be constructive**: Offer solutions, not just problems
+
+---
+
+## Online Event Guidelines
+
+### Virtual Meetings
+
+| Guideline | Description |
+|-----------|-------------|
+| Camera Optional | Participants may keep cameras off |
+| Mute When Not Speaking | Reduce background noise |
+| Use Chat | For questions and comments |
+| Be Present | Minimize distractions |
+| Respect Time Zones | Consider global participants |
+
+### Online Chat Conduct
+
+| Do | Don't |
+|----|-------|
+| Use threads for discussions | Spam the main channel |
+| Keep topics focused | Go off-topic |
+| Welcome new members | Ignore newcomers |
+| Be patient with responses | Expect immediate replies |
+
+---
+
+## In-Person Event Guidelines
+
+### Conference Conduct
+
+| Guideline | Description |
+|-----------|-------------|
+| Wear Badge | Identification at all times |
+| Respect Space | Personal boundaries matter |
+| Report Issues | To event staff immediately |
+| Follow Venue Rules | Adhere to local policies |
+
+### Photography and Recording
+
+1. **Ask Permission**: Before photographing individuals
+2. **Opt-Out Stickers**: Respect those who don't want photos
+3. **No Recording**: Without explicit consent
+4. **Share Carefully**: Consider privacy when posting
+
+---
+
+## Moderation Guidelines
+
+### For Moderators
+
+| Responsibility | Action |
+|----------------|--------|
+| Monitor Channels | Watch for violations |
+| Act Promptly | Address issues quickly |
+| Document Everything | Keep records |
+| Escalate When Needed | Contact leadership |
+
+### Moderation Tools
+
+```mermaid
+flowchart LR
+    A[Violation Detected] --> B{Severity?}
+    B -->|Low| C[Warn]
+    B -->|Medium| D[Temp Mute]
+    B -->|High| E[Remove]
+    C --> F[Document]
+    D --> F
+    E --> F
+    F --> G[Report]
+```
+
+---
+
+## Translations
+
+### Available Languages
+
+| Language | Status | Maintainer |
+|----------|--------|------------|
+| English | Complete | UCID Foundation |
+| German | In Progress | Community |
+| French | In Progress | Community |
+| Spanish | Planned | - |
+| Turkish | Complete | UCID Foundation |
+
+### Translation Guidelines
+
+1. Maintain the spirit and intent of the original
+2. Use culturally appropriate language
+3. Keep legal terms accurate
+4. Update translations with each revision
+
+---
+
+## FAQ
 
 ### General Questions
 
-**Q: Does this Code of Conduct apply to me?**
-A: Yes, if you participate in the UCID community in any capacity.
+**Q: Who does this Code of Conduct apply to?**
 
-**Q: What if I witness a violation but am not the target?**
-A: You can and should report it. Bystander reports help maintain community health.
+A: All community members, including contributors, maintainers, users, and event attendees.
 
-**Q: Are volunteers held to the same standards as paid maintainers?**
-A: Yes, all community members are held to the same standards of conduct.
+**Q: What if I witness a violation?**
 
-### Reporting Questions
+A: Report it to conduct@ucid.org with details.
 
-**Q: What happens if I report anonymously?**
-A: Anonymous reports are taken seriously, but limited information may limit our ability to investigate.
+**Q: Can I remain anonymous when reporting?**
 
-**Q: Will my report be kept confidential?**
-A: Yes, we protect reporter identity unless you consent to disclosure.
+A: Yes, anonymous reports are accepted.
 
-**Q: What if I am being harassed by a maintainer?**
-A: Report to conduct@ucid.org. We have procedures for handling reports involving community leaders.
+**Q: What happens after I report?**
+
+A: You will receive acknowledgment within 24 hours and updates on the investigation.
 
 ### Enforcement Questions
 
-**Q: Can I appeal an enforcement decision?**
-A: Yes, you may request a review within 30 days of the decision.
+**Q: How are decisions made?**
 
-**Q: What if I disagree with a warning I received?**
-A: You may respond to the enforcement team with your perspective.
+A: The conduct team reviews reports, investigates, and decides based on the enforcement guidelines.
 
-**Q: Are enforcement actions public?**
-A: Generally, only severe actions (bans) are announced publicly, without identifying details.
+**Q: Can I appeal a decision?**
+
+A: Yes, within 14 days to conduct-appeals@ucid.org.
+
+**Q: Are records kept permanently?**
+
+A: Records are kept for the duration specified in the enforcement level.
+
+---
+
+## Resources
+
+### External Resources
+
+| Resource | URL |
+|----------|-----|
+| Contributor Covenant | https://www.contributor-covenant.org |
+| Mozilla Participation Guidelines | https://www.mozilla.org/en-US/about/governance/policies/participation/ |
+| Django Code of Conduct | https://www.djangoproject.com/conduct/ |
+
+### Books and Articles
+
+- "The Art of Community" by Jono Bacon
+- "Working in Public" by Nadia Eghbal
+- "Psychological Safety and Learning in Organizations" by Amy Edmondson
 
 ---
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/), version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
+This Code of Conduct is adapted from the Contributor Covenant, version 2.1, available at https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
 
-Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcement ladder](https://github.com/mozilla/diversity).
+Community Impact Guidelines were inspired by Mozilla's code of conduct enforcement ladder.
+
+For answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq
 
 ---
 
-## Amendments
+## Contact Information
 
-This Code of Conduct may be amended through the following process:
+| Contact | Purpose |
+|---------|---------|
+| conduct@ucid.org | Code of Conduct issues |
+| security@ucid.org | Security concerns |
+| contact@ucid.org | General inquiries |
 
-1. Proposed changes posted for community review (30 days)
-2. Feedback collected and incorporated
-3. Final version approved by governance board
-4. Updated version published with effective date
+---
 
-Current version: 2.1
-Effective date: 2026-01-01
-Last reviewed: 2026-01-12
+## Revision History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0.5 | 2026-01-16 | Added FAQ, translations, event guidelines |
+| 1.0.0 | 2025-12-01 | Initial release |
 
 ---
 
 Copyright 2026 UCID Foundation. All rights reserved.
+Licensed under EUPL-1.2.

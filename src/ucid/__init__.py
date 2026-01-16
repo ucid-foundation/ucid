@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""UCID: Urban Context Identifier.
+"""UCID-V1: Urban Context Identifier.
 
 A standardized, temporal identifier system and Python library for
 comprehensive urban context analysis. UCID provides a universal key for
@@ -28,7 +28,7 @@ Example usage:
 For more information, see https://www.ucid.org
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.5"
 __author__ = "UCID Foundation"
 __email__ = "contact@ucid.org"
 __url__ = "https://www.ucid.org"
@@ -36,15 +36,35 @@ __url__ = "https://www.ucid.org"
 from ucid.core.errors import UCIDError, UCIDParseError, UCIDValidationError
 from ucid.core.models import UCID, City
 from ucid.core.parser import canonicalize, create_ucid, parse_ucid
+from ucid.data import (
+    get_azerbaijan_cities,
+    get_cities_by_coordinates,
+    get_city,
+    get_registry_info,
+    list_cities,
+    list_countries,
+    search_cities,
+)
 
 __all__ = [
     "__version__",
+    # Core functions
     "create_ucid",
     "parse_ucid",
     "canonicalize",
+    # Models
     "UCID",
     "City",
+    # Errors
     "UCIDError",
     "UCIDParseError",
     "UCIDValidationError",
+    # City registry (405 cities, 23 countries)
+    "get_registry_info",
+    "list_countries",
+    "list_cities",
+    "get_city",
+    "search_cities",
+    "get_cities_by_coordinates",
+    "get_azerbaijan_cities",
 ]
